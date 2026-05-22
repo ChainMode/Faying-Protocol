@@ -1,0 +1,26 @@
+# === 仓库根目录：默认忽略一切 ===
+/*
+
+# === 显式放行 ===
+!/docs/
+!/README.md
+!/.gitignore
+
+# === 在已放行的目录内仍要剔除的常见噪声 ===
+.DS_Store
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# === 不进入 GitHub 管控的内部文件 ===
+# 各语言蓝图的 glossary.md 仅作为内部对照表，不公开
+docs/*/blueprint/glossary.md
+# 蓝图同步状态文件仅作为内部维护，不公开
+docs/*/blueprint/sync-status.yaml
+
+# 备注：
+# 1. /* 仅匹配仓库根目录的一级条目；!/docs/ 一旦放行，docs/ 内所有文件默认被跟踪
+# 2. .kiro/ 因未被显式放行（且 /* 已在根级忽略），自然不会被推送
+# 3. LICENSE、schema/ 因未被显式放行，亦不会被推送
+# 4. 后续如需纳入 schema/，追加一行 !/schema/ 即可

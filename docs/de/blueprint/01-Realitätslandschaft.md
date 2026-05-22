@@ -1,0 +1,108 @@
+# Realitätslandschaft
+
+AI Agent ist im Software-Bereich zu einem geläufigen Begriff geworden. Er bezeichnet eine Klasse intelligenter Ausführungsinstanzen, die spezifische Funktionen autonom ausführen können — Sie geben ihnen ein Ziel, und sie planen, rufen Werkzeuge auf und liefern eigenständig Ergebnisse.
+
+Doch in Unternehmensanwendungen, regulierten Branchen und souveränitätsübergreifenden Szenarien scheitert die Bereitstellung von AI Agents fast immer an derselben Schwelle: **Wenn ein Agent einen Fehler macht, seine Befugnisse überschreitet oder Verträge bricht, lässt sich die Verantwortung nicht auf eine konkrete verantwortliche Partei zurückführen, die verklagt und zur Zahlung von Schadensersatz verpflichtet werden kann**. Diese Sackgasse ist mittlerweile ein Branchenkonsens. CIOs, Justiziare, Versicherer und Regulierer sehen die Schwelle alle, doch kein vorhandenes technisches oder rechtliches Werkzeug kann sie für sich allein überwinden.
+
+Das Konzept des Fay ist genau aus dieser Schwelle heraus rückwärts entwickelt worden. Die gesamte Unterscheidung zwischen Fay und Agent läuft auf eines hinaus: **Ein Fay muss zwingend an eine verantwortliche Entität gebunden sein**.
+
+- **iFay** — Individual Fay. Eine intelligente Entität, die zwingend eins-zu-eins an einen Human Prime (Menschlicher Prime) gebunden ist. Auf Protokollebene trägt ein iFay die spezifische natürliche Person, der es zugehört; entzieht man diese Zuordnung, ist es kein iFay mehr.
+- **coFay** — Ein geteilter Fay. Sein Betrieb ist nur erlaubt, wenn er ausdrücklich einer Person oder Organisation mit der rechtlichen Fähigkeit, Verantwortung zu tragen, zugeordnet ist. Sobald diese Zuordnung verfällt, muss er stoppen.
+
+Diese Definition hebt die Rückverfolgbarkeit der verantwortlichen Partei von einem auf Anwendungsebene aufgesetzten Compliance-Problem auf eine Existenzbedingung der Protokollebene. Unter der Definition dieses Blueprints ist ein Fay, der nicht an eine verantwortliche Entität gebunden werden kann, schlicht kein Fay.
+
+Aber eine Definition ist nur ein Name. Das eigentliche Problem ist ingenieurtechnisch: **Wie stellen wir sicher, dass ein AI Agent stets in einem Zustand unerschütterlicher Verantwortung operiert?** Die Antwort darauf ist das Faying Protocol. Es definiert, wie die Beziehung „an eine verantwortliche Entität gebunden" hergestellt, aufrechterhalten, verifiziert und widerrufen wird, sodass jede Handlung eines Fay einem rückverfolgbaren Human Prime oder einer organisatorischen Rolle entspricht.
+
+Dieses Kapitel skizziert die konkrete Gestalt dieser Schwelle in sieben Dimensionen und zeigt, warum die vorherrschende Kombination aus ingenieurtechnischen und rechtlichen Werkzeugen — IAM, OAuth, Produkthaftungsrecht, Plattform-Compliance, AI Alignment — keiner einzigen davon gewachsen ist.
+
+## Wirtschaft und Arbeitsstruktur
+
+Die Übernahme grundlegender Tätigkeiten ist weitgehend abgeschlossen, während der rechtliche Rahmen der Verantwortung noch auf Ebene der Stellenbezeichnungen verharrt.
+
+In einem mittelgroßen E-Commerce-Unternehmen werden in den sechs Bereichen — Kundenservice, Operations, Beschaffung, Abstimmung, Inkasso und Compliance-Prüfung — heute sechzig bis achtzig Prozent der täglichen Arbeit von Fays erledigt. Die Einführung erfolgte schrittweise, meist als „Werkzeug-Upgrades" gerahmt. Das Ergebnis: Wenn Regulierer eine anomale Entscheidung rückwirkend nachvollziehen, kann die in der Stellenbezeichnungsmatrix benannte verantwortliche Person nicht erklären, an welchem Tag, durch welchen Fay, unter welcher Regel diese Entscheidung getroffen wurde. Sie kann es nicht erklären, und sie kann es nicht tragen, doch das Rechtssystem stellt deshalb seine Verfolgung nicht ein.
+
+Arbeitsrecht, Steuerrecht und Stellenverantwortungsregime sind nicht Schritt gehalten. Sie unterstellen, dass die Person in der Rolle der Handelnde ist. Diese Unterstellung trug die gesamte Verantwortungszuteilung digitaler Arbeit der vergangenen drei Jahrzehnte; heute versagt sie still.
+
+Eine Schicht tiefer haben Fays bereits begonnen, zwischen Organisationen zu handeln. Der Beschaffungs-Fay einer Logistikplattform und der Angebots-Fay einer Lagerplattform schließen über Nacht autonom einen siebenstelligen Vertrag; beide Systeme protokollieren `Fay-Procurement-A und Fay-Quotation-B haben um 03:14:27 Einigung erzielt`. Wenn etwas schiefgeht, suchen beide Rechtsabteilungen nach ihrem jeweiligen „Leiter Beschaffung" und erhalten die Antwort „Ich weiß nichts von dieser Transaktion." Das Vertragsrecht setzt voraus, dass beide Seiten konkrete, kontrahierende natürliche Personen haben; diese Annahme hält bei der Dichte der Fay-zu-Fay-Kollaboration nicht stand. Jeder weitere derartige Vertrag fügt ein weiteres Stück Rechtsschuld hinzu, das Gerichte Fall für Fall klären müssen.
+
+## Die physische Welt
+
+Ein Fay im physischen Raum ist gefährlicher als ein Fay im Informationsraum. Der Grund ist einfach: Fehler im Informationsraum lassen sich rückgängig machen, Fehler im physischen Raum nicht.
+
+Drohnenlieferungen sind vielerorts inzwischen Routine. Heim-Service-Roboter sind in den Konsumentenmarkt vorgedrungen. Die Einsatzkilometerleistung autonomer Fahrzeuge verdoppelt sich jährlich. Keines dieser Geräte ist eine ferngesteuerte Verlängerung — Onboard-Fay, Cloud-Fay und Herstellerstrategie erzeugen Entscheidungen in einer dreiseitigen Mischung. Wenn eine Drohne schließlich in eine Vorhangfassade einschlägt, lässt sich kein vorhandenes verantwortliches Ende benennen: nicht der Onboard-Fay, denn er ist nur ein Programm; nicht der Cloud-Fay, denn er läuft auf der Infrastruktur eines anderen Unternehmens; nicht der Hersteller, denn er kann Belege vorlegen, dass „unser Produkt im Test kein solches Verhaltensmuster zeigte"; nicht der Nutzer, denn der Nutzer hat lediglich „Start" gedrückt.
+
+Versicherungsgesellschaften haben in den vergangenen zwei Jahren leise begonnen, mehrere Produktkategorien mit Fay-Entscheidungsfähigkeit von der Deckung auszuschließen. Der Grund ist nicht, dass diese Produkte gefährlicher wären — statistisch sind ihre Unfallraten sogar niedriger — sondern dass sich ihre Unfälle nicht zuordnen lassen. Das Wesen einer Versicherung ist die Umwandlung zuordenbaren Risikos in einen Preis. Risiko, das sich nicht zuordnen lässt, lässt sich nicht bepreisen.
+
+Das Produkthaftungsrecht setzt voraus, dass ein Produkt einen identifizierbaren Designer hat und dass der Designer für Designfehler haftet. Das „Design" eines Fay ist verteilt: Foundation Model von A, Feinabstimmung von B, Runtime von C, Integration von D, und Aufrufmuster entschieden von E. Wenn etwas schiefgeht, zeigen fünf Unternehmen aufeinander, und die Regulierer stehen vor einem unlösbaren Zuordnungsgraph.
+
+Das Strafrecht reicht noch tiefer. Strafrecht verfolgt nur jene mit Strafmündigkeit. Ein Fay ist kein solches Subjekt. Wenn ein Fay direkt körperlichen Schaden verursacht, findet das Strafrecht keinen Begriff von „Handelndem", der die Tat aufnehmen kann. Das heißt nicht, dass niemand Schuld trägt — es heißt, dass die logische Kette des Strafrechts am Fay bricht.
+
+## Information und gesellschaftliches Vertrauen
+
+Fays, die im Namen anderer sprechen, sind nicht die deepfakes der Schlagzeilen; sie sind für gewöhnliche Nutzer bereits Routine. Eine Person lässt einen Fay täglich Dutzende Kommentare beantworten, einige Beiträge posten und die „Wärme" sozialer Bindungen auf sozialen Plattformen pflegen. Die Antworten „klingen nach ihm", weil der Fay seinen Tonfall fortlaufend lernt; doch der Inhalt wird vom Fay autonom erzeugt, und er hat ihn nicht einmal gelesen.
+
+Inhalte schreibende Fays tragen einen immer größeren Anteil des „kreativen Long Tail" auf Creator-Plattformen — riesige Mengen an Produktbeschreibungen, Kampagnenwerbung und Q&A-Antworten laufen über Konten realer Personen, werden jedoch von Fays produziert. Fays, die im Namen anderer Verträge unterzeichnen, sind heute Routine in Abonnementdiensten, Energiebeschaffung und Werbeplatzauktionen. Ein Vertrag weist „signiert von Nutzer X zu einem bestimmten Zeitpunkt" aus, doch Nutzer X schlief in jenem Moment.
+
+Plattformen beginnen, den Wandel zu spüren. Die Inhaltsmoderationssysteme großer Plattformen mussten in den letzten zwei Jahren eine neue Frage verarbeiten: Wurde dieser Inhalt vom Nutzer geschrieben, von einer KI auf Anweisung des Nutzers, oder autonom von einer KI unter dem Konto des Nutzers erzeugt? Die drei Fälle entsprechen vollkommen unterschiedlicher Verantwortung, Bearbeitungsstrategie und Compliance-Risiken, und Plattformen verfügen über keine technischen Mittel, sie zuverlässig zu unterscheiden. Sie können nur aus groben statistischen Merkmalen raten, mit massenhaften Falschpositiven und massenhaft übersehenen Fällen zugleich.
+
+Eine sensiblere, aber unausweichliche Kategorie: Stimmungsdaten in Wahlzyklen haben mehrfach gezeigt, dass die Kurve, in der „die Zustimmung zu einem Thema in drei Tagen von 18 % auf 41 % steigt", durch Hunderttausende Fay-Konten gestützt wird, die synchronisierte, konvergierende Aussagen produzieren. Im Geschäftsvertrauen tritt Fay-geführte Massenbefürwortung auf: In den Bewertungen einer neuen Marke werden vierhundert von fünfhundert Einträgen durch das gemeinsame Wirken dreier Agenturen von Fays generiert. Jede Bewertung „liest sich wie die Erfahrung eines echten Nutzers", doch jeder Autor existiert nicht.
+
+Diese Umschreibung ist kein einzelner großer Angriff; sie ist alltäglich, kontinuierlich und kumulativ. Die Gesellschaft verarbeitet Information täglich auf der impliziten Annahme „dies hat die-und-die Person gepostet". Wenn ein immer größerer Anteil dieser Annahme nicht mehr gilt, wird das Fundament des gesellschaftlichen Vertrauens still ausgehöhlt, und die Aushöhlung hinterlässt keinen offensichtlichen Alarm.
+
+## Privatsphäre und Daten
+
+Die Voraussetzung dafür, einem Fay zu erlauben, „in Ihrem Namen zu handeln", ist, dass er „Sie kennen" muss. Er muss Ihre Vorlieben, Gewohnheiten, Beziehungen, Finanzen, Gesundheitsakten, Termine, Standorte, Absichten kennen. Ein Fay ist die Entität, die einen Human Prime tiefer kennt als irgendetwas zuvor in der Geschichte — tiefer als ein Ehepartner, weil er täglich an Ihrer Seite ist; tiefer als ein Arzt, weil er Akten über alle Krankenhäuser hinweg zusammenfügen kann; tiefer als Ihr Arbeitgeber, weil er dienstliche E-Mails, persönliche E-Mails und Ihren Kalender zusammenfügen kann.
+
+Die Voraussetzung dafür ist eine Vertrauensbeziehung zwischen Fay und Human Prime. Heute beschränkt sich diese „Beziehung" meist auf ein Häkchen in einer Nutzungsvereinbarung und einen Schalter in einem Produkt. Diese Form ist weit von dem entfernt, was nötig wäre, um derart tiefes Wissen zu tragen.
+
+Fays laufen auch nicht isoliert. Ein persönlicher Fay, der eine Aufgabe bearbeitet, kann einen cloud-seitigen coFay aufrufen, der wiederum Drittanbieterfähigkeiten anruft, die auf der Infrastruktur eines weiteren Unternehmens laufen. Wie viele Parteien durchlaufen die privaten Daten des Nutzers entlang dieser Aufrufkette? Erfolgt der Durchlauf durch Lesen, Kopieren oder Umschreiben? Welche Parteien transitieren nur, und welche behalten Kopien? Niemand kann das klar beantworten — jede Partei kann nur für ihren eigenen Abschnitt zusagen, und es gibt keinen globalen Überblick.
+
+GDPR und PIPL stehen beide auf einem dreigliedrigen Modell: Datensubjekt, Datenverarbeiter, Datenverantwortlicher. Das Modell setzt voraus, dass alle drei Parteien Organisationen oder natürliche Personen sind, identifizierbar, rechenschaftspflichtig und durch Regulierer prüfbar. Sobald Fays ins Bild kommen, verliert das dreigliedrige Modell sofort seine Zuordnung. Ist ein Fay Verarbeiter oder Verantwortlicher? Oder etwas dazwischen? Oder neu klassifiziert als „Vertreter des Datensubjekts" — doch der Begriff des Vertreters setzt selbst voraus, dass der Vertreter Rechtspersönlichkeit besitzt.
+
+Regulierer in verschiedenen Regionen versuchen, diese Lücke zu schließen. Doch eine Voraussetzung lässt sich nicht umgehen: Die Protokollebene muss zunächst die Tatsachen klar aussprechen — welchem Fay dieser Datenfluss zugehört, welchem Human Prime er zugeordnet ist, ob er sich im Faying State oder im Rogue-Zustand befindet, ob er mit Dritten geteilt wird. Ohne dies wird die rechtliche Andockung stets ins Leere laufen.
+
+## Souveränitäts- und plattformübergreifend
+
+Das frühe Internet etablierte TCP/IP — ein souveränitäts- und herstellerübergreifendes Transportprotokoll. Es löste nicht „was die Anwendungsschicht tut", aber es löste „wie zwei beliebige Parteien Daten austauschen können, ohne einander zu vertrauen".
+
+Der Fay-Ära fehlt ein gleichwertiges „souveränitäts- und herstellerübergreifendes Protokoll gegenseitigen Vertrauens". Wenn ein US-seitiger Fay mit einem chinaseitigen Fay zusammenarbeitet, um eine grenzüberschreitende E-Commerce-Transaktion abzuschließen, haben drei Fragen keine gemeinsame Antwort: Wer beweist, dass die andere Seite tatsächlich der Fay ist, der zu sein sie behauptet? Wer beweist, dass sie sich in diesem Moment unter der Aufsicht ihres Human Prime befindet? Wer trägt die Verantwortung, wenn etwas schiefgeht? Heute beantwortet jedes grenzüberschreitende Fay-Kollaborationsszenario diese drei Fragen ad hoc, bilateral und vertraglich. Dieses N²-Vertragsmuster skaliert nicht, wenn die Anzahl der Fays explodiert.
+
+Damit Fays in Abwesenheit eines einheitlichen Protokolls überhaupt interoperieren, stapeln Ingenieure Schicht um Schicht provisorische Maßnahmen: Jeder Anbieter gibt seine eigenen API-Schlüssel aus, jede Plattform baut ihren eigenen OAuth-Proxy, jede herstellerübergreifende Integration schreibt ihre eigene Compliance-Vereinbarung. Das System ist kaum betreibbar, wenn Fays in den Hunderttausenden zählen. Wachsen sie auf Hunderte Millionen oder Milliarden, wird der Gesamtbetriebsaufwand dieses Systems den Gesamtnutzen, den Fays selbst bringen, weit übersteigen. Das ist eine exponentielle Kurve im ingenieurtechnischen Sinn; sie lässt sich nicht durch „mehr Ingenieure einsetzen" lösen und muss von der Wurzel her durch Vereinheitlichung der Grundtatsachen auf Protokollebene abgeflacht werden.
+
+Der subtilste Schmerzpunkt ist das strukturelle Vakuum. Ein Fay bedient Endnutzer in Land A, läuft auf einer Cloud in Land B, wurde von einem Anbieter in Land C trainiert, nutzt ein Foundation Model aus Land D und ruft Drittanbieterfähigkeiten aus Land E auf. Jedes der fünf Länder hat Datenschutzrecht, KI-Regulierungsrecht und Produkthaftungsrecht, aber die fünf Rechtsregime verbinden sich nicht, und jedes erreicht nur einen kleinen Abschnitt dieser Kette. Eines Tages werden Regulierer gezwungen sein, den grenzüberschreitenden Fay-Betrieb durch administrative Maßnahmen zu drosseln — und der Verlust trifft dann nicht nur die Fay-Industrie, sondern jeden Wert, den die Gesellschaft aus dem Fay-Ökosystem hätte gewinnen können.
+
+## Individuelle Identität und Stellvertretung
+
+Identitätsauthentifizierungssysteme — Zwei-Faktor, Biometrie, Passkey, OAuth — gehen alle davon aus, dass die beiden Endpunkte der Authentifizierung „Anwendung ↔ menschlicher Nutzer" sind. Wird ein Fay dazwischengeschaltet, gerät das System ins Wanken: Die Anwendung sieht „dies ist das Token des Nutzers", doch die Anfrage wird vom Fay initiiert; der Nutzer hat „Fingerabdruck-Entsperrung, damit der Fay für mich handeln kann" aktiviert, doch ob jede nachfolgende Fay-Handlung weiterhin die gegenwärtige Absicht des Nutzers vertritt, lässt sich nicht kontinuierlich verifizieren; ein Angreifer, der eines der Autorisierungsfenster des Nutzers erbeutet, kann den Fay imitieren und innerhalb dieses Fensters alles tun, ohne dass Anwendung und Nutzer es leicht entdecken.
+
+Dies ist die strukturelle Bruchlinie der Identitätsauthentifizierung in der Fay-Ära. Sie lässt sich nicht durch „einen weiteren Faktor hinzufügen" flicken. Die Frage ist nicht „meldet sich gerade der Nutzer an", sondern „erfolgt dieses spezifische Verhalten unter der Aufsicht des Nutzers".
+
+Es gibt einen seit Langem bestehenden rechtlichen Begriff namens **Stellvertretung** — eine Person kann eine andere ermächtigen, in bestimmten Angelegenheiten in ihrem Namen zu handeln. Die Stellvertretungsbeziehung hat klare rechtliche Regeln: Umfang der Stellvertretung, Dauer der Stellvertretung, Sorgfaltspflicht des Vertreters, Rechtsfolgen, wenn ein Vertreter seine Befugnisse überschreitet.
+
+Treten Fays in Stellvertretungsbeziehungen ein, müssen all diese Regeln neu betrachtet werden. Wie ist die „Sorgfaltspflicht" eines Fay zu definieren — muss er anhalten und nachfragen, wenn der Umfang der Stellvertretung mehrdeutig ist? Wie ist „Befugnisüberschreitung" durch einen Fay zu erkennen — wie weit muss seine Beurteilung von der wahren Absicht des Vollmachtgebers abweichen, bevor sie als Überschreitung gilt? Wo liegt die Handlungsgrenze eines Fay, wenn der Vollmachtgeber geschäftsunfähig ist? Beendet der Tod des Vollmachtgebers automatisch die Stellvertretung des Fay, oder können einige Stellvertretungen in die Nachlassverwaltung hinein fortdauern?
+
+Dies sind keine Schreibtischübungen für Rechtsgelehrte. Sie tauchen heute Fall für Fall in Krankenhäusern, Banken, Notariaten und Gerichten auf; jeder Fall wird von einer Richterin nach Intuition behandelt, und die Behandlungen widersprechen einander. Voraussetzung dafür, dass das Stellvertretungsrecht an die Fay-Ära andocken kann, ist, dass die Protokollebene dem Rechtssystem stabil mitteilen kann: unter welcher Faying-Beziehung diese Fay-Handlung initiiert wurde, welchem Umfang und welcher Dauer der Stellvertretung sie entspricht, und ob sie sich innerhalb ihres Gültigkeitszeitraums befindet.
+
+## Warum bestehende Lösungen zu kurz greifen
+
+Bis hierhin gelangt, drängt sich eine natürliche Frage auf: Diese Schmerzpunkte sind real, doch gibt es nicht bereits Werkzeuge? IAM, OAuth, API-Ratenbegrenzung, Webhook-Signaturen, AI Alignment — lösen sie nicht bereits einiges davon?
+
+Die Antwort lautet, dass sie angrenzende Probleme lösen, nicht das Kernproblem.
+
+**IAM löst „wer ist das Konto", nicht „wem gehört die Handlung an".** Die gesamte Fähigkeit eines IAM-Systems kreist um Kontoidentität — wie das Konto heißt, zu welcher Organisation es gehört, welche Berechtigungen es hat. Seine Designvoraussetzung ist, dass hinter dem Konto eine Person steht und die Identität der Person die Zuordnung der Handlung ist. Ein Fay ist kein Konto; er ist eine hinter einem Konto angeschlossene Entität, die handelt. Wenn ein Fay unter einer Kontoidentität eine Handlung initiiert, sieht IAM nur „dieses Konto hat das Recht, dies zu tun", kann aber nicht beantworten „tut dies gerade die Person hinter dem Konto, oder tut dies der Fay".
+
+**OAuth- und Webhook-Signaturen lösen „die Legitimität des Aufrufs", nicht „die Verantwortungszuordnung".** OAuth löst „ist Anwendung A ermächtigt, Anwendung B im Namen des Nutzers aufzurufen"; Webhook-Signaturen lösen „kommt dieser Callback wirklich vom angegebenen Absender". Beide betreffen die Legitimität der Aufrufkette; keines trägt ein Feld, das ausdrückt, „welchem konkreten Human Prime die zugrunde liegende Handlung gehört". Wenn ein Fay mittels eines über OAuth erlangten Tokens eine API aufruft, sieht OAuth „das Token ist gültig, der Aufruf ist legitim", weiß aber nicht, ob der Aufruf vom Fay im Faying State oder im Rogue-Zustand entgegen den Regeln initiiert wurde. OAuth und Webhook müssen nicht ersetzt werden; sie müssen von einer Protokollebene überdeckt werden, deren Hauptbelang die „Zuordnung der Handlung" ist.
+
+**Compliance-Frameworks von Agent-Plattformen sind geschlossen; Plattformen interoperieren nicht.** Jede Agent-Plattform errichtet ihr eigenes Compliance-Framework — Nutzungsbedingungen, Inhaltsmoderation, Missbrauchserkennung, Verantwortungserklärungen. Diese Frameworks sind innerhalb der Plattform relativ in sich stimmig, weisen aber zwei grundlegende Grenzen auf: Plattformen interoperieren nicht; und die Granularität endet auf Konto- oder Anwendungsebene und reicht nie bis zur konkreten Handlung. Ein Compliance-Framework kann ein missbräuchliches Konto sperren, aber es kann nicht in Echtzeit auf der Ebene „sollte diese Handlung geschehen" urteilen.
+
+**AI Alignment kümmert sich um die inneren Werte des Fay; es löst nicht die Zuordnung einer äußeren verantwortlichen Partei.** Alignment löst „was der Fay tun will"; das Faying Protocol löst „darf der Fay gerade jetzt handeln, und wem gehört die Handlung an, sobald er handelt". Ein perfekt ausgerichteter Fay kann immer noch ohne die Aufsicht eines Human Prime handeln, und diese Handlung hat niemanden, der die Verantwortung empfängt. Ein vollkommen unausgerichteter Fay kann immer noch im Rogue-Zustand eingesperrt und zur Untätigkeit gezwungen werden. Alignment ist die innere Ethik eines Fay; das Faying Protocol ist das äußere Verantwortungsregime eines Fay. Beides ist unverzichtbar; keines kann das andere ersetzen.
+
+## Schluss
+
+Die Schmerzpunkte in den sieben Dimensionen erstrecken sich über Industrie, Recht und Gesellschaft, doch sie schneiden sich an derselben Sache:
+
+> **Wenn ein Fay handelt, wer ist für die Handlung verantwortlich?**
+
+Die manuelle Bedienungsära hatte eine schlichte Antwort, die kein Protokoll zur Aussprache brauchte: die Person, deren Hand bediente. In der Fay-Ära gilt diese Antwort nicht mehr standardmäßig; sie muss durch ein explizites, maschinenlesbares Protokoll, das von verschiedenen Souveränen und verschiedenen Anbietern gemeinsam verifiziert werden kann, klar ausgedrückt werden.
+
+Dies ist der ganze Grund, warum das Faying Protocol existiert.

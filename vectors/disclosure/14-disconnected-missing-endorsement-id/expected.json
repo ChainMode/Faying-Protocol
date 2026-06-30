@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "§5.3.7 final bullet: Disconnected-period DISCLOSURE MUST carry endorsement_id.",
+    "Absence breaks independent traceability of the offline action."
+  ],
+  "case": "f",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "14-disconnected-missing-endorsement-id"
+}

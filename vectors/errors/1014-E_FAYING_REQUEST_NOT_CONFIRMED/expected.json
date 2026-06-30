@@ -1,0 +1,21 @@
+{
+  "audit-log-entry": {
+    "error_code": 1014,
+    "mandate_id": null,
+    "reason": "iFay 主动 FAYING_REQUEST 在 BootstrapTimeout 内未获 HP 见证",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1014,
+  "must-push-hp-view": false,
+  "name": "E_FAYING_REQUEST_NOT_CONFIRMED",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "iFay 主动 FAYING_REQUEST 在 BootstrapTimeout 内未获 HP 见证",
+  "trace": [
+    "R1.3.3"
+  ]
+}

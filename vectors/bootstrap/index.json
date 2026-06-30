@@ -1,0 +1,140 @@
+{
+  "category": "BOOTSTRAP",
+  "deterministic_seed_sha256": "fe5114db40ccb56be700d41be12d609cc81521b1f4d301f53a35337cc93a8789",
+  "generated_with": "vectors/bootstrap/_tools/generate.py",
+  "requirements_covered": [
+    "2.2",
+    "6.1",
+    "8.1",
+    "10.1",
+    "10.2",
+    "10.3"
+  ],
+  "schemas": {
+    "cddl": "schemas/fap-1.0.cddl",
+    "ts_view": "schemas/types.ts"
+  },
+  "spec_version": "Faying Protocol/1.0",
+  "vectors": [
+    {
+      "algorithm": "Ed25519",
+      "encoding": "cbor",
+      "expected": "pos-cbor-ed25519/expected.json",
+      "kind": "positive",
+      "name": "pos-cbor-ed25519",
+      "request": "pos-cbor-ed25519/request.cbor",
+      "request_sha256": "da8255eedddc0aa3bfea71937f0e48c1b1f1169a46b7bdd3dc0e16636c4c7cb1",
+      "response": "pos-cbor-ed25519/response.cbor",
+      "response_sha256": "7d1f0bcface8307dc53597ed48ec573ae210317ccfb074335f120196b91033a6",
+      "summary": "Valid BOOTSTRAP request signed with Ed25519, encoded as CBOR, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "ES256",
+      "encoding": "cbor",
+      "expected": "pos-cbor-es256/expected.json",
+      "kind": "positive",
+      "name": "pos-cbor-es256",
+      "request": "pos-cbor-es256/request.cbor",
+      "request_sha256": "17bc2b3b6bf266f4e6c2e6946b6e56a01f4bf81f5333fcac84b78cdc505269e1",
+      "response": "pos-cbor-es256/response.cbor",
+      "response_sha256": "085a4a42e3657ac9bbfadc853f8f53672c069b40670aec84f160722b2fdec0de",
+      "summary": "Valid BOOTSTRAP request signed with ES256, encoded as CBOR, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "ML-DSA-65",
+      "encoding": "cbor",
+      "expected": "pos-cbor-ml-dsa-65/expected.json",
+      "kind": "positive",
+      "name": "pos-cbor-ml-dsa-65",
+      "request": "pos-cbor-ml-dsa-65/request.cbor",
+      "request_sha256": "9e1aa2e8af841fd84105ad840012803dad7e96fea0485919d1dea29291224cb6",
+      "response": "pos-cbor-ml-dsa-65/response.cbor",
+      "response_sha256": "c2dc62a67ee6f69eca25e2412610806faaf9cdc3bb2a8e15f3fe4e8654e14cc6",
+      "summary": "Valid BOOTSTRAP request signed with ML-DSA-65, encoded as CBOR, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "Ed25519",
+      "encoding": "json",
+      "expected": "pos-json-ed25519/expected.json",
+      "kind": "positive",
+      "name": "pos-json-ed25519",
+      "request": "pos-json-ed25519/request.json",
+      "request_sha256": "8b8cda264e69733197c1c8c1a173794115b559d369a6dad8e840147d0425cc32",
+      "response": "pos-json-ed25519/response.json",
+      "response_sha256": "14989c9c70e220709cd049e5022589f5af5e88735e88eed65c3f94d8b1dc5ffc",
+      "summary": "Valid BOOTSTRAP request signed with Ed25519, encoded as JSON, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "ES256",
+      "encoding": "json",
+      "expected": "pos-json-es256/expected.json",
+      "kind": "positive",
+      "name": "pos-json-es256",
+      "request": "pos-json-es256/request.json",
+      "request_sha256": "c6cc65ba31546e9b3bc06743262e6efc98bdb7b619b255a25792678ad713e425",
+      "response": "pos-json-es256/response.json",
+      "response_sha256": "3196e47aa7bd6524745a348910a53d1327b3acbcf01d85dcb4a58b87db0d6a56",
+      "summary": "Valid BOOTSTRAP request signed with ES256, encoded as JSON, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "ML-DSA-65",
+      "encoding": "json",
+      "expected": "pos-json-ml-dsa-65/expected.json",
+      "kind": "positive",
+      "name": "pos-json-ml-dsa-65",
+      "request": "pos-json-ml-dsa-65/request.json",
+      "request_sha256": "fd0532b41f3a360bdebbe564b2adc9ef1a0194ae68f9d5496ed930778c6638b2",
+      "response": "pos-json-ml-dsa-65/response.json",
+      "response_sha256": "7b9dc944003ef04544d45063ddbb5fc1c98c215afda75659d44b5a891150c5a7",
+      "summary": "Valid BOOTSTRAP request signed with ML-DSA-65, encoded as JSON, successfully issuing a Mandate."
+    },
+    {
+      "algorithm": "Ed25519",
+      "encoding": "cbor",
+      "expected": "neg-no-witness/expected.json",
+      "kind": "negative",
+      "name": "neg-no-witness",
+      "request": "neg-no-witness/request.cbor",
+      "request_sha256": "32238e0523a118d6c9b436fe26072aebec1c2227c1004e1d594be815e3d86f1d",
+      "response": "neg-no-witness/response.cbor",
+      "response_sha256": "f564719b7d004112cbaf8ede2e7e69a4d9bf9d9998ac00bb961a1d80ef8efbff",
+      "summary": "Negative case: BOOTSTRAP without a human_witness must be rejected with E_HUMAN_WITNESS_REQUIRED (1010)."
+    },
+    {
+      "algorithm": "Ed25519",
+      "encoding": "cbor",
+      "expected": "neg-not-after-infinity/expected.json",
+      "kind": "negative",
+      "name": "neg-not-after-infinity",
+      "request": "neg-not-after-infinity/request.cbor",
+      "request_sha256": "e1eb61362c4ee7e85c0077c7a2970d2b4eeaa19f089adf618f992f4d6148b3b8",
+      "response": "neg-not-after-infinity/response.cbor",
+      "response_sha256": "4c1ef91c7ce1e80e0e3019296998203863a7d78b7e047fcaeb6dd4c427f92962",
+      "summary": "Negative case: BOOTSTRAP with not_after = ∞ must be rejected with E_PROTOCOL (1099)."
+    },
+    {
+      "algorithm": "Ed25519",
+      "encoding": "cbor",
+      "expected": "neg-not-after-before/expected.json",
+      "kind": "negative",
+      "name": "neg-not-after-before",
+      "request": "neg-not-after-before/request.cbor",
+      "request_sha256": "431bd544411e563e9adf25aeec8f43197330b8020a0e2d109f5a088a813889b8",
+      "response": "neg-not-after-before/response.cbor",
+      "response_sha256": "896983a616c734fcb46312d44f8463d33f9593dd563f0f9cf92aad9fa8a47172",
+      "summary": "Negative case: BOOTSTRAP with not_after < not_before must be rejected with E_PROTOCOL (1099)."
+    },
+    {
+      "algorithm": "Ed25519",
+      "encoding": "cbor",
+      "expected": "neg-unsupported-alg/expected.json",
+      "kind": "negative",
+      "name": "neg-unsupported-alg",
+      "request": "neg-unsupported-alg/request.cbor",
+      "request_sha256": "e42dc982d3ac6913b6cef801ed0f6fb136bc516dae3c4ee71d0da9504ebe5ec7",
+      "response": "neg-unsupported-alg/response.cbor",
+      "response_sha256": "b81b48b99b2b7e6f264b4c5435c1eba53bae2b8bf399d4d9d71fbb8a03353cff",
+      "summary": "Negative case: BOOTSTRAP whose signature_bundle advertises an algorithm outside the Faying Protocol/1.0 suite must be rejected with E_PROTOCOL (1099)."
+    }
+  ]
+}

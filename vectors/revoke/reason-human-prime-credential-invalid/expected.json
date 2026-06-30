@@ -1,0 +1,81 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+    "notes": "Per design.md §9.6, every successful REVOKE is recorded as a five-tuple in audit-log; error_code is null because the path is the success path. Trigger: Human Prime root key compromised or rotated out.",
+    "reason": "REVOKE accepted; reason=human-prime-credential-invalid",
+    "rp_id": "rp:vector-reason-human-prime-credential-invalid",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "625dd041d6726cd0e557d2c96576a0c88ac8c28c79343dcc414ed493d20757e6",
+    "request_json_sha256": "886fa57735377cb526ceaca605effe1e7d0fabb7efb02bc186495fee4d86521e",
+    "request_signing_input_sha256": "4766995aacfd0632042ae7b023d81b09e7de62a9fe6a1bb2a84dd6eedd3eef36",
+    "response_cbor_sha256": "51698d52c1cf68317350766dbc622748bb64750ae380ed76615931e062402804",
+    "response_json_sha256": "8fa59e18cd175b7abae6ef659556b9005e6a0c855dd6674e05f5258dd6e5a125"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Per Requirement 4.3 the Mandate's status is now terminal-Revoked; any subsequent RP call referencing this mandate_id MUST fail with 1006 E_REVOKED. The only recovery path is a fresh BOOTSTRAP that issues a new Mandate with a different mandate_id.",
+  "kind": "positive",
+  "notes": "Validates that `RevokeReason = 'human-prime-credential-invalid'` produces a well-formed REVOKE → REVOKE_RECEIPT round-trip. Trigger: Human Prime root key compromised or rotated out. Requirement 9.4 categorises this reason as a decoupling-state recognition trigger; the receipt lists exactly the directly-revoked Mandate (no children in this vector — see `cascade-depth-2` for the cascade case).",
+  "outcome": "accepted",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "human-prime-credential-invalid",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with reason='human-prime-credential-invalid': When HP's root credential is invalidated (compromise or rotation), every Mandate it issued is auto-revoked with this reason.",
+  "target_mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+  "trigger": "Human Prime root key compromised or rotated out",
+  "vector_name": "reason-human-prime-credential-invalid"
+}

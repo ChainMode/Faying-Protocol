@@ -1,0 +1,35 @@
+{
+  "algorithm": "ML-DSA-65",
+  "digests": {
+    "request_sha256": "fd0532b41f3a360bdebbe564b2adc9ef1a0194ae68f9d5496ed930778c6638b2",
+    "request_signing_input_sha256": "c3bcb09a6d0fa23181319508b697eb2c61c8fbae8c59a88c806a450baf85e6f2",
+    "response_sha256": "7b9dc944003ef04544d45063ddbb5fc1c98c215afda75659d44b5a891150c5a7"
+  },
+  "encoding": "json",
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request": "request.json",
+    "response": "response.json"
+  },
+  "kind": "positive",
+  "mandate_id": "01HXMNDT-BOOTSTRAP-MLDSA65-JSON",
+  "notes": "Positive BOOTSTRAP vector. Issuance is contingent on a valid human_witness (WebAuthn assertion); the issued Mandate has a finite not_after, presence_req, and grade=2 (Moderate). The ML-DSA-65 signature blob is a deterministic placeholder (see README.md §Signature policy).",
+  "outcome": "accepted",
+  "requirements_validated": [
+    "2.2",
+    "6.1",
+    "8.1",
+    "10.1",
+    "10.2",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": false,
+    "note": "Placeholder ML-DSA-65 signature; format-only check. See README.md for the rationale.",
+    "request_envelope": false,
+    "response_envelope": false
+  },
+  "summary": "Valid BOOTSTRAP request signed with ML-DSA-65, encoded as JSON, successfully issuing a Mandate.",
+  "vector_name": "pos-json-ml-dsa-65"
+}

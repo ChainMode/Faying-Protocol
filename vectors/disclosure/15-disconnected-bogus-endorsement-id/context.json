@@ -1,0 +1,24 @@
+{
+  "case": "f",
+  "context": {
+    "actual_action": "iot:hvac-set-temperature",
+    "audit_window": {
+      "action_executed_at": "2025-11-25T13:15:00Z",
+      "disclosure_submitted_at": "2025-11-25T13:30:00Z"
+    },
+    "endorsed_grade": 3,
+    "endorsed_lifetime_ms": 3600000,
+    "endorsed_scope_actions": [
+      "iot:hvac-set-temperature"
+    ],
+    "endorsement_id": "endorsement:01HX4M11G3J5W8Q4N6Z2K7P9V0",
+    "endorsement_present": true,
+    "endorsement_start_at": "2025-11-25T13:00:00Z",
+    "is_disconnected": true,
+    "mandate_id": "mandate:01HX4M0Y6N7B8C4D9E2F1A0G3H",
+    "mandate_state": "Disconnected",
+    "presence_state": "stale"
+  },
+  "title": "Disconnected 期间 DISCLOSURE 携带不存在的 endorsement_id → E_PROTOCOL",
+  "vector_id": "15-disconnected-bogus-endorsement-id"
+}

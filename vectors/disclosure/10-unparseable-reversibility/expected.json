@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Permitted enum: reversible | partially-reversible | irreversible."
+  ],
+  "case": "c",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "unparseable_field": "reversibility",
+  "vector_id": "10-unparseable-reversibility"
+}

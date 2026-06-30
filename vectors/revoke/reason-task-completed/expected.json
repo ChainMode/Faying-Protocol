@@ -1,0 +1,81 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-REASON_TASK_COMPLETED"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-REASON_TASK_COMPLETED",
+    "notes": "Per design.md §9.6, every successful REVOKE is recorded as a five-tuple in audit-log; error_code is null because the path is the success path. Trigger: iFay reports task completion (DISCLOSURE → HP confirmation).",
+    "reason": "REVOKE accepted; reason=task-completed",
+    "rp_id": "rp:vector-reason-task-completed",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "353fe0b0b6319f889e62ea849f2d786eab645d5b8d9313d4005164db60cd3522",
+    "request_json_sha256": "6f72ed1b74e99491b5bc963bea745548356715090a921bf4afaba921813439ea",
+    "request_signing_input_sha256": "68acd54992550186730cdc1d3c9adf99620a376e4bbb4732d02adaa129a98fd1",
+    "response_cbor_sha256": "2dc601b63117903f4bc8eebdfbc41ea109061ae7e28869bf2e04115c46f28746",
+    "response_json_sha256": "f9c201cda118367885cbfcd41a3ed2a65d44e22aef5dd56f7b21a09c4adff7e7"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Per Requirement 4.3 the Mandate's status is now terminal-Revoked; any subsequent RP call referencing this mandate_id MUST fail with 1006 E_REVOKED. The only recovery path is a fresh BOOTSTRAP that issues a new Mandate with a different mandate_id.",
+  "kind": "positive",
+  "notes": "Validates that `RevokeReason = 'task-completed'` produces a well-formed REVOKE → REVOKE_RECEIPT round-trip. Trigger: iFay reports task completion (DISCLOSURE → HP confirmation). Requirement 9.4 categorises this reason as a decoupling-state recognition trigger; the receipt lists exactly the directly-revoked Mandate (no children in this vector — see `cascade-depth-2` for the cascade case).",
+  "outcome": "accepted",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "task-completed",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with reason='task-completed': iFay-initiated decoupling per Requirement 4.1.4-5. The iFay's report is treated as a Disclosure_Report and HP confirms via REVOKE; the iFay never revokes its own Mandate.",
+  "target_mandate_id": "01HXMNDT-TARGET-REASON_TASK_COMPLETED",
+  "trigger": "iFay reports task completion (DISCLOSURE → HP confirmation)",
+  "vector_name": "reason-task-completed"
+}

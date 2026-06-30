@@ -1,0 +1,46 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "ERROR",
+    "msg_id": "err:vec-08-forged-ms-surrogate:01HZZ3000000000000002",
+    "issued_at": "2026-01-15T12:00:16Z",
+    "expiry": "2026-01-15T12:00:26Z",
+    "nonce": {
+      "$b64": "Bn7W9lmeNzjpqVVosJuL1w=="
+    },
+    "grade": 4,
+    "issuer": "ms:alice-default",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "code": 1010,
+    "code_name": "E_HUMAN_WITNESS_REQUIRED",
+    "message": "BOOTSTRAP references a FAYING_REQUEST but carries no verifiable human_witness; MS/IF/Supervisory Agent cannot surrogate the HP witness.",
+    "request_ref": "req:vec-08-forged-ms-surrogate:01HZZ3000000000000000"
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "bXMtZXJyb3ItYXR0ZXN0YXRpb246ZXJyOnZlYy0wOC1mb3JnZWQtbXMtc3Vycm9nYXRlOjAxSFpaMzAwMDAwMDAwMDAwMDAwMg=="
+    },
+    "signer": "ms:ms:alice-default",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+      },
+      "sig": {
+        "$b64": "xDi8u6hMgkgKRiXnOQIpFmPXvetBOu0PB4Tb1Ntn358yMEzS7PVrMkuf7OSlVL6dshwuAfix0YVDzB6K768MCw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+    },
+    "sig": {
+      "$b64": "w+QFZahaGRVtYCF65V8xFuSGhSzY7kCOkHC+RknHiBgm7AscW9GALOaHX53UhoAhNDr8is4BU5lvPM5jrpNuDA=="
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "category": "DELEGATE",
+  "convergence_axes_negative_coverage": [
+    "scope.actions",
+    "scope.domains",
+    "scope.terminals",
+    "grade.autonomy"
+  ],
+  "depth_coverage": [
+    1,
+    2,
+    3
+  ],
+  "design_anchors": [
+    "design.md §3.3 Attestation Chain (root → MS-Cert → parent → child)",
+    "design.md §5.3.4 DELEGATE wire shape",
+    "design.md §6.3 multi-sign chain (signature_bundle.chain)",
+    "design.md §9.7 派生 scope/grade 收敛",
+    "design.md §EH.1 错误码表 (1099 E_PROTOCOL)"
+  ],
+  "deterministic_seed_sha256": "fe5114db40ccb56be700d41be12d609cc81521b1f4d301f53a35337cc93a8789",
+  "domain_separator": "delegate|",
+  "freshness_table": {
+    "G1": {
+      "max_staleness_ms": 5000,
+      "primary_signal_types": [
+        "webauthn-uv-fresh",
+        "face-continuous"
+      ]
+    },
+    "G2": {
+      "max_staleness_ms": 60000,
+      "primary_signal_types": [
+        "fingerprint-tap"
+      ]
+    },
+    "G3": {
+      "max_staleness_ms": 300000,
+      "primary_signal_types": [
+        "intent-ticket"
+      ]
+    },
+    "G4": {
+      "max_staleness_ms": 1800000,
+      "primary_signal_types": [
+        "presence-heartbeat-only"
+      ]
+    }
+  },
+  "generated_with": "vectors/delegate/_tools/generate.py",
+  "requirements_covered": [
+    "7.1",
+    "9.2",
+    "10.1",
+    "10.3"
+  ],
+  "schemas": {
+    "cddl": "schemas/fap-1.0.cddl",
+    "ts_view": "schemas/types.ts"
+  },
+  "spec_version": "Faying Protocol/1.0",
+  "vectors": [
+    {
+      "chain_depth": 1,
+      "child_mandate_id": "01HXMNDT-CHILD-POS_DEPTH_1",
+      "error_code": null,
+      "expected": "pos-depth-1/expected.json",
+      "kind": "positive",
+      "name": "pos-depth-1",
+      "parent_mandate_id": "01HXMNDT-PARENT-POS_DEPTH_1",
+      "request_cbor": "pos-depth-1/request.cbor",
+      "request_cbor_sha256": "aa82ff899a76aac87755c9d4678fe8dbb4247600168f342c42abd62c5774fea1",
+      "request_json": "pos-depth-1/request.json",
+      "response_cbor": "pos-depth-1/response.cbor",
+      "response_cbor_sha256": "e89a74925fe0ffbbbfd2d99d254f17e4de8bf4908423d393c9cd74bb3bf257e8",
+      "response_json": "pos-depth-1/response.json",
+      "summary": "Depth-1 legal DELEGATE: child.scope ⊂ parent.scope and child.grade=G3 equals parent.grade=G3 (lateral derivation with equal autonomy — the ≤ in §9.7 is non-strict). The child Mandate's signature.chain carries [HP→MS-Cert, parent outer sig] so the verifier walks root → MS → parent → child."
+    },
+    {
+      "chain_depth": 2,
+      "child_mandate_id": "01HXMNDT-GRANDCHILD-POS_DEPTH_2",
+      "error_code": null,
+      "expected": "pos-depth-2/expected.json",
+      "kind": "positive",
+      "name": "pos-depth-2",
+      "parent_mandate_id": "01HXMNDT-CHILD-POS_DEPTH_2",
+      "request_cbor": "pos-depth-2/request.cbor",
+      "request_cbor_sha256": "2a04f5531c31fa700d1365d0a48255aa16dcd88aeb8584b996ffb1bec1aad2a5",
+      "request_json": "pos-depth-2/request.json",
+      "response_cbor": "pos-depth-2/response.cbor",
+      "response_cbor_sha256": "fef09f2f96a422d8934833882b588d60549982d4b1b1fc4a2f1d072e5a28a640",
+      "response_json": "pos-depth-2/response.json",
+      "summary": "Depth-2 legal DELEGATE: root HP → MS-Cert → parent (G3) → child (G2) → grandchild (G1). Autonomy descends monotonically (G3 → G2 → G1, each step stricter). signature.chain has length 3, walking root → MS-Cert → parent → child → grandchild."
+    },
+    {
+      "chain_depth": 3,
+      "child_mandate_id": "01HXMNDT-GGCHILD-POS_DEPTH_3",
+      "error_code": null,
+      "expected": "pos-depth-3/expected.json",
+      "kind": "positive",
+      "name": "pos-depth-3",
+      "parent_mandate_id": "01HXMNDT-GRANDCHILD-POS_DEPTH_3",
+      "request_cbor": "pos-depth-3/request.cbor",
+      "request_cbor_sha256": "b4410e1ba7685ee98766f00c7baadd42b70b65b07bd40fe6bd9afaba0de0a54a",
+      "request_json": "pos-depth-3/request.json",
+      "response_cbor": "pos-depth-3/response.cbor",
+      "response_cbor_sha256": "563c9c3dca59c3f0ebf4c5db3416ca7842c3e416ac37c52d17a7fc1bebf6bf6f",
+      "response_json": "pos-depth-3/response.json",
+      "summary": "Depth-3 legal DELEGATE: root HP → MS-Cert → parent (G4) → child (G3) → grandchild (G2) → leaf (G1). Autonomy descends monotonically across all four levels. signature.chain carries 4 ancestor sigs so the AC walk root → MS-Cert → parent → child → grandchild → leaf is fully self-contained."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": "01HXMNDT-CHILD-POS_CROSS_DEVICE_BINDING",
+      "error_code": null,
+      "expected": "pos-cross-device-binding/expected.json",
+      "kind": "positive",
+      "name": "pos-cross-device-binding",
+      "parent_mandate_id": "01HXMNDT-PARENT-POS_CROSS_DEVICE_BINDING",
+      "request_cbor": "pos-cross-device-binding/request.cbor",
+      "request_cbor_sha256": "8954fa8fa337dc88d2cb1761031ab876e71c33432fc6d9505fd65dc1ea689bcc",
+      "request_json": "pos-cross-device-binding/request.json",
+      "response_cbor": "pos-cross-device-binding/response.cbor",
+      "response_cbor_sha256": "d1fc5e5815d23b29cead2e8d35314ac831a52d6075186a03721875654ba4529f",
+      "response_json": "pos-cross-device-binding/response.json",
+      "summary": "Depth-1 cross-device DELEGATE: claims.device_id binds the child Mandate to terminal:phone:mobile-2 (a member of parent.scope.terminals). Validates Requirement 9.2: each Mandate is bound to a specific iFay device and cross-device use must go through DELEGATE."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": "01HXMNDT-CHILD-POS_CHAIN_VERIFY",
+      "error_code": null,
+      "expected": "pos-chain-verify/expected.json",
+      "kind": "positive",
+      "name": "pos-chain-verify",
+      "parent_mandate_id": "01HXMNDT-PARENT-POS_CHAIN_VERIFY",
+      "request_cbor": "pos-chain-verify/request.cbor",
+      "request_cbor_sha256": "f2219ec793c6bae7cb04ec8c00e2de7f6f4beb43a6c902740aac9e70a91a4cf7",
+      "request_json": "pos-chain-verify/request.json",
+      "response_cbor": "pos-chain-verify/response.cbor",
+      "response_cbor_sha256": "88388b16f36caf5e627db35f991139c90e97fbed54d055f7adfec700a6d39f28",
+      "response_json": "pos-chain-verify/response.json",
+      "summary": "Depth-1 DELEGATE with full chain-walk metadata in expected.json. child.grade equals parent.grade (the autonomy ≤ parent boundary case). Useful for property tests that assert root → MS-Cert → parent → child without re-deriving keys."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": null,
+      "error_code": 1099,
+      "expected": "neg-scope-expansion-action/expected.json",
+      "kind": "negative",
+      "name": "neg-scope-expansion-action",
+      "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_ACTION",
+      "request_cbor": "neg-scope-expansion-action/request.cbor",
+      "request_cbor_sha256": "d97216a370a26564c065dedeb38bcc7456e3314342d9d0fba51f9588e4d114c6",
+      "request_json": "neg-scope-expansion-action/request.json",
+      "response_cbor": "neg-scope-expansion-action/response.cbor",
+      "response_cbor_sha256": "b3ea9379f317e089a0e82fb2ac01f539feec5f18858485fadd12c5f496af212e",
+      "response_json": "neg-scope-expansion-action/response.json",
+      "summary": "Negative DELEGATE: child.scope.actions includes 'calendar:event:delete' which is NOT in parent.scope. Must be rejected with E_PROTOCOL (1099)."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": null,
+      "error_code": 1099,
+      "expected": "neg-scope-expansion-domain/expected.json",
+      "kind": "negative",
+      "name": "neg-scope-expansion-domain",
+      "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_DOMAIN",
+      "request_cbor": "neg-scope-expansion-domain/request.cbor",
+      "request_cbor_sha256": "9390fa65e216a9cfcb97df60191e329902bfc4888de337d7c68d80dceeaa52e1",
+      "request_json": "neg-scope-expansion-domain/request.json",
+      "response_cbor": "neg-scope-expansion-domain/response.cbor",
+      "response_cbor_sha256": "0da1263e3b45039172778f66133c9b20cf09226344e45628409e6a26a503f0da",
+      "response_json": "neg-scope-expansion-domain/response.json",
+      "summary": "Negative DELEGATE: child.scope.domains adds 'https://api.example.com/v1/files' which is NOT in parent.scope.domains. Must be rejected with E_PROTOCOL (1099)."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": null,
+      "error_code": 1099,
+      "expected": "neg-scope-expansion-terminal/expected.json",
+      "kind": "negative",
+      "name": "neg-scope-expansion-terminal",
+      "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_TERMINAL",
+      "request_cbor": "neg-scope-expansion-terminal/request.cbor",
+      "request_cbor_sha256": "ed9f4f896a0e56cde0b9b7c0d4d82fd4857b0c22d2c7e276f750c9626bd853b3",
+      "request_json": "neg-scope-expansion-terminal/request.json",
+      "response_cbor": "neg-scope-expansion-terminal/response.cbor",
+      "response_cbor_sha256": "bc3d82be3c665a6c1f764385a6244f99d7fefe34749e1c3fb2fc4922f6ad4243",
+      "response_json": "neg-scope-expansion-terminal/response.json",
+      "summary": "Negative DELEGATE: child.scope.terminals targets 'terminal:tablet:roaming-1' which is NOT in parent.scope.terminals. Must be rejected with E_PROTOCOL (1099)."
+    },
+    {
+      "chain_depth": 1,
+      "child_mandate_id": null,
+      "error_code": 1099,
+      "expected": "neg-grade-autonomy-up/expected.json",
+      "kind": "negative",
+      "name": "neg-grade-autonomy-up",
+      "parent_mandate_id": "01HXMNDT-PARENT-NEG_GRADE_AUTONOMY_UP",
+      "request_cbor": "neg-grade-autonomy-up/request.cbor",
+      "request_cbor_sha256": "7fc9b3e99036d308c43b9032fc1432bd3e5e79d20638824f9ebb617643836745",
+      "request_json": "neg-grade-autonomy-up/request.json",
+      "response_cbor": "neg-grade-autonomy-up/response.cbor",
+      "response_cbor_sha256": "f588d1a1a4f0744ae176a7cd6c9270d29e8aae5daf0a9b5952b30ec455f3963e",
+      "response_json": "neg-grade-autonomy-up/response.json",
+      "summary": "Negative DELEGATE: parent.grade=G2 but request asks for child.grade=G4 (more autonomy than parent). Must be rejected with E_PROTOCOL (1099)."
+    }
+  ]
+}

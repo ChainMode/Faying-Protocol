@@ -1,0 +1,64 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload_hex": "",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "signer": "presence-device-1"
+  },
+  "claims": {
+    "device_health": {
+      "last_boot_at": "2025-12-17T11:00:00Z",
+      "secure_element": true,
+      "tampered": false
+    },
+    "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+    "seen_set_state": {
+      "first_seen_at": "2025-12-17T11:55:00Z",
+      "nonce_hex": "deadbeefdeadbeefdeadbeefdeadbeef",
+      "subject": "fay:01HXR000000000000000000IF",
+      "ttl_ms_remaining": 540000
+    },
+    "signal": {
+      "device_attestation": {
+        "format": "platform-keystore",
+        "payload_hex": "",
+        "signature": {
+          "alg": "Ed25519",
+          "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+          "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "signer": "presence-device-1"
+      },
+      "device_id": "dev:macbook-air-m2-test",
+      "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+      "nonce_hex": "deadbeefdeadbeefdeadbeefdeadbeef",
+      "produced_at": "2025-12-17T12:00:00Z",
+      "signal_type": "fingerprint-tap",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+        "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+      }
+    }
+  },
+  "header": {
+    "expiry": "2025-12-17T13:00:00Z",
+    "grade": 3,
+    "issued_at": "2025-12-17T12:00:00Z",
+    "issuer": "hp:01HXR000000000000000000HP",
+    "msg_id": "msg:err-1009-trigger",
+    "msg_type": "PRESENCE",
+    "nonce_hex": "deadbeefdeadbeefdeadbeefdeadbeef",
+    "subject": "fay:01HXR000000000000000000IF",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

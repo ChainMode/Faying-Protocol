@@ -1,0 +1,37 @@
+{
+  "device_id": "presence-device:vector-fresh-presence-heartbeat-only",
+  "digests": {
+    "signal_cbor_sha256": "26dcf56d70c3907e84932b2ba8c62444a485624569a8d0d2e719a50a43dc9156",
+    "signal_json_sha256": "279e6a0d698019aabd38ac79732be11f1f74d6b5465eb4b6fbfaab0a20fdaf89",
+    "signing_input_sha256": "7c2cec5171f4d9341b8a1fa6562e5e1f0a3f1b71a318fa2efea9e7577517cc2f"
+  },
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 600000,
+    "description": "G4 Autonomous — periodic heartbeat (≤ 30min)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G4",
+    "max_staleness_ms": 1800000,
+    "produced_at": "2026-03-15T11:50:00Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-FRESH-PRESENCE-HEARTBEAT-ONLY",
+  "nonce_b64u": "H9JPo-cpCYCmSyMzRIy4tg",
+  "notes": "Heartbeat-only signals at G4 keep autonomous loops alive but cannot anchor G1/G2 sensitive actions.",
+  "requirements_validated": [
+    "5.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "presence-heartbeat-only",
+  "state": "fresh",
+  "summary": "Fresh heartbeat at G4 (age 10min ≤ 30min); verifier MUST accept with verdict=ok.",
+  "tamper": null,
+  "vector_name": "fresh-presence-heartbeat-only",
+  "verdict": "ok"
+}

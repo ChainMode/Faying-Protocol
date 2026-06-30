@@ -1,0 +1,42 @@
+{
+  "device_id": "presence-device:vector-tampered-fingerprint-tap-replay",
+  "digests": {
+    "signal_cbor_sha256": "99c7a5896f190ec2961b73aaef82ffa663f3d760b5f7643141d16b1b47c7cd3f",
+    "signal_json_sha256": "2ac361fb2a656abaf780d098819747911cc99c18b1f467b42a986ae655afd144",
+    "signing_input_sha256": "ce3058c7a9d6fb5526ab3e3a328b2430d7e332361a4c2042bc8eff9c05a163b3"
+  },
+  "error_code": 1009,
+  "error_name": "E_REPLAY",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 10000,
+    "description": "G2 Moderate — task-level presence (≤ 60s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G2",
+    "max_staleness_ms": 60000,
+    "produced_at": "2026-03-15T11:59:50Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-TAMPERED-FINGERPRINT-TAP-REPLAY",
+  "nonce_b64u": "86uaZDCarQfSVzEX1QN2fQ",
+  "notes": "Drives Requirement 9.1 #2 and §EH.1 row `E_REPLAY` (1009). `expected.replay_of` lists the `(produced_at, nonce)` pair that the seen-set must remember.",
+  "replay_of": {
+    "nonce": "86uaZDCarQfSVzEX1QN2fQ",
+    "produced_at": "2026-03-15T11:59:45Z"
+  },
+  "requirements_validated": [
+    "5.1",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "fingerprint-tap",
+  "state": "tampered",
+  "summary": "Replay fingerprint-tap: identical (mandate-id, nonce) tuple as a previously-accepted signal; verifier MUST reject with verdict=replay.",
+  "tamper": "replay",
+  "vector_name": "tampered-fingerprint-tap-replay",
+  "verdict": "replay"
+}

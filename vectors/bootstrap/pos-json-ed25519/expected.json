@@ -1,0 +1,35 @@
+{
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "8b8cda264e69733197c1c8c1a173794115b559d369a6dad8e840147d0425cc32",
+    "request_signing_input_sha256": "f80ac2c16ba1290910e3c47211ef89874ad65f770789d049bdf61183558b6a36",
+    "response_sha256": "14989c9c70e220709cd049e5022589f5af5e88735e88eed65c3f94d8b1dc5ffc"
+  },
+  "encoding": "json",
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request": "request.json",
+    "response": "response.json"
+  },
+  "kind": "positive",
+  "mandate_id": "01HXMNDT-BOOTSTRAP-ED25519-JSON",
+  "notes": "Positive BOOTSTRAP vector. Issuance is contingent on a valid human_witness (WebAuthn assertion); the issued Mandate has a finite not_after, presence_req, and grade=2 (Moderate).",
+  "outcome": "accepted",
+  "requirements_validated": [
+    "2.2",
+    "6.1",
+    "8.1",
+    "10.1",
+    "10.2",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": true,
+    "note": "Real cryptographic verification using the cryptography library.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Valid BOOTSTRAP request signed with Ed25519, encoded as JSON, successfully issuing a Mandate.",
+  "vector_name": "pos-json-ed25519"
+}

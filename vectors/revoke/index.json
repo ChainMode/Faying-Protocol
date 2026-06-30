@@ -1,0 +1,343 @@
+{
+  "cascade_tree_depth_max": 2,
+  "category": "REVOKE",
+  "design_anchors": [
+    "design.md §5.3.5 REVOKE wire shape (`mandate_id`, `cascade`, `reason`, `effective_at`) and REVOKE_RECEIPT post-revocation state",
+    "design.md §3.4 / §9.6 Revocation Registry visibility within RevocationVisibilityBudget (default 1s)",
+    "design.md §4.3 / §8.1 Mandate state machine — Revoked is a terminal state",
+    "design.md §7.5 / §9.7 cascade revocation across a derivation subtree",
+    "design.md §EH.1 / §EH.3 — 1006 E_REVOKED routes to audit-log + HP view channel (critical bucket)",
+    "Blueprint chapter 13 — nine RevokeReason values exhaustively cover the nine decoupling triggers"
+  ],
+  "deterministic_seed_sha256": "fe5114db40ccb56be700d41be12d609cc81521b1f4d301f53a35337cc93a8789",
+  "domain_separator": "revoke|",
+  "freshness_table": {
+    "G1": {
+      "max_staleness_ms": 5000,
+      "primary_signal_types": [
+        "webauthn-uv-fresh",
+        "face-continuous"
+      ]
+    },
+    "G2": {
+      "max_staleness_ms": 60000,
+      "primary_signal_types": [
+        "fingerprint-tap"
+      ]
+    },
+    "G3": {
+      "max_staleness_ms": 300000,
+      "primary_signal_types": [
+        "intent-ticket"
+      ]
+    },
+    "G4": {
+      "max_staleness_ms": 1800000,
+      "primary_signal_types": [
+        "presence-heartbeat-only"
+      ]
+    }
+  },
+  "generated_with": "vectors/revoke/_tools/generate.py",
+  "irreversibility_vectors": [
+    "irreversibility-double-revoke",
+    "irreversibility-rebootstrap-new-id",
+    "neg-use-after-revoke"
+  ],
+  "requirements_covered": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "7.2",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revocation_visibility_budget_ms": 1000,
+  "revoke_reason_coverage": [
+    "ego-deviation",
+    "expiry",
+    "fay-credential-invalid",
+    "human-initiated",
+    "human-prime-credential-invalid",
+    "human-prime-unreachable",
+    "regulatory-order",
+    "task-completed",
+    "terminal-disconnected"
+  ],
+  "schemas": {
+    "cddl": "schemas/fap-1.0.cddl",
+    "ts_view": "schemas/types.ts"
+  },
+  "spec_version": "Faying Protocol/1.0",
+  "vectors": [
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_HUMAN_INITIATED"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-human-initiated/expected.json",
+      "kind": "positive",
+      "name": "reason-human-initiated",
+      "request_cbor": "reason-human-initiated/request.cbor",
+      "request_cbor_sha256": "119ac915d57868a4d5c8fd6e8904fb9133552d60538caade810b8a36b991a15c",
+      "request_json": "reason-human-initiated/request.json",
+      "response_cbor": "reason-human-initiated/response.cbor",
+      "response_cbor_sha256": "1d6ac6d81a91f350875c8a1db87243332c0682944022abd642e2df5989816e62",
+      "response_json": "reason-human-initiated/response.json",
+      "revoke_reason": "human-initiated",
+      "summary": "REVOKE with reason='human-initiated': Canonical symmetric-revocation path: HP issues REVOKE with the same authentication strength as BOOTSTRAP (Requirement 4.1.3).",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_INITIATED"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_EXPIRY"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-expiry/expected.json",
+      "kind": "positive",
+      "name": "reason-expiry",
+      "request_cbor": "reason-expiry/request.cbor",
+      "request_cbor_sha256": "1314da50c71262000dd5fdae0c05550e4c1a109efef1646d967d4b200f16560e",
+      "request_json": "reason-expiry/request.json",
+      "response_cbor": "reason-expiry/response.cbor",
+      "response_cbor_sha256": "aa3ec71f8337f47c6ee085f85bc54ee49735271583543d8bad834dccb340d341",
+      "response_json": "reason-expiry/response.json",
+      "revoke_reason": "expiry",
+      "summary": "REVOKE with reason='expiry': Lifecycle-driven revocation: MS detects `now > Mandate.not_after` and emits a self-issued REVOKE on behalf of the issuing HP.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_EXPIRY"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_TASK_COMPLETED"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-task-completed/expected.json",
+      "kind": "positive",
+      "name": "reason-task-completed",
+      "request_cbor": "reason-task-completed/request.cbor",
+      "request_cbor_sha256": "353fe0b0b6319f889e62ea849f2d786eab645d5b8d9313d4005164db60cd3522",
+      "request_json": "reason-task-completed/request.json",
+      "response_cbor": "reason-task-completed/response.cbor",
+      "response_cbor_sha256": "2dc601b63117903f4bc8eebdfbc41ea109061ae7e28869bf2e04115c46f28746",
+      "response_json": "reason-task-completed/response.json",
+      "revoke_reason": "task-completed",
+      "summary": "REVOKE with reason='task-completed': iFay-initiated decoupling per Requirement 4.1.4-5. The iFay's report is treated as a Disclosure_Report and HP confirms via REVOKE; the iFay never revokes its own Mandate.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_TASK_COMPLETED"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_HUMAN_PRIME_UNREACHABLE"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-human-prime-unreachable/expected.json",
+      "kind": "positive",
+      "name": "reason-human-prime-unreachable",
+      "request_cbor": "reason-human-prime-unreachable/request.cbor",
+      "request_cbor_sha256": "1367e97013036e710e8d97293ae28e00bbf3bf1e80a0c90b81cbf4fdc68ce1ec",
+      "request_json": "reason-human-prime-unreachable/request.json",
+      "response_cbor": "reason-human-prime-unreachable/response.cbor",
+      "response_cbor_sha256": "018d0eac4011493fec16c33ba5a14d6f3d0f6c5bd438b8dd516929371eeab2c4",
+      "response_json": "reason-human-prime-unreachable/response.json",
+      "revoke_reason": "human-prime-unreachable",
+      "summary": "REVOKE with reason='human-prime-unreachable': Auto-revocation per Requirement 9.4.4: when HP cannot be reached, MS auto-revokes related Mandates with this reason and broadcasts via RR within `RevocationVisibilityBudget`.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_UNREACHABLE"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_EGO_DEVIATION"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-ego-deviation/expected.json",
+      "kind": "positive",
+      "name": "reason-ego-deviation",
+      "request_cbor": "reason-ego-deviation/request.cbor",
+      "request_cbor_sha256": "ed65073428f0a250a4946d8877c4b4dff6c27e543a38f0e1588633cbb5101f55",
+      "request_json": "reason-ego-deviation/request.json",
+      "response_cbor": "reason-ego-deviation/response.cbor",
+      "response_cbor_sha256": "872791867a2124fbaaa5ed5225291fe778d9d9befe92cd374c9efe0d42c2dc11",
+      "response_json": "reason-ego-deviation/response.json",
+      "revoke_reason": "ego-deviation",
+      "summary": "REVOKE with reason='ego-deviation': Auto-revocation per Requirement 9.4.5 / §9.10.4 T3: DISCLOSURE inconsistent with the actual action triggers this reason.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_EGO_DEVIATION"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_FAY_CREDENTIAL_INVALID"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-fay-credential-invalid/expected.json",
+      "kind": "positive",
+      "name": "reason-fay-credential-invalid",
+      "request_cbor": "reason-fay-credential-invalid/request.cbor",
+      "request_cbor_sha256": "1f5f377464df578b4a4abd07169191a615559b9f6edcc0cde0564382829c8ca4",
+      "request_json": "reason-fay-credential-invalid/request.json",
+      "response_cbor": "reason-fay-credential-invalid/response.cbor",
+      "response_cbor_sha256": "f78dd0cbd6a783823bbfa72c59ee32ecd30d2e387ffbeeeb30cd01813c016a02",
+      "response_json": "reason-fay-credential-invalid/response.json",
+      "revoke_reason": "fay-credential-invalid",
+      "summary": "REVOKE with reason='fay-credential-invalid': Triggered when the iFay's session key, device attestation, or signature chain fails verification (see §9.5 ‘异常脱钩’).",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_FAY_CREDENTIAL_INVALID"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-human-prime-credential-invalid/expected.json",
+      "kind": "positive",
+      "name": "reason-human-prime-credential-invalid",
+      "request_cbor": "reason-human-prime-credential-invalid/request.cbor",
+      "request_cbor_sha256": "625dd041d6726cd0e557d2c96576a0c88ac8c28c79343dcc414ed493d20757e6",
+      "request_json": "reason-human-prime-credential-invalid/request.json",
+      "response_cbor": "reason-human-prime-credential-invalid/response.cbor",
+      "response_cbor_sha256": "51698d52c1cf68317350766dbc622748bb64750ae380ed76615931e062402804",
+      "response_json": "reason-human-prime-credential-invalid/response.json",
+      "revoke_reason": "human-prime-credential-invalid",
+      "summary": "REVOKE with reason='human-prime-credential-invalid': When HP's root credential is invalidated (compromise or rotation), every Mandate it issued is auto-revoked with this reason.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_REGULATORY_ORDER"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-regulatory-order/expected.json",
+      "kind": "positive",
+      "name": "reason-regulatory-order",
+      "request_cbor": "reason-regulatory-order/request.cbor",
+      "request_cbor_sha256": "d41433bce6beeac9009f2eae8889b1c9126b7f1f0ede58bb56414b4c337d52fb",
+      "request_json": "reason-regulatory-order/request.json",
+      "response_cbor": "reason-regulatory-order/response.cbor",
+      "response_cbor_sha256": "8924a679774a0c33ac41913e51288b73a1b9e0a396e0d5f507fe3ae1fdd4ad91",
+      "response_json": "reason-regulatory-order/response.json",
+      "revoke_reason": "regulatory-order",
+      "summary": "REVOKE with reason='regulatory-order': Per Requirement 4.1.4: revocation initiated by a regulator-authority path that is still made visible through HP's view channel.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_REGULATORY_ORDER"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-REASON_TERMINAL_DISCONNECTED"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "reason-terminal-disconnected/expected.json",
+      "kind": "positive",
+      "name": "reason-terminal-disconnected",
+      "request_cbor": "reason-terminal-disconnected/request.cbor",
+      "request_cbor_sha256": "599f0194eb404f7afae987e9a34daf3a27aae34e2699d81c26c4ea84e68ccda7",
+      "request_json": "reason-terminal-disconnected/request.json",
+      "response_cbor": "reason-terminal-disconnected/response.cbor",
+      "response_cbor_sha256": "cc9629d53c7f135535afc31c20d9a3907fe61c1f9b76ba35a3a08f722a7d279b",
+      "response_json": "reason-terminal-disconnected/response.json",
+      "revoke_reason": "terminal-disconnected",
+      "summary": "REVOKE with reason='terminal-disconnected': Per design.md §4.3 Disconnected → Revoked: when Reconciliation cannot complete and the Mandate is not Endorsed (or `endorsed_lifetime` lapsed), MS revokes with this reason.",
+      "target_mandate_id": "01HXMNDT-TARGET-REASON_TERMINAL_DISCONNECTED"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-PARENT-CASCADE_DEPTH_2",
+        "01HXMNDT-CHILD-CASCADE_DEPTH_2",
+        "01HXMNDT-GRANDCHILD-CASCADE_DEPTH_2"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "cascade-depth-2/expected.json",
+      "kind": "positive",
+      "name": "cascade-depth-2",
+      "request_cbor": "cascade-depth-2/request.cbor",
+      "request_cbor_sha256": "23e5105f87d86f259b218345d42a3f1c481eb6bcbce61a027515f04c4f9b29bd",
+      "request_json": "cascade-depth-2/request.json",
+      "response_cbor": "cascade-depth-2/response.cbor",
+      "response_cbor_sha256": "792abf11f5e1cefd301bbd3728d4aed2fc6f4d5561462c03814ac66513897af4",
+      "response_json": "cascade-depth-2/response.json",
+      "revoke_reason": "human-initiated",
+      "summary": "Cascade REVOKE on a depth-2 derivation tree (parent G3 → child G2 → grandchild G1). One REVOKE on the parent atomically marks both descendants as Revoked and the receipt enumerates them in topological order.",
+      "target_mandate_id": "01HXMNDT-PARENT-CASCADE_DEPTH_2"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-PARENT-CASCADE_DISABLED"
+      ],
+      "cascade": false,
+      "error_code": null,
+      "expected": "cascade-disabled/expected.json",
+      "kind": "positive",
+      "name": "cascade-disabled",
+      "request_cbor": "cascade-disabled/request.cbor",
+      "request_cbor_sha256": "dbebea21a63918a6acb7277888e1e61097c269a53ce2fa1aa142b641f1589aa8",
+      "request_json": "cascade-disabled/request.json",
+      "response_cbor": "cascade-disabled/response.cbor",
+      "response_cbor_sha256": "a91fb844fbd6f04934f03f2b546db88bde5c87e7ff605ae5e949f2b5a9a54e8e",
+      "response_json": "cascade-disabled/response.json",
+      "revoke_reason": "task-completed",
+      "summary": "REVOKE with cascade=false on a depth-2 tree; only the parent becomes Revoked; descendants stay Active. Validates that ``cascade`` is an explicit, wire-level boolean rather than implementation-defined behaviour.",
+      "target_mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-IRREVERSIBILITY_DOUBLE_REVOKE"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "irreversibility-double-revoke/expected.json",
+      "kind": "positive",
+      "name": "irreversibility-double-revoke",
+      "request_cbor": "irreversibility-double-revoke/request.cbor",
+      "request_cbor_sha256": "6b0f5495c5f006b3df6f8680dd650f04cc3cf099ddf08a39dd64f6e050660d9c",
+      "request_json": "irreversibility-double-revoke/request.json",
+      "response_cbor": "irreversibility-double-revoke/response.cbor",
+      "response_cbor_sha256": "0abc4070d6086e0b01adfef35066bca7a38de7189e22d05f31e0d881b460657b",
+      "response_json": "irreversibility-double-revoke/response.json",
+      "revoke_reason": "human-initiated",
+      "summary": "Double REVOKE: a second REVOKE on an already-Revoked Mandate produces an idempotent receipt that points to the *original* revoked_at. Documents Requirement 4.3.1-2: Revoked is a terminal state.",
+      "target_mandate_id": "01HXMNDT-TARGET-IRREVERSIBILITY_DOUBLE_REVOKE"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-OLD-IRREVERSIBILITY_REBOOTSTRAP_NEW_ID"
+      ],
+      "cascade": true,
+      "error_code": null,
+      "expected": "irreversibility-rebootstrap-new-id/expected.json",
+      "kind": "positive",
+      "name": "irreversibility-rebootstrap-new-id",
+      "request_cbor": "irreversibility-rebootstrap-new-id/request.cbor",
+      "request_cbor_sha256": "7a87da167cbecde0af33fbc8ac27bee64cffa02fa0b992de8c6f4ebd7869a32a",
+      "request_json": "irreversibility-rebootstrap-new-id/request.json",
+      "response_cbor": "irreversibility-rebootstrap-new-id/response.cbor",
+      "response_cbor_sha256": "697838d0da7c09030e9060b5e74e728b00e4f52eebbb085893e1ca495bf96453",
+      "response_json": "irreversibility-rebootstrap-new-id/response.json",
+      "revoke_reason": "human-initiated",
+      "summary": "Recovery after REVOKE: re-BOOTSTRAP issues a fresh Mandate with a *different* mandate_id even when (subject, scope) match. The old id remains Revoked forever. Validates Requirement 4.3.3.",
+      "target_mandate_id": "01HXMNDT-OLD-IRREVERSIBILITY_REBOOTSTRAP_NEW_ID"
+    },
+    {
+      "affected_mandate_ids": [
+        "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE"
+      ],
+      "cascade": true,
+      "error_code": 1006,
+      "expected": "neg-use-after-revoke/expected.json",
+      "kind": "negative",
+      "name": "neg-use-after-revoke",
+      "request_cbor": "neg-use-after-revoke/request.cbor",
+      "request_cbor_sha256": "212c355d01ec4ad3a7e05716727072132450c1747cac7bda79406d377305b0f8",
+      "request_json": "neg-use-after-revoke/request.json",
+      "response_cbor": "neg-use-after-revoke/response.cbor",
+      "response_cbor_sha256": "baa4fe3e3e1c24b2d952acf4f8f5c5a55ab05bda53b3c49721489b065f102818",
+      "response_json": "neg-use-after-revoke/response.json",
+      "revoke_reason": "human-initiated",
+      "summary": "Use-after-revoke: presenting a Revoked Mandate yields an ERROR response with code=1006 / name=E_REVOKED. The ERROR is pushed to HP's view channel in the critical bucket (§EH.3). Validates Requirement 9.4.1.",
+      "target_mandate_id": "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE"
+    }
+  ]
+}

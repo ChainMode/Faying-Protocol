@@ -1,0 +1,70 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": "01HXMNDT-CHILD-POS_DEPTH_1",
+  "convergence_assertions": {
+    "child_actions_count": 2,
+    "child_grade_autonomy_le_parent": true,
+    "child_scope_subset_of_parent": true,
+    "parent_actions_count": 5
+  },
+  "digests": {
+    "request_cbor_sha256": "aa82ff899a76aac87755c9d4678fe8dbb4247600168f342c42abd62c5774fea1",
+    "request_json_sha256": "08879a841cb4cc6612f92f421fc60375c01f4a955b15993d5936b6feeb23d436",
+    "request_signing_input_sha256": "c81df15722de33a8edf4ac975b710a9151ce40c00c1e13b26d49ec8764ebee40",
+    "response_cbor_sha256": "e89a74925fe0ffbbbfd2d99d254f17e4de8bf4908423d393c9cd74bb3bf257e8",
+    "response_json_sha256": "e873c266b03918ecf6ff0027dad06525dd87e36b23b4e42f89003fbe6e4db811"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "positive",
+  "notes": "Canonical happy path. Verifies §5.3.4 wire shape, §3.3 AC chain construction, §6.3 multi-sign chain, §9.7 convergence rules and Requirement 7.1 acceptance items 1–4 in one shot.",
+  "outcome": "accepted",
+  "parent_mandate_id": "01HXMNDT-PARENT-POS_DEPTH_1",
+  "parent_mandate_id_in_response": "01HXMNDT-PARENT-POS_DEPTH_1",
+  "post_state": {
+    "chain_depth": 1,
+    "chain_walk": [
+      "hp-root",
+      "chain[0]:hp-root:ms-cert",
+      "chain[1]:parent-0:outer-sig",
+      "child:outer-sig"
+    ],
+    "child_grade": "G2",
+    "child_mandate_id": "01HXMNDT-CHILD-POS_DEPTH_1",
+    "mandate_status": "Active",
+    "parent_mandate_id": "01HXMNDT-PARENT-POS_DEPTH_1",
+    "presence_req_max_staleness_ms": 60000
+  },
+  "requirements_validated": [
+    "7.1",
+    "9.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_chain": {
+    "anchors_root": true,
+    "labels": [
+      "hp-root:ms-cert",
+      "parent-0:outer-sig"
+    ],
+    "length": 2
+  },
+  "signature_verification": {
+    "child_mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Depth-1 legal DELEGATE: child.scope ⊂ parent.scope and child.grade=G3 equals parent.grade=G3 (lateral derivation with equal autonomy — the ≤ in §9.7 is non-strict). The child Mandate's signature.chain carries [HP→MS-Cert, parent outer sig] so the verifier walks root → MS → parent → child.",
+  "vector_name": "pos-depth-1"
+}

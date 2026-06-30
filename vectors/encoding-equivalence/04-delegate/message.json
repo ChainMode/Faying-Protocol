@@ -1,0 +1,42 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": "YXR0ZXN0YXRpb24tcGF5bG9hZC1wbGFjZWhvbGRlci12MQ",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+      "sig": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "signer": "ms:demo-mandate-service"
+  },
+  "claims": {
+    "child-grade": 2,
+    "child-scope": {
+      "actions": [
+        "read:user-profile"
+      ],
+      "domains": [
+        "agent://mailbox/inbox"
+      ]
+    },
+    "child-subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M5RF",
+    "device-id": "term:macbook-2025",
+    "parent-mandate": "mdt:01HX8K3F2Q7JX9V5N6T4R8M3PD"
+  },
+  "header": {
+    "expiry": "2025-11-25T10:01:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:00:00Z",
+    "issuer": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "msg-id": "msg:01HX8K3F2Q7JX9V5N6T4R8MD004",
+    "msg-type": "DELEGATE",
+    "nonce": "MDEyMzQ1Njc4OUBBQkNERQ",
+    "subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+    "sig": "01dK_ivbHt8NYUg5vB06rF2hlVNFZVTWfno6t0L3057iS2TPnWmXGoK0JsGobVllMs5MNcBt1bXaDLl4rC74Cg"
+  }
+}

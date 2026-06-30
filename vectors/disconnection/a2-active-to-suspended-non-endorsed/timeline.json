@@ -1,0 +1,88 @@
+{
+  "vector_id": "a2-active-to-suspended-non-endorsed",
+  "title": "非 Endorsed_Mandate 在 on-loss=suspend 下感知失联触发 Active → Suspended",
+  "spec_refs": ["§4.3", "§9.8 矩阵第 4 行（非 Endorsed 分支）", "§9.9 悲观推定", "P11", "P17.2"],
+  "requirements": ["12.2"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Suspended"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:00Z", "value": false },
+    { "from": "2025-11-25T08:01:00Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-a2-001",
+    "issuer": "fay:hp/bob",
+    "subject": "fay:if/assistant-9",
+    "scope": {
+      "domains": ["mail.example.com"],
+      "actions": ["mail.read", "mail.send"],
+      "terminals": ["device-laptop-02"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": null
+  },
+  "events": [
+    {
+      "seq": 1,
+      "t": "2025-11-25T08:00:00Z",
+      "actor": "MS",
+      "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-a2-001", "state": "Active" }
+    },
+    {
+      "seq": 2,
+      "t": "2025-11-25T08:01:00Z",
+      "actor": "IF",
+      "type": "PhysicalDisconnect",
+      "payload": { "reason": "device-shutdown" }
+    },
+    {
+      "seq": 3,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "PresenceStaleDetected",
+      "payload": {
+        "last_freshness": "2025-11-25T08:01:00Z",
+        "max_staleness_ms": 60000
+      }
+    },
+    {
+      "seq": 4,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "MandateStateTransition",
+      "payload": {
+        "from": "Active",
+        "to": "Suspended",
+        "trigger": "PresenceState.stale=true ∧ endorsement=⊥ ∧ on-loss=suspend"
+      }
+    },
+    {
+      "seq": 5,
+      "t": "2025-11-25T08:03:00Z",
+      "actor": "RP",
+      "type": "InboundCall",
+      "payload": {
+        "action": "mail.read",
+        "verdict": "rejected",
+        "error": "E_PRESENCE_STALE",
+        "note": "Mandate 处于 Suspended，D 维度禁止"
+      }
+    }
+  ]
+}

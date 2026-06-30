@@ -1,0 +1,113 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLXJlYXNvbi10ZXJtaW5hbC1kaXNjb25uZWN0ZWQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "nRaeGG0QEH_FCCCMAgUz8d424qpxxYjJ11PBzBFlPak"
+        },
+        "sig": {
+          "$bytes": "CxHgvIvQSbKTmOvlq82pwFYoR2kl-91JsEQNCAGBcMIyqYmcpGS1EsfmAaTQDnaUKbeju1zRw5sC3pqW5E-vDQ"
+        }
+      },
+      "signer": "hp:vector-req-reason-terminal-disconnected"
+    },
+    "claims": {
+      "cascade": true,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      },
+      "mandate_id": "01HXMNDT-TARGET-REASON_TERMINAL_DISCONNECTED",
+      "reason": "terminal-disconnected"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_TERMINAL_DISCONNECTED",
+      "msg_id": "01HXMSG-RVK-REQ-REASON_TERMINAL_DISCONNECTED",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "tTaCdAmbVqH1cTV9NUXjmw"
+      },
+      "subject": "fay:01HXFAY-REASON_TERMINAL_DISCONNECTED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "nRaeGG0QEH_FCCCMAgUz8d424qpxxYjJ11PBzBFlPak"
+      },
+      "sig": {
+        "$bytes": "GyHMS1dFvtawjiGrOLgR8iprob9BO9lC05MwLsu7MYi5A-7eMOLCx9QPaUqFmDn1snW8w8R9ZswrHS3LU-5IBA"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1yZWFzb24tdGVybWluYWwtZGlzY29ubmVjdGVk"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "BsI4g39ipmZAuf3YLSDx1H9imRyc-fCgpTSZxWOFXuI"
+        },
+        "sig": {
+          "$bytes": "kTXBvyExzpq1wf1MGAQcTz73G0yYRVcLgHrEajNTfBlQritgmd7Hc-3vFE4sE0b-pyXfMJv61CiXD-7xehqLBQ"
+        }
+      },
+      "signer": "hp:vector-resp-reason-terminal-disconnected"
+    },
+    "claims": {
+      "cascade": true,
+      "cascaded_mandate_ids": [],
+      "mandate_id": "01HXMNDT-TARGET-REASON_TERMINAL_DISCONNECTED",
+      "reason": "terminal-disconnected",
+      "revoked_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_TERMINAL_DISCONNECTED",
+      "msg_id": "01HXMSG-RVK-RCT-REASON_TERMINAL_DISCONNECTED",
+      "msg_type": "REVOKE_RECEIPT",
+      "nonce": {
+        "$bytes": "N1d6GWFm45O8rU8KnbYxsw"
+      },
+      "subject": "fay:01HXFAY-REASON_TERMINAL_DISCONNECTED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "BsI4g39ipmZAuf3YLSDx1H9imRyc-fCgpTSZxWOFXuI"
+      },
+      "sig": {
+        "$bytes": "-2nh7lPRJHL8jBhIrlELrWDoG7kV229kRcZpcQXc7tUQ3i_rd4SWFjtrjcqv5cOyFh5IoiMHYufQHA9T3rSkDA"
+      }
+    }
+  }
+}

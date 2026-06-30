@@ -1,0 +1,21 @@
+{
+  "audit-log-entry": {
+    "error_code": 1012,
+    "mandate_id": "mnd:01HXR000000000000BUDGET",
+    "reason": "调用累计超过 Scope.budget / ResourceBudget",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1012,
+  "must-push-hp-view": false,
+  "name": "E_BUDGET_EXCEEDED",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "调用累计超过 Scope.budget / ResourceBudget",
+  "trace": [
+    "R2.1.3"
+  ]
+}

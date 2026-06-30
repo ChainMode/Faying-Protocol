@@ -1,0 +1,15 @@
+{
+  "audit_notes": [
+    "§5.3.7 hard rule: risk_level ∈ {high, critical} MUST be PRE-disclosed.",
+    "Here action_attempted_at < disclosure_submitted_at → action rejected.",
+    "G4 Autonomous + main-scope exception does not apply (grade=G2).",
+    "Post-hoc DISCLOSURE is recorded but does NOT retroactively legalise the action."
+  ],
+  "case": "d",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "rejected_action": "payment:transfer",
+  "vector_id": "11-high-risk-no-prior-disclosure"
+}

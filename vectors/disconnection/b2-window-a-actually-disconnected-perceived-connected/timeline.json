@@ -1,0 +1,109 @@
+{
+  "vector_id": "b2-window-a-actually-disconnected-perceived-connected",
+  "title": "窗口 A：iFay 实际已断但仍被感知为在线，协议层只读 Perceived 通道",
+  "spec_refs": ["§9.8 矩阵第 2 行（窗口 A）", "§9.9 悲观推定 / 双语义", "P17.1"],
+  "requirements": ["12.1"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:30Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Disconnected"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:30Z", "value": false },
+    { "from": "2025-11-25T08:02:30Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-b2-001",
+    "issuer": "fay:hp/dan",
+    "subject": "fay:if/assistant-13",
+    "scope": {
+      "domains": ["chat.example.com"],
+      "actions": ["chat.read", "chat.send"],
+      "terminals": ["device-phone-01"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh", "fingerprint-tap"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["chat.example.com"],
+        "actions": ["chat.read"],
+        "terminals": ["device-phone-01"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    {
+      "seq": 1,
+      "t": "2025-11-25T08:00:00Z",
+      "actor": "MS",
+      "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-b2-001", "state": "Active" }
+    },
+    {
+      "seq": 2,
+      "t": "2025-11-25T08:01:30Z",
+      "actor": "IF",
+      "type": "PhysicalDisconnect",
+      "payload": { "reason": "process-crash", "actually_disconnected": true }
+    },
+    {
+      "seq": 3,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "PresenceStateProbe",
+      "payload": {
+        "perceived_disconnected": false,
+        "last_freshness": "2025-11-25T08:01:25Z",
+        "elapsed_ms": 35000,
+        "note": "窗口 A：心跳间隔内的观察盲区；实际已断但 PresenceSignal 尚未失效"
+      }
+    },
+    {
+      "seq": 4,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "RP",
+      "type": "InboundCallProbe",
+      "payload": {
+        "action": "chat.send",
+        "sensitivity": "high",
+        "verdict": "rejected",
+        "error": "E_PRESENCE_STALE",
+        "note": "高敏感动作必须额外校验在场新鲜度（§9.10.5 / P18.4）；落在窗口 A 不得放行"
+      }
+    },
+    {
+      "seq": 5,
+      "t": "2025-11-25T08:02:30Z",
+      "actor": "MS",
+      "type": "PresenceStaleDetected",
+      "payload": { "elapsed_ms": 60001 }
+    },
+    {
+      "seq": 6,
+      "t": "2025-11-25T08:02:30Z",
+      "actor": "MS",
+      "type": "MandateStateTransition",
+      "payload": {
+        "from": "Active",
+        "to": "Disconnected",
+        "trigger": "PresenceState.stale=true ∧ endorsement.enabled=true"
+      }
+    }
+  ]
+}

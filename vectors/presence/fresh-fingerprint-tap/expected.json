@@ -1,0 +1,37 @@
+{
+  "device_id": "presence-device:vector-fresh-fingerprint-tap",
+  "digests": {
+    "signal_cbor_sha256": "0a52e8a2001f513f45068f725d6488ed795872a2cabda68b666bf037d95319e7",
+    "signal_json_sha256": "51457fad6360bf145cfd729717c5398c3cefa84b1782d0c2bdc99c9f4326ef7d",
+    "signing_input_sha256": "b3257ca95d0999c7184f2cf496585735a068d6fd3dd50c779398cf572ac8a92e"
+  },
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 20000,
+    "description": "G2 Moderate — task-level presence (≤ 60s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G2",
+    "max_staleness_ms": 60000,
+    "produced_at": "2026-03-15T11:59:40Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-FRESH-FINGERPRINT-TAP",
+  "nonce_b64u": "gx38NEsmKAWYACdQcluobg",
+  "notes": "Mid-strength one-shot signal. Re-tap is required before the next sensitive sub-task per §3.2.",
+  "requirements_validated": [
+    "5.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "fingerprint-tap",
+  "state": "fresh",
+  "summary": "Fresh fingerprint-tap signal at G2 (age 20s ≤ 60s); verifier MUST accept with verdict=ok.",
+  "tamper": null,
+  "vector_name": "fresh-fingerprint-tap",
+  "verdict": "ok"
+}

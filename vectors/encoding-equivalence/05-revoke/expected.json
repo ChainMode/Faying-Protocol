@@ -1,0 +1,67 @@
+{
+  "_normative_references": [
+    "design.md §5.1 (encoding rules)",
+    "design.md §5.2 (envelope structure)",
+    "design.md §6.3 S2 (signature input definition)",
+    "RFC 8949 §4.2.1 (Core Deterministic Encoding)",
+    "RFC 8259 (JSON)",
+    "RFC 4648 §5 (base64url)",
+    "schemas/fap-1.0.cddl (authoritative wire schema)"
+  ],
+  "_traceability": {
+    "ears_clauses": [
+      "R10.1.3",
+      "R10.1.4",
+      "R10.2.1",
+      "R10.2.4"
+    ],
+    "requirements": [
+      "10.1",
+      "10.2"
+    ]
+  },
+  "binary_field_paths": [
+    "attestation.payload",
+    "attestation.signature.pubkey",
+    "attestation.signature.sig",
+    "header.nonce",
+    "signature.pubkey",
+    "signature.sig"
+  ],
+  "encodings": {
+    "cbor": {
+      "content_type": "application/faying-protocol+cbor",
+      "deterministic": "RFC 8949 §4.2.1",
+      "filename": "message.cbor",
+      "size_bytes": 752
+    },
+    "json": {
+      "binary_encoding": "base64url-no-padding",
+      "content_type": "application/faying-protocol+json",
+      "filename": "message.json",
+      "key_naming": "kebab-case (per CDDL fap-1.0.cddl)"
+    }
+  },
+  "equivalence_assertions": {
+    "semantic_equality": "cbor2.loads(message.cbor) == apply_binary_decode(json.loads(message.json), binary_field_paths) → True",
+    "signature_input_hash_identical_across_encodings": true,
+    "signature_input_identical_across_encodings": true,
+    "signature_verification_result_identical_across_encodings": true,
+    "verification_outcome": "ed25519.verify(pubkey, sig, det_cbor_input) → OK"
+  },
+  "msg_id": "msg:01HX8K3F2Q7JX9V5N6T4R8ME005",
+  "msg_type": "REVOKE",
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "296188d31c4dda4d7a7fd778b7241cda994ae1b8796f1acc705b638a26281582",
+    "sig_hex": "0c2b8404f0dee221b072149f61c41f3a4a7952ad6b2480254bfe8cb7b6264a52eaddac2c49bb882d399559f8c1724ec992536d3bb2208ac15cee70b64834150f"
+  },
+  "signature_input": {
+    "definition": "H( Deterministic-CBOR( Envelope_without_signature ) )  per design.md §6.3 S2",
+    "det_cbor_filename": "signature.input.det-cbor.hex",
+    "det_cbor_size_bytes": 618,
+    "hash_algorithm": "SHA-256",
+    "hash_hex": "71c1678ab663a6a360569a42a0309a722a487154b681aa122626115a7d58a396"
+  },
+  "summary": "Human Prime revokes a Mandate with cascade=true, reason=human-initiated."
+}

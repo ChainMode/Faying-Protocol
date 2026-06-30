@@ -1,0 +1,37 @@
+{
+  "vid": "vec-06-hp-rejected",
+  "title": "HP explicitly rejects the IF-initiated FAYING_REQUEST",
+  "outcome": "rejected",
+  "error_code": null,
+  "spec_refs": [
+    "§5.3.6 FAYING_REQUEST_RESP { status='rejected' }",
+    "§2.4 Phase A0 — HP rejects branch"
+  ],
+  "requirements": [
+    "1.3"
+  ],
+  "bootstrap_timeout_ms": 60000,
+  "timing": {
+    "t_request": "2026-01-15T10:00:00Z",
+    "t_response": "2026-01-15T10:00:25Z",
+    "elapsed_ms_request_to_response": 25000,
+    "within_bootstrap_timeout": true
+  },
+  "attestation_chain_entry": {
+    "initiator": "fay:alice/iFay-01",
+    "confirm_ts": "2026-01-15T10:00:25Z",
+    "took_effect": false,
+    "evidence": {
+      "faying_request_msg_id": "req:vec-06-hp-rejected:01HZZ1000000000000000",
+      "faying_request_resp_msg_id": "resp:vec-06-hp-rejected:01HZZ1000000000000001",
+      "response_status": "rejected",
+      "reject_reason": "HP-explicit-reject: scope-too-broad",
+      "bootstrap_msg_id": null,
+      "human_witness_present": false
+    }
+  },
+  "hardness_checks": {
+    "no_state_change": true,
+    "hp_witness_irreplaceable": true
+  }
+}

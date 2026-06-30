@@ -1,0 +1,58 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": null,
+  "convergence_failure": {
+    "axis": "scope.actions",
+    "expanded_action": "calendar:event:delete",
+    "parent_actions": [
+      "calendar:event:create",
+      "calendar:event:read",
+      "calendar:event:update",
+      "mail:message:read",
+      "mail:message:send"
+    ]
+  },
+  "digests": {
+    "request_cbor_sha256": "d97216a370a26564c065dedeb38bcc7456e3314342d9d0fba51f9588e4d114c6",
+    "request_json_sha256": "39c14a794fd0afb46bf4604f75e5cbf2e48b697898a2304c1bdcb0334fa5738a",
+    "request_signing_input_sha256": "e7562afd53b2280a511266c38a8e54e0618f0c95b9c9ccdcb649ab2f8cf1da38",
+    "response_cbor_sha256": "b3ea9379f317e089a0e82fb2ac01f539feec5f18858485fadd12c5f496af212e",
+    "response_json_sha256": "ed0669c806927e6354e84f68e4000fff344bd1168d6cc0088a7ce1b8bc8a1065"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "expansion_kind": "actions",
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "negative",
+  "notes": "Verifies Requirement 7.1 acceptance items 1 & 3: child.scope ⊆ parent.scope, with rejection on any expansion. Uses scope.actions as the expansion axis.",
+  "outcome": "rejected",
+  "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_ACTION",
+  "post_state": {
+    "mandate_status": "Active",
+    "note": "Rejection does not mutate any state; the parent Mandate remains Active. No child Mandate is issued and no signature.chain entry is produced.",
+    "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_ACTION"
+  },
+  "requirement_focus": "Requirement 7.1 — child.scope ⊆ parent.scope (actions axis).",
+  "requirements_validated": [
+    "7.1",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "child_mandate_inner": false,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative DELEGATE: child.scope.actions includes 'calendar:event:delete' which is NOT in parent.scope. Must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-scope-expansion-action"
+}

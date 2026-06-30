@@ -1,0 +1,150 @@
+{
+  "vector_set": "vectors/faying-request",
+  "protocol": "Faying Protocol/1.0",
+  "spec_refs": [
+    "§1.5.1 双向 Faying 由 HP 显式认可生效",
+    "§2.4 Phase A0 — iFay-Initiated Faying Request",
+    "§5.3.6 FAYING_REQUEST / FAYING_REQUEST_RESP",
+    "§5.4 错误码 1010 / 1014"
+  ],
+  "requirements": [
+    "1.3",
+    "11.1"
+  ],
+  "bootstrap_timeout_ms": 60000,
+  "encoding": {
+    "primary": "CBOR (RFC 8949), deterministic per §4.2.1",
+    "fallback": "JSON mirror with bytes encoded as { \"$b64\": ... }",
+    "signature_input": "SHA-256(Deterministic-CBOR(Envelope_without_signature))",
+    "signature_alg": "Ed25519",
+    "deterministic_seeds": "vectors are byte-reproducible from _tools/generate.py"
+  },
+  "vectors": [
+    {
+      "vid": "vec-01-establish",
+      "title": "IF-initiated FAYING_REQUEST(establish) confirmed by HP within BootstrapTimeout",
+      "reason_code": "establish",
+      "outcome": "effective",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-02-adjust-scope",
+      "title": "IF-initiated FAYING_REQUEST(adjust-scope) confirmed by HP within BootstrapTimeout",
+      "reason_code": "adjust-scope",
+      "outcome": "effective",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-03-adjust-grade",
+      "title": "IF-initiated FAYING_REQUEST(adjust-grade) confirmed by HP within BootstrapTimeout",
+      "reason_code": "adjust-grade",
+      "outcome": "effective",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-04-renew",
+      "title": "IF-initiated FAYING_REQUEST(renew) confirmed by HP within BootstrapTimeout",
+      "reason_code": "renew",
+      "outcome": "effective",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-05-endorsement-request",
+      "title": "IF-initiated FAYING_REQUEST(endorsement-request) confirmed by HP within BootstrapTimeout",
+      "reason_code": "endorsement-request",
+      "outcome": "effective",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-06-hp-rejected",
+      "title": "HP explicitly rejects the IF-initiated FAYING_REQUEST",
+      "reason_code": "establish",
+      "outcome": "rejected",
+      "error_code": null,
+      "files": [
+        "request.cbor",
+        "request.json",
+        "response.cbor",
+        "response.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-07-bootstrap-timeout",
+      "title": "BootstrapTimeout exceeded without HP confirmation → E_FAYING_REQUEST_NOT_CONFIRMED (1014)",
+      "reason_code": "adjust-grade",
+      "outcome": "timeout",
+      "error_code": "E_FAYING_REQUEST_NOT_CONFIRMED",
+      "files": [
+        "request.cbor",
+        "request.json",
+        "response.cbor",
+        "response.json",
+        "error.cbor",
+        "error.json",
+        "expected.json"
+      ]
+    },
+    {
+      "vid": "vec-08-forged-ms-surrogate",
+      "title": "Forged 'MS confirms on behalf of HP' path → E_HUMAN_WITNESS_REQUIRED (1010)",
+      "reason_code": "establish",
+      "outcome": "refused-no-witness",
+      "error_code": "E_HUMAN_WITNESS_REQUIRED",
+      "files": [
+        "request.cbor",
+        "request.json",
+        "bootstrap-followup.cbor",
+        "bootstrap-followup.json",
+        "error.cbor",
+        "error.json",
+        "expected.json"
+      ]
+    }
+  ]
+}

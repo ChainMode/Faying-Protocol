@@ -1,0 +1,5 @@
+¤fclaims¤kchild_gradekchild_scope¤fbudget¢ktime-window‚Àt2026-01-01T00:00:00ZÀt2026-01-02T00:00:00Zomax-invocations2gactions‚scalendar:event:readucalendar:event:updategdomainsx#https://api.example.com/v1/calendariterminalswterminal:phone:mobile-1mchild_subjectx"fay:01HXFAY-CHILD-POS_CHAIN_VERIFYnparent_mandatex 01HXMNDT-PARENT-POS_CHAIN_VERIFYfheader©egradeenoncePü`c£G”×z£±ÉˆŠxfexpiryÀt2026-01-01T00:01:00Zfissuerxhp:01HXHP-POS_CHAIN_VERIFYfmsg_idx 01HXMSG-DLG-REQ-POS_CHAIN_VERIFYgsubjectx#fay:01HXFAY-PARENT-POS_CHAIN_VERIFYgversionsFaying Protocol/1.0hmsg_typehDELEGATEiissued_atÀt2026-01-01T00:00:00Zisignature£calggEd25519csigX@âõfå‡•ò®
+ıá»­r"+iSU¾LŠ.Ó³—.æ÷‡Yšo=#(‘ 1 @Ë@!²²BÈ¯[P:¡½a\fpubkeyX Ë‘şÿ•–q" uÄW–&ÙGm
+?+§Ô/Bkattestation¤fformatkself-signedfsignerxhp:vector-req-pos-chain-verifygpayloadX/faying-attestation-payload:req-pos-chain-verifyisignature£calggEd25519csigX@¶Y)|ù
+¨x‰¼²wLh°šØFƒruîxòÂ±_L¶ $º¹FRc‘¾¼~á&¯a›;3™dàªØadş¼2*?fpubkeyX Ë‘şÿ•–q" uÄW–&ÙGm
+?+§Ô/B

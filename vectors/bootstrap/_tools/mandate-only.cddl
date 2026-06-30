@@ -1,0 +1,75 @@
+; Test shim — `mandate` first to be the entry rule for `cddl validate`.
+; Used by _tools/validate-with-cddl.sh to invoke the official Ruby
+; cddl tool against the Mandate carried inside each response.cbor.
+; Body is copied from schemas/fap-1.0.cddl with the `mandate` rule
+; reordered to the top.
+
+mandate = {
+  version:        "Faying Protocol/1.0",
+  id:             tstr,
+  issued-at:      iso-time,
+  not-before:     iso-time,
+  not-after:      iso-time,
+  issuer:         tstr,
+  ms-id:          tstr,
+  subject:        tstr,
+  scope:          scope,
+  grade:          faying-grade,
+  presence-req:   presence-requirement,
+  ? parent:       tstr,
+  ? endorsement:  endorsement,
+  attestation:    attestation,
+  signature:      signature-bundle
+}
+
+faying-grade = 0..4
+
+scope = {
+  domains:    [* tstr],
+  actions:    [* tstr],
+  ? terminals: [* tstr],
+  ? budget:   resource-budget
+}
+
+resource-budget = {
+  time-window:        [iso-time, iso-time],
+  ? max-invocations:  uint,
+  ? max-cost-units:   uint
+}
+
+iso-time = #6.0(tstr)
+
+presence-signal-type =
+  "webauthn-uv-fresh" /
+  "face-continuous"   /
+  "fingerprint-tap"   /
+  "presence-heartbeat-only" /
+  "intent-ticket"
+
+presence-requirement = {
+  signal-types:        [+ presence-signal-type],
+  max-staleness-ms:    uint,
+  on-loss:             tstr
+}
+
+attestation = {
+  format:    "webauthn" / "tpm-quote" / "platform-keystore" / "self-signed",
+  payload:   bstr,
+  signer:    tstr,
+  signature: signature-bundle
+}
+
+signature-bundle = {
+  alg:       "Ed25519" / "ES256" / "ML-DSA-65",
+  pubkey:    bstr,
+  sig:       bstr,
+  ? chain:   [* bstr]
+}
+
+endorsement = {
+  enabled:                       bool,
+  endorsed-scope:                scope,
+  endorsed-grade:                faying-grade,
+  endorsed-lifetime-ms:          uint,
+  offline-revocation-policy:     "stop-and-audit" / "stop-only" / "graceful-stop"
+}

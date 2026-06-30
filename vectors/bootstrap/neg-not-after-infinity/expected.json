@@ -1,0 +1,31 @@
+{
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "e1eb61362c4ee7e85c0077c7a2970d2b4eeaa19f089adf618f992f4d6148b3b8",
+    "request_signing_input_sha256": "809de0cbd19d5d58722295c2ebb6a2ef7f8608272b32e7f4faf67e759be64e38",
+    "response_sha256": "4c1ef91c7ce1e80e0e3019296998203863a7d78b7e047fcaeb6dd4c427f92962"
+  },
+  "encoding": "cbor",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "negative",
+  "mandate_id": null,
+  "notes": "Verifies acceptance criterion 2.2: open-ended Mandates are forbidden. The 'infinity' sentinel is one canonical representation of the bad value; implementations MUST reject any equivalent (e.g. omitted field, +inf, max-value).",
+  "outcome": "rejected",
+  "requirements_validated": [
+    "2.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "note": "Encoded `not_after` violates Requirement 2.2 (Mandate must have a finite lifetime).",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative case: BOOTSTRAP with not_after = ∞ must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-not-after-infinity"
+}

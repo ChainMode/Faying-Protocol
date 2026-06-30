@@ -1,0 +1,113 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLWNhc2NhZGUtZGlzYWJsZWQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "DRP3SEW0Y-vCdtrXF_4Qgpgi5p4bzvdVNcxxGGaBzBk"
+        },
+        "sig": {
+          "$bytes": "rvBTdrhwfcOxz6cbVextBbQbduyzesjZaBpwg-ODh-O0q92u2mN_Exdb8tCuId65Mjx_ymfaAgDChfjrq1QmAA"
+        }
+      },
+      "signer": "hp:vector-req-cascade-disabled"
+    },
+    "claims": {
+      "cascade": false,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      },
+      "mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED",
+      "reason": "task-completed"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 3,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-CASCADE_DISABLED",
+      "msg_id": "01HXMSG-RVK-REQ-CASCADE_DISABLED",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "ONNkF1wpYVVZZ5NzNLpDeQ"
+      },
+      "subject": "fay:01HXFAY-PARENT-CASCADE_DISABLED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "DRP3SEW0Y-vCdtrXF_4Qgpgi5p4bzvdVNcxxGGaBzBk"
+      },
+      "sig": {
+        "$bytes": "CGeZrI_2orC08UePwovqDwuTaTykg6NNb4xZhKb1sI6Pyb8neFWC6Ww5KIhWVm8IDvGVCRL3r_3HL5Nt_9VCBA"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1jYXNjYWRlLWRpc2FibGVk"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "8_8ri0n7Mgf8GRtRkffPP3B8MQRQAhetAb1h_xIzb8E"
+        },
+        "sig": {
+          "$bytes": "FQ5WBXIqnAC7T7DFm8KjwEHiDNOjlM_l-wG2XiQDEFyjCrtwHCHPMXrYbk4o2ycIrLzG5Cw6YoO_trrtdKPGAA"
+        }
+      },
+      "signer": "hp:vector-resp-cascade-disabled"
+    },
+    "claims": {
+      "cascade": false,
+      "cascaded_mandate_ids": [],
+      "mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED",
+      "reason": "task-completed",
+      "revoked_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 3,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-CASCADE_DISABLED",
+      "msg_id": "01HXMSG-RVK-RCT-CASCADE_DISABLED",
+      "msg_type": "REVOKE_RECEIPT",
+      "nonce": {
+        "$bytes": "G3DybfqJInqhtiEZIMeVgQ"
+      },
+      "subject": "fay:01HXFAY-PARENT-CASCADE_DISABLED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "8_8ri0n7Mgf8GRtRkffPP3B8MQRQAhetAb1h_xIzb8E"
+      },
+      "sig": {
+        "$bytes": "UfSIvf6Uc_TlTznt7wTJcl-pWI2vm7zs6GZogl74uR9ypxhmg0baSL3IP3Y2ir1JfAugAC4bw7S8lnOkd-nbDA"
+      }
+    }
+  }
+}

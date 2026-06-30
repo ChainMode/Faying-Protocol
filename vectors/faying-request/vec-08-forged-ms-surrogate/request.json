@@ -1,0 +1,61 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-08-forged-ms-surrogate:01HZZ3000000000000000",
+    "issued_at": "2026-01-15T12:00:00Z",
+    "expiry": "2026-01-15T12:01:00Z",
+    "nonce": {
+      "$b64": "XTvBhb0JdHBZBoYFGFAUGQ=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 3,
+    "reason": "iFay 请求建立 Faying；攻击者尝试由 MS 替 HP 同意（缺 human_witness）",
+    "reason_code": "establish",
+    "expected_lifetime_ms": 7200000
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTA4LWZvcmdlZC1tcy1zdXJyb2dhdGU6MDFIWlozMDAwMDAwMDAwMDAwMDAw"
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "V/LOzGq34VrtFwTkd+lcSr767C+Y1GrpitZxiHcq4bs5ehlTrKM7fC62vMp0DK/U4zy80siGpIE8cO0aVCnhBw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "WSxAP84XiYL0tx1br0uYrjtqRlWkgocV8Da3Q2nHZelmySsWcwLTjwlltKfEtcPCTuuzcnPRPQ/cGgkFKMX8DA=="
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-IRREVERSIBILITY_DOUBLE_REVOKE"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-IRREVERSIBILITY_DOUBLE_REVOKE",
+    "notes": "Per Requirement 4.3.1-2, Revoked is terminal. A duplicate REVOKE produces a REVOKE_RECEIPT pointing to the *prior* revoked_at; no state mutation occurs. Auditors can confirm the Mandate was already Revoked by comparing the receipt's revoked_at against the original audit-log entry.",
+    "reason": "REVOKE on already-Revoked Mandate; idempotent receipt returns the original revoked_at.",
+    "rp_id": "rp:vector-irreversibility-double-revoke",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "6b0f5495c5f006b3df6f8680dd650f04cc3cf099ddf08a39dd64f6e050660d9c",
+    "request_json_sha256": "87e60508473bd803511f2e1a14aaf7ab725b80b09a70816b594dfea4b1f20b5d",
+    "request_signing_input_sha256": "1149013236de2c0b1253b05c26947f7155b946e08f39ba7c0c79ea466b6547c1",
+    "response_cbor_sha256": "0abc4070d6086e0b01adfef35066bca7a38de7189e22d05f31e0d881b460657b",
+    "response_json_sha256": "50fa9f5f0728aab3c2fe5ee26afff77724ce1d94c30589425afd8cfb16f01e55"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_assertion": {
+    "claim": "For all t1 < t2, Mandate.status(t1)=Revoked ⟹ Mandate.status(t2)=Revoked.",
+    "no_legal_path_back_to": [
+      "Active",
+      "Degraded",
+      "Suspended"
+    ],
+    "requirement": "4.3.1-2"
+  },
+  "kind": "positive",
+  "notes": "Vector documents the irreversibility invariant (Requirement 4.3.1-2 / design.md §4.3 状态机) by showing that a duplicate REVOKE does NOT advance the revoked_at timestamp and does NOT change the Mandate's status.",
+  "outcome": "accepted-idempotent",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "second_revoke_mutates_state": false,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "human-initiated",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "duplicate_request_changes_visibility": false,
+    "duplicate_request_observed_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T10:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T10:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Double REVOKE: a second REVOKE on an already-Revoked Mandate produces an idempotent receipt that points to the *original* revoked_at. Documents Requirement 4.3.1-2: Revoked is a terminal state.",
+  "target_mandate_id": "01HXMNDT-TARGET-IRREVERSIBILITY_DOUBLE_REVOKE",
+  "vector_name": "irreversibility-double-revoke"
+}

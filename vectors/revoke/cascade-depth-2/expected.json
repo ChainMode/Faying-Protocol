@@ -1,0 +1,97 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-PARENT-CASCADE_DEPTH_2",
+    "01HXMNDT-CHILD-CASCADE_DEPTH_2",
+    "01HXMNDT-GRANDCHILD-CASCADE_DEPTH_2"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-PARENT-CASCADE_DEPTH_2",
+    "notes": "Per Requirement 7.2.1 the cascade marks every descendant of the parent as Revoked in the same transaction; per 7.2.2 no new DELEGATE referencing the Revoked parent may succeed. Per 7.2.3 RR pushes REVOKE notifications to RPs of every cascaded child within RevocationVisibilityBudget.",
+    "reason": "REVOKE accepted; reason=human-initiated; cascade=true",
+    "rp_id": "rp:vector-cascade-depth-2",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [
+    "01HXMNDT-CHILD-CASCADE_DEPTH_2",
+    "01HXMNDT-GRANDCHILD-CASCADE_DEPTH_2"
+  ],
+  "digests": {
+    "request_cbor_sha256": "23e5105f87d86f259b218345d42a3f1c481eb6bcbce61a027515f04c4f9b29bd",
+    "request_json_sha256": "9cc0cf15ac05ba1fb21e7371bef0fb670c1e59061fc5d08da18e474ad9644349",
+    "request_signing_input_sha256": "65a2a21278481d804e5f96183f99d498c7fca4e020a1ba6f0f43d189569b1cfe",
+    "response_cbor_sha256": "792abf11f5e1cefd301bbd3728d4aed2fc6f4d5561462c03814ac66513897af4",
+    "response_json_sha256": "3cfb6986434d0c0b591f342cf82aa3d313073c74e03552e2215c4646caaca758"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Cascade revocation is just as irreversible as direct revocation: every descendant's status becomes terminal-Revoked. To resume operations the HP must run BOOTSTRAP again, yielding a fresh root Mandate with a new mandate_id (Requirement 4.3.3).",
+  "kind": "positive",
+  "notes": "Tree depth 2 satisfies the task-3.5 acceptance criterion ‘cascade=true 级联派生树 + 子 Mandate 撤销结果, 深度 2’. Validates Requirement 7.2.1 (atomic cascade), 7.2.2 (no further DELEGATE off Revoked parent), and 7.2.3 (RR push to every affected RP).",
+  "outcome": "accepted",
+  "post_state": {
+    "child_status": "Revoked",
+    "grandchild_status": "Revoked",
+    "new_delegate_error_code": 1006,
+    "new_delegate_error_name": "E_REVOKED",
+    "new_delegate_using_parent": "rejected",
+    "no_revoked_to_active_path": true,
+    "parent_status": "Revoked",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "7.2",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "human-initiated",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "pushed_to_descendants_rps": true,
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Cascade REVOKE on a depth-2 derivation tree (parent G3 → child G2 → grandchild G1). One REVOKE on the parent atomically marks both descendants as Revoked and the receipt enumerates them in topological order.",
+  "target_mandate_id": "01HXMNDT-PARENT-CASCADE_DEPTH_2",
+  "tree": {
+    "child_mandate_id": "01HXMNDT-CHILD-CASCADE_DEPTH_2",
+    "grandchild_mandate_id": "01HXMNDT-GRANDCHILD-CASCADE_DEPTH_2",
+    "parent_mandate_id": "01HXMNDT-PARENT-CASCADE_DEPTH_2"
+  },
+  "tree_depth": 2,
+  "trigger": "Human Prime explicitly initiates REVOKE",
+  "vector_name": "cascade-depth-2"
+}

@@ -1,0 +1,54 @@
+{
+  "current_grade": "G2",
+  "digests": {
+    "request_cbor_sha256": "24f45dc695358b3e13898cf3c8786e5f48ecd39e52b3ca4d2fbbfa768dac1d9d",
+    "request_json_sha256": "ad50a6ac57e4188abd1e40bdd0d561b15aa2640d7b9db3fde7672f7c7b0b01e4",
+    "request_signing_input_sha256": "062149ffdba3a2f464a01d967edb6814eaf9883e9ed9a98b08eb4087b1fa6ce3",
+    "response_cbor_sha256": "ab02e85d23c7eaf27ed53b69710032995017bda834e007e965f0aa124496ac33",
+    "response_json_sha256": "c6f002e9ede63a0dedfbeed153abcc7572f576a9bb0dc87285f0b5908b49e1e1"
+  },
+  "direction": "negative",
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": 1010,
+  "error_name": "E_HUMAN_WITNESS_REQUIRED",
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "final_state": "Active(G2)",
+  "mandate_id": "01HXMNDT-GS-NEG_UP_G2_TO_G1_NO_WITNESS",
+  "notes": "Verifies §5.3.3 协议层不变式 and §7.4 row 1: any upgrade lacking a verifiable human_witness MUST be refused. The ERROR envelope itself is signed by MS so the rejection is auditable on the Attestation Chain (Requirement 3.1).",
+  "outcome": "rejected",
+  "post_state": {
+    "grade": "G2",
+    "mandate_status": "Active",
+    "note": "Rejection does not mutate Mandate state; the Mandate remains at the pre-request grade. RP / IF wait for HP to re-issue with a valid human_witness (§EH.1 row '升级缺见证')."
+  },
+  "request_must_carry_human_witness": true,
+  "requirements_validated": [
+    "6.1",
+    "6.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": false,
+    "note": "Real Ed25519 signatures over canonical CBOR. WebAuthn human_witness blobs are deterministic placeholders (see README); verifiers MUST treat their bytes as opaque and only validate structural presence.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative: upgrade G2 → G1 without human_witness must be rejected with E_HUMAN_WITNESS_REQUIRED (1010).",
+  "target_grade": "G1",
+  "trigger_matrix": {
+    "current_grade": "G2",
+    "event": "human-upgrade",
+    "expected_outcome": "G1",
+    "expected_outcome_when_accepted_only": true
+  },
+  "vector_name": "neg-up-g2-to-g1-no-witness"
+}

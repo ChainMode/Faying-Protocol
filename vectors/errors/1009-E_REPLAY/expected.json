@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1009,
+    "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+    "reason": "nonce 在 2 × max_message_lifetime 内对相同 subject 已被见",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1009,
+  "must-push-hp-view": true,
+  "name": "E_REPLAY",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "nonce 在 2 × max_message_lifetime 内对相同 subject 已被见",
+  "trace": [
+    "R9.1.2",
+    "R3.2.3"
+  ]
+}

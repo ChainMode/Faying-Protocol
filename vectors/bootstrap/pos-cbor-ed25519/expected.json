@@ -1,0 +1,35 @@
+{
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "da8255eedddc0aa3bfea71937f0e48c1b1f1169a46b7bdd3dc0e16636c4c7cb1",
+    "request_signing_input_sha256": "eb0797a28c885143c6c4867ece5e548c00fc8b8b144ce29ffa250ef40a4609ef",
+    "response_sha256": "7d1f0bcface8307dc53597ed48ec573ae210317ccfb074335f120196b91033a6"
+  },
+  "encoding": "cbor",
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "positive",
+  "mandate_id": "01HXMNDT-BOOTSTRAP-ED25519-CBOR",
+  "notes": "Positive BOOTSTRAP vector. Issuance is contingent on a valid human_witness (WebAuthn assertion); the issued Mandate has a finite not_after, presence_req, and grade=2 (Moderate).",
+  "outcome": "accepted",
+  "requirements_validated": [
+    "2.2",
+    "6.1",
+    "8.1",
+    "10.1",
+    "10.2",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": true,
+    "note": "Real cryptographic verification using the cryptography library.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Valid BOOTSTRAP request signed with Ed25519, encoded as CBOR, successfully issuing a Mandate.",
+  "vector_name": "pos-cbor-ed25519"
+}

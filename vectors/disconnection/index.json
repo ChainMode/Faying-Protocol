@@ -1,0 +1,207 @@
+{
+  "spec_version": "Faying-Protocol/1.0",
+  "task_ref": "tasks.md#3.11",
+  "purpose": "失联与重连对账（Disconnection / Reconciliation）测试向量索引",
+  "spec_anchors": ["§4.3", "§8.4", "§9.8", "§9.9", "附录 B.3", "附录 B.6"],
+  "requirements": ["12.1", "12.2", "12.3", "12.4", "12.5", "11.3", "11.4", "4.3"],
+  "properties": ["P10", "P11", "P14", "P16.4", "P17.1", "P17.2", "P17.4", "P17.5"],
+  "reconcile_results": ["success", "revoked", "timeout", "n/a"],
+  "post_states": ["Active", "Disconnected", "Suspended", "Revoked", "Unpaired"],
+  "vectors": [
+    {
+      "id": "a1-active-to-disconnected-endorsed",
+      "trigger_class": "(a) 感知失联触发状态迁移",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:01:00Z",
+        "t_reconnect": null,
+        "reconcile_result": "n/a",
+        "post_state": "Disconnected"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "spec_refs": ["§4.3", "§7.5", "§9.8 矩阵第 4 行"],
+      "properties": ["P17.5"],
+      "requirements": ["12.5"]
+    },
+    {
+      "id": "a2-active-to-suspended-non-endorsed",
+      "trigger_class": "(a) 感知失联触发状态迁移",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:01:00Z",
+        "t_reconnect": null,
+        "reconcile_result": "n/a",
+        "post_state": "Suspended"
+      },
+      "endorsement": "disabled (on-loss=suspend)",
+      "spec_refs": ["§4.3", "§9.8 矩阵第 4 行（非 Endorsed 分支）"],
+      "properties": ["P11", "P17.2"],
+      "requirements": ["12.2"]
+    },
+    {
+      "id": "b1-window-b-perceived-disconnected-actually-online",
+      "trigger_class": "(b) 双语义不一致窗口（窗口 B：实际在线但感知失联）",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:04:00Z",
+        "reconcile_result": "success",
+        "post_state": "Active"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "spec_refs": ["§9.8 矩阵第 3 行", "§9.9 悲观推定"],
+      "properties": ["P17.1", "P17.2"],
+      "requirements": ["12.1", "12.2"]
+    },
+    {
+      "id": "b2-window-a-actually-disconnected-perceived-connected",
+      "trigger_class": "(b) 双语义不一致窗口（窗口 A：实际失联但感知在线）",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:01:30Z",
+        "t_reconnect": null,
+        "reconcile_result": "n/a",
+        "post_state": "Disconnected"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "spec_refs": ["§9.8 矩阵第 2 行（窗口 A）", "§9.9 双语义"],
+      "properties": ["P17.1"],
+      "requirements": ["12.1"]
+    },
+    {
+      "id": "c1-reconcile-success",
+      "trigger_class": "(c) 重连对账事务三种结局",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:30:00Z",
+        "reconcile_result": "success",
+        "post_state": "Active"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "messages": ["messages/reconcile_request.json", "messages/reconcile_response.json"],
+      "spec_refs": ["§8.4.3 success 行", "§8.4.4"],
+      "properties": ["P17.4"],
+      "requirements": ["12.4"]
+    },
+    {
+      "id": "c2-reconcile-revoked",
+      "trigger_class": "(c) 重连对账事务三种结局",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:45:00Z",
+        "reconcile_result": "revoked",
+        "post_state": "Unpaired"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "messages": ["messages/revoke.json", "messages/reconcile_response.json"],
+      "spec_refs": ["§8.4.3 revoked 行", "§8.4.4"],
+      "properties": ["P17.4", "P10"],
+      "requirements": ["12.4", "4.3"]
+    },
+    {
+      "id": "c3-reconcile-timeout",
+      "trigger_class": "(c) 重连对账事务三种结局",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:45:00Z",
+        "reconcile_result": "timeout",
+        "post_state": "Unpaired"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "spec_refs": ["§8.4.3 timeout 行", "§8.4.4"],
+      "properties": ["P17.4"],
+      "requirements": ["12.4"]
+    },
+    {
+      "id": "d1-revoke-during-disconnect-stop-and-audit",
+      "trigger_class": "(d) HP 在断开期间发起 REVOKE",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:30:00Z",
+        "reconcile_result": "revoked",
+        "post_state": "Unpaired"
+      },
+      "endorsement": "enabled (stop-and-audit)",
+      "spec_refs": ["§4.3 Disconnected", "§8.4.4 stop-and-audit", "§9.8"],
+      "properties": ["P14", "P17.5"],
+      "requirements": ["12.5", "11.4"]
+    },
+    {
+      "id": "d2-revoke-during-disconnect-stop-only",
+      "trigger_class": "(d) HP 在断开期间发起 REVOKE",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:30:00Z",
+        "reconcile_result": "revoked",
+        "post_state": "Unpaired"
+      },
+      "endorsement": "enabled (stop-only)",
+      "spec_refs": ["§7.5 离线撤销策略可枚举", "§8.4.4 stop-only"],
+      "properties": ["P17.5"],
+      "requirements": ["12.5"]
+    },
+    {
+      "id": "d3-revoke-during-disconnect-graceful-stop",
+      "trigger_class": "(d) HP 在断开期间发起 REVOKE",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": "2025-11-25T08:30:00Z",
+        "reconcile_result": "revoked",
+        "post_state": "Unpaired"
+      },
+      "endorsement": "enabled (graceful-stop)",
+      "spec_refs": ["§7.5 离线撤销策略可枚举", "§8.4.4 graceful-stop"],
+      "properties": ["P17.5"],
+      "requirements": ["12.5"]
+    },
+    {
+      "id": "e1-endorsed-lifetime-soft-timeout",
+      "trigger_class": "(e) endorsed_lifetime 软超时强约束",
+      "tuple": {
+        "t_disconnect": "2025-11-25T08:02:00Z",
+        "t_reconnect": null,
+        "reconcile_result": "n/a",
+        "post_state": "Revoked"
+      },
+      "endorsement": "enabled (stop-and-audit, lifetime=4h)",
+      "spec_refs": ["§4.3 Disconnected → Revoked", "§7.5 lifetime 有限", "附录 B.6"],
+      "properties": ["P16.4", "P17.5"],
+      "requirements": ["11.3", "12.5"]
+    }
+  ],
+  "coverage_summary": {
+    "by_trigger_class": {
+      "(a) 感知失联触发状态迁移": 2,
+      "(b) 双语义不一致窗口": 2,
+      "(c) 重连对账事务三种结局": 3,
+      "(d) HP 在断开期间发起 REVOKE": 3,
+      "(e) endorsed_lifetime 软超时强约束": 1
+    },
+    "by_reconcile_result": {
+      "success": 2,
+      "revoked": 4,
+      "timeout": 1,
+      "n/a": 4
+    },
+    "by_post_state": {
+      "Active": 2,
+      "Disconnected": 2,
+      "Suspended": 1,
+      "Revoked": 1,
+      "Unpaired": 5
+    },
+    "by_offline_revocation_policy": {
+      "stop-and-audit": 8,
+      "stop-only": 1,
+      "graceful-stop": 1,
+      "n/a (non-endorsed)": 1
+    },
+    "total_vectors": 11
+  },
+  "invariants": [
+    "§4.3：Active → Disconnected 仅在 endorsement.enabled=true 时发生；非 Endorsed 路径在 on-loss=suspend 下必须 Active → Suspended。",
+    "§8.4.4 D 维度禁令：[t_reconnect, t_reconnect + reconcile_complete_ms] 区间内任何 D 维度调用必拒。",
+    "§8.4.4 三种结局必入 AC：success / revoked / timeout 都必须写入 Attestation Chain。",
+    "§8.4.4 失败回退后不得自重试 BOOTSTRAP。",
+    "§8.4.4 静默续传禁止：任何绕过 RECONCILE 直接 Disconnected → Active 的实现一律 fail。",
+    "§9.9 悲观推定：协议决策仅以 Perceived_Disconnected 为依据。",
+    "§7.5 / P16.4 软超时强约束：endorsed_lifetime 一到期即 Revoked，即使 IF 仍物理断开。",
+    "§8.3 责任承接端不变：审计五元组的 signature_chain 根节点恒为 Mandate.issuer。"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "audit-log-entry": {
+    "error_code": 1004,
+    "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+    "reason": "RP 要求的 grade 强于当前 Mandate.grade",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1004,
+  "must-push-hp-view": false,
+  "name": "E_GRADE_INSUFFICIENT",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "RP 要求的 grade 强于当前 Mandate.grade",
+  "trace": [
+    "R6.3.3"
+  ]
+}

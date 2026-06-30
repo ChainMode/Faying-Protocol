@@ -1,0 +1,31 @@
+{
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "431bd544411e563e9adf25aeec8f43197330b8020a0e2d109f5a088a813889b8",
+    "request_signing_input_sha256": "fd41e5cf2e5f70aee695838169cc237235582b1e1ac5478269d99e71d01618b2",
+    "response_sha256": "896983a616c734fcb46312d44f8463d33f9593dd563f0f9cf92aad9fa8a47172"
+  },
+  "encoding": "cbor",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "negative",
+  "mandate_id": null,
+  "notes": "Verifies acceptance criterion 2.2: not_after must be strictly greater than not_before.",
+  "outcome": "rejected",
+  "requirements_validated": [
+    "2.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "note": "not_after = 2025-12-31T23:59:00Z is earlier than issued_at = 2026-01-01T00:00:00Z. Validators MUST treat issued_at as the implicit not_before.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative case: BOOTSTRAP with not_after < not_before must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-not-after-before"
+}

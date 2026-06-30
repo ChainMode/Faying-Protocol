@@ -1,0 +1,11 @@
+{
+  "audit_notes": [
+    "All mandatory_fields present and parseable.",
+    "Disclosure is consistent with audit-log entry.",
+    "Written to Attestation Chain as a DISCLOSURE record."
+  ],
+  "case": "a",
+  "ms_action": "log-and-forward",
+  "outcome": "accepted",
+  "vector_id": "01-accepted-low-risk-report"
+}

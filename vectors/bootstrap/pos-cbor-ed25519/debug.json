@@ -1,0 +1,226 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cG9zLWNib3ItZWQyNTUxOQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "c3_E3iUKs7XgV4BVehrA3T1eVUKSTpN2cDp3dkrT-ZI"
+        },
+        "sig": {
+          "$bytes": "gAr-oBhHpwNsimsqjaTSxHsZCLbN8NIG0vB-lSdfd_7ORQZ420P2FLei1xoBw-TdVtXBYXIU5LcMNjlBN8FcCg"
+        }
+      },
+      "signer": "hp:vector-pos-cbor-ed25519"
+    },
+    "claims": {
+      "fay": "fay:01HXFAY-ED2551-EXAMPLE",
+      "grade": 2,
+      "human_prime": "hp:01HXPOS-CBOR-ED2",
+      "human_witness": {
+        "authenticator_data": {
+          "$bytes": "QnTtpzJPdn30Q8RWbTUOUTANLFfOTukIqOQSWT5yN5NF__aC-g"
+        },
+        "client_data_json": {
+          "$bytes": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiVHZObzdiTFNJbTZkUmk1OUVoc2k3Zlh4RG4yMnJvNjlfa2k5SFpsa1ozVSIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJjcm9zc09yaWdpbiI6ZmFsc2V9"
+        },
+        "credential_id": "3-dmq64dKYBsWJsNuee6lQ",
+        "signature": {
+          "$bytes": "9sYfbSISgrDjZw9b5SFh28_wH5ept_NbIrIlSai_ZbIm0IqwjoMnX7ZFtSy2uDh_0M0yQCfiCFyDUwAfaoGyDA"
+        }
+      },
+      "not_after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "presence_req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ED2",
+      "msg_id": "01HXMSG-BOOTSTRAP-ED25519-CBOR",
+      "msg_type": "BOOTSTRAP",
+      "nonce": {
+        "$bytes": "zsesdO2lOvK7E8qOjvP5bA"
+      },
+      "subject": "fay:01HXFAY-ED2551-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "c3_E3iUKs7XgV4BVehrA3T1eVUKSTpN2cDp3dkrT-ZI"
+      },
+      "sig": {
+        "$bytes": "4AbZ2dULOV8WQb-0eFbt4PP2QcSc5q5vIdgHfI1xWZhvT6TXQEpoRk-ktywPeiyjlWn1nZcaDZKDZrLNc4uCDw"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1wb3MtY2Jvci1lZDI1NTE5"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "Plt5JwfM2aN0wm85v0qWGakLSVWewd3Sw5p6Cu8-6H4"
+        },
+        "sig": {
+          "$bytes": "FSFbfnBoP-X1pkNHurk55RlezvpxxzJdrTnWXhFbUtP_k8U_5GXR2B_deBtBqX5aBcBH1GY1SRduJO1TSvI0CQ"
+        }
+      },
+      "signer": "hp:vector-resp-pos-cbor-ed25519"
+    },
+    "claims": {
+      "attestation": {
+        "format": "self-signed",
+        "payload": {
+          "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6bXMtcG9zLWNib3ItZWQyNTUxOQ"
+        },
+        "signature": {
+          "alg": "Ed25519",
+          "pubkey": {
+            "$bytes": "Plt5JwfM2aN0wm85v0qWGakLSVWewd3Sw5p6Cu8-6H4"
+          },
+          "sig": {
+            "$bytes": "fgAOjAHWM_hpi_jvM_yIyio04fBphUAwsKiueSBhZow6xy4u3Mh9HJLWwCscmVrYFm6vRIHVUt-VYN-egwncDQ"
+          }
+        },
+        "signer": "hp:vector-ms-pos-cbor-ed25519"
+      },
+      "grade": 2,
+      "id": "01HXMNDT-BOOTSTRAP-ED25519-CBOR",
+      "issued-at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ED2",
+      "ms-id": "ms:vector-pos-cbor-ed25519",
+      "not-after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "not-before": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "presence-req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "Plt5JwfM2aN0wm85v0qWGakLSVWewd3Sw5p6Cu8-6H4"
+        },
+        "sig": {
+          "$bytes": "gCqNCw-0tad6P_ZR008agPrknITGT2Tx4oY2Eui9oJBQ196HvaEqsFSTOEPuSAx06IjLVG4a2pqEcqIxi8meAw"
+        }
+      },
+      "subject": "fay:01HXFAY-ED2551-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ED2",
+      "msg_id": "01HXMSG-RESP-ED25519-CBOR",
+      "msg_type": "BOOTSTRAP_RESP",
+      "nonce": {
+        "$bytes": "AnLih7dZaOIaTjoJsw7NWg"
+      },
+      "subject": "fay:01HXFAY-ED2551-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "Plt5JwfM2aN0wm85v0qWGakLSVWewd3Sw5p6Cu8-6H4"
+      },
+      "sig": {
+        "$bytes": "CH9tscdwmuLRfN_inNZ13-sgff1pTRIF7u4Wm6oae7hziga8tROLRthvpduZSgnygd7Yis-NF5ycFDdiBbn2Dw"
+      }
+    }
+  }
+}

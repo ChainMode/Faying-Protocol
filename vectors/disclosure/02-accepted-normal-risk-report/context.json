@@ -1,0 +1,17 @@
+{
+  "case": "a",
+  "context": {
+    "actual_action": "calendar:create-event",
+    "audit_window": {
+      "action_executed_at": "2025-11-25T10:05:01Z",
+      "disclosure_submitted_at": "2025-11-25T10:05:02Z"
+    },
+    "endorsement_present": false,
+    "is_disconnected": false,
+    "mandate_id": "mandate:01HX4M0T9V8H8Q4N6Z2K7G3J5W",
+    "mandate_state": "Active",
+    "presence_state": "fresh"
+  },
+  "title": "全字段合法 DISCLOSURE（normal risk, free_text 辅助）",
+  "vector_id": "02-accepted-normal-risk-report"
+}

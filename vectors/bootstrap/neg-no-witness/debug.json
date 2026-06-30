@@ -1,0 +1,141 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6bmVnLW5vLXdpdG5lc3M"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "PGXWTWqcdd6zQsfPomPrSvMiFo8cAGUVVcC7Upa23bM"
+        },
+        "sig": {
+          "$bytes": "Q4rVITRkVA-4y3Z06QZJo3I6eJFLpFpgLAFoyt5i7rfGBZDuQmzYunMU8PXjELGtTOFJPpgx8WL37FcYtV3SDA"
+        }
+      },
+      "signer": "hp:vector-neg-no-witness"
+    },
+    "claims": {
+      "fay": "fay:01HXFAY-NEG-NOWITNESS",
+      "grade": 2,
+      "human_prime": "hp:01HXNEG-NOWITNESS",
+      "not_after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "presence_req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXNEG-NOWITNESS",
+      "msg_id": "01HXMSG-NEG-NOWITNESS",
+      "msg_type": "BOOTSTRAP",
+      "nonce": {
+        "$bytes": "kpFLlEnW6WosgyJOIS55HQ"
+      },
+      "subject": "fay:01HXFAY-NEG-NOWITNESS",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "PGXWTWqcdd6zQsfPomPrSvMiFo8cAGUVVcC7Upa23bM"
+      },
+      "sig": {
+        "$bytes": "JmnjbQU3Zo085kmPRNwj5p9lONlKzKmkO_XgEN5-zejrT1gYVswQKYh9hlJ7ILQHTLwEWd0eVKBpzJzLJ9W7DQ"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1uZWctbm8td2l0bmVzcw"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "Rf8nhAjeZfKYHZluZd-_upS20xU_7GEkDnomndF6J7I"
+        },
+        "sig": {
+          "$bytes": "SHz9lblgjfPY7pWeZrUPCWCLj0i4iOw6c9tQNu-iPUG1UZKcGHgmwwN4dbwx7_r666lldZwA5XPVR-5APgO3Cw"
+        }
+      },
+      "signer": "hp:vector-resp-neg-no-witness"
+    },
+    "claims": {
+      "code": 1010,
+      "detail": "BOOTSTRAP claims missing required `human_witness` WebAuthn assertion.",
+      "name": "E_HUMAN_WITNESS_REQUIRED"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXNEG-NOWITNESS",
+      "msg_id": "resp-01HXMSG-NEG-NOWITNESS",
+      "msg_type": "ERROR",
+      "nonce": {
+        "$bytes": "wt9h_RN7_XDUeOrEfDOgcA"
+      },
+      "subject": "fay:01HXFAY-NEG-NOWITNESS",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "Rf8nhAjeZfKYHZluZd-_upS20xU_7GEkDnomndF6J7I"
+      },
+      "sig": {
+        "$bytes": "oZH-OmjtVG72jIoLytLtcQp3FnyzFj1_KjJWTDIh2WXowMAOnm8KV1pO-1Vae2-S4Yvl6a_bOWfMJMcGf5wGDw"
+      }
+    }
+  }
+}

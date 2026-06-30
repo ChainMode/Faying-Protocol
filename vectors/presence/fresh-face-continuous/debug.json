@@ -1,0 +1,37 @@
+{
+  "device-attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$bytes": "cHJlc2VuY2UtZGV2aWNlLWF0dGVzdGF0aW9uOmRldmljZS1mcmVzaC1mYWNlLWNvbnRpbnVvdXM"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "kNhU65FqVEwkqJTL5EVqEIa05XMT1ef2hXh4dG2WQ_A"
+      },
+      "sig": {
+        "$bytes": "RyS3RhDBbBVOKBSmkPlg-3ulwephzOE4Yr0U_QYu0GwfG8q6vUC8hojHdGEm_RGoFOyE5wwLNny2pkZIjgasBg"
+      }
+    },
+    "signer": "presence-device:device-fresh-face-continuous"
+  },
+  "device-id": "presence-device:vector-fresh-face-continuous",
+  "mandate-id": "01HXMNDT-PRESENCE-FRESH-FACE-CONTINUOUS",
+  "nonce": {
+    "$bytes": "oCLhHgTwXBGyVbnf9cIA-w"
+  },
+  "produced-at": {
+    "$tag": 0,
+    "$value": "2026-03-15T11:59:57.500Z"
+  },
+  "signal-type": "face-continuous",
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$bytes": "FPomtOCM3Dyhl5FH81NBQQmYt8R0wp9gCJKWJPNODUQ"
+    },
+    "sig": {
+      "$bytes": "rw_RYFEFjFFDUTqem-OsyJsHoFyrGWCifbvZWXsykn1b0kpDXdBadyd05Gk3B8KDU8nLI60rrZH0NljUVMrzCw"
+    }
+  }
+}

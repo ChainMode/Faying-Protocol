@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Without risk_level the MS cannot route to HP confirmation buckets."
+  ],
+  "case": "b",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "missing_field": "risk_level",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "05-missing-risk-level"
+}

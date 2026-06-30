@@ -1,0 +1,56 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": null,
+  "convergence_failure": {
+    "axis": "scope.terminals",
+    "expanded_terminal": "terminal:tablet:roaming-1",
+    "parent_terminals": [
+      "terminal:laptop:fixed-1",
+      "terminal:phone:mobile-1",
+      "terminal:phone:mobile-2"
+    ]
+  },
+  "digests": {
+    "request_cbor_sha256": "ed9f4f896a0e56cde0b9b7c0d4d82fd4857b0c22d2c7e276f750c9626bd853b3",
+    "request_json_sha256": "e18ca56b66e2732f808e823d64006edd8da480858b7f34adf3a41fc28b13b581",
+    "request_signing_input_sha256": "82d44631e8621b1def8ebce06b3ef84e1df10535d929230db99e8b516ddd25a1",
+    "response_cbor_sha256": "bc3d82be3c665a6c1f764385a6244f99d7fefe34749e1c3fb2fc4922f6ad4243",
+    "response_json_sha256": "6e5f5ff65a257e68ee2393993bb9d2f9ad1c679eed9dbae525e025ed860fd8a8"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "expansion_kind": "terminals",
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "negative",
+  "notes": "Verifies Requirement 7.1 along the scope.terminals axis. Distinct from `pos-cross-device-binding` (which stays inside parent.scope.terminals); this vector documents the boundary between legal cross-device DELEGATE and illegal terminal expansion.",
+  "outcome": "rejected",
+  "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_TERMINAL",
+  "post_state": {
+    "mandate_status": "Active",
+    "note": "Rejection does not mutate any state; the parent Mandate remains Active. No child Mandate is issued and no signature.chain entry is produced.",
+    "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_TERMINAL"
+  },
+  "requirement_focus": "Requirement 7.1 — child.scope ⊆ parent.scope (terminals axis).",
+  "requirements_validated": [
+    "7.1",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "child_mandate_inner": false,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative DELEGATE: child.scope.terminals targets 'terminal:tablet:roaming-1' which is NOT in parent.scope.terminals. Must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-scope-expansion-terminal"
+}

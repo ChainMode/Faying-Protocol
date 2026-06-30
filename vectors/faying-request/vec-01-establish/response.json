@@ -1,0 +1,45 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST_RESP",
+    "msg_id": "resp:vec-01-establish:01HZZ0000000000000002sh",
+    "issued_at": "2026-01-15T09:00:31Z",
+    "expiry": "2026-01-15T09:01:01Z",
+    "nonce": {
+      "$b64": "XP03yo4Wz92KUPzOfyly9Q=="
+    },
+    "grade": 4,
+    "issuer": "ms:alice-default",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "request_msg_id": "req:vec-01-establish:01HZZ0000000000000000sh",
+    "status": "accepted",
+    "bootstrap_ref": "bs:vec-01-establish:01HZZ0000000000000001sh"
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "bXMtcmVzcC1hdHRlc3RhdGlvbjpyZXNwOnZlYy0wMS1lc3RhYmxpc2g6MDFIWlowMDAwMDAwMDAwMDAwMDAyc2g="
+    },
+    "signer": "ms:ms:alice-default",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+      },
+      "sig": {
+        "$b64": "hdbZrV44z4oBjOD6AEbhrQloRftVIx/14dPt3N7XuPOlmBwfWgr8Rlpzm7jDBeCae3nllCBWGyre/tswu9wYCw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+    },
+    "sig": {
+      "$b64": "bPPuoZz8CgPdgvb9VxCx3wB/+0khPDtRCtGSQD2CONzVSyZ4BnQffhFYFktyHJFVMigWnP8W3uKtEUSUTTMFAA=="
+    }
+  }
+}

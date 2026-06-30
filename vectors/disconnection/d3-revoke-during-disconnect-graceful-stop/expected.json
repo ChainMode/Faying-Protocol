@@ -1,0 +1,45 @@
+{
+  "final_state": "Unpaired",
+  "reconcile_result": "revoked",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:30:00Z",
+    "reconcile_result": "revoked",
+    "post_state": "Unpaired"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z", "mandate_id": "mandate-d3-001" },
+    { "seq": 2, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:00Z",
+      "from": "Active", "to": "Disconnected" },
+    { "seq": 3, "event": "EndorsedActionPerformed", "ts": "2025-11-25T08:05:00Z",
+      "action": "files.read", "endorsement_id": "endorsement-d3-001",
+      "accountable_party": "fay:hp/judy" },
+    { "seq": 4, "event": "RevokeRequested", "ts": "2025-11-25T08:15:00Z",
+      "actor": "fay:hp/judy", "reason": "human-initiated" },
+    { "seq": 5, "event": "ReconcileRequest", "ts": "2025-11-25T08:30:00Z" },
+    { "seq": 6, "event": "GracefulStopAction", "ts": "2025-11-25T08:30:00.500Z",
+      "action": "files.checkpoint", "endorsement_id": "endorsement-d3-001",
+      "accountable_party": "fay:hp/judy",
+      "note": "graceful-stop 收尾仍受 endorsement 约束" },
+    { "seq": 7, "event": "ReconcileResult", "ts": "2025-11-25T08:30:01Z",
+      "result": "revoked",
+      "applied_offline_revocation_policy": "graceful-stop",
+      "graceful_stop_actions": ["files.checkpoint"] },
+    { "seq": 8, "event": "MandateStateTransition", "ts": "2025-11-25T08:30:01Z",
+      "from": "Disconnected", "to": "Revoked" },
+    { "seq": 9, "event": "MandateStateTransition", "ts": "2025-11-25T08:30:01Z",
+      "from": "Revoked", "to": "Unpaired" },
+    { "seq": 10, "event": "EndorsedActionRejected", "ts": "2025-11-25T08:30:30Z",
+      "action": "files.checkpoint", "error": "E_REVOKED",
+      "note": "收尾窗口关闭后再调用必拒" }
+  ],
+  "expected_errors": [
+    { "code": "E_REVOKED", "context": "graceful-stop 收尾窗口关闭后" }
+  ],
+  "rp_calls_during_window": [],
+  "invariants_checked": [
+    "graceful-stop：允许有限收尾，但收尾动作仍受 endorsement 约束",
+    "结局 revoked 必入 AC（§8.4.4）",
+    "Revoked → Unpaired 后任何继续调用必拒（P10 撤销不可逆）"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": "01HXMNDT-CHILD-POS_CHAIN_VERIFY",
+  "convergence_assertions": {
+    "child_grade_autonomy_le_parent": true,
+    "child_scope_subset_of_parent": true,
+    "equal_autonomy_allowed": true
+  },
+  "digests": {
+    "request_cbor_sha256": "f2219ec793c6bae7cb04ec8c00e2de7f6f4beb43a6c902740aac9e70a91a4cf7",
+    "request_json_sha256": "a20554c44e567aca19edbb6439c9dd524bb11cdbbe8ada066b37dc97442c7dce",
+    "request_signing_input_sha256": "b319a3a2f7bef4cf2055978a81208c57abf325d0ec521dea97358c7909835fcb",
+    "response_cbor_sha256": "88388b16f36caf5e627db35f991139c90e97fbed54d055f7adfec700a6d39f28",
+    "response_json_sha256": "638df665bb508907dfecfc511521d89bd066556e2e387d3934db2926abbc680a"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "positive",
+  "notes": "Boundary case for §3.3 I-AC-3: child.grade.autonomy = parent.grade.autonomy is permitted (the ≤ in §9.7 is non-strict). Verifies that an independent verifier can walk the AC using only the chain digests + HP root key.",
+  "outcome": "accepted",
+  "parent_mandate_id": "01HXMNDT-PARENT-POS_CHAIN_VERIFY",
+  "parent_mandate_id_in_response": "01HXMNDT-PARENT-POS_CHAIN_VERIFY",
+  "post_state": {
+    "chain_depth": 1,
+    "chain_walk": [
+      "hp-root",
+      "chain[0]:hp-root:ms-cert",
+      "chain[1]:parent-0:outer-sig",
+      "child:outer-sig"
+    ],
+    "child_grade": "G2",
+    "child_mandate_id": "01HXMNDT-CHILD-POS_CHAIN_VERIFY",
+    "mandate_status": "Active",
+    "parent_mandate_id": "01HXMNDT-PARENT-POS_CHAIN_VERIFY",
+    "presence_req_max_staleness_ms": 60000
+  },
+  "requirements_validated": [
+    "7.1",
+    "9.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_chain": {
+    "anchors_root": true,
+    "entry_sha256": [
+      "61ffa7e40c3e5147a731ccdadad5a7a12b323ba2a973a64b2c5cde6822a9c588",
+      "04269e301cca34a0f2711c9142abe7055ae9428a9e726a3f24b6582a6d20f825"
+    ],
+    "hp_pubkey_b64u": "AwoflYIqwbr88EOsnTggyNTG0tjrbG0kcWoLegx6PKA",
+    "labels": [
+      "hp-root:ms-cert",
+      "parent-0:outer-sig"
+    ],
+    "length": 2,
+    "ms_cert_signing_input_sha256": "7d4f4551e7cee9c014f9f5d68567f848c50f5aa4271dbbde04a7929c6e99a877",
+    "ms_pubkey_b64u": "y5H-_xeVj5ZxIiB1xB1XlibZRxttfxwKED-QK6fUL0I"
+  },
+  "signature_verification": {
+    "child_mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Depth-1 DELEGATE with full chain-walk metadata in expected.json. child.grade equals parent.grade (the autonomy ≤ parent boundary case). Useful for property tests that assert root → MS-Cert → parent → child without re-deriving keys.",
+  "vector_name": "pos-chain-verify"
+}

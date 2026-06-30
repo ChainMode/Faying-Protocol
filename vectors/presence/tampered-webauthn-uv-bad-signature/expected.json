@@ -1,0 +1,38 @@
+{
+  "device_id": "presence-device:vector-tampered-webauthn-uv-bad-signature",
+  "digests": {
+    "signal_cbor_sha256": "f8ab31b131334028d63bd8b300b3bfe5b11848430f26797124db6f028a5ffee6",
+    "signal_json_sha256": "e1e01ae3998c13a25494223ac44dffcf3c6f2fd8399b8c04c0cfb74998480987",
+    "signing_input_sha256": "e6ad7035bb728f40c58cbb22ece4be27e92ac82549d66c597c43798d6dc95c3c"
+  },
+  "error_code": 1007,
+  "error_name": "E_ATTESTATION_INVALID",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 2000,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:58Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-TAMPERED-WEBAUTHN-UV-BAD-SIGNATURE",
+  "nonce_b64u": "0W7SxVal0drMo4lV3IVlDQ",
+  "notes": "Drives §EH.1 row `E_ATTESTATION_INVALID` (1007). The signal would otherwise be fresh; the verifier MUST NOT fall back to verdict=ok on signature failure.",
+  "requirements_validated": [
+    "5.1",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "webauthn-uv-fresh",
+  "state": "tampered",
+  "summary": "Tampered webauthn-uv-fresh: outer signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+  "tamper": "bad-signature",
+  "vector_name": "tampered-webauthn-uv-bad-signature",
+  "verdict": "attestation-invalid"
+}

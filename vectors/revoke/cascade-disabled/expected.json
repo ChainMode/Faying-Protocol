@@ -1,0 +1,89 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-PARENT-CASCADE_DISABLED"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED",
+    "notes": "cascade=false is explicit on the wire; descendant Mandates retain their pre-revoke state. RR still broadcasts the parent's revocation within RevocationVisibilityBudget.",
+    "reason": "REVOKE accepted; reason=task-completed; cascade=false",
+    "rp_id": "rp:vector-cascade-disabled",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": false,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "dbebea21a63918a6acb7277888e1e61097c269a53ce2fa1aa142b641f1589aa8",
+    "request_json_sha256": "d8f857d2322d8f0e8d290d5a5cb727ce4baca5ffb472f20606b1429f9493eaea",
+    "request_signing_input_sha256": "c51dcd58475a32022861da32cb3d22fa544052affd6f4cad3dc47a6d4c1e0581",
+    "response_cbor_sha256": "a91fb844fbd6f04934f03f2b546db88bde5c87e7ff605ae5e949f2b5a9a54e8e",
+    "response_json_sha256": "a26708caa9c0bf333d6fd54a78ba789490a5a31c26b7a21459806f7de89a2389"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Even with cascade=false, the parent's Revoked status is irreversible. A new Mandate covering the parent's scope requires a fresh BOOTSTRAP.",
+  "kind": "positive",
+  "notes": "Boundary case for §5.3.5 cascade default. The vector explicitly sets cascade=false and records the expected post-state for both descendants (Active) so implementations cannot silently revoke children when the wire says otherwise.",
+  "outcome": "accepted",
+  "post_state": {
+    "child_status": "Active",
+    "grandchild_status": "Active",
+    "no_revoked_to_active_path": true,
+    "note": "cascade=false leaves descendants Active. Per Requirement 7.2.2, no NEW DELEGATE can be issued with the Revoked parent as `parent_mandate`, but existing children retain their state until they expire on their own `not_after` or are explicitly revoked.",
+    "parent_status": "Revoked",
+    "terminal_state_for_parent": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.3",
+    "7.2",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "task-completed",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "pushed_to_descendants_rps": false,
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with cascade=false on a depth-2 tree; only the parent becomes Revoked; descendants stay Active. Validates that ``cascade`` is an explicit, wire-level boolean rather than implementation-defined behaviour.",
+  "target_mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED",
+  "tree": {
+    "child_mandate_id": "01HXMNDT-CHILD-CASCADE_DISABLED",
+    "grandchild_mandate_id": "01HXMNDT-GRANDCHILD-CASCADE_DISABLED",
+    "parent_mandate_id": "01HXMNDT-PARENT-CASCADE_DISABLED"
+  },
+  "tree_depth": 2,
+  "trigger": "iFay reports task completion (DISCLOSURE → HP confirmation)",
+  "vector_name": "cascade-disabled"
+}

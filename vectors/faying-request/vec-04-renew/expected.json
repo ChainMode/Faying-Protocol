@@ -1,0 +1,43 @@
+{
+  "vid": "vec-04-renew",
+  "title": "IF-initiated FAYING_REQUEST(renew) confirmed by HP within BootstrapTimeout",
+  "outcome": "effective",
+  "error_code": null,
+  "spec_refs": [
+    "§1.5.1 双向 Faying 由 HP 显式认可生效",
+    "§2.4 Phase A0 — iFay-Initiated Faying Request",
+    "§5.3.6 FAYING_REQUEST / FAYING_REQUEST_RESP"
+  ],
+  "requirements": [
+    "1.3",
+    "11.1"
+  ],
+  "bootstrap_timeout_ms": 60000,
+  "timing": {
+    "t_request": "2026-01-15T09:00:00Z",
+    "t_bootstrap": "2026-01-15T09:00:30Z",
+    "t_response": "2026-01-15T09:00:31Z",
+    "elapsed_ms_request_to_bootstrap": 30000,
+    "within_bootstrap_timeout": true
+  },
+  "attestation_chain_entry": {
+    "initiator": "fay:alice/iFay-01",
+    "confirm_ts": "2026-01-15T09:00:30Z",
+    "took_effect": true,
+    "evidence": {
+      "faying_request_msg_id": "req:vec-04-renew:01HZZ0000000000000000ew",
+      "bootstrap_msg_id": "bs:vec-04-renew:01HZZ0000000000000001ew",
+      "human_witness_present": true,
+      "human_witness_format": "webauthn",
+      "faying_request_resp_msg_id": "resp:vec-04-renew:01HZZ0000000000000002ew",
+      "response_status": "accepted",
+      "issuer_after_effect": "hp:prime-alice@example"
+    }
+  },
+  "hardness_checks": {
+    "hp_witness_irreplaceable": true,
+    "ms_cannot_surrogate_witness": true,
+    "if_cannot_self_witness": true,
+    "supervisory_agent_cannot_surrogate_witness": true
+  }
+}

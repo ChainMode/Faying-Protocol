@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1008,
+    "mandate_id": "mnd:01HXR0000000000000000RRX",
+    "reason": "RR 查询超时 ≥ StaleBudget",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1008,
+  "must-push-hp-view": false,
+  "name": "E_RR_UNAVAILABLE",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "RR 查询超时 ≥ StaleBudget",
+  "trace": [
+    "R2.1.4",
+    "R4.2.4"
+  ]
+}

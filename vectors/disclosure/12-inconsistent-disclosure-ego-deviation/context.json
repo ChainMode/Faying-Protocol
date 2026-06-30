@@ -1,0 +1,23 @@
+{
+  "case": "e",
+  "context": {
+    "actual_action": "storage:delete-object",
+    "actual_affected_resources": [
+      "urn:storage:bucket-A:object:01HX4M9F7G"
+    ],
+    "actual_reversibility": "irreversible",
+    "actual_risk_level": "high",
+    "audit_window": {
+      "action_executed_at": "2025-11-25T12:00:01Z",
+      "disclosure_submitted_at": "2025-11-25T12:00:03Z"
+    },
+    "endorsement_present": false,
+    "is_disconnected": false,
+    "mandate_id": "mandate:01HX4M0T9V8H8Q4N6Z2K7G3J5W",
+    "mandate_state": "Active",
+    "presence_state": "fresh",
+    "violation": "DISCLOSURE.action ≠ audit-log action"
+  },
+  "title": "DISCLOSURE 与实际动作不一致 → ego-deviation Revoke",
+  "vector_id": "12-inconsistent-disclosure-ego-deviation"
+}

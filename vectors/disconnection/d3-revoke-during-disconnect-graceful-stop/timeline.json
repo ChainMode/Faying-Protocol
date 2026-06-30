@@ -1,0 +1,115 @@
+{
+  "vector_id": "d3-revoke-during-disconnect-graceful-stop",
+  "title": "HP 在断开期间 REVOKE，offline_revocation_policy=graceful-stop：允许有限收尾后停止；收尾仍受 endorsement 约束",
+  "spec_refs": ["§4.3 Disconnected 语义", "§7.5 离线撤销策略可枚举", "§8.4.4 graceful-stop 行", "P17.5"],
+  "requirements": ["12.5"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:30:00Z",
+    "reconcile_result": "revoked",
+    "post_state": "Unpaired"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-d3-001",
+    "issuer": "fay:hp/judy",
+    "subject": "fay:if/assistant-35",
+    "scope": {
+      "domains": ["files.example.com"],
+      "actions": ["files.read", "files.checkpoint"],
+      "terminals": ["device-laptop-07"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["files.example.com"],
+        "actions": ["files.read", "files.checkpoint"],
+        "terminals": ["device-laptop-07"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "graceful-stop",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    { "seq": 1, "t": "2025-11-25T08:00:00Z", "actor": "MS", "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-d3-001", "state": "Active" } },
+
+    { "seq": 2, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Active", "to": "Disconnected" } },
+
+    { "seq": 3, "t": "2025-11-25T08:05:00Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": {
+        "action": "files.read", "endorsement_id": "endorsement-d3-001",
+        "verdict": "allowed-locally"
+      } },
+
+    { "seq": 4, "t": "2025-11-25T08:15:00Z", "actor": "HP", "type": "RevokeRequest",
+      "payload": {
+        "msg_type": "REVOKE",
+        "mandate_id": "mandate-d3-001",
+        "reason": "human-initiated"
+      } },
+
+    { "seq": 5, "t": "2025-11-25T08:30:00Z", "actor": "IF", "type": "ReconcileRequest",
+      "payload": {
+        "msg_type": "RECONCILE_REQUEST",
+        "mandate_id": "mandate-d3-001",
+        "last_known_seq": 3,
+        "endorsed_actions": [
+          { "action": "files.read", "ts": "2025-11-25T08:05:00Z", "endorsement_id": "endorsement-d3-001" }
+        ]
+      } },
+
+    { "seq": 6, "t": "2025-11-25T08:30:00.500Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": {
+        "action": "files.checkpoint",
+        "verdict": "allowed-locally",
+        "endorsement_id": "endorsement-d3-001",
+        "graceful_stop_phase": true,
+        "note": "graceful-stop：允许有限收尾（如写关闭 / 状态保存）；仍落在 endorsed_scope 内"
+      } },
+
+    { "seq": 7, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "ReconcileResponse",
+      "payload": {
+        "msg_type": "RECONCILE_RESP",
+        "status": "revoked",
+        "reason": "human-initiated",
+        "applied_offline_revocation_policy": "graceful-stop",
+        "endorsed_actions_audited": 2,
+        "graceful_stop_actions": ["files.checkpoint"]
+      } },
+
+    { "seq": 8, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Disconnected", "to": "Revoked" } },
+
+    { "seq": 9, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Revoked", "to": "Unpaired" } },
+
+    { "seq": 10, "t": "2025-11-25T08:30:30Z", "actor": "IF", "type": "EndorsedActionAttempt",
+      "payload": {
+        "action": "files.checkpoint",
+        "verdict": "rejected-locally",
+        "error": "E_REVOKED",
+        "note": "graceful-stop 收尾窗口已关闭，再调用一律拒绝"
+      } }
+  ]
+}

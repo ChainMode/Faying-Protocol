@@ -1,0 +1,44 @@
+{
+  "vid": "vec-07-bootstrap-timeout",
+  "title": "BootstrapTimeout exceeded without HP confirmation → E_FAYING_REQUEST_NOT_CONFIRMED (1014)",
+  "outcome": "timeout",
+  "error_code": "E_FAYING_REQUEST_NOT_CONFIRMED",
+  "error_code_numeric": 1014,
+  "spec_refs": [
+    "§5.4 错误码 1014 E_FAYING_REQUEST_NOT_CONFIRMED",
+    "§5.3.6 — timeout branch",
+    "§1.5.1 三条不可逾越的硬约束 (1)"
+  ],
+  "requirements": [
+    "1.3"
+  ],
+  "bootstrap_timeout_ms": 60000,
+  "timing": {
+    "t_request": "2026-01-15T11:00:00Z",
+    "t_response": "2026-01-15T11:01:01Z",
+    "elapsed_ms_request_to_response": 61000,
+    "within_bootstrap_timeout": false
+  },
+  "attestation_chain_entry": {
+    "initiator": "fay:alice/iFay-01",
+    "confirm_ts": "2026-01-15T11:01:01Z",
+    "took_effect": false,
+    "evidence": {
+      "faying_request_msg_id": "req:vec-07-bootstrap-timeout:01HZZ2000000000000000",
+      "faying_request_resp_msg_id": "resp:vec-07-bootstrap-timeout:01HZZ2000000000000001",
+      "response_status": "timeout",
+      "error_msg_id": "err:vec-07-bootstrap-timeout:01HZZ2000000000000002",
+      "error_code_numeric": 1014,
+      "error_code_name": "E_FAYING_REQUEST_NOT_CONFIRMED",
+      "bootstrap_msg_id": null,
+      "human_witness_present": false
+    },
+    "audit_required": true,
+    "hp_view_required": false
+  },
+  "hardness_checks": {
+    "no_state_change": true,
+    "hp_witness_irreplaceable": true,
+    "audit_records_three_step_triple": true
+  }
+}

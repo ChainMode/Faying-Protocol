@@ -1,0 +1,61 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-04-renew:01HZZ0000000000000000ew",
+    "issued_at": "2026-01-15T09:00:00Z",
+    "expiry": "2026-01-15T09:01:00Z",
+    "nonce": {
+      "$b64": "FTdUzHoh0FGpzU2Sdh13rw=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 3,
+    "reason": "iFay 请求续期：原 Mandate 即将到期，请求顺延一段同等条件的窗口",
+    "reason_code": "renew",
+    "expected_lifetime_ms": 43200000
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTA0LXJlbmV3OjAxSFpaMDAwMDAwMDAwMDAwMDAwMGV3"
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "aXOGCDUCpWNZExR5eVMpINXVIvABiNczWs1tLlaDN60ualr4eO45IGYDyeQnl2Ks+E6pXjXB81Xqe3tRiCIqCA=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "krOa9A10sRC20tP3TlNN8rrlFOuGONv8FnU21jheKMLtamfH7YTTOr7T+DEavANV1+ee584cfFuuwA6GpUwwAw=="
+    }
+  }
+}

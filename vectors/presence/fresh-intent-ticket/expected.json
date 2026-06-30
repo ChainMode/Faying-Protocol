@@ -1,0 +1,37 @@
+{
+  "device_id": "presence-device:vector-fresh-intent-ticket",
+  "digests": {
+    "signal_cbor_sha256": "4de4c7d2c22499d1e8e573e43ee264a526a0e0a05fe09da5560aecdab2c9d228",
+    "signal_json_sha256": "115a5d11a36ae2ea2c5ec4113916b4db61aa1bdf9c599bdaf5589759535a5ff8",
+    "signing_input_sha256": "6f9d1bd972a12f272d80546c49d713dff03115a1361aef7030851f1672754c84"
+  },
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 90000,
+    "description": "G3 Loose — key-step intent ticket (≤ 5min)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G3",
+    "max_staleness_ms": 300000,
+    "produced_at": "2026-03-15T11:58:30Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-FRESH-INTENT-TICKET",
+  "nonce_b64u": "B0dHJ-tIRtM4puXlFAAiSg",
+  "notes": "Intent-ticket is a one-shot supplementary signal per §3.2; once consumed it is dropped from the seen-set regardless of remaining freshness.",
+  "requirements_validated": [
+    "5.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "intent-ticket",
+  "state": "fresh",
+  "summary": "Fresh intent-ticket at G3 (age 1.5min ≤ 5min); verifier MUST accept with verdict=ok.",
+  "tamper": null,
+  "vector_name": "fresh-intent-ticket",
+  "verdict": "ok"
+}

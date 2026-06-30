@@ -1,0 +1,71 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload_hex": "",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "signer": "presence-device-1"
+  },
+  "claims": {
+    "endorsement": {
+      "enabled": true,
+      "endorsed_grade": 3,
+      "endorsed_lifetime_ms": 14400000,
+      "endorsed_scope": {
+        "actions": [
+          "read:profile",
+          "write:profile"
+        ],
+        "domains": [
+          "api.example.com",
+          "internal.example.com"
+        ]
+      },
+      "offline_revocation_policy": "stop-and-audit"
+    },
+    "fay": "fay:01HXR000000000000000000IF",
+    "grade": 3,
+    "human_prime": "hp:01HXR000000000000000000HP",
+    "human_witness": {
+      "format": "webauthn",
+      "signature_hex": "44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444",
+      "user_present": true,
+      "user_verified": true
+    },
+    "not_after": "2025-12-18T11:00:00Z",
+    "presence_req": {
+      "max_staleness_ms": 60000,
+      "on_loss": "downgrade-to:G3",
+      "signal_types": [
+        "fingerprint-tap"
+      ]
+    },
+    "scope": {
+      "actions": [
+        "read:profile"
+      ],
+      "domains": [
+        "api.example.com"
+      ]
+    }
+  },
+  "header": {
+    "expiry": "2025-12-17T13:00:00Z",
+    "grade": 3,
+    "issued_at": "2025-12-17T12:00:00Z",
+    "issuer": "hp:01HXR000000000000000000HP",
+    "msg_id": "msg:err-1013-trigger",
+    "msg_type": "BOOTSTRAP",
+    "nonce_hex": "00112233445566778899aabbccddeeff",
+    "subject": "fay:01HXR000000000000000000IF",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

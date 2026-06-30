@@ -1,0 +1,29 @@
+{
+  "final_state": "Unpaired",
+  "reconcile_result": "timeout",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:45:00Z",
+    "reconcile_result": "timeout",
+    "post_state": "Unpaired"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z", "mandate_id": "mandate-c3-001" },
+    { "seq": 2, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:00Z",
+      "from": "Active", "to": "Disconnected" },
+    { "seq": 3, "event": "ReconcileRequest", "ts": "2025-11-25T08:45:00Z",
+      "mandate_id": "mandate-c3-001" },
+    { "seq": 4, "event": "ReconcileResult", "ts": "2025-11-25T08:46:01Z",
+      "result": "timeout", "reason": "reconcile-timeout",
+      "elapsed_ms": 61000, "bootstrap_timeout_ms": 60000 },
+    { "seq": 5, "event": "MandateStateTransition", "ts": "2025-11-25T08:46:01Z",
+      "from": "Disconnected", "to": "Unpaired" }
+  ],
+  "expected_errors": [],
+  "rp_calls_during_window": [],
+  "invariants_checked": [
+    "§8.4.3 timeout：reconcile 超过 BootstrapTimeout ⇒ Disconnected → Unpaired",
+    "§8.4.4 失败回退后不得自重试 BOOTSTRAP",
+    "三种结局之一（timeout）必入 AC，标记 reason=reconcile-timeout"
+  ]
+}

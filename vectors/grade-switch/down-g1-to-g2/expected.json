@@ -1,0 +1,55 @@
+{
+  "current_grade": "G1",
+  "digests": {
+    "request_cbor_sha256": "90cfb32558996f9b739b57f771aba0201132bdc076dccb82ab46b58fc606ceec",
+    "request_json_sha256": "758f3bae8fca5bf4f89a1cbf489db1a3b5580467494e0cb6541ccf8cc8890cde",
+    "request_signing_input_sha256": "e24660a97287582adca02d47f93eb31c34e9fdc20385c1ccaa084c3f9b809452",
+    "response_cbor_sha256": "d40088808a47726fde54f3639978799509c6354400366cebaa216242cf64d2fb",
+    "response_json_sha256": "7813225b54123372852aed20a94ab3d0abf220374a556168a5ab4599f80676e9"
+  },
+  "direction": "downgrade",
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "final_state": "Active(G2)",
+  "mandate_id": "01HXMNDT-GS-DOWN_G1_TO_G2",
+  "notes": "Downgrade direction (target.autonomy > current.autonomy = larger grade number). §7.4 marks human_witness as MAY for the downgrade direction, so this vector intentionally omits it; verifiers MUST still accept on the strength of the HP-signed envelope alone.",
+  "outcome": "accepted",
+  "post_state": {
+    "grade": "G2",
+    "mandate_status": "Active",
+    "presence_req_max_staleness_ms": 60000
+  },
+  "presence_key_rotated": true,
+  "request_must_carry_human_witness": false,
+  "requirements_validated": [
+    "6.1",
+    "6.2",
+    "6.3",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. WebAuthn human_witness blobs are deterministic placeholders (see README); verifiers MUST treat their bytes as opaque and only validate structural presence.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Downgrade G1 → G2 initiated by HP without a human_witness (MAY per §7.4); MS issues an updated Mandate at G2.",
+  "target_grade": "G2",
+  "trigger_matrix": {
+    "current_grade": "G1",
+    "event": "human-downgrade",
+    "expected_outcome": "G2"
+  },
+  "vector_name": "down-g1-to-g2"
+}

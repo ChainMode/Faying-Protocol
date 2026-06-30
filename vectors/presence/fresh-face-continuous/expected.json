@@ -1,0 +1,37 @@
+{
+  "device_id": "presence-device:vector-fresh-face-continuous",
+  "digests": {
+    "signal_cbor_sha256": "5881969a745e56749fb4a870e120f4a63d88b33caa525ef25d7a6046aec44db1",
+    "signal_json_sha256": "7dcc41245ca87494e4c6f764db7110d0b0849fdcb632673c7a99854890a68b2a",
+    "signing_input_sha256": "ab357ebbb96c4c7ceb2f1e7606d96612326a116773d9f3dd9e75a3a81616aab1"
+  },
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 2500,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:57.500Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-FRESH-FACE-CONTINUOUS",
+  "nonce_b64u": "oCLhHgTwXBGyVbnf9cIA-w",
+  "notes": "Continuous face presence is a strong G1 anchor; on loss design.md §3.2 says it degrades to G2 — see the stale-face-continuous vector for that path.",
+  "requirements_validated": [
+    "5.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "face-continuous",
+  "state": "fresh",
+  "summary": "Fresh face-continuous signal at G1 (age 2.5s ≤ 5s); verifier MUST accept with verdict=ok.",
+  "tamper": null,
+  "vector_name": "fresh-face-continuous",
+  "verdict": "ok"
+}

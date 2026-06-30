@@ -1,0 +1,226 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cG9zLWpzb24tZXMyNTY"
+      },
+      "signature": {
+        "alg": "ES256",
+        "pubkey": {
+          "$bytes": "BIsyENKuHY6QQpnMenGCN8bcW0oBmy6B12UwBci6-KB1EVsE3Y-9xHRsU8kxvEVW-3eFtq9mXmj1nEe1f2tHRvE"
+        },
+        "sig": {
+          "$bytes": "q2XwHmXtK9-0m-9YNS-hwf2QjoaQ3Zh5lk7G28WeQ50hL49Q0mFbDCSmIwe4ySRlxgPspjKRVhHUp86mRJ3jyQ"
+        }
+      },
+      "signer": "hp:vector-pos-json-es256"
+    },
+    "claims": {
+      "fay": "fay:01HXFAY-ES256-EXAMPLE",
+      "grade": 2,
+      "human_prime": "hp:01HXPOS-JSON-ES2",
+      "human_witness": {
+        "authenticator_data": {
+          "$bytes": "lDeBqeRQZk-6grqbSHInz2KRcTo6LrMrZ2oCNX_IFXGFVn81Nw"
+        },
+        "client_data_json": {
+          "$bytes": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiRWtLUzZPMF9tQ0Z0MnlocDRSQ3pRazQwcTlUYVdzWDUtWENZVFhlWmJWVSIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJjcm9zc09yaWdpbiI6ZmFsc2V9"
+        },
+        "credential_id": "uLTe7uci-XpOclsNlVr-fg",
+        "signature": {
+          "$bytes": "vqjEya830P-pvDHFBmypl3I9H9ESiWWX06AHS915DayulrZ0kEU2Z6p5TVv2fXpskmqxVsGoj3wGdyeNXfl0yg"
+        }
+      },
+      "not_after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "presence_req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-JSON-ES2",
+      "msg_id": "01HXMSG-BOOTSTRAP-ES256-JSON",
+      "msg_type": "BOOTSTRAP",
+      "nonce": {
+        "$bytes": "fqZ3eiL9lkzLobsnIIWmaQ"
+      },
+      "subject": "fay:01HXFAY-ES256-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "ES256",
+      "pubkey": {
+        "$bytes": "BIsyENKuHY6QQpnMenGCN8bcW0oBmy6B12UwBci6-KB1EVsE3Y-9xHRsU8kxvEVW-3eFtq9mXmj1nEe1f2tHRvE"
+      },
+      "sig": {
+        "$bytes": "C8EvcRt82xNQb7w3lJ3lQXY0BJV5EmCrICjBHhj0mTR8FgXaAINE8hFiXugm1tsFiuL1ZIgdOvtAjWhJn9Xy2Q"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1wb3MtanNvbi1lczI1Ng"
+      },
+      "signature": {
+        "alg": "ES256",
+        "pubkey": {
+          "$bytes": "BMD1avTeGK3n6VdxfsvRPtUPe-hNoZ_CtS_KpSXLpoPfS6fuFnvXOhdtBSZA6iJz8UCouu4QE3XfLVRk7L3T6wg"
+        },
+        "sig": {
+          "$bytes": "9twJFhhK5S3xjzfgUXzTs3KExU_Xh2wPSoLn9uZNdmStdoM9cLcVdZRE3utbyfA4Ud8NQHenCfHDCo1VO198KA"
+        }
+      },
+      "signer": "hp:vector-resp-pos-json-es256"
+    },
+    "claims": {
+      "attestation": {
+        "format": "self-signed",
+        "payload": {
+          "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6bXMtcG9zLWpzb24tZXMyNTY"
+        },
+        "signature": {
+          "alg": "ES256",
+          "pubkey": {
+            "$bytes": "BMD1avTeGK3n6VdxfsvRPtUPe-hNoZ_CtS_KpSXLpoPfS6fuFnvXOhdtBSZA6iJz8UCouu4QE3XfLVRk7L3T6wg"
+          },
+          "sig": {
+            "$bytes": "EmvifPL1mXv_Okahb69BiwJ9k5OmsizNPRNeC0WNr_IvHaFbZG3qTAio8vUO2ZiclvdR3g8DCGzFSpESStwxbg"
+          }
+        },
+        "signer": "hp:vector-ms-pos-json-es256"
+      },
+      "grade": 2,
+      "id": "01HXMNDT-BOOTSTRAP-ES256-JSON",
+      "issued-at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-JSON-ES2",
+      "ms-id": "ms:vector-pos-json-es256",
+      "not-after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "not-before": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "presence-req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      },
+      "signature": {
+        "alg": "ES256",
+        "pubkey": {
+          "$bytes": "BMD1avTeGK3n6VdxfsvRPtUPe-hNoZ_CtS_KpSXLpoPfS6fuFnvXOhdtBSZA6iJz8UCouu4QE3XfLVRk7L3T6wg"
+        },
+        "sig": {
+          "$bytes": "8H1R9CjkdLKxFSxffJx8u04dvf0cM5Gh27TVyrjOQij0mDrBeE0CuFEkzQLxeLLyPq68HLO0rUatXOAsw53hGA"
+        }
+      },
+      "subject": "fay:01HXFAY-ES256-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-JSON-ES2",
+      "msg_id": "01HXMSG-RESP-ES256-JSON",
+      "msg_type": "BOOTSTRAP_RESP",
+      "nonce": {
+        "$bytes": "nL5WvYQNHSK6ETlNquT2zA"
+      },
+      "subject": "fay:01HXFAY-ES256-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "ES256",
+      "pubkey": {
+        "$bytes": "BMD1avTeGK3n6VdxfsvRPtUPe-hNoZ_CtS_KpSXLpoPfS6fuFnvXOhdtBSZA6iJz8UCouu4QE3XfLVRk7L3T6wg"
+      },
+      "sig": {
+        "$bytes": "beCizlGZNxxCfEGeyG4N5b2xjYNH81Oz6C4_VRTdFCQ8cYpaJh9-lsZgcyYK0imVJzrrlbTRcpYInmQacuQQfA"
+      }
+    }
+  }
+}

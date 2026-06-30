@@ -1,0 +1,81 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-REASON_FAY_CREDENTIAL_INVALID"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-REASON_FAY_CREDENTIAL_INVALID",
+    "notes": "Per design.md §9.6, every successful REVOKE is recorded as a five-tuple in audit-log; error_code is null because the path is the success path. Trigger: iFay's credential failed attestation.",
+    "reason": "REVOKE accepted; reason=fay-credential-invalid",
+    "rp_id": "rp:vector-reason-fay-credential-invalid",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "1f5f377464df578b4a4abd07169191a615559b9f6edcc0cde0564382829c8ca4",
+    "request_json_sha256": "1085d4b9db6229e88be2b3191c81a1fba30bc3e9963f370309cd15f6642b6d44",
+    "request_signing_input_sha256": "50a70cf344057b8cf8825c387ca7c9549b29ec20bb853adb53b2de52739cf548",
+    "response_cbor_sha256": "f78dd0cbd6a783823bbfa72c59ee32ecd30d2e387ffbeeeb30cd01813c016a02",
+    "response_json_sha256": "fb109aea834234b905c6d59c18dd8ce29516a9b5224895386ba0bfc9e1a092eb"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Per Requirement 4.3 the Mandate's status is now terminal-Revoked; any subsequent RP call referencing this mandate_id MUST fail with 1006 E_REVOKED. The only recovery path is a fresh BOOTSTRAP that issues a new Mandate with a different mandate_id.",
+  "kind": "positive",
+  "notes": "Validates that `RevokeReason = 'fay-credential-invalid'` produces a well-formed REVOKE → REVOKE_RECEIPT round-trip. Trigger: iFay's credential failed attestation. Requirement 9.4 categorises this reason as a decoupling-state recognition trigger; the receipt lists exactly the directly-revoked Mandate (no children in this vector — see `cascade-depth-2` for the cascade case).",
+  "outcome": "accepted",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "fay-credential-invalid",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with reason='fay-credential-invalid': Triggered when the iFay's session key, device attestation, or signature chain fails verification (see §9.5 ‘异常脱钩’).",
+  "target_mandate_id": "01HXMNDT-TARGET-REASON_FAY_CREDENTIAL_INVALID",
+  "trigger": "iFay's credential failed attestation",
+  "vector_name": "reason-fay-credential-invalid"
+}

@@ -1,0 +1,113 @@
+{
+  "vector_id": "a1-active-to-disconnected-endorsed",
+  "title": "Endorsed_Mandate 感知失联触发 Active → Disconnected",
+  "spec_refs": ["§4.3", "§7.5", "§9.8 矩阵第 4 行", "§9.9", "P17.5", "P16.4"],
+  "requirements": ["12.5"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Disconnected"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:00Z", "value": false },
+    { "from": "2025-11-25T08:01:00Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:05:00Z", "value": true }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-a1-001",
+    "issuer": "fay:hp/alice",
+    "subject": "fay:if/assistant-7",
+    "scope": {
+      "domains": ["calendar.example.com"],
+      "actions": ["calendar.read", "calendar.create"],
+      "terminals": ["device-laptop-01"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh", "face-continuous"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["calendar.example.com"],
+        "actions": ["calendar.read"],
+        "terminals": ["device-laptop-01"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    {
+      "seq": 1,
+      "t": "2025-11-25T08:00:00Z",
+      "actor": "MS",
+      "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-a1-001", "state": "Active" }
+    },
+    {
+      "seq": 2,
+      "t": "2025-11-25T08:01:00Z",
+      "actor": "IF",
+      "type": "PhysicalDisconnect",
+      "payload": { "reason": "network-outage" }
+    },
+    {
+      "seq": 3,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "PresenceStaleDetected",
+      "payload": {
+        "last_freshness": "2025-11-25T08:01:00Z",
+        "max_staleness_ms": 60000,
+        "elapsed_ms": 60001
+      }
+    },
+    {
+      "seq": 4,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "MandateStateTransition",
+      "payload": {
+        "from": "Active",
+        "to": "Disconnected",
+        "trigger": "PresenceState.stale=true ∧ endorsement.enabled=true"
+      }
+    },
+    {
+      "seq": 5,
+      "t": "2025-11-25T08:03:00Z",
+      "actor": "IF",
+      "type": "EndorsedAction",
+      "payload": {
+        "action": "calendar.read",
+        "scope_used": ["calendar.example.com"],
+        "endorsement_id": "endorsement-a1-001",
+        "verdict": "allowed-locally",
+        "note": "落在 endorsed_scope ∧ endorsed_grade ∧ endorsed_lifetime 内"
+      }
+    },
+    {
+      "seq": 6,
+      "t": "2025-11-25T08:03:30Z",
+      "actor": "IF",
+      "type": "EndorsedAction",
+      "payload": {
+        "action": "calendar.create",
+        "verdict": "rejected-locally",
+        "error": "E_SCOPE_VIOLATION",
+        "note": "calendar.create 不在 endorsed_scope.actions 中"
+      }
+    }
+  ]
+}

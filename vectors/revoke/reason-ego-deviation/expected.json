@@ -1,0 +1,81 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-REASON_EGO_DEVIATION"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-REASON_EGO_DEVIATION",
+    "notes": "Per design.md §9.6, every successful REVOKE is recorded as a five-tuple in audit-log; error_code is null because the path is the success path. Trigger: MS or RP detects iFay behavior outside Ego boundary.",
+    "reason": "REVOKE accepted; reason=ego-deviation",
+    "rp_id": "rp:vector-reason-ego-deviation",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "ed65073428f0a250a4946d8877c4b4dff6c27e543a38f0e1588633cbb5101f55",
+    "request_json_sha256": "7db6c4da4feb2cecc2667433f1a3ee898f335834eff090c1e6e85d2d6256060d",
+    "request_signing_input_sha256": "06b6d66adb387588be3ca9271bb58968440c5936095da6b6502594749ed28ac4",
+    "response_cbor_sha256": "872791867a2124fbaaa5ed5225291fe778d9d9befe92cd374c9efe0d42c2dc11",
+    "response_json_sha256": "f9d9fefa6ffab7bcb4315e35bfd0d0c05f2b325371f14ff6fe16f96e4b94a5c1"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Per Requirement 4.3 the Mandate's status is now terminal-Revoked; any subsequent RP call referencing this mandate_id MUST fail with 1006 E_REVOKED. The only recovery path is a fresh BOOTSTRAP that issues a new Mandate with a different mandate_id.",
+  "kind": "positive",
+  "notes": "Validates that `RevokeReason = 'ego-deviation'` produces a well-formed REVOKE → REVOKE_RECEIPT round-trip. Trigger: MS or RP detects iFay behavior outside Ego boundary. Requirement 9.4 categorises this reason as a decoupling-state recognition trigger; the receipt lists exactly the directly-revoked Mandate (no children in this vector — see `cascade-depth-2` for the cascade case).",
+  "outcome": "accepted",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "ego-deviation",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with reason='ego-deviation': Auto-revocation per Requirement 9.4.5 / §9.10.4 T3: DISCLOSURE inconsistent with the actual action triggers this reason.",
+  "target_mandate_id": "01HXMNDT-TARGET-REASON_EGO_DEVIATION",
+  "trigger": "MS or RP detects iFay behavior outside Ego boundary",
+  "vector_name": "reason-ego-deviation"
+}

@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Disclosure carries endorsement_id linking the action to a specific endorsement.",
+    "Action is within endorsed_scope.actions and within endorsed_lifetime.",
+    "Independently verifiable: (mandate_id, endorsement_id, action, ts) tuple recoverable."
+  ],
+  "case": "f",
+  "endorsement_id_resolved": "endorsement:01HX4M11G3J5W8Q4N6Z2K7P9V0",
+  "ms_action": "log-and-forward",
+  "outcome": "accepted",
+  "vector_id": "13-disconnected-with-endorsement-id-accepted"
+}

@@ -1,0 +1,78 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-05-endorsement-request:01HZZ0000000000000000st",
+    "issued_at": "2026-01-15T09:00:00Z",
+    "expiry": "2026-01-15T09:01:00Z",
+    "nonce": {
+      "$b64": "K15xjpxe2Ch7hzltagjd3A=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 3,
+    "reason": "iFay 请求 Endorsed Mandate：在限定 endorsed_scope 内允许失联期间继续读日历",
+    "reason_code": "endorsement-request",
+    "expected_lifetime_ms": 43200000,
+    "proposed_endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": [
+          "calendar.example.com"
+        ],
+        "actions": [
+          "calendar:read"
+        ],
+        "terminals": [
+          "device:laptop-01"
+        ]
+      },
+      "endorsed_grade": 3,
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit"
+    }
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTA1LWVuZG9yc2VtZW50LXJlcXVlc3Q6MDFIWlowMDAwMDAwMDAwMDAwMDAwc3Q="
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "BWo3HIKZyeHAaQb2ab98MbmXSLzWevOqsdjFjKkM8knatAZdLMGWobMM1T8+fdYz6zasCti5D8GeMesRqlpxCg=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "iNLo5FWsJZJ/bcLuKlcMxsloDxRiPjq4UWsw5ssS0vyY4AKh/qLN1Om4uZlAKY1lpvayMzU77dyBYgaMPT2dBg=="
+    }
+  }
+}

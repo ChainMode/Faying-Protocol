@@ -1,0 +1,246 @@
+{
+  "category": "GRADE_SWITCH",
+  "design_anchors": [
+    "design.md §5.3.3 GRADE_SWITCH",
+    "design.md §7.2 触发条件矩阵",
+    "design.md §7.4 等级切换报文要求差异",
+    "design.md §EH.1 错误码表"
+  ],
+  "deterministic_seed_sha256": "fe5114db40ccb56be700d41be12d609cc81521b1f4d301f53a35337cc93a8789",
+  "freshness_table": {
+    "G1": {
+      "max_staleness_ms": 5000,
+      "primary_signal_types": [
+        "webauthn-uv-fresh",
+        "face-continuous"
+      ]
+    },
+    "G2": {
+      "max_staleness_ms": 60000,
+      "primary_signal_types": [
+        "fingerprint-tap"
+      ]
+    },
+    "G3": {
+      "max_staleness_ms": 300000,
+      "primary_signal_types": [
+        "intent-ticket"
+      ]
+    },
+    "G4": {
+      "max_staleness_ms": 1800000,
+      "primary_signal_types": [
+        "presence-heartbeat-only"
+      ]
+    }
+  },
+  "generated_with": "vectors/grade-switch/_tools/generate.py",
+  "requirements_covered": [
+    "6.1",
+    "6.2",
+    "6.3",
+    "10.1",
+    "10.3"
+  ],
+  "schemas": {
+    "cddl": "schemas/fap-1.0.cddl",
+    "ts_view": "schemas/types.ts"
+  },
+  "spec_version": "Faying Protocol/1.0",
+  "trigger_matrix": {
+    "g0-override": {
+      "G1": "Suspended",
+      "G2": "Suspended",
+      "G3": "Suspended",
+      "G4": "Suspended"
+    },
+    "human-downgrade": {
+      "G1": "G2",
+      "G2": "G3",
+      "G3": "G4"
+    },
+    "human-upgrade": {
+      "G2": "G1",
+      "G3": "G2",
+      "G4": "G3"
+    }
+  },
+  "vectors": [
+    {
+      "current_grade": "G3",
+      "direction": "upgrade",
+      "error_code": null,
+      "expected": "up-g3-to-g2/expected.json",
+      "final_state": "Active(G2)",
+      "name": "up-g3-to-g2",
+      "request_cbor": "up-g3-to-g2/request.cbor",
+      "request_cbor_sha256": "a0590ee57b6cc7a5cea2ed154f162b012fff6aeaa8d149b859de7a3d82c949a1",
+      "request_json": "up-g3-to-g2/request.json",
+      "response_cbor": "up-g3-to-g2/response.cbor",
+      "response_cbor_sha256": "1793444e8af57b24ef8a721a0d25d6a7c78ae298c40759922981db33b2f58839",
+      "response_json": "up-g3-to-g2/response.json",
+      "summary": "Upgrade G3 → G2 signed by HP with a verifiable human_witness; MS issues an updated Mandate at G2 (max-staleness 60000 ms).",
+      "target_grade": "G2"
+    },
+    {
+      "current_grade": "G2",
+      "direction": "upgrade",
+      "error_code": null,
+      "expected": "up-g2-to-g1/expected.json",
+      "final_state": "Active(G1)",
+      "name": "up-g2-to-g1",
+      "request_cbor": "up-g2-to-g1/request.cbor",
+      "request_cbor_sha256": "f502edca141b33d61bb1bc0bc821cb5a4b0ef1b2b20d4b0556dca8c935111e4a",
+      "request_json": "up-g2-to-g1/request.json",
+      "response_cbor": "up-g2-to-g1/response.cbor",
+      "response_cbor_sha256": "d0a03872b5e82723cb42a82a78459d2c20ab1bb2ca753db2985f4a3345c75591",
+      "response_json": "up-g2-to-g1/response.json",
+      "summary": "Upgrade G2 → G1 signed by HP with a verifiable human_witness; MS issues an updated Mandate at G1 (max-staleness 5000 ms).",
+      "target_grade": "G1"
+    },
+    {
+      "current_grade": "G4",
+      "direction": "upgrade",
+      "error_code": null,
+      "expected": "up-g4-to-g3/expected.json",
+      "final_state": "Active(G3)",
+      "name": "up-g4-to-g3",
+      "request_cbor": "up-g4-to-g3/request.cbor",
+      "request_cbor_sha256": "4b26de77d833a9feaaa3dc09e2b3ee6ee35715969ba97c77ea1a3d6fb844821e",
+      "request_json": "up-g4-to-g3/request.json",
+      "response_cbor": "up-g4-to-g3/response.cbor",
+      "response_cbor_sha256": "bfa725db091b86719c6a3bbe60421568e5827f6b153085325b45a797e6ea0884",
+      "response_json": "up-g4-to-g3/response.json",
+      "summary": "Upgrade G4 → G3 signed by HP with a verifiable human_witness; MS issues an updated Mandate at G3 (max-staleness 300000 ms).",
+      "target_grade": "G3"
+    },
+    {
+      "current_grade": "G1",
+      "direction": "downgrade",
+      "error_code": null,
+      "expected": "down-g1-to-g2/expected.json",
+      "final_state": "Active(G2)",
+      "name": "down-g1-to-g2",
+      "request_cbor": "down-g1-to-g2/request.cbor",
+      "request_cbor_sha256": "90cfb32558996f9b739b57f771aba0201132bdc076dccb82ab46b58fc606ceec",
+      "request_json": "down-g1-to-g2/request.json",
+      "response_cbor": "down-g1-to-g2/response.cbor",
+      "response_cbor_sha256": "d40088808a47726fde54f3639978799509c6354400366cebaa216242cf64d2fb",
+      "response_json": "down-g1-to-g2/response.json",
+      "summary": "Downgrade G1 → G2 initiated by HP without a human_witness (MAY per §7.4); MS issues an updated Mandate at G2.",
+      "target_grade": "G2"
+    },
+    {
+      "current_grade": "G2",
+      "direction": "downgrade",
+      "error_code": null,
+      "expected": "down-g2-to-g3/expected.json",
+      "final_state": "Active(G3)",
+      "name": "down-g2-to-g3",
+      "request_cbor": "down-g2-to-g3/request.cbor",
+      "request_cbor_sha256": "c9d4eb444b70cbb64b2aab927a8af2a6d61de96440dce61b803093fc0fdb35f6",
+      "request_json": "down-g2-to-g3/request.json",
+      "response_cbor": "down-g2-to-g3/response.cbor",
+      "response_cbor_sha256": "46c6bbb20b11e8bf997dc59c7b5e8a05fa080776ff3356efe8fc345094eac37f",
+      "response_json": "down-g2-to-g3/response.json",
+      "summary": "Downgrade G2 → G3 initiated by HP without a human_witness (MAY per §7.4); MS issues an updated Mandate at G3.",
+      "target_grade": "G3"
+    },
+    {
+      "current_grade": "G3",
+      "direction": "downgrade",
+      "error_code": null,
+      "expected": "down-g3-to-g4/expected.json",
+      "final_state": "Active(G4)",
+      "name": "down-g3-to-g4",
+      "request_cbor": "down-g3-to-g4/request.cbor",
+      "request_cbor_sha256": "2420aec92cd1bc5c6732c9cf58d21c901c11f8f6c96a2c5cce1d73d265abef8b",
+      "request_json": "down-g3-to-g4/request.json",
+      "response_cbor": "down-g3-to-g4/response.cbor",
+      "response_cbor_sha256": "4969449d24d9df706f8b2cd8bf9f865cfd74e4f86acbbf9070aadc96700a46c5",
+      "response_json": "down-g3-to-g4/response.json",
+      "summary": "Downgrade G3 → G4 initiated by HP without a human_witness (MAY per §7.4); MS issues an updated Mandate at G4.",
+      "target_grade": "G4"
+    },
+    {
+      "current_grade": "G1",
+      "direction": "override",
+      "error_code": null,
+      "expected": "override-g0-from-g1/expected.json",
+      "final_state": "Suspended",
+      "name": "override-g0-from-g1",
+      "request_cbor": "override-g0-from-g1/request.cbor",
+      "request_cbor_sha256": "1f6ea85c8b5b65ab8e46d2aaa8ef0a63d2946cbf22c02bcba62df406874cd1d1",
+      "request_json": "override-g0-from-g1/request.json",
+      "response_cbor": "override-g0-from-g1/response.cbor",
+      "response_cbor_sha256": "c16ee5a438fce9aebee3775a2a39c0de4e7f1ad862394e3118262372216e99f2",
+      "response_json": "override-g0-from-g1/response.json",
+      "summary": "G0 Emergency Override from G1 → Suspended; HP unilateral channel with mandatory human_witness.",
+      "target_grade": "G0"
+    },
+    {
+      "current_grade": "G2",
+      "direction": "override",
+      "error_code": null,
+      "expected": "override-g0-from-g2/expected.json",
+      "final_state": "Suspended",
+      "name": "override-g0-from-g2",
+      "request_cbor": "override-g0-from-g2/request.cbor",
+      "request_cbor_sha256": "b30ffcfc515d8510eff32e612ccc3d6ba29de21c43d5603a8c29bc8a955b822d",
+      "request_json": "override-g0-from-g2/request.json",
+      "response_cbor": "override-g0-from-g2/response.cbor",
+      "response_cbor_sha256": "a244ca6c0b4da2ac7cc5e9774f7dc6b2c25be3c1b2be3fda49f29e65e64a5cee",
+      "response_json": "override-g0-from-g2/response.json",
+      "summary": "G0 Emergency Override from G2 → Suspended; HP unilateral channel with mandatory human_witness.",
+      "target_grade": "G0"
+    },
+    {
+      "current_grade": "G4",
+      "direction": "override",
+      "error_code": null,
+      "expected": "override-g0-from-g4/expected.json",
+      "final_state": "Suspended",
+      "name": "override-g0-from-g4",
+      "request_cbor": "override-g0-from-g4/request.cbor",
+      "request_cbor_sha256": "cc0a3918ed5572313d3cde7b7d5a348c0d06cae8075e0c01863f008a9695dcf8",
+      "request_json": "override-g0-from-g4/request.json",
+      "response_cbor": "override-g0-from-g4/response.cbor",
+      "response_cbor_sha256": "da171ea913df89214a81bb5c5cbeeb10aa6e0becd1d129fddecf44b719008771",
+      "response_json": "override-g0-from-g4/response.json",
+      "summary": "G0 Emergency Override from G4 → Suspended; HP unilateral channel with mandatory human_witness.",
+      "target_grade": "G0"
+    },
+    {
+      "current_grade": "G3",
+      "direction": "negative",
+      "error_code": 1010,
+      "expected": "neg-up-g3-to-g2-no-witness/expected.json",
+      "final_state": "Active(G3)",
+      "name": "neg-up-g3-to-g2-no-witness",
+      "request_cbor": "neg-up-g3-to-g2-no-witness/request.cbor",
+      "request_cbor_sha256": "cf4a06dd05567facc43797796f12cbbb0370202cf2003ac5e9cb64c4f67363c3",
+      "request_json": "neg-up-g3-to-g2-no-witness/request.json",
+      "response_cbor": "neg-up-g3-to-g2-no-witness/response.cbor",
+      "response_cbor_sha256": "5f900d949de8bbab4a6facd8943c48bc07415338d68f844132a55505e8a0c141",
+      "response_json": "neg-up-g3-to-g2-no-witness/response.json",
+      "summary": "Negative: upgrade G3 → G2 without human_witness must be rejected with E_HUMAN_WITNESS_REQUIRED (1010).",
+      "target_grade": "G2"
+    },
+    {
+      "current_grade": "G2",
+      "direction": "negative",
+      "error_code": 1010,
+      "expected": "neg-up-g2-to-g1-no-witness/expected.json",
+      "final_state": "Active(G2)",
+      "name": "neg-up-g2-to-g1-no-witness",
+      "request_cbor": "neg-up-g2-to-g1-no-witness/request.cbor",
+      "request_cbor_sha256": "24f45dc695358b3e13898cf3c8786e5f48ecd39e52b3ca4d2fbbfa768dac1d9d",
+      "request_json": "neg-up-g2-to-g1-no-witness/request.json",
+      "response_cbor": "neg-up-g2-to-g1-no-witness/response.cbor",
+      "response_cbor_sha256": "ab02e85d23c7eaf27ed53b69710032995017bda834e007e965f0aa124496ac33",
+      "response_json": "neg-up-g2-to-g1-no-witness/response.json",
+      "summary": "Negative: upgrade G2 → G1 without human_witness must be rejected with E_HUMAN_WITNESS_REQUIRED (1010).",
+      "target_grade": "G1"
+    }
+  ]
+}

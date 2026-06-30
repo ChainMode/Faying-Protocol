@@ -1,0 +1,55 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": null,
+  "convergence_failure": {
+    "axis": "scope.domains",
+    "expanded_domain": "https://api.example.com/v1/files",
+    "parent_domains": [
+      "https://api.example.com/v1/calendar",
+      "https://api.example.com/v1/mail"
+    ]
+  },
+  "digests": {
+    "request_cbor_sha256": "9390fa65e216a9cfcb97df60191e329902bfc4888de337d7c68d80dceeaa52e1",
+    "request_json_sha256": "1a1cf3904b0013ed9c4021b78eae55f028e9cb35a8b14cc474a5f0567eb18880",
+    "request_signing_input_sha256": "3df2a2a667c025e890d0192f00b25a64e6935830b82fe650d5898b41c9d52980",
+    "response_cbor_sha256": "0da1263e3b45039172778f66133c9b20cf09226344e45628409e6a26a503f0da",
+    "response_json_sha256": "737732bf2e82d8ac657b561002810b6b99bd7881a5bb2bbcdf820fd51c13f3fd"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "expansion_kind": "domains",
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "negative",
+  "notes": "Verifies Requirement 7.1 along the scope.domains axis. A common misimplementation lets implementers reuse a delegated Mandate to reach domains the parent cannot; this vector explicitly rejects that path.",
+  "outcome": "rejected",
+  "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_DOMAIN",
+  "post_state": {
+    "mandate_status": "Active",
+    "note": "Rejection does not mutate any state; the parent Mandate remains Active. No child Mandate is issued and no signature.chain entry is produced.",
+    "parent_mandate_id": "01HXMNDT-PARENT-NEG_SCOPE_EXPANSION_DOMAIN"
+  },
+  "requirement_focus": "Requirement 7.1 — child.scope ⊆ parent.scope (domains axis).",
+  "requirements_validated": [
+    "7.1",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "child_mandate_inner": false,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative DELEGATE: child.scope.domains adds 'https://api.example.com/v1/files' which is NOT in parent.scope.domains. Must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-scope-expansion-domain"
+}

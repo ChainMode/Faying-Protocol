@@ -1,0 +1,84 @@
+{
+  "$comment": "Non-normative JSON view. CBOR (mandate.cbor) is authoritative. Bytes are encoded as {\"$bytes\": \"<hex>\"}; CBOR tag 0 values as {\"$tag\": 0, \"value\": \"<rfc3339>\"}.",
+  "mandate": {
+    "version": "Faying Protocol/1.0",
+    "id": "mnd:01HXENDORS-E1-TAMPER-GRADE",
+    "issued-at": {
+      "$tag": 0,
+      "value": "2026-01-01T00:00:00Z"
+    },
+    "not-before": {
+      "$tag": 0,
+      "value": "2026-01-01T00:00:00Z"
+    },
+    "not-after": {
+      "$tag": 0,
+      "value": "2026-01-02T00:00:00Z"
+    },
+    "issuer": "hp:01HX0000000000000000PRIME",
+    "ms-id": "ms:01HX0000000000000000FAYMS",
+    "subject": "fay:01HX00000000000000000FAY1",
+    "scope": {
+      "domains": [
+        "https://api.example.com"
+      ],
+      "actions": [
+        "control:hvac:set-temperature",
+        "control:lights:toggle",
+        "read:sensors:temperature"
+      ],
+      "terminals": [
+        "device-A",
+        "device-B"
+      ]
+    },
+    "grade": 2,
+    "presence-req": {
+      "signal-types": [
+        "webauthn-uv-fresh",
+        "presence-heartbeat-only"
+      ],
+      "max-staleness-ms": 60000,
+      "on-loss": "downgrade-to:G3"
+    },
+    "endorsement": {
+      "enabled": true,
+      "endorsed-scope": {
+        "domains": [
+          "https://api.example.com"
+        ],
+        "actions": [
+          "read:sensors:temperature"
+        ]
+      },
+      "endorsed-grade": 4,
+      "endorsed-lifetime-ms": 1800000,
+      "offline-revocation-policy": "stop-and-audit"
+    },
+    "attestation": {
+      "format": "webauthn",
+      "payload": {
+        "$bytes": "776562617574686e2d6174746573746174696f6e3a6d6e643a30314858454e444f52532d45312d54414d5045522d4752414445"
+      },
+      "signer": "hp-key-001",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "3ccd241cffc9b3618044b97d036d8614593d8b017c340f1dee8773385517654b"
+        },
+        "sig": {
+          "$bytes": "12fc1357a010fde5ad9532a64e652d5d2defe220be5bfb2765c9027fa61ec78b1715b3e5e27174a92a9329171963c7bdadf7f0b51d65e3270ee18de19506da07"
+        }
+      }
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "17e9e20ee4549aafbed331df3399b53902b8482d7387b3f3c2ed856a856171ee"
+      },
+      "sig": {
+        "$bytes": "e95e2791b60f1e85e6fea4dbc163dc0cb65fb91a88d9e7852b62a2724eb5fd73254bab3fbf6df4dcca2d034af9d2b5d9676192fa0727192b65b556e32dd05a00"
+      }
+    }
+  }
+}

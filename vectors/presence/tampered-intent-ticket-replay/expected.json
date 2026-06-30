@@ -1,0 +1,42 @@
+{
+  "device_id": "presence-device:vector-tampered-intent-ticket-replay",
+  "digests": {
+    "signal_cbor_sha256": "a47f9d531c8aa06d00a2d8cec0ee25eeda7ee30cd7298f305ca5554367fbefac",
+    "signal_json_sha256": "4f373cf9deef8817b7a40a56aab69a38141d846be0f404016c31e7a5f9ead8e3",
+    "signing_input_sha256": "04ace4a6450cfccf672d9742a79cfdde6c05a45ec030b5e30e36d0e19ea71929"
+  },
+  "error_code": 1009,
+  "error_name": "E_REPLAY",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 60000,
+    "description": "G3 Loose — key-step intent ticket (≤ 5min)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G3",
+    "max_staleness_ms": 300000,
+    "produced_at": "2026-03-15T11:59:00Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-TAMPERED-INTENT-TICKET-REPLAY",
+  "nonce_b64u": "KtkVAIxOcIIhEkFXrsasPw",
+  "notes": "Intent tickets are one-shot per §3.2 — a second consumption is unconditionally `E_REPLAY` even if the freshness window has not yet expired.",
+  "replay_of": {
+    "nonce": "KtkVAIxOcIIhEkFXrsasPw",
+    "produced_at": "2026-03-15T11:58:00Z"
+  },
+  "requirements_validated": [
+    "5.1",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "intent-ticket",
+  "state": "tampered",
+  "summary": "Replay intent-ticket: identical (mandate-id, nonce) tuple as a previously-consumed ticket; verifier MUST reject with verdict=replay.",
+  "tamper": "replay",
+  "vector_name": "tampered-intent-ticket-replay",
+  "verdict": "replay"
+}

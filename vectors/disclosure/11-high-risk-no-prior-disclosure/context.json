@@ -1,0 +1,20 @@
+{
+  "case": "d",
+  "context": {
+    "actual_action": "payment:transfer",
+    "audit_window": {
+      "action_attempted_at": "2025-11-25T11:00:00Z",
+      "disclosure_submitted_at": "2025-11-25T11:00:05Z",
+      "prior_disclosure_count": 0
+    },
+    "endorsement_present": false,
+    "grade": 2,
+    "is_disconnected": false,
+    "mandate_id": "mandate:01HX4M0T9V8H8Q4N6Z2K7G3J5W",
+    "mandate_state": "Active",
+    "presence_state": "fresh",
+    "violation": "high-sensitivity action executed without prior DISCLOSURE"
+  },
+  "title": "高敏感动作（risk_level=high）未前置披露即执行 → 拒绝",
+  "vector_id": "11-high-risk-no-prior-disclosure"
+}

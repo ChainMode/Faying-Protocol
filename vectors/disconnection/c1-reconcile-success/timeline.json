@@ -1,0 +1,108 @@
+{
+  "vector_id": "c1-reconcile-success",
+  "title": "重连对账事务结局 success：Disconnected → Active",
+  "spec_refs": ["§4.3", "§8.4.3 success 行", "§8.4.4 D 维度禁令", "P17.4"],
+  "requirements": ["12.4"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:30:00Z",
+    "reconcile_result": "success",
+    "post_state": "Active"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-c1-001",
+    "issuer": "fay:hp/eve",
+    "subject": "fay:if/assistant-21",
+    "scope": {
+      "domains": ["files.example.com"],
+      "actions": ["files.read", "files.write"],
+      "terminals": ["device-laptop-03"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh", "face-continuous"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["files.example.com"],
+        "actions": ["files.read"],
+        "terminals": ["device-laptop-03"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    { "seq": 1, "t": "2025-11-25T08:00:00Z", "actor": "MS", "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-c1-001", "state": "Active" } },
+
+    { "seq": 2, "t": "2025-11-25T08:01:30Z", "actor": "IF", "type": "PhysicalDisconnect",
+      "payload": { "reason": "elevator-network-loss" } },
+
+    { "seq": 3, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "PresenceStaleDetected",
+      "payload": { "elapsed_ms": 60001 } },
+
+    { "seq": 4, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Active", "to": "Disconnected" } },
+
+    { "seq": 5, "t": "2025-11-25T08:10:00Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": { "action": "files.read", "endorsement_id": "endorsement-c1-001",
+                   "verdict": "allowed-locally" } },
+
+    { "seq": 6, "t": "2025-11-25T08:30:00Z", "actor": "IF", "type": "ReconnectAttempt",
+      "payload": { "note": "iFay 重连，禁止静默续传，必须先发起 RECONCILE_REQUEST" } },
+
+    { "seq": 7, "t": "2025-11-25T08:30:00Z", "actor": "IF", "type": "ReconcileRequest",
+      "payload": {
+        "msg_type": "RECONCILE_REQUEST",
+        "mandate_id": "mandate-c1-001",
+        "last_known_seq": 5,
+        "endorsed_actions": [
+          { "action": "files.read", "ts": "2025-11-25T08:10:00Z", "endorsement_id": "endorsement-c1-001" }
+        ]
+      } },
+
+    { "seq": 8, "t": "2025-11-25T08:30:00.500Z", "actor": "RP", "type": "InboundCall",
+      "payload": {
+        "action": "files.write",
+        "verdict": "rejected",
+        "error": "E_PRESENCE_STALE",
+        "note": "[t_reconnect, t_reconnect + reconcile_complete_ms] 区间内 D 维度禁令"
+      } },
+
+    { "seq": 9, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "ReconcileResponse",
+      "payload": {
+        "msg_type": "RECONCILE_RESP",
+        "status": "success",
+        "revoked_mandates": [],
+        "presence_state": "fresh",
+        "pending_grade_switch": null,
+        "pending_revoke": null,
+        "hp_directives": []
+      } },
+
+    { "seq": 10, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Disconnected", "to": "Active", "trigger": "Reconcile success" } },
+
+    { "seq": 11, "t": "2025-11-25T08:30:30Z", "actor": "RP", "type": "InboundCall",
+      "payload": { "action": "files.write", "verdict": "accepted",
+                   "note": "对账完成后恢复 Active 状态，主 scope 内调用允许" } }
+  ]
+}

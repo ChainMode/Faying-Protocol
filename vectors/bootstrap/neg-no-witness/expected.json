@@ -1,0 +1,32 @@
+{
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "32238e0523a118d6c9b436fe26072aebec1c2227c1004e1d594be815e3d86f1d",
+    "request_signing_input_sha256": "226c610242a6b67f655db1d5e88020fb3c03fc4092b0b6b07adc7e3eaa434f7c",
+    "response_sha256": "f564719b7d004112cbaf8ede2e7e69a4d9bf9d9998ac00bb961a1d80ef8efbff"
+  },
+  "encoding": "cbor",
+  "error_code": 1010,
+  "error_name": "E_HUMAN_WITNESS_REQUIRED",
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "negative",
+  "mandate_id": null,
+  "notes": "Verifies acceptance criterion 1.3 / 6.1: any BOOTSTRAP without a verifiable human_witness must be refused. The ERROR envelope itself is signed so that the rejection is auditable on the Attestation Chain.",
+  "outcome": "rejected",
+  "requirements_validated": [
+    "1.3",
+    "6.1",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "note": "Request signature is structurally valid but the claims fail validation; MS replies with a signed ERROR envelope.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Negative case: BOOTSTRAP without a human_witness must be rejected with E_HUMAN_WITNESS_REQUIRED (1010).",
+  "vector_name": "neg-no-witness"
+}

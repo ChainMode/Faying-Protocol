@@ -1,0 +1,38 @@
+{
+  "device_id": "presence-device:vector-tampered-presence-heartbeat-only-bad-signature",
+  "digests": {
+    "signal_cbor_sha256": "685d0a3164aed3c5259d87ffe00811de47d1b54011555ea690c354efa1db55ee",
+    "signal_json_sha256": "7693f41c729633750e51fb7768b7f1c34cfd8d5f064ff081834d49b20a33682c",
+    "signing_input_sha256": "46ecc315c51b4d72dccfc11187f854f12296e992590e944819654858bf21f521"
+  },
+  "error_code": 1007,
+  "error_name": "E_ATTESTATION_INVALID",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 300000,
+    "description": "G4 Autonomous — periodic heartbeat (≤ 30min)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G4",
+    "max_staleness_ms": 1800000,
+    "produced_at": "2026-03-15T11:55:00Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-TAMPERED-PRESENCE-HEARTBEAT-ONLY-BAD-SIGNATURE",
+  "nonce_b64u": "exvxEBI6U-3HdvwLZw8u5Q",
+  "notes": "Even at G4 (lowest in-place strength), a signature failure forces `E_ATTESTATION_INVALID` rather than lenient acceptance.",
+  "requirements_validated": [
+    "5.1",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "presence-heartbeat-only",
+  "state": "tampered",
+  "summary": "Tampered heartbeat: outer signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+  "tamper": "bad-signature",
+  "vector_name": "tampered-presence-heartbeat-only-bad-signature",
+  "verdict": "attestation-invalid"
+}

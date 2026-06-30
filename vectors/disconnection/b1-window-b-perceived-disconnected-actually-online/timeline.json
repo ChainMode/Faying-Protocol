@@ -1,0 +1,147 @@
+{
+  "vector_id": "b1-window-b-perceived-disconnected-actually-online",
+  "title": "窗口 B：iFay 实际在线但被感知为失联，协议层悲观推定拒绝",
+  "spec_refs": ["§9.8 矩阵第 3 行（窗口 B）", "§9.9 悲观推定原则", "P17.1", "P17.2"],
+  "requirements": ["12.1", "12.2"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:04:00Z",
+    "reconcile_result": "success",
+    "post_state": "Active"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:05:00Z", "value": false }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:04:00Z", "value": true },
+    { "from": "2025-11-25T08:04:00Z", "to": "2025-11-25T08:05:00Z", "value": false }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-b1-001",
+    "issuer": "fay:hp/carol",
+    "subject": "fay:if/assistant-11",
+    "scope": {
+      "domains": ["docs.example.com"],
+      "actions": ["docs.read", "docs.write"],
+      "terminals": ["device-tablet-01"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh", "face-continuous"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["docs.example.com"],
+        "actions": ["docs.read"],
+        "terminals": ["device-tablet-01"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    {
+      "seq": 1,
+      "t": "2025-11-25T08:00:00Z",
+      "actor": "MS",
+      "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-b1-001", "state": "Active" }
+    },
+    {
+      "seq": 2,
+      "t": "2025-11-25T08:01:00Z",
+      "actor": "PC",
+      "type": "PresenceHeartbeatLoss",
+      "payload": { "reason": "transient-network-jitter", "actually_online": true }
+    },
+    {
+      "seq": 3,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "PresenceStaleDetected",
+      "payload": {
+        "elapsed_ms": 60001,
+        "actually_online": true,
+        "note": "窗口 B：iFay 实际在线，但 PresenceSignal 已超 max_staleness_ms"
+      }
+    },
+    {
+      "seq": 4,
+      "t": "2025-11-25T08:02:00Z",
+      "actor": "MS",
+      "type": "MandateStateTransition",
+      "payload": {
+        "from": "Active",
+        "to": "Disconnected",
+        "trigger": "悲观推定：Perceived_Disconnected=true ⇒ 视为已失联"
+      }
+    },
+    {
+      "seq": 5,
+      "t": "2025-11-25T08:02:30Z",
+      "actor": "IF",
+      "type": "OutboundCall",
+      "payload": {
+        "action": "docs.write",
+        "verdict": "rejected-by-RP",
+        "error": "E_PRESENCE_STALE",
+        "note": "实际在线 ≠ 协议层放行；窗口 B 不得乐观放行"
+      }
+    },
+    {
+      "seq": 6,
+      "t": "2025-11-25T08:03:00Z",
+      "actor": "IF",
+      "type": "EndorsedAction",
+      "payload": {
+        "action": "docs.read",
+        "verdict": "allowed-locally",
+        "endorsement_id": "endorsement-b1-001",
+        "note": "落在 endorsed_scope 内 ⇒ Endorsed_Mandate 路径允许"
+      }
+    },
+    {
+      "seq": 7,
+      "t": "2025-11-25T08:04:00Z",
+      "actor": "IF",
+      "type": "ReconcileRequest",
+      "payload": {
+        "msg_type": "RECONCILE_REQUEST",
+        "mandate_id": "mandate-b1-001",
+        "endorsed_actions": [
+          { "action": "docs.read", "ts": "2025-11-25T08:03:00Z", "endorsement_id": "endorsement-b1-001" }
+        ]
+      }
+    },
+    {
+      "seq": 8,
+      "t": "2025-11-25T08:04:01Z",
+      "actor": "MS",
+      "type": "ReconcileResponse",
+      "payload": {
+        "msg_type": "RECONCILE_RESP",
+        "status": "success",
+        "revoked_mandates": [],
+        "presence_state": "fresh",
+        "pending_grade_switch": null,
+        "pending_revoke": null,
+        "hp_directives": []
+      }
+    },
+    {
+      "seq": 9,
+      "t": "2025-11-25T08:04:01Z",
+      "actor": "MS",
+      "type": "MandateStateTransition",
+      "payload": { "from": "Disconnected", "to": "Active", "trigger": "Reconcile success" }
+    }
+  ]
+}

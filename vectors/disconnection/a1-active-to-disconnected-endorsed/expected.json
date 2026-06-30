@@ -1,0 +1,62 @@
+{
+  "final_state": "Disconnected",
+  "reconcile_result": "n/a",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Disconnected"
+  },
+  "audit_chain": [
+    {
+      "seq": 1,
+      "event": "MandateIssued",
+      "ts": "2025-11-25T08:00:00Z",
+      "mandate_id": "mandate-a1-001",
+      "issuer": "fay:hp/alice",
+      "endorsement_present": true
+    },
+    {
+      "seq": 2,
+      "event": "PresenceStaleDetected",
+      "ts": "2025-11-25T08:02:00Z",
+      "mandate_id": "mandate-a1-001",
+      "elapsed_ms": 60001
+    },
+    {
+      "seq": 3,
+      "event": "MandateStateTransition",
+      "ts": "2025-11-25T08:02:00Z",
+      "mandate_id": "mandate-a1-001",
+      "from": "Active",
+      "to": "Disconnected"
+    },
+    {
+      "seq": 4,
+      "event": "EndorsedActionPerformed",
+      "ts": "2025-11-25T08:03:00Z",
+      "mandate_id": "mandate-a1-001",
+      "endorsement_id": "endorsement-a1-001",
+      "action": "calendar.read",
+      "accountable_party": "fay:hp/alice"
+    },
+    {
+      "seq": 5,
+      "event": "EndorsedActionRejected",
+      "ts": "2025-11-25T08:03:30Z",
+      "mandate_id": "mandate-a1-001",
+      "action": "calendar.create",
+      "error": "E_SCOPE_VIOLATION",
+      "accountable_party": "fay:hp/alice"
+    }
+  ],
+  "expected_errors": [
+    { "code": "E_SCOPE_VIOLATION", "context": "Disconnected 期间 IF 自检超出 endorsed_scope 的动作" }
+  ],
+  "rp_calls_during_window": [],
+  "invariants_checked": [
+    "§4.3 状态机：endorsement.enabled=true ⇒ Active → Disconnected（非 Suspended）",
+    "§7.5 endorsed_scope 约束：calendar.create 不在 endorsed_scope.actions ⇒ 拒绝",
+    "§8.3 责任承接端不变：accountable_party = Mandate.issuer"
+  ]
+}

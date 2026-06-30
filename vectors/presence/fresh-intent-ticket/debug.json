@@ -1,0 +1,37 @@
+{
+  "device-attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$bytes": "cHJlc2VuY2UtZGV2aWNlLWF0dGVzdGF0aW9uOmRldmljZS1mcmVzaC1pbnRlbnQtdGlja2V0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "tZg5vD-KHlruV6vMdvuW73UyTNyc8WCS_Mp56GZn3mY"
+      },
+      "sig": {
+        "$bytes": "Yp4F4D8AmNnyRHalGLgrIApu0gcYWhuPEcRrPjgyXiTwib4ZR1aj3Kx56-ahlPJrXznSulLioqifvVcykzIGDg"
+      }
+    },
+    "signer": "presence-device:device-fresh-intent-ticket"
+  },
+  "device-id": "presence-device:vector-fresh-intent-ticket",
+  "mandate-id": "01HXMNDT-PRESENCE-FRESH-INTENT-TICKET",
+  "nonce": {
+    "$bytes": "B0dHJ-tIRtM4puXlFAAiSg"
+  },
+  "produced-at": {
+    "$tag": 0,
+    "$value": "2026-03-15T11:58:30Z"
+  },
+  "signal-type": "intent-ticket",
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$bytes": "8jYY1as8PzQas1nkuyJKBp36etQo7VGVmmucz7NpgMc"
+    },
+    "sig": {
+      "$bytes": "QUN6eL3WGup42Fy2NHQtz3LJresmRXTk6ro98yUCGjGDYHov--NMLza6RDio3pi5yAu1kp3X5rScGTc8qJWKCA"
+    }
+  }
+}

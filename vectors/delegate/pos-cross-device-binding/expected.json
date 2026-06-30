@@ -1,0 +1,70 @@
+{
+  "chain_depth": 1,
+  "child_mandate_id": "01HXMNDT-CHILD-POS_CROSS_DEVICE_BINDING",
+  "convergence_assertions": {
+    "child_grade_autonomy_le_parent": true,
+    "child_scope_subset_of_parent": true,
+    "child_terminal_subset_of_parent_terminals": true
+  },
+  "device_id_bound": "terminal:phone:mobile-2",
+  "digests": {
+    "request_cbor_sha256": "8954fa8fa337dc88d2cb1761031ab876e71c33432fc6d9505fd65dc1ea689bcc",
+    "request_json_sha256": "029f9ab89755aac0de51ff900f8facc48f5a398b12a12c86bf40a56cc48c9977",
+    "request_signing_input_sha256": "5b80b83316c9ac5a0700a21911978540b4cf973a85f4c2310417e462bcd8be85",
+    "response_cbor_sha256": "d1fc5e5815d23b29cead2e8d35314ac831a52d6075186a03721875654ba4529f",
+    "response_json_sha256": "300e8ca23239221c0a086b512a7f83b7ac9c8ff24bbd4b29f3c66df822a3c961"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "positive",
+  "notes": "Cross-device binding is the operational reason DELEGATE exists at all. design.md §9.3 mandates that a Mandate be bound to its issuing device's `device_id` and `device_attestation`; cross-device reuse must take the DELEGATE path so a fresh device-bound child Mandate is issued (Requirement 9.2 acceptance items 1–2).",
+  "outcome": "accepted",
+  "parent_mandate_id": "01HXMNDT-PARENT-POS_CROSS_DEVICE_BINDING",
+  "parent_mandate_id_in_response": "01HXMNDT-PARENT-POS_CROSS_DEVICE_BINDING",
+  "post_state": {
+    "chain_depth": 1,
+    "chain_walk": [
+      "hp-root",
+      "chain[0]:hp-root:ms-cert",
+      "chain[1]:parent-0:outer-sig",
+      "child:outer-sig"
+    ],
+    "child_grade": "G2",
+    "child_mandate_id": "01HXMNDT-CHILD-POS_CROSS_DEVICE_BINDING",
+    "mandate_status": "Active",
+    "parent_mandate_id": "01HXMNDT-PARENT-POS_CROSS_DEVICE_BINDING",
+    "presence_req_max_staleness_ms": 60000
+  },
+  "requirements_validated": [
+    "7.1",
+    "9.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_chain": {
+    "anchors_root": true,
+    "labels": [
+      "hp-root:ms-cert",
+      "parent-0:outer-sig"
+    ],
+    "length": 2
+  },
+  "signature_verification": {
+    "child_mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Depth-1 cross-device DELEGATE: claims.device_id binds the child Mandate to terminal:phone:mobile-2 (a member of parent.scope.terminals). Validates Requirement 9.2: each Mandate is bound to a specific iFay device and cross-device use must go through DELEGATE.",
+  "vector_name": "pos-cross-device-binding"
+}

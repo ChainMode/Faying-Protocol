@@ -1,0 +1,68 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE"
+  ],
+  "audit_event": {
+    "error_code": 1006,
+    "mandate_id": "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE",
+    "notes": "Per design.md §EH.3, E_REVOKED is one of the four errors that MUST be pushed into HP's view channel (critical bucket). Per Requirement 9.4.1, the iFay must immediately stop D-dimension actions on receipt of REVOKE-NOTIFY.",
+    "reason": "E_REVOKED — call presented an already-Revoked Mandate",
+    "rp_id": "rp:vector-neg-use-after-revoke",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:30:00Z"
+    }
+  },
+  "cascade": true,
+  "digests": {
+    "request_cbor_sha256": "212c355d01ec4ad3a7e05716727072132450c1747cac7bda79406d377305b0f8",
+    "request_json_sha256": "ac390bb954df654e153810973de2b85137c62aec4765fce6c2e6cac1b9b1696a",
+    "request_signing_input_sha256": "42b678f94479fdbed7b154c4ad566946300d7aabfb5d0bf95c0e6fd86db29e99",
+    "response_cbor_sha256": "baa4fe3e3e1c24b2d952acf4f8f5c5a55ab05bda53b3c49721489b065f102818",
+    "response_json_sha256": "9ddadec933449dacd5962f7cb13bcdbd403a0e172e429fe22c46ed4612ba1c56"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": 1006,
+  "error_name": "E_REVOKED",
+  "error_response_constraints": {
+    "no_ms_internal_state": true,
+    "no_other_hp_identifiers": true,
+    "no_private_key_fingerprint": true
+  },
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "negative",
+  "notes": "Couples Requirement 4.3 (irreversibility) with §EH.3 (audit and HP view channel routing for E_REVOKED). The error claims field carries `mandate_id` so auditors can reconstruct the five-tuple (error_code, mandate_id, ts, rp_id, reason).",
+  "outcome": "rejected",
+  "post_state": {
+    "hp_view_channel_priority": "critical",
+    "hp_view_channel_pushed": true,
+    "if_side_effect": "stop D-dimension immediately",
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "rp_side_effect": "no D-dimension action permitted",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "human-initiated",
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Use-after-revoke: presenting a Revoked Mandate yields an ERROR response with code=1006 / name=E_REVOKED. The ERROR is pushed to HP's view channel in the critical bucket (§EH.3). Validates Requirement 9.4.1.",
+  "target_mandate_id": "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE",
+  "vector_name": "neg-use-after-revoke"
+}

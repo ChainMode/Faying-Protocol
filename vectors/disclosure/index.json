@@ -1,0 +1,253 @@
+{
+  "spec": "Faying Protocol/1.0",
+  "section_refs": [
+    "§5.3.7",
+    "§9.10.4 T3"
+  ],
+  "requirement": "13.3",
+  "property_ref": "P18.3 (Disclosure_Mandatory_Fields)",
+  "encoding": {
+    "cbor": "RFC 8949 Deterministic CBOR (§4.2.1); on-the-wire keys kebab-case",
+    "json": "application/fap+json; bytes encoded as { \"$b64u\": <base64url-no-pad> }"
+  },
+  "case_legend": {
+    "a": "全字段合法 DISCLOSURE",
+    "b": "单 mandatory_field 缺失 → E_PROTOCOL",
+    "c": "字段不可解析（枚举越界）→ E_PROTOCOL",
+    "d": "高敏感动作未前置披露即执行 → 拒绝",
+    "e": "DISCLOSURE 与实际动作不一致 → ego-deviation Revoke",
+    "f": "Disconnected 期间 DISCLOSURE 必带 endorsement_id"
+  },
+  "case_coverage": {
+    "a": [
+      "01-accepted-low-risk-report",
+      "02-accepted-normal-risk-report"
+    ],
+    "b": [
+      "03-missing-action",
+      "04-missing-scope-used",
+      "05-missing-risk-level",
+      "06-missing-reversibility",
+      "07-missing-affected-resources",
+      "08-missing-uncertainty-flags"
+    ],
+    "c": [
+      "09-unparseable-risk-level",
+      "10-unparseable-reversibility"
+    ],
+    "d": [
+      "11-high-risk-no-prior-disclosure"
+    ],
+    "e": [
+      "12-inconsistent-disclosure-ego-deviation"
+    ],
+    "f": [
+      "13-disconnected-with-endorsement-id-accepted",
+      "14-disconnected-missing-endorsement-id",
+      "15-disconnected-bogus-endorsement-id"
+    ]
+  },
+  "vectors": [
+    {
+      "id": "01-accepted-low-risk-report",
+      "case": "a",
+      "title": "全字段合法 DISCLOSURE（low risk, report）",
+      "outcome": "accepted",
+      "files": {
+        "disclosure_cbor": "01-accepted-low-risk-report/disclosure.cbor",
+        "disclosure_json": "01-accepted-low-risk-report/disclosure.json",
+        "context": "01-accepted-low-risk-report/context.json",
+        "expected": "01-accepted-low-risk-report/expected.json"
+      },
+      "cbor_size_bytes": 796
+    },
+    {
+      "id": "02-accepted-normal-risk-report",
+      "case": "a",
+      "title": "全字段合法 DISCLOSURE（normal risk, free_text 辅助）",
+      "outcome": "accepted",
+      "files": {
+        "disclosure_cbor": "02-accepted-normal-risk-report/disclosure.cbor",
+        "disclosure_json": "02-accepted-normal-risk-report/disclosure.json",
+        "context": "02-accepted-normal-risk-report/context.json",
+        "expected": "02-accepted-normal-risk-report/expected.json"
+      },
+      "cbor_size_bytes": 872
+    },
+    {
+      "id": "03-missing-action",
+      "case": "b",
+      "title": "缺失 mandatory_field: action → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "03-missing-action/disclosure.cbor",
+        "disclosure_json": "03-missing-action/disclosure.json",
+        "context": "03-missing-action/context.json",
+        "expected": "03-missing-action/expected.json"
+      },
+      "cbor_size_bytes": 771
+    },
+    {
+      "id": "04-missing-scope-used",
+      "case": "b",
+      "title": "缺失 mandatory_field: scope_used → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "04-missing-scope-used/disclosure.cbor",
+        "disclosure_json": "04-missing-scope-used/disclosure.json",
+        "context": "04-missing-scope-used/context.json",
+        "expected": "04-missing-scope-used/expected.json"
+      },
+      "cbor_size_bytes": 731
+    },
+    {
+      "id": "05-missing-risk-level",
+      "case": "b",
+      "title": "缺失 mandatory_field: risk_level → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "05-missing-risk-level/disclosure.cbor",
+        "disclosure_json": "05-missing-risk-level/disclosure.json",
+        "context": "05-missing-risk-level/context.json",
+        "expected": "05-missing-risk-level/expected.json"
+      },
+      "cbor_size_bytes": 781
+    },
+    {
+      "id": "06-missing-reversibility",
+      "case": "b",
+      "title": "缺失 mandatory_field: reversibility → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "06-missing-reversibility/disclosure.cbor",
+        "disclosure_json": "06-missing-reversibility/disclosure.json",
+        "context": "06-missing-reversibility/context.json",
+        "expected": "06-missing-reversibility/expected.json"
+      },
+      "cbor_size_bytes": 771
+    },
+    {
+      "id": "07-missing-affected-resources",
+      "case": "b",
+      "title": "缺失 mandatory_field: affected_resources → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "07-missing-affected-resources/disclosure.cbor",
+        "disclosure_json": "07-missing-affected-resources/disclosure.json",
+        "context": "07-missing-affected-resources/context.json",
+        "expected": "07-missing-affected-resources/expected.json"
+      },
+      "cbor_size_bytes": 739
+    },
+    {
+      "id": "08-missing-uncertainty-flags",
+      "case": "b",
+      "title": "缺失 mandatory_field: uncertainty_flags → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "08-missing-uncertainty-flags/disclosure.cbor",
+        "disclosure_json": "08-missing-uncertainty-flags/disclosure.json",
+        "context": "08-missing-uncertainty-flags/context.json",
+        "expected": "08-missing-uncertainty-flags/expected.json"
+      },
+      "cbor_size_bytes": 777
+    },
+    {
+      "id": "09-unparseable-risk-level",
+      "case": "c",
+      "title": "risk_level 不在枚举（'extreme'）→ E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "09-unparseable-risk-level/disclosure.cbor",
+        "disclosure_json": "09-unparseable-risk-level/disclosure.json",
+        "context": "09-unparseable-risk-level/context.json",
+        "expected": "09-unparseable-risk-level/expected.json"
+      },
+      "cbor_size_bytes": 800
+    },
+    {
+      "id": "10-unparseable-reversibility",
+      "case": "c",
+      "title": "reversibility 不在枚举（'maybe'）→ E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "10-unparseable-reversibility/disclosure.cbor",
+        "disclosure_json": "10-unparseable-reversibility/disclosure.json",
+        "context": "10-unparseable-reversibility/context.json",
+        "expected": "10-unparseable-reversibility/expected.json"
+      },
+      "cbor_size_bytes": 791
+    },
+    {
+      "id": "11-high-risk-no-prior-disclosure",
+      "case": "d",
+      "title": "高敏感动作（risk_level=high）未前置披露即执行 → 拒绝",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "11-high-risk-no-prior-disclosure/disclosure.cbor",
+        "disclosure_json": "11-high-risk-no-prior-disclosure/disclosure.json",
+        "context": "11-high-risk-no-prior-disclosure/context.json",
+        "expected": "11-high-risk-no-prior-disclosure/expected.json"
+      },
+      "cbor_size_bytes": 874
+    },
+    {
+      "id": "12-inconsistent-disclosure-ego-deviation",
+      "case": "e",
+      "title": "DISCLOSURE 与实际动作不一致 → ego-deviation Revoke",
+      "outcome": "ego-deviation-revoke",
+      "files": {
+        "disclosure_cbor": "12-inconsistent-disclosure-ego-deviation/disclosure.cbor",
+        "disclosure_json": "12-inconsistent-disclosure-ego-deviation/disclosure.json",
+        "context": "12-inconsistent-disclosure-ego-deviation/context.json",
+        "expected": "12-inconsistent-disclosure-ego-deviation/expected.json"
+      },
+      "cbor_size_bytes": 838
+    },
+    {
+      "id": "13-disconnected-with-endorsement-id-accepted",
+      "case": "f",
+      "title": "Disconnected 期间 DISCLOSURE 携带合法 endorsement_id → accepted",
+      "outcome": "accepted",
+      "files": {
+        "disclosure_cbor": "13-disconnected-with-endorsement-id-accepted/disclosure.cbor",
+        "disclosure_json": "13-disconnected-with-endorsement-id-accepted/disclosure.json",
+        "context": "13-disconnected-with-endorsement-id-accepted/context.json",
+        "expected": "13-disconnected-with-endorsement-id-accepted/expected.json"
+      },
+      "cbor_size_bytes": 914
+    },
+    {
+      "id": "14-disconnected-missing-endorsement-id",
+      "case": "f",
+      "title": "Disconnected 期间 DISCLOSURE 缺 endorsement_id → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "14-disconnected-missing-endorsement-id/disclosure.cbor",
+        "disclosure_json": "14-disconnected-missing-endorsement-id/disclosure.json",
+        "context": "14-disconnected-missing-endorsement-id/context.json",
+        "expected": "14-disconnected-missing-endorsement-id/expected.json"
+      },
+      "cbor_size_bytes": 859
+    },
+    {
+      "id": "15-disconnected-bogus-endorsement-id",
+      "case": "f",
+      "title": "Disconnected 期间 DISCLOSURE 携带不存在的 endorsement_id → E_PROTOCOL",
+      "outcome": "E_PROTOCOL",
+      "files": {
+        "disclosure_cbor": "15-disconnected-bogus-endorsement-id/disclosure.cbor",
+        "disclosure_json": "15-disconnected-bogus-endorsement-id/disclosure.json",
+        "context": "15-disconnected-bogus-endorsement-id/context.json",
+        "expected": "15-disconnected-bogus-endorsement-id/expected.json"
+      },
+      "cbor_size_bytes": 905
+    }
+  ],
+  "outcomes_present": [
+    "E_PROTOCOL",
+    "accepted",
+    "ego-deviation-revoke"
+  ],
+  "stub_signature_disclaimer": "Signatures and attestations in these vectors are deterministic stubs; they exist only to keep the envelope CDDL-valid. Cryptographic verification is covered by vectors/encoding-equivalence/ (task 3.7) and conformance/dim_signing/ (task 5.3)."
+}

@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1007,
+    "mandate_id": "mnd:01HXR00000000000TAMPERED",
+    "reason": "Attestation Chain 节点签名校验失败 / endorsement 篡改",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1007,
+  "must-push-hp-view": true,
+  "name": "E_ATTESTATION_INVALID",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "Attestation Chain 节点签名校验失败 / endorsement 篡改",
+  "trace": [
+    "R3.1.3",
+    "R11.1.4"
+  ]
+}

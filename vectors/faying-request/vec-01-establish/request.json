@@ -1,0 +1,61 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-01-establish:01HZZ0000000000000000sh",
+    "issued_at": "2026-01-15T09:00:00Z",
+    "expiry": "2026-01-15T09:01:00Z",
+    "nonce": {
+      "$b64": "bYP4drcJ24aq2WDOjREa1Q=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 3,
+    "reason": "iFay 请求初次建立 Faying：开始一段持续监护关系",
+    "reason_code": "establish",
+    "expected_lifetime_ms": 43200000
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTAxLWVzdGFibGlzaDowMUhaWjAwMDAwMDAwMDAwMDAwMDBzaA=="
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "lIFoQ/oJ3B1viTkgOoqCfNVI7MozVJOL9MSMltvYkU8YF2xhpFccodpRMvnyZ/0fpc5xtJy13Ma6kVVC9iExAQ=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "Udp4oOm9yT9yGZYg8PivftDfRDlSKRPE7OTO+adlHTI9sRkjLftWiGreIDigMCmBc6iJCJuCWbxUopxc1exqDA=="
+    }
+  }
+}

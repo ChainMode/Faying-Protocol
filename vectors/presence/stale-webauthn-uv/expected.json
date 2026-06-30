@@ -1,0 +1,39 @@
+{
+  "device_id": "presence-device:vector-stale-webauthn-uv",
+  "digests": {
+    "signal_cbor_sha256": "a6e4e5bc559894262aadc825bd37aa7b7a2da12d776c056244bb6fcf4468696b",
+    "signal_json_sha256": "614ef1288f302c45620b5169f98834dafe83ed8d9ec4964c9d1dfc7bb5d7a0ec",
+    "signing_input_sha256": "49225c03755aa959863989245e1062359d76a9522d63d154263af82ffbd950fb"
+  },
+  "error_code": 1005,
+  "error_name": "E_PRESENCE_STALE",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 11000,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:49Z",
+    "within_budget": false
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-STALE-WEBAUTHN-UV",
+  "nonce_b64u": "Em_p2UCJlw3xWejlG3LXxA",
+  "notes": "Demonstrates Requirement 5.1 #2 and §EH.1 row `E_PRESENCE_STALE`: produced_at + freshness_window < now.",
+  "requirements_validated": [
+    "5.1",
+    "5.2",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "webauthn-uv-fresh",
+  "state": "stale",
+  "summary": "Stale webauthn-uv-fresh signal at G1 (age 11s > 5s); verifier MUST reject with verdict=stale.",
+  "tamper": null,
+  "vector_name": "stale-webauthn-uv",
+  "verdict": "stale"
+}

@@ -1,0 +1,35 @@
+{
+  "algorithm": "ML-DSA-65",
+  "digests": {
+    "request_sha256": "9e1aa2e8af841fd84105ad840012803dad7e96fea0485919d1dea29291224cb6",
+    "request_signing_input_sha256": "0f66a8d2213c82d0dfbe37a57fd3dca0d164936c8bae6935cdd73303efb84ba7",
+    "response_sha256": "c2dc62a67ee6f69eca25e2412610806faaf9cdc3bb2a8e15f3fe4e8654e14cc6"
+  },
+  "encoding": "cbor",
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "positive",
+  "mandate_id": "01HXMNDT-BOOTSTRAP-MLDSA65-CBOR",
+  "notes": "Positive BOOTSTRAP vector. Issuance is contingent on a valid human_witness (WebAuthn assertion); the issued Mandate has a finite not_after, presence_req, and grade=2 (Moderate). The ML-DSA-65 signature blob is a deterministic placeholder (see README.md §Signature policy).",
+  "outcome": "accepted",
+  "requirements_validated": [
+    "2.2",
+    "6.1",
+    "8.1",
+    "10.1",
+    "10.2",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": false,
+    "note": "Placeholder ML-DSA-65 signature; format-only check. See README.md for the rationale.",
+    "request_envelope": false,
+    "response_envelope": false
+  },
+  "summary": "Valid BOOTSTRAP request signed with ML-DSA-65, encoded as CBOR, successfully issuing a Mandate.",
+  "vector_name": "pos-cbor-ml-dsa-65"
+}

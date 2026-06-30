@@ -1,0 +1,37 @@
+{
+  "device-attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$bytes": "cHJlc2VuY2UtZGV2aWNlLWF0dGVzdGF0aW9uOmRldmljZS10YW1wZXJlZC1pbnRlbnQtdGlja2V0LXJlcGxheQ"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "_KMSl6L9tk_PR8F2vftkLiPOq2QUL5c5gsco9rT1tWU"
+      },
+      "sig": {
+        "$bytes": "ciJ3H7UdlkqQ0lxhWT3yV7vzqh6egkYpyq_9WMP95zx1nY9OVGq7tI-xEQ2PimWccNts6YROppl6IweU8bmGDg"
+      }
+    },
+    "signer": "presence-device:device-tampered-intent-ticket-replay"
+  },
+  "device-id": "presence-device:vector-tampered-intent-ticket-replay",
+  "mandate-id": "01HXMNDT-PRESENCE-TAMPERED-INTENT-TICKET-REPLAY",
+  "nonce": {
+    "$bytes": "KtkVAIxOcIIhEkFXrsasPw"
+  },
+  "produced-at": {
+    "$tag": 0,
+    "$value": "2026-03-15T11:59:00Z"
+  },
+  "signal-type": "intent-ticket",
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$bytes": "7fsR15-V8mA8YV2kCsnqjusvOYnPr_O1RuizQJy4Qxc"
+    },
+    "sig": {
+      "$bytes": "lZDkHHJbdL2vWz28bL_67c0gaoyWO8vMsjOsPnHJ3WeAiTitEakOKwfZ_mETw8N-OQhM1fnF6e6as8hoFmd7CQ"
+    }
+  }
+}

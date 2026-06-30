@@ -1,0 +1,53 @@
+{
+  "final_state": "Suspended",
+  "reconcile_result": "n/a",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Suspended"
+  },
+  "audit_chain": [
+    {
+      "seq": 1,
+      "event": "MandateIssued",
+      "ts": "2025-11-25T08:00:00Z",
+      "mandate_id": "mandate-a2-001",
+      "issuer": "fay:hp/bob",
+      "endorsement_present": false
+    },
+    {
+      "seq": 2,
+      "event": "PresenceStaleDetected",
+      "ts": "2025-11-25T08:02:00Z",
+      "mandate_id": "mandate-a2-001"
+    },
+    {
+      "seq": 3,
+      "event": "MandateStateTransition",
+      "ts": "2025-11-25T08:02:00Z",
+      "mandate_id": "mandate-a2-001",
+      "from": "Active",
+      "to": "Suspended",
+      "trigger": "on-loss=suspend"
+    },
+    {
+      "seq": 4,
+      "event": "RPCallRejected",
+      "ts": "2025-11-25T08:03:00Z",
+      "mandate_id": "mandate-a2-001",
+      "action": "mail.read",
+      "error": "E_PRESENCE_STALE"
+    }
+  ],
+  "expected_errors": [
+    { "code": "E_PRESENCE_STALE", "context": "Suspended 期间任何 D 维度调用必拒" }
+  ],
+  "rp_calls_during_window": [
+    { "ts": "2025-11-25T08:03:00Z", "verdict": "rejected", "error": "E_PRESENCE_STALE" }
+  ],
+  "invariants_checked": [
+    "§4.3 状态机：非 Endorsed_Mandate ∧ on-loss=suspend ⇒ Active → Suspended（非 Disconnected）",
+    "§9.9 悲观推定：协议层只看 Perceived_Disconnected"
+  ]
+}

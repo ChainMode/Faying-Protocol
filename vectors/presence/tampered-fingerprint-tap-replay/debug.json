@@ -1,0 +1,37 @@
+{
+  "device-attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$bytes": "cHJlc2VuY2UtZGV2aWNlLWF0dGVzdGF0aW9uOmRldmljZS10YW1wZXJlZC1maW5nZXJwcmludC10YXAtcmVwbGF5"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "V3s3W8qWN2dFuwIgvDmVJ675WapuhtGXoqZ7lZv5y6w"
+      },
+      "sig": {
+        "$bytes": "-fxcCd6V0q6fcDA8Mne7pkEBbGOkiquQcaSYgLflNthX2wBz3gD9-QUyWAFXkCnP1LZ_BIeH4ySRNeM0-q4QBQ"
+      }
+    },
+    "signer": "presence-device:device-tampered-fingerprint-tap-replay"
+  },
+  "device-id": "presence-device:vector-tampered-fingerprint-tap-replay",
+  "mandate-id": "01HXMNDT-PRESENCE-TAMPERED-FINGERPRINT-TAP-REPLAY",
+  "nonce": {
+    "$bytes": "86uaZDCarQfSVzEX1QN2fQ"
+  },
+  "produced-at": {
+    "$tag": 0,
+    "$value": "2026-03-15T11:59:50Z"
+  },
+  "signal-type": "fingerprint-tap",
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$bytes": "EJce1OwLCTzlxqaacxNwi4G_smxYZxSKWBfmH2j9KsE"
+    },
+    "sig": {
+      "$bytes": "L0vc1U6yEKpHnEiH1cVYNgd_t0VyRABL_ArtsSCH06WRDHob6DfzUZqz_Rjn0eslx7mP5y_J1IexMUqnF4SdDA"
+    }
+  }
+}

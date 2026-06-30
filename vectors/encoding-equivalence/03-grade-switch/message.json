@@ -1,0 +1,39 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": "YXR0ZXN0YXRpb24tcGF5bG9hZC1wbGFjZWhvbGRlci12MQ",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+      "sig": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "signer": "ms:demo-mandate-service"
+  },
+  "claims": {
+    "human-witness": {
+      "authenticator-data": "BQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQ",
+      "client-data-json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQkIiLCJvcmlnaW4iOiJodHRwczovL2V4YW1wbGUub3JnIn0",
+      "credential-id": "d2ViYXV0aG4tY3JlZGVudGlhbC1pZC1ieXRlcy0zMmI",
+      "signature": "BgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBg"
+    },
+    "mandate-id": "mdt:01HX8K3F2Q7JX9V5N6T4R8M3PD",
+    "reason": "human-initiated",
+    "target-grade": 1
+  },
+  "header": {
+    "expiry": "2025-11-25T10:01:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:00:00Z",
+    "issuer": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "msg-id": "msg:01HX8K3F2Q7JX9V5N6T4R8MC003",
+    "msg-type": "GRADE_SWITCH",
+    "nonce": "ICEiIyQlJicoKTAxMjM0NQ",
+    "subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+    "sig": "mSh-8mCruR25S-dz0xVKuPzE4cT40LqYrY2tBvlzd8MceiOZd4_DtPKsqrbSrRP4901vEg9nAINi58bqJ7ptCA"
+  }
+}

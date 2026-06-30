@@ -1,0 +1,56 @@
+{
+  "current_grade": "G1",
+  "digests": {
+    "request_cbor_sha256": "1f6ea85c8b5b65ab8e46d2aaa8ef0a63d2946cbf22c02bcba62df406874cd1d1",
+    "request_json_sha256": "5530723dcb28ec06d669dcc389cdada9754e3cd91dcbfc7759a4f6d0b91a8a64",
+    "request_signing_input_sha256": "bc4a53e73445d740e5cc93029c01f3cd101f198edc61f468475a3413401aa299",
+    "response_cbor_sha256": "c16ee5a438fce9aebee3775a2a39c0de4e7f1ad862394e3118262372216e99f2",
+    "response_json_sha256": "67b009daa0c97b6f67e1ded6a850d6c85d3a236b00216f13582cf1cdeaf807db"
+  },
+  "direction": "override",
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "final_state": "Suspended",
+  "mandate_id": "01HXMNDT-GS-OVERRIDE_G0_FROM_G1",
+  "ms_priority": "highest",
+  "notes": "G0 Emergency Override is the only path on which a Mandate transitions to Suspended without an in-band degradation. human_witness MUST be present (§7.4 line 3); RR notification carries highest priority (§EH.3).",
+  "outcome": "accepted",
+  "post_state": {
+    "grade": "G1",
+    "mandate_status": "Suspended",
+    "note": "G0 is a unilateral override channel orthogonal to G1-G4; the Mandate.grade snapshot is unchanged but the Mandate's status is Suspended."
+  },
+  "request_must_carry_human_witness": true,
+  "requirements_validated": [
+    "6.1",
+    "6.2",
+    "6.3",
+    "10.1",
+    "10.3"
+  ],
+  "rr_notification": "highest",
+  "signature_verification": {
+    "mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. WebAuthn human_witness blobs are deterministic placeholders (see README); verifiers MUST treat their bytes as opaque and only validate structural presence.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "G0 Emergency Override from G1 → Suspended; HP unilateral channel with mandatory human_witness.",
+  "target_grade": "G0",
+  "trigger_matrix": {
+    "current_grade": "G1",
+    "event": "g0-override",
+    "expected_outcome": "Suspended"
+  },
+  "vector_name": "override-g0-from-g1"
+}

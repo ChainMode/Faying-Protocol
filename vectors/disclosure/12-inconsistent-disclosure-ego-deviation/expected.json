@@ -1,0 +1,13 @@
+{
+  "audit_notes": [
+    "Disclosure asserts read:user-profile / low / reversible.",
+    "Audit-log shows storage:delete-object / high / irreversible.",
+    "Mandate MUST be revoked with RevokeReason='ego-deviation' (§9.10.4 T3 #4).",
+    "Triggers E_REVOKED on subsequent calls under this mandate_id."
+  ],
+  "case": "e",
+  "ms_action": "revoke-mandate + push-to-hp-view",
+  "outcome": "ego-deviation-revoke",
+  "revoke_reason": "ego-deviation",
+  "vector_id": "12-inconsistent-disclosure-ego-deviation"
+}

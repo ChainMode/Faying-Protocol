@@ -1,0 +1,107 @@
+{
+  "vector_id": "e1-endorsed-lifetime-soft-timeout",
+  "title": "endorsed_lifetime 软超时强约束：即使 IF 仍物理断开也立即 Revoked",
+  "spec_refs": ["§4.3 Disconnected → Revoked", "§7.5 lifetime 有限 + 软超时强约束", "附录 B.6", "P16.4", "P17.5"],
+  "requirements": ["11.3", "12.5"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Revoked"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T13:00:00Z", "value": true }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T13:00:00Z", "value": true }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-e1-001",
+    "issuer": "fay:hp/karl",
+    "subject": "fay:if/assistant-41",
+    "scope": {
+      "domains": ["robot.example.com"],
+      "actions": ["robot.scan", "robot.move"],
+      "terminals": ["device-drone-01"]
+    },
+    "grade": { "level": "G3-Supervised", "autonomy": 3 },
+    "presence_req": {
+      "signal_types": ["presence-heartbeat-only"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["robot.example.com"],
+        "actions": ["robot.scan"],
+        "terminals": ["device-drone-01"]
+      },
+      "endorsed_grade": { "level": "G4-Autonomous", "autonomy": 4 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    { "seq": 1, "t": "2025-11-25T08:00:00Z", "actor": "MS", "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-e1-001", "state": "Active",
+                   "endorsed_lifetime_ms": 14400000,
+                   "endorsement_expires_at": "2025-11-25T12:00:00Z" } },
+
+    { "seq": 2, "t": "2025-11-25T08:01:30Z", "actor": "IF", "type": "PhysicalDisconnect",
+      "payload": { "reason": "remote-area-no-coverage" } },
+
+    { "seq": 3, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Active", "to": "Disconnected" } },
+
+    { "seq": 4, "t": "2025-11-25T09:00:00Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": {
+        "action": "robot.scan", "endorsement_id": "endorsement-e1-001",
+        "verdict": "allowed-locally",
+        "elapsed_in_lifetime_ms": 3600000
+      } },
+
+    { "seq": 5, "t": "2025-11-25T11:59:59Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": {
+        "action": "robot.scan", "endorsement_id": "endorsement-e1-001",
+        "verdict": "allowed-locally",
+        "elapsed_in_lifetime_ms": 14399000,
+        "note": "endorsed_lifetime 仍未到期"
+      } },
+
+    { "seq": 6, "t": "2025-11-25T12:00:00Z", "actor": "IF", "type": "EndorsedLifetimeExpiry",
+      "payload": {
+        "endorsement_id": "endorsement-e1-001",
+        "endorsed_lifetime_ms": 14400000,
+        "soft_timeout": true,
+        "still_actually_disconnected": true,
+        "note": "软超时强约束：本地时钟到达 start_at + endorsed_lifetime_ms"
+      } },
+
+    { "seq": 7, "t": "2025-11-25T12:00:00Z", "actor": "IF", "type": "MandateStateTransition",
+      "payload": {
+        "from": "Disconnected", "to": "Revoked",
+        "trigger": "endorsed_lifetime 软超时；与是否物理断开无关",
+        "still_actually_disconnected": true
+      } },
+
+    { "seq": 8, "t": "2025-11-25T12:00:01Z", "actor": "IF", "type": "EndorsedActionAttempt",
+      "payload": {
+        "action": "robot.scan",
+        "verdict": "rejected-locally",
+        "error": "E_REVOKED",
+        "note": "Revoked 后即使仍物理断开也禁止任何 D 维度行动"
+      } },
+
+    { "seq": 9, "t": "2025-11-25T12:00:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": {
+        "from": "Disconnected", "to": "Revoked",
+        "trigger": "MS 侧同步：endorsed_lifetime 已过 ⇒ 标记为 Revoked"
+      } }
+  ]
+}

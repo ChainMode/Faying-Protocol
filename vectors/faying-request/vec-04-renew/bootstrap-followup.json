@@ -1,0 +1,84 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "BOOTSTRAP",
+    "msg_id": "bs:vec-04-renew:01HZZ0000000000000001ew",
+    "issued_at": "2026-01-15T09:00:30Z",
+    "expiry": "2026-01-15T09:00:35Z",
+    "nonce": {
+      "$b64": "jB7OI+9p3Z97cz+q9k4LzQ=="
+    },
+    "grade": 3,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "human_prime": "hp:prime-alice@example",
+    "fay": "fay:alice/iFay-01",
+    "scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "grade": 3,
+    "presence_req": {
+      "signal_types": [
+        "webauthn-uv-fresh",
+        "presence-heartbeat-only"
+      ],
+      "max_staleness_ms": 30000,
+      "on_loss": "downgrade-to:G3"
+    },
+    "not_after": "2026-01-15T21:00:30Z",
+    "faying_request_ref": "req:vec-04-renew:01HZZ0000000000000000ew",
+    "human_witness": {
+      "format": "webauthn",
+      "payload": {
+        "$b64": "pGlhdXRoX2RhdGFYIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWx1c2VyX3ByZXNlbnT1bXVzZXJfdmVyaWZpZWT1cGNsaWVudF9kYXRhX2pzb25YiHsiY2hhbGxlbmdlIjoiMzI2NGFjYWY2OGU2YTE2NmVjYjVlZTg1MDBjMjBmNDU5NzA3YWMxNTFjZjY2N2IzNTQ2ZjQyOTI5ZWZmZmUzOSIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJ0eXBlIjoid2ViYXV0aG4uZ2V0In0="
+      },
+      "signer": "pd:webauthn-key/alice",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$b64": "dCLAwPrL9LLWsQoJIFcHBdTsbSMJKj6VlEBh95sZ/O4="
+        },
+        "sig": {
+          "$b64": "ZSbpvoJeZBS1Ah98C109W0m9nU/0soiRtqkGcnFkeSFlHBxXHlqYjQGMim/5FKexo5tO57KiKPSbd5nLvpmZAg=="
+        }
+      }
+    }
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "Ym9vdHN0cmFwLWF0dGVzdGF0aW9uOmJzOnZlYy0wNC1yZW5ldzowMUhaWjAwMDAwMDAwMDAwMDAwMDFldw=="
+    },
+    "signer": "hp:hp:prime-alice@example",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+      },
+      "sig": {
+        "$b64": "dZJSRKZtxqoY5JxyMBglHQccGjXoiKz3aIgka7RDoFZYfw1oS5oPcRBZ/zj58McEVQXGBRwf8z61mRaqpctnCw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+    },
+    "sig": {
+      "$b64": "nEy2RUFX74AGagGIf/ejFcU2SZwxwPIXJKMW4e+dNEd+alCvfBY5VPNtZ3R3+aB59G5Q7zSsjZNQUmVBgJd3Aw=="
+    }
+  }
+}

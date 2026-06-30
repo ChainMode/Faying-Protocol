@@ -1,0 +1,53 @@
+{
+  "vid": "vec-08-forged-ms-surrogate",
+  "title": "Forged 'MS confirms on behalf of HP' path → E_HUMAN_WITNESS_REQUIRED (1010)",
+  "outcome": "rejected",
+  "error_code": "E_HUMAN_WITNESS_REQUIRED",
+  "error_code_numeric": 1010,
+  "spec_refs": [
+    "§5.4 错误码 1010 E_HUMAN_WITNESS_REQUIRED",
+    "§5.3.6 协议层硬约束第 3 条（不存在 MS/IF/SA 替代 HP 认可的合法路径）",
+    "§1.5.1 三条不可逾越的硬约束 (2)",
+    "Requirement 1.3 #5"
+  ],
+  "requirements": [
+    "1.3"
+  ],
+  "bootstrap_timeout_ms": 60000,
+  "timing": {
+    "t_request": "2026-01-15T12:00:00Z",
+    "t_forged_bootstrap": "2026-01-15T12:00:15Z",
+    "t_error": "2026-01-15T12:00:16Z",
+    "elapsed_ms_request_to_forged_bootstrap": 15000,
+    "within_bootstrap_timeout": true
+  },
+  "forged_path": {
+    "purported_issuer": "ms:alice-default",
+    "actual_signer_role": "Mandate_Service",
+    "human_witness_present": false,
+    "faying_request_ref_present": true
+  },
+  "attestation_chain_entry": {
+    "initiator": "fay:alice/iFay-01",
+    "confirm_ts": "2026-01-15T12:00:16Z",
+    "took_effect": false,
+    "evidence": {
+      "faying_request_msg_id": "req:vec-08-forged-ms-surrogate:01HZZ3000000000000000",
+      "forged_bootstrap_msg_id": "bs:vec-08-forged-ms-surrogate:01HZZ3000000000000001",
+      "human_witness_present": false,
+      "error_msg_id": "err:vec-08-forged-ms-surrogate:01HZZ3000000000000002",
+      "error_code_numeric": 1010,
+      "error_code_name": "E_HUMAN_WITNESS_REQUIRED",
+      "rejected_surrogate_witness_party": "Mandate_Service"
+    },
+    "audit_required": true,
+    "hp_view_required": false
+  },
+  "hardness_checks": {
+    "no_state_change": true,
+    "hp_witness_irreplaceable": true,
+    "ms_cannot_surrogate_witness": true,
+    "if_cannot_self_witness": true,
+    "supervisory_agent_cannot_surrogate_witness": true
+  }
+}

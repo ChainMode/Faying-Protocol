@@ -1,0 +1,103 @@
+{
+  "vector_id": "d2-revoke-during-disconnect-stop-only",
+  "title": "HP 在断开期间 REVOKE，offline_revocation_policy=stop-only：重连后立即停止，不强制完整审计",
+  "spec_refs": ["§4.3 Disconnected 语义", "§7.5 离线撤销策略可枚举", "§8.4.4 三种结局必入 AC", "P17.5"],
+  "requirements": ["12.5"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:30:00Z",
+    "reconcile_result": "revoked",
+    "post_state": "Unpaired"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:30:00Z", "value": true },
+    { "from": "2025-11-25T08:30:00Z", "to": "2025-11-25T08:31:00Z", "value": false }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-d2-001",
+    "issuer": "fay:hp/ivan",
+    "subject": "fay:if/assistant-33",
+    "scope": {
+      "domains": ["incident.example.com"],
+      "actions": ["incident.silence", "incident.read"],
+      "terminals": ["device-pager-01"]
+    },
+    "grade": { "level": "G2-Strict", "autonomy": 2 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["incident.example.com"],
+        "actions": ["incident.silence"],
+        "terminals": ["device-pager-01"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-only",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    { "seq": 1, "t": "2025-11-25T08:00:00Z", "actor": "MS", "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-d2-001", "state": "Active" } },
+
+    { "seq": 2, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Active", "to": "Disconnected" } },
+
+    { "seq": 3, "t": "2025-11-25T08:08:00Z", "actor": "IF", "type": "EndorsedAction",
+      "payload": {
+        "action": "incident.silence", "endorsement_id": "endorsement-d2-001",
+        "verdict": "allowed-locally",
+        "irreversible": true,
+        "note": "stop-only 适用于不可逆 / 紧急场景"
+      } },
+
+    { "seq": 4, "t": "2025-11-25T08:15:00Z", "actor": "HP", "type": "RevokeRequest",
+      "payload": {
+        "msg_type": "REVOKE",
+        "mandate_id": "mandate-d2-001",
+        "reason": "human-initiated"
+      } },
+
+    { "seq": 5, "t": "2025-11-25T08:30:00Z", "actor": "IF", "type": "ReconcileRequest",
+      "payload": {
+        "msg_type": "RECONCILE_REQUEST",
+        "mandate_id": "mandate-d2-001",
+        "last_known_seq": 3,
+        "endorsed_actions": [
+          { "action": "incident.silence", "ts": "2025-11-25T08:08:00Z",
+            "endorsement_id": "endorsement-d2-001",
+            "audit_minimal": true }
+        ]
+      } },
+
+    { "seq": 6, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "ReconcileResponse",
+      "payload": {
+        "msg_type": "RECONCILE_RESP",
+        "status": "revoked",
+        "reason": "human-initiated",
+        "applied_offline_revocation_policy": "stop-only",
+        "endorsed_actions_audited": 1,
+        "audit_completeness": "minimal",
+        "note": "stop-only 路径：仅记录『已停止』事实，不要求完整审计字段（仅适用于不可逆 / 紧急场景）"
+      } },
+
+    { "seq": 7, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Disconnected", "to": "Revoked" } },
+
+    { "seq": 8, "t": "2025-11-25T08:30:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Revoked", "to": "Unpaired" } }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "audit_notes": [
+    "free_text supplements but does not replace mandatory_fields.",
+    "uncertainty_flags ['ambiguous-target'] surfaced to HP view."
+  ],
+  "case": "a",
+  "ms_action": "log-and-forward",
+  "outcome": "accepted",
+  "vector_id": "02-accepted-normal-risk-report"
+}

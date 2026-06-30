@@ -1,0 +1,191 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLW92ZXJyaWRlLWcwLWZyb20tZzQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "oco2RMuyJab0Nc7XB91_E7s2ozXJTwkXbO0DxQE92zw"
+        },
+        "sig": {
+          "$bytes": "UhLjEaomCFt3VBHHHQGT3L--1ganwHqdDqkmmT99b3A7Alphyl_9uWuhQbLpIuJ3Ujk8vlr2dZyt-kyfhumOBw"
+        }
+      },
+      "signer": "hp:vector-req-override-g0-from-g4"
+    },
+    "claims": {
+      "human_witness": {
+        "authenticator_data": {
+          "$bytes": "_JkXS0byRFnuWO86DQXkvOv-3FEgJfiBleerXY_7czemK6de5A"
+        },
+        "client_data_json": {
+          "$bytes": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoicVRQVzdRb3M5Zk9pMjNlOXRLUDVGNFFqamF5MVRxc0F4M2RSQU81LWlRayIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJjcm9zc09yaWdpbiI6ZmFsc2V9"
+        },
+        "credential_id": "sQaNCSxWQCHUuKSTwUCgAA",
+        "signature": {
+          "$bytes": "MIdNmMbrBNJ9AK1Wur8h6VUnMYtsvMK7WiD5D-ZQtsYTJXV-qQYwbzxDgeOtI8M1OibAR1OVVcaGGl20IJRJjg"
+        },
+        "user_present": true,
+        "user_verified": true
+      },
+      "mandate_id": "01HXMNDT-GS-OVERRIDE_G0_FROM_G4",
+      "reason": "human-initiated",
+      "target_grade": 0
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 4,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-OVERRIDE_G0_FROM_G4",
+      "msg_id": "01HXMSG-GS-REQ-OVERRIDE_G0_FROM_G4",
+      "msg_type": "GRADE_SWITCH",
+      "nonce": {
+        "$bytes": "oJvDVNniRkhWuKa8PbKydg"
+      },
+      "subject": "fay:01HXFAY-OVERRIDE_G0_FROM_G4",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "oco2RMuyJab0Nc7XB91_E7s2ozXJTwkXbO0DxQE92zw"
+      },
+      "sig": {
+        "$bytes": "o13Aq29fPjuTudg6KrA2Yu8_c8qTbb9TBSv0t6BBhNrpM4Wfi0e2xiXsN8UxJyyJZAOyncnBtxlhc45NCDO9BQ"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1vdmVycmlkZS1nMC1mcm9tLWc0"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "ZPuXf3_gAVVZ25mUGykaUvV7DsMF68gQDSEEI5qZLX0"
+        },
+        "sig": {
+          "$bytes": "t6wHCC3a377jLVXPw-OB4V5AtAnn1f_CkXEdJgw_dS24LJquAJY0cxvFro3oLfisurVBoOlrwKtOngLedHNNAQ"
+        }
+      },
+      "signer": "hp:vector-resp-override-g0-from-g4"
+    },
+    "claims": {
+      "attestation": {
+        "format": "self-signed",
+        "payload": {
+          "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6bXMtb3ZlcnJpZGUtZzAtZnJvbS1nNA"
+        },
+        "signature": {
+          "alg": "Ed25519",
+          "pubkey": {
+            "$bytes": "ZPuXf3_gAVVZ25mUGykaUvV7DsMF68gQDSEEI5qZLX0"
+          },
+          "sig": {
+            "$bytes": "-l5rrjg8_4N5RNxVnmzirizM_9XNDM-vGD0dCpoUblHjjbXLwigqWFvSMw0AC1XG0Nn--E0ypZgvKcagBz3YCA"
+          }
+        },
+        "signer": "hp:vector-ms-override-g0-from-g4"
+      },
+      "grade": 4,
+      "id": "01HXMNDT-GS-OVERRIDE_G0_FROM_G4",
+      "issued-at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-OVERRIDE_G0_FROM_G4",
+      "ms-id": "ms:vector-override-g0-from-g4",
+      "not-after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "not-before": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "presence-req": {
+        "max-staleness-ms": 1800000,
+        "on-loss": "suspend",
+        "signal-types": [
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read",
+          "calendar:event:update"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "ZPuXf3_gAVVZ25mUGykaUvV7DsMF68gQDSEEI5qZLX0"
+        },
+        "sig": {
+          "$bytes": "4R8HCccZhnzZ11m0Z8hHmJ8Yvo4zs8ucCdew6AMyubHC2yynZ5LI9UgOz4iqoQrJm6V-fHOrGRW7kre8jOkfAA"
+        }
+      },
+      "subject": "fay:01HXFAY-OVERRIDE_G0_FROM_G4",
+      "version": "Faying Protocol/1.0"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 4,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-OVERRIDE_G0_FROM_G4",
+      "msg_id": "01HXMSG-GS-RESP-OVERRIDE_G0_FROM_G4",
+      "msg_type": "GRADE_SWITCH_RESP",
+      "nonce": {
+        "$bytes": "GmB7iUU-KVHRos6f3xHF9w"
+      },
+      "subject": "fay:01HXFAY-OVERRIDE_G0_FROM_G4",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "ZPuXf3_gAVVZ25mUGykaUvV7DsMF68gQDSEEI5qZLX0"
+      },
+      "sig": {
+        "$bytes": "ig32XZnW3XPSmYzLTS_KH9GGOVACsczU9yVZ5t850SPn3bwVY-hAqpJnK5RLV6KCfNhgzxNtaE7_BSuhhJ7OBQ"
+      }
+    }
+  }
+}

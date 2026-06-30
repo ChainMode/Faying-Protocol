@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Permitted enum: low | normal | high | critical (§5.3.7)."
+  ],
+  "case": "c",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "unparseable_field": "risk_level",
+  "vector_id": "09-unparseable-risk-level"
+}

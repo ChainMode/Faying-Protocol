@@ -1,0 +1,55 @@
+{
+  "current_grade": "G4",
+  "digests": {
+    "request_cbor_sha256": "4b26de77d833a9feaaa3dc09e2b3ee6ee35715969ba97c77ea1a3d6fb844821e",
+    "request_json_sha256": "baac5bfa1398b64ded4ca4e4d8afddbab88f7ec8d1886be5aba558cb8cb72167",
+    "request_signing_input_sha256": "6ab1e1894d1c5737674468d02a0c82d442092dc46937ba6623c79e9bf2beca31",
+    "response_cbor_sha256": "bfa725db091b86719c6a3bbe60421568e5827f6b153085325b45a797e6ea0884",
+    "response_json_sha256": "429711ac9970e293c5910b90a065df1db466e4c2daea317927236d34d1c6211f"
+  },
+  "direction": "upgrade",
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "final_state": "Active(G3)",
+  "mandate_id": "01HXMNDT-GS-UP_G4_TO_G3",
+  "notes": "Upgrade direction (target.autonomy < current.autonomy in design.md numbering: smaller grade number = stricter / lower-autonomy). human_witness is MANDATORY per §7.4. The MS rotates the Presence-Bound Mandate Key and issues a new Mandate whose presence-req tightens to the new grade's max-staleness budget.",
+  "outcome": "accepted",
+  "post_state": {
+    "grade": "G3",
+    "mandate_status": "Active",
+    "presence_req_max_staleness_ms": 300000
+  },
+  "presence_key_rotated": true,
+  "request_must_carry_human_witness": true,
+  "requirements_validated": [
+    "6.1",
+    "6.2",
+    "6.3",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. WebAuthn human_witness blobs are deterministic placeholders (see README); verifiers MUST treat their bytes as opaque and only validate structural presence.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Upgrade G4 → G3 signed by HP with a verifiable human_witness; MS issues an updated Mandate at G3 (max-staleness 300000 ms).",
+  "target_grade": "G3",
+  "trigger_matrix": {
+    "current_grade": "G4",
+    "event": "human-upgrade",
+    "expected_outcome": "G3"
+  },
+  "vector_name": "up-g4-to-g3"
+}

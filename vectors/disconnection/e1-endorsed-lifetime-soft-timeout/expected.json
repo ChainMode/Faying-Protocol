@@ -1,0 +1,48 @@
+{
+  "final_state": "Revoked",
+  "reconcile_result": "n/a",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Revoked"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z",
+      "mandate_id": "mandate-e1-001",
+      "endorsement_expires_at": "2025-11-25T12:00:00Z" },
+    { "seq": 2, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:00Z",
+      "from": "Active", "to": "Disconnected" },
+    { "seq": 3, "event": "EndorsedActionPerformed", "ts": "2025-11-25T09:00:00Z",
+      "action": "robot.scan", "endorsement_id": "endorsement-e1-001",
+      "accountable_party": "fay:hp/karl" },
+    { "seq": 4, "event": "EndorsedActionPerformed", "ts": "2025-11-25T11:59:59Z",
+      "action": "robot.scan", "endorsement_id": "endorsement-e1-001",
+      "accountable_party": "fay:hp/karl" },
+    { "seq": 5, "event": "EndorsedLifetimeExpiry", "ts": "2025-11-25T12:00:00Z",
+      "endorsement_id": "endorsement-e1-001",
+      "endorsed_lifetime_ms": 14400000,
+      "still_actually_disconnected": true,
+      "note": "软超时强约束触发" },
+    { "seq": 6, "event": "MandateStateTransition", "ts": "2025-11-25T12:00:00Z",
+      "from": "Disconnected", "to": "Revoked",
+      "actor": "IF (local-enforcement)" },
+    { "seq": 7, "event": "MandateStateTransition", "ts": "2025-11-25T12:00:00Z",
+      "from": "Disconnected", "to": "Revoked",
+      "actor": "MS (server-side mirror)" },
+    { "seq": 8, "event": "EndorsedActionRejected", "ts": "2025-11-25T12:00:01Z",
+      "action": "robot.scan", "error": "E_REVOKED",
+      "note": "本地强约束：仍物理断开也禁止行动" }
+  ],
+  "expected_errors": [
+    { "code": "E_REVOKED",
+      "context": "endorsed_lifetime 到期后任何 D 维度调用必拒，即使仍物理断开" }
+  ],
+  "rp_calls_during_window": [],
+  "invariants_checked": [
+    "§7.5 lifetime 有限：endorsed_lifetime_ms ≤ (not_after - not_before)",
+    "§4.3 / 附录 B.6 软超时强约束：到期即 Revoked，不依赖重连",
+    "P16.4 Endorsed_Lifetime_Hard_Stop：t ≥ start_at + endorsed_lifetime_ms ⇒ next_state ∈ {Revoked}",
+    "本向量没有 RECONCILE 流程（IF 仍物理断开），因此 reconcile_result = n/a"
+  ]
+}

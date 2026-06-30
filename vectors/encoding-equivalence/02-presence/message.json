@@ -1,0 +1,58 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": "YXR0ZXN0YXRpb24tcGF5bG9hZC1wbGFjZWhvbGRlci12MQ",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+      "sig": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "signer": "ms:demo-mandate-service"
+  },
+  "claims": {
+    "device-health": {
+      "last-boot-at": "2025-11-25T08:00:00Z",
+      "secure-element": true,
+      "tampered": false
+    },
+    "mandate-id": "mdt:01HX8K3F2Q7JX9V5N6T4R8M3PD",
+    "signal": {
+      "device-attestation": {
+        "format": "platform-keystore",
+        "payload": "cHJlc2VuY2UtZGV2aWNlLWF0dGVzdGF0aW9uLWJsb2I",
+        "signature": {
+          "alg": "Ed25519",
+          "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+          "sig": "AwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw"
+        },
+        "signer": "pd:01HX8K3F2Q7JX9V5N6T4R8M4QE"
+      },
+      "device-id": "pd:01HX8K3F2Q7JX9V5N6T4R8M4QE",
+      "mandate-id": "mdt:01HX8K3F2Q7JX9V5N6T4R8M3PD",
+      "nonce": "obLD1OX2BxgpOktcbX6PkA",
+      "produced-at": "2025-11-25T09:59:55Z",
+      "signal-type": "webauthn-uv-fresh",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+        "sig": "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA"
+      }
+    }
+  },
+  "header": {
+    "expiry": "2025-11-25T10:01:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:00:00Z",
+    "issuer": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "msg-id": "msg:01HX8K3F2Q7JX9V5N6T4R8MB002",
+    "msg-type": "PRESENCE",
+    "nonce": "EBESExQVFhcYGSAhIiMkJQ",
+    "subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+    "sig": "DkQ27dEH-lk0C_Pe9HwW02Hg_4ncx55i04YIx87pyDBgSsnNqo5vFpYyldibhsckDMQsm4wWP-RHUb05fIEFAA"
+  }
+}

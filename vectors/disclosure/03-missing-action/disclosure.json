@@ -1,0 +1,58 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64u": "U1RVQi1BVFRFU1RBVElPTi1QQVlMT0FE"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64u": "U1RVQi1QVUJLRVktRkFQLTEuMAA"
+      },
+      "sig": {
+        "$b64u": "U1RVQi1TSUctRkFQLTEuMAAAAAAA"
+      }
+    },
+    "signer": "hp:01HX4KZ8N0Y6F8MWQ8R7C0V0G2"
+  },
+  "claims": {
+    "affected-resources": [
+      "urn:user:profile:01HX4M2P0Q3R5S7T8U"
+    ],
+    "intent": "report",
+    "mandate-id": "mandate:01HX4M0T9V8H8Q4N6Z2K7G3J5W",
+    "reversibility": "reversible",
+    "risk-level": "low",
+    "scope-used": {
+      "actions": [
+        "read:user-profile"
+      ],
+      "domains": [
+        "urn:user:profile"
+      ]
+    },
+    "uncertainty-flags": []
+  },
+  "header": {
+    "expiry": "2025-11-25T10:15:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:10:00Z",
+    "issuer": "hp:01HX4KZ8N0Y6F8MWQ8R7C0V0G2",
+    "msg-id": "msg:01HX4MA3A3A3A3A3A3A3A3A3A3",
+    "msg-type": "DISCLOSURE",
+    "nonce": {
+      "$b64u": "AAAAAAAAAAAAAAAAAAAAAw"
+    },
+    "subject": "fay:01HX4KZBQ4P9JK1H6QY7V0X8B5",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64u": "U1RVQi1QVUJLRVktRkFQLTEuMAA"
+    },
+    "sig": {
+      "$b64u": "U1RVQi1TSUctRkFQLTEuMAAAAAAA"
+    }
+  }
+}

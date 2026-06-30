@@ -1,0 +1,55 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": "YXR0ZXN0YXRpb24tcGF5bG9hZC1wbGFjZWhvbGRlci12MQ",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+      "sig": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "signer": "ms:demo-mandate-service"
+  },
+  "claims": {
+    "fay": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "grade": 2,
+    "human-prime": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "human-witness": {
+      "authenticator-data": "AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+      "client-data-json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUEiLCJvcmlnaW4iOiJodHRwczovL2V4YW1wbGUub3JnIn0",
+      "credential-id": "d2ViYXV0aG4tY3JlZGVudGlhbC1pZC1ieXRlcy0zMmI",
+      "signature": "AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg"
+    },
+    "not-after": "2025-11-26T10:00:00Z",
+    "presence-req": {
+      "max-staleness-ms": 60000,
+      "on-loss": "downgrade-to:G3",
+      "signal-types": [
+        "webauthn-uv-fresh"
+      ]
+    },
+    "scope": {
+      "actions": [
+        "read:user-profile"
+      ],
+      "domains": [
+        "agent://mailbox/inbox"
+      ]
+    }
+  },
+  "header": {
+    "expiry": "2025-11-25T10:01:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:00:00Z",
+    "issuer": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "msg-id": "msg:01HX8K3F2Q7JX9V5N6T4R8MA001",
+    "msg-type": "BOOTSTRAP",
+    "nonce": "AAECAwQFBgcICRAREhMUFQ",
+    "subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+    "sig": "i5ACWHLMhuu64vq1yjyDY_dOyuAmh-GqAwRqSYU_Kku-9y5CYkfa2Q24ePd6d5YE8Iw8CjCxpD8YV8F297KVDA"
+  }
+}

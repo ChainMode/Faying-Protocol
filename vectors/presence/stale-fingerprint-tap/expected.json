@@ -1,0 +1,39 @@
+{
+  "device_id": "presence-device:vector-stale-fingerprint-tap",
+  "digests": {
+    "signal_cbor_sha256": "6288e3ac384bb038d9cb0b3604d8c372535ec7cbea441416f8795cae9b2d6869",
+    "signal_json_sha256": "ac391de9c5e21e5b67960806bc41af2caf783359f7c60cd3a74616c2787e4f3a",
+    "signing_input_sha256": "56460148d0e4856e6c74fd3bd2ba1461ed99cef4f6a2d2aa82e843807e3760a8"
+  },
+  "error_code": 1005,
+  "error_name": "E_PRESENCE_STALE",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 90000,
+    "description": "G2 Moderate — task-level presence (≤ 60s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G2",
+    "max_staleness_ms": 60000,
+    "produced_at": "2026-03-15T11:58:30Z",
+    "within_budget": false
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-STALE-FINGERPRINT-TAP",
+  "nonce_b64u": "JK3SyDyDyauU6-_hCDyIYw",
+  "notes": "Triggers `E_PRESENCE_STALE` and the §3.2 descent to G3 Loose; subsequent sensitive sub-task requires a fresh tap.",
+  "requirements_validated": [
+    "5.1",
+    "5.2",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "fingerprint-tap",
+  "state": "stale",
+  "summary": "Stale fingerprint-tap signal at G2 (age 90s > 60s); verifier MUST reject with verdict=stale.",
+  "tamper": null,
+  "vector_name": "stale-fingerprint-tap",
+  "verdict": "stale"
+}

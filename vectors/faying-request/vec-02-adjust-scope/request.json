@@ -1,0 +1,63 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-02-adjust-scope:01HZZ0000000000000000pe",
+    "issued_at": "2026-01-15T09:00:00Z",
+    "expiry": "2026-01-15T09:01:00Z",
+    "nonce": {
+      "$b64": "tvrQJs6y0DzpARZoc4C3jg=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com",
+        "mail.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read",
+        "mail:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 3,
+    "reason": "iFay 请求扩展 scope：在现有 Mandate 之外纳入 docs.example.com 读权限",
+    "reason_code": "adjust-scope",
+    "expected_lifetime_ms": 28800000
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTAyLWFkanVzdC1zY29wZTowMUhaWjAwMDAwMDAwMDAwMDAwMDBwZQ=="
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "55R+zFx0JTpN98kyhZvwzX92FmIX6jJ3uxqbUwFBucAxRfqAbiNZETA5MwP2A/ZhfCOEY8iG3tTmuVOuzvzgCg=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "PJX1Yu7ZsV4+vnecAtdcEr4bDk+UxWokQxKuKc8Jz5aJfvxQ/ipsq/GlEWdmpZbhF4uwKbQiIk7uC277qyomAw=="
+    }
+  }
+}

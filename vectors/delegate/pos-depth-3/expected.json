@@ -1,0 +1,77 @@
+{
+  "ancestor_mandate_ids": [
+    "01HXMNDT-PARENT-POS_DEPTH_3",
+    "01HXMNDT-CHILD-POS_DEPTH_3",
+    "01HXMNDT-GRANDCHILD-POS_DEPTH_3"
+  ],
+  "chain_depth": 3,
+  "child_mandate_id": "01HXMNDT-GGCHILD-POS_DEPTH_3",
+  "convergence_assertions": {
+    "grade_autonomy_monotone_decreasing": true,
+    "scope_monotone_subset": true
+  },
+  "digests": {
+    "request_cbor_sha256": "b4410e1ba7685ee98766f00c7baadd42b70b65b07bd40fe6bd9afaba0de0a54a",
+    "request_json_sha256": "cc481f3f685289bbbcb2526f4b241203a9ccc0f14a0e9b0b674d440a7ac3fa76",
+    "request_signing_input_sha256": "73e8bb547e436bb3b66e2ed56259058f454d14dac27827ea7320c540fa8e318b",
+    "response_cbor_sha256": "563c9c3dca59c3f0ebf4c5db3416ca7842c3e416ac37c52d17a7fc1bebf6bf6f",
+    "response_json_sha256": "bc4328a789376ff6c00ca57378387dea42c9f66ee5a00dd1c5797fe33ce94d29"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "kind": "positive",
+  "notes": "Maximum depth in this batch; demonstrates that the chain accumulates exactly one entry per hop and that scope / grade convergence is preserved at each level. P14 (cascade revocation) reuses this depth in vectors/revoke.",
+  "outcome": "accepted",
+  "parent_mandate_id": "01HXMNDT-GRANDCHILD-POS_DEPTH_3",
+  "parent_mandate_id_in_response": "01HXMNDT-GRANDCHILD-POS_DEPTH_3",
+  "post_state": {
+    "chain_depth": 3,
+    "chain_walk": [
+      "hp-root",
+      "chain[0]:hp-root:ms-cert",
+      "chain[1]:parent-0:outer-sig",
+      "chain[2]:parent-1:outer-sig",
+      "chain[3]:parent-2:outer-sig",
+      "child:outer-sig"
+    ],
+    "child_grade": "G1",
+    "child_mandate_id": "01HXMNDT-GGCHILD-POS_DEPTH_3",
+    "mandate_status": "Active",
+    "parent_mandate_id": "01HXMNDT-GRANDCHILD-POS_DEPTH_3",
+    "presence_req_max_staleness_ms": 5000
+  },
+  "requirements_validated": [
+    "7.1",
+    "9.2",
+    "10.1",
+    "10.3"
+  ],
+  "signature_chain": {
+    "anchors_root": true,
+    "labels": [
+      "hp-root:ms-cert",
+      "parent-0:outer-sig",
+      "parent-1:outer-sig",
+      "parent-2:outer-sig"
+    ],
+    "length": 4
+  },
+  "signature_verification": {
+    "child_mandate_inner": true,
+    "note": "Real Ed25519 signatures over canonical CBOR. The child Mandate's signature.chain reproduces the ancestor outer signatures so verifiers can walk root → MS-Cert → ... → parent → child without out-of-band trust.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "Depth-3 legal DELEGATE: root HP → MS-Cert → parent (G4) → child (G3) → grandchild (G2) → leaf (G1). Autonomy descends monotonically across all four levels. signature.chain carries 4 ancestor sigs so the AC walk root → MS-Cert → parent → child → grandchild → leaf is fully self-contained.",
+  "vector_name": "pos-depth-3"
+}

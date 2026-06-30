@@ -1,0 +1,113 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLXJlYXNvbi1odW1hbi1wcmltZS1jcmVkZW50aWFsLWludmFsaWQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "ui_pxLDCCsb87PqzaXdCB09Np057ZIshKI-14ppUMD4"
+        },
+        "sig": {
+          "$bytes": "n7nsX9or6G7ryl3oiP38wXuhhAcZanhm6MPuHmO-pZduMqe5Q0gy1HlMyG1YCPVk_QoZUPNA8zj3GJhqLemPBQ"
+        }
+      },
+      "signer": "hp:vector-req-reason-human-prime-credential-invalid"
+    },
+    "claims": {
+      "cascade": true,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      },
+      "mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "reason": "human-prime-credential-invalid"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "msg_id": "01HXMSG-RVK-REQ-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "C_lFOgI3grHAk-DZ3yK8nQ"
+      },
+      "subject": "fay:01HXFAY-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "ui_pxLDCCsb87PqzaXdCB09Np057ZIshKI-14ppUMD4"
+      },
+      "sig": {
+        "$bytes": "MoN0fFG2PmK_45QqAIiO--CrFg_LEys4XrjRsdMYFHl-amwCu8rAhiULavfxQq25g8H2jJ8hcjG00ZAP3GWoDg"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1yZWFzb24taHVtYW4tcHJpbWUtY3JlZGVudGlhbC1pbnZhbGlk"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "P9Ta5jyA5L75z5ir1FpC2YqmEVfegYsA_dlR-h1P0Wc"
+        },
+        "sig": {
+          "$bytes": "o6sOddBp6p-Hr7pE-d4O4oMKKAp1m4rHcSIttNzW8HC50-krVTOcDztYdDRtJViSLDLjzw5Aaz8s5fs1afXtDA"
+        }
+      },
+      "signer": "hp:vector-resp-reason-human-prime-credential-invalid"
+    },
+    "claims": {
+      "cascade": true,
+      "cascaded_mandate_ids": [],
+      "mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "reason": "human-prime-credential-invalid",
+      "revoked_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "msg_id": "01HXMSG-RVK-RCT-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "msg_type": "REVOKE_RECEIPT",
+      "nonce": {
+        "$bytes": "XvEBSM-IAHlMhjNkmXzqrA"
+      },
+      "subject": "fay:01HXFAY-REASON_HUMAN_PRIME_CREDENTIAL_INVALID",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "P9Ta5jyA5L75z5ir1FpC2YqmEVfegYsA_dlR-h1P0Wc"
+      },
+      "sig": {
+        "$bytes": "vWr6E2JDDSaGM5vDAp2kszfoi3IT8m7viDZwVvCkFrHnMmSVZBiPxjY-y71ii7A04nnPOWlRNioVB4hR5yflDQ"
+      }
+    }
+  }
+}

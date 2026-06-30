@@ -1,0 +1,61 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "FAYING_REQUEST",
+    "msg_id": "req:vec-07-bootstrap-timeout:01HZZ2000000000000000",
+    "issued_at": "2026-01-15T11:00:00Z",
+    "expiry": "2026-01-15T11:01:00Z",
+    "nonce": {
+      "$b64": "5Yt7Qfqw5y0y7Px0u8Hk0w=="
+    },
+    "grade": 4,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "initiator": "fay:alice/iFay-01",
+    "target_human": "hp:prime-alice@example",
+    "proposed_scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "proposed_grade": 2,
+    "reason": "iFay 请求短暂提升至 G2，但 HP 未在 60s 内做出认可确认",
+    "reason_code": "adjust-grade",
+    "expected_lifetime_ms": 7200000
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "aWYtc2VsZi1hdHRlc3RhdGlvbjpyZXE6dmVjLTA3LWJvb3RzdHJhcC10aW1lb3V0OjAxSFpaMjAwMDAwMDAwMDAwMDAwMA=="
+    },
+    "signer": "if:fay:alice/iFay-01",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+      },
+      "sig": {
+        "$b64": "Uk4NsoAP6+xWnmYkkx1JCWVbC9VJNfQ9u3ma08uOjmufqbNtJBnGGP2CNmnBo8rRLf9tkR8lJ7ixI2hoZRo2Bw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "nKRvfGKmI2yYblzIxNaIKcDDCQAYbcEG07mU2qWyFYg="
+    },
+    "sig": {
+      "$b64": "oyAru2HiKtsK2HeqG9E+kh82Bcdm0dvafZjum3X+mpKPcPKUbvd8CxE6bLdOV11px6ZW5o7kSg4GK3E5oLe2DA=="
+    }
+  }
+}

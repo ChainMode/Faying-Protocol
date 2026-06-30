@@ -1,0 +1,81 @@
+{
+  "affected_mandate_ids": [
+    "01HXMNDT-TARGET-REASON_HUMAN_PRIME_UNREACHABLE"
+  ],
+  "audit_event": {
+    "error_code": null,
+    "mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_UNREACHABLE",
+    "notes": "Per design.md §9.6, every successful REVOKE is recorded as a five-tuple in audit-log; error_code is null because the path is the success path. Trigger: HP unreachable beyond `HumanReachabilityBudget`.",
+    "reason": "REVOKE accepted; reason=human-prime-unreachable",
+    "rp_id": "rp:vector-reason-human-prime-unreachable",
+    "ts": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    }
+  },
+  "cascade": true,
+  "cascaded_mandate_ids": [],
+  "digests": {
+    "request_cbor_sha256": "1367e97013036e710e8d97293ae28e00bbf3bf1e80a0c90b81cbf4fdc68ce1ec",
+    "request_json_sha256": "e75313967a069fa6fbbed88d0922725aac22100194da88bee385f1470c7fb930",
+    "request_signing_input_sha256": "44fd430c51bd108fc1fb3aa0578ca84dc19b606bdc29e41fd80a9c833142b454",
+    "response_cbor_sha256": "018d0eac4011493fec16c33ba5a14d6f3d0f6c5bd438b8dd516929371eeab2c4",
+    "response_json_sha256": "0b46c419843f35a7c96accfa50826f4498635c1d5e05c3c67621f87dac1d5cbd"
+  },
+  "encodings": [
+    "cbor",
+    "json"
+  ],
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "request_cbor": "request.cbor",
+    "request_json": "request.json",
+    "response_cbor": "response.cbor",
+    "response_json": "response.json"
+  },
+  "irreversibility_note": "Per Requirement 4.3 the Mandate's status is now terminal-Revoked; any subsequent RP call referencing this mandate_id MUST fail with 1006 E_REVOKED. The only recovery path is a fresh BOOTSTRAP that issues a new Mandate with a different mandate_id.",
+  "kind": "positive",
+  "notes": "Validates that `RevokeReason = 'human-prime-unreachable'` produces a well-formed REVOKE → REVOKE_RECEIPT round-trip. Trigger: HP unreachable beyond `HumanReachabilityBudget`. Requirement 9.4 categorises this reason as a decoupling-state recognition trigger; the receipt lists exactly the directly-revoked Mandate (no children in this vector — see `cascade-depth-2` for the cascade case).",
+  "outcome": "accepted",
+  "post_state": {
+    "mandate_status": "Revoked",
+    "no_revoked_to_active_path": true,
+    "subsequent_use_error_code": 1006,
+    "subsequent_use_error_name": "E_REVOKED",
+    "terminal_state": true
+  },
+  "requirements_validated": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "9.4",
+    "10.1",
+    "10.3"
+  ],
+  "revoke_reason": "human-prime-unreachable",
+  "rr_visibility": {
+    "broadcast_channels": [
+      "pull-ocsp-like",
+      "push-websocket-sse-mqtt"
+    ],
+    "effective_at": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:00Z"
+    },
+    "rr_visible_by": {
+      "$tag": 0,
+      "$value": "2026-01-01T12:00:01Z"
+    },
+    "visibility_budget_ms": 1000
+  },
+  "signature_verification": {
+    "note": "REVOKE envelope is signed by HP (Requirement 4.1.3 — REVOKE auth-strength ≥ BOOTSTRAP auth-strength). REVOKE_RECEIPT / ERROR is signed by MS. Both envelopes use canonical CBOR as signing input regardless of wire encoding.",
+    "request_envelope": true,
+    "response_envelope": true
+  },
+  "summary": "REVOKE with reason='human-prime-unreachable': Auto-revocation per Requirement 9.4.4: when HP cannot be reached, MS auto-revokes related Mandates with this reason and broadcasts via RR within `RevocationVisibilityBudget`.",
+  "target_mandate_id": "01HXMNDT-TARGET-REASON_HUMAN_PRIME_UNREACHABLE",
+  "trigger": "HP unreachable beyond `HumanReachabilityBudget`",
+  "vector_name": "reason-human-prime-unreachable"
+}

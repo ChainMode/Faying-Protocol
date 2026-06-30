@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1006,
+    "mandate_id": "mnd:01HXR000000000000REVOKED",
+    "reason": "Mandate 已撤销",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1006,
+  "must-push-hp-view": true,
+  "name": "E_REVOKED",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "Mandate 已撤销",
+  "trace": [
+    "R4.3.1",
+    "R3.2.3"
+  ]
+}

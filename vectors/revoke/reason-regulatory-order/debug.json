@@ -1,0 +1,113 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLXJlYXNvbi1yZWd1bGF0b3J5LW9yZGVy"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "vbMoy_fjAs385m9XWyoIE5O5ORfN_JPnPfhudKFHHio"
+        },
+        "sig": {
+          "$bytes": "Jq1BF1-HRaeJG9HrI98-I29DXc9ib9mft5PR8YeYgCKP-0J8O1cDAECvXrbcp6BlKcnqJakJIES7RhfbgAKVDw"
+        }
+      },
+      "signer": "hp:vector-req-reason-regulatory-order"
+    },
+    "claims": {
+      "cascade": true,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      },
+      "mandate_id": "01HXMNDT-TARGET-REASON_REGULATORY_ORDER",
+      "reason": "regulatory-order"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_REGULATORY_ORDER",
+      "msg_id": "01HXMSG-RVK-REQ-REASON_REGULATORY_ORDER",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "ohuHI9x-zapcRPVlNhvPbA"
+      },
+      "subject": "fay:01HXFAY-REASON_REGULATORY_ORDER",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "vbMoy_fjAs385m9XWyoIE5O5ORfN_JPnPfhudKFHHio"
+      },
+      "sig": {
+        "$bytes": "MdUijMFKEe8cuoKTOnBdMfO-afDFl5wITm9jWPi4btTqjpdesmBtwpGaDKQtJuLkqb3i7SdJPbJGCKcauWUeBw"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1yZWFzb24tcmVndWxhdG9yeS1vcmRlcg"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "yEh5hciDkpHEsZZFjKTqNC4KgkRTM3vnhulHmY2qUEw"
+        },
+        "sig": {
+          "$bytes": "UsB82Knkfy5pgZcgXqXaifWfuMjO6I0or--WEWEfQKthUd3qXAAxvX_Hk_0i96OY7j0nhucoy4Vzm1TFhObSAg"
+        }
+      },
+      "signer": "hp:vector-resp-reason-regulatory-order"
+    },
+    "claims": {
+      "cascade": true,
+      "cascaded_mandate_ids": [],
+      "mandate_id": "01HXMNDT-TARGET-REASON_REGULATORY_ORDER",
+      "reason": "regulatory-order",
+      "revoked_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_REGULATORY_ORDER",
+      "msg_id": "01HXMSG-RVK-RCT-REASON_REGULATORY_ORDER",
+      "msg_type": "REVOKE_RECEIPT",
+      "nonce": {
+        "$bytes": "l1A0ywXyb-0LCtMO7wiDsw"
+      },
+      "subject": "fay:01HXFAY-REASON_REGULATORY_ORDER",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "yEh5hciDkpHEsZZFjKTqNC4KgkRTM3vnhulHmY2qUEw"
+      },
+      "sig": {
+        "$bytes": "3tV_j1essNeCCVGcZzOaMnrky-Jt4lPY1s6sl4NLAUC1Ts3QqOLflt322s0MyRIkdIbC3CZaVa2qjVG6t4jGAA"
+      }
+    }
+  }
+}

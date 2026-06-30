@@ -33,15 +33,16 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 
 ## 仓库布局
 
-本仓库专责 Faying Protocol 一项内容，分三类资产：
+本仓库专责 Faying Protocol 一项内容，包含叙述性文档与协议工程资产两层：
 
 | 路径 | 内容 | 状态 |
 | --- | --- | --- |
-| `docs/{lang}/blueprint/` | **蓝图** —— 动机、定位、愿景、使命路径、价值观、前瞻议题 | zh-CN 已定稿；其他语言陆续翻译 |
-| `docs/{lang}/specification/` | **协议规范** —— 字段、消息、状态机、API、版本号 | 后续独立 spec 承接 |
-| `schema/` | **schema** —— Faying Protocol 的字段与结构定义 | 后续独立 spec 承接 |
+| `docs/{lang}/blueprint/` | **蓝图** —— 动机、定位、愿景、使命路径、价值观、前瞻议题 | zh-CN 为源语言、已定稿；其余 8 语言派生翻译 |
+| `docs/{lang}/specification/2025-10-25/` | **协议规范** —— 概述、架构、组件与接口、数据模型、协议报文、密码学、授权等级、生命周期、安全考量、错误处理、开放议题 + 附录 | **Final · Faying Protocol/1.0 · 2025-10-25 发布** |
+| `schemas/` | **机器可读 schema** —— `fap-1.0.cddl`（Normative）、`types.ts`（人读视图）、`fap-1.0.proto`（备选绑定） | 随规范发布 |
+| `vectors/` | **官方测试向量** —— bootstrap / presence / grade-switch / delegate / revoke / endorsement / disclosure / disconnection / errors / encoding-equivalence 等族 | 随规范发布 |
 
-蓝图是宣言式、纲领性文档，**不收录字段定义、消息格式、API、状态机表、加密算法、协议版本号等技术细节**。这些内容由协议规范文档与 schema 承接，蓝图正文中以链接形式引用，绝不在蓝图正文中复述。
+蓝图是宣言式、纲领性文档，**不收录字段定义、报文格式、API、状态机表、密码学算法、协议版本号等技术细节**；这些内容由 `docs/{lang}/specification/` 协议规范与 `schemas/` 承接，蓝图正文仅以链接引用，绝不复述。规范正本以 `schemas/fap-1.0.cddl`（线格式语法）与规范正文为准。参考实现（Rust / TypeScript）与互操作一致性测试套件由维护者内部维护、用于验证上述官方测试向量，暂不在本公开仓库分发。
 
 ## 蓝图章节
 
@@ -77,11 +78,11 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 - **zh-CN → 直译**：zh-TW（台湾繁体）、ja、ko、en
 - **en → 派生**：de、es、fr、ru
 
-跨语言术语对齐规则与各章节同步状态，统一在 [`docs/zh-CN/blueprint/glossary.md`](./docs/zh-CN/blueprint/glossary.md) 与 [`docs/zh-CN/blueprint/sync-status.yaml`](./docs/zh-CN/blueprint/sync-status.yaml) 中维护。
+跨语言术语对齐规则与各章节同步状态由维护者内部维护（不在公开仓库分发）。
 
 ## 许可
 
-待定。
+本仓库以 [MIT License](./LICENSE) 授权，详见仓库根 `LICENSE` 文件。
 
 ## 相关
 

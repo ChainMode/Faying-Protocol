@@ -1,0 +1,40 @@
+{
+  "final_state": "Active",
+  "reconcile_result": "success",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:04:00Z",
+    "reconcile_result": "success",
+    "post_state": "Active"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z", "mandate_id": "mandate-b1-001" },
+    { "seq": 2, "event": "PresenceStaleDetected", "ts": "2025-11-25T08:02:00Z", "mandate_id": "mandate-b1-001",
+      "context": { "actually_online": true, "perceived_disconnected": true, "window": "B" } },
+    { "seq": 3, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:00Z",
+      "from": "Active", "to": "Disconnected", "trigger": "pessimistic-inference" },
+    { "seq": 4, "event": "RPCallRejected", "ts": "2025-11-25T08:02:30Z",
+      "action": "docs.write", "error": "E_PRESENCE_STALE",
+      "note": "窗口 B 不得乐观放行" },
+    { "seq": 5, "event": "EndorsedActionPerformed", "ts": "2025-11-25T08:03:00Z",
+      "action": "docs.read", "endorsement_id": "endorsement-b1-001",
+      "accountable_party": "fay:hp/carol" },
+    { "seq": 6, "event": "ReconcileRequest", "ts": "2025-11-25T08:04:00Z",
+      "mandate_id": "mandate-b1-001" },
+    { "seq": 7, "event": "ReconcileResult", "ts": "2025-11-25T08:04:01Z",
+      "result": "success", "mandate_id": "mandate-b1-001" },
+    { "seq": 8, "event": "MandateStateTransition", "ts": "2025-11-25T08:04:01Z",
+      "from": "Disconnected", "to": "Active" }
+  ],
+  "expected_errors": [
+    { "code": "E_PRESENCE_STALE", "context": "窗口 B 期间 docs.write 调用必拒（超出 endorsed_scope.actions）" }
+  ],
+  "rp_calls_during_window": [
+    { "ts": "2025-11-25T08:02:30Z", "verdict": "rejected", "error": "E_PRESENCE_STALE" }
+  ],
+  "invariants_checked": [
+    "§9.9 悲观推定：Actually_Connected ∧ Perceived_Disconnected ⇒ 协议层按已失联处理",
+    "§9.8 矩阵第 3 行（窗口 B）：禁止反向乐观放行",
+    "§7.5 endorsed_scope 例外：docs.read 落在 endorsed_scope ⇒ 允许；docs.write 不在 ⇒ 拒"
+  ]
+}

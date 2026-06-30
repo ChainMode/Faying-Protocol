@@ -1,0 +1,246 @@
+{
+  "category": "PRESENCE",
+  "deterministic_seed_sha256": "fe5114db40ccb56be700d41be12d609cc81521b1f4d301f53a35337cc93a8789",
+  "evaluated_at": "2026-03-15T12:00:00Z",
+  "freshness_table": {
+    "G1": {
+      "description": "G1 Strict — real-time presence (≤ 5s)",
+      "max_staleness_ms": 5000
+    },
+    "G2": {
+      "description": "G2 Moderate — task-level presence (≤ 60s)",
+      "max_staleness_ms": 60000
+    },
+    "G3": {
+      "description": "G3 Loose — key-step intent ticket (≤ 5min)",
+      "max_staleness_ms": 300000
+    },
+    "G4": {
+      "description": "G4 Autonomous — periodic heartbeat (≤ 30min)",
+      "max_staleness_ms": 1800000
+    }
+  },
+  "generated_with": "vectors/presence/_tools/generate.py",
+  "requirements_covered": [
+    "5.1",
+    "5.2",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "schemas": {
+    "cddl": "schemas/fap-1.0.cddl",
+    "ts_view": "schemas/types.ts"
+  },
+  "signal_grade_binding": {
+    "face-continuous": "G1",
+    "fingerprint-tap": "G2",
+    "intent-ticket": "G3",
+    "presence-heartbeat-only": "G4",
+    "webauthn-uv-fresh": "G1"
+  },
+  "spec_version": "Faying Protocol/1.0",
+  "vectors": [
+    {
+      "expected": "fresh-webauthn-uv/expected.json",
+      "grade": "G1",
+      "name": "fresh-webauthn-uv",
+      "signal_cbor": "fresh-webauthn-uv/signal.cbor",
+      "signal_cbor_sha256": "0a3aa6109e47bc1994fbe5bf8567ad2aea1eaf7481b2243c08ea15cf80ce086a",
+      "signal_json": "fresh-webauthn-uv/signal.json",
+      "signal_json_sha256": "31ec27b9229a2c6d0b1a7464600a78531fb2642143ae0be24fba0f060a83fc18",
+      "signal_type": "webauthn-uv-fresh",
+      "state": "fresh",
+      "summary": "Fresh webauthn-uv-fresh signal at G1 (age 1.5s ≤ 5s); verifier MUST accept with verdict=ok.",
+      "verdict": "ok"
+    },
+    {
+      "expected": "fresh-face-continuous/expected.json",
+      "grade": "G1",
+      "name": "fresh-face-continuous",
+      "signal_cbor": "fresh-face-continuous/signal.cbor",
+      "signal_cbor_sha256": "5881969a745e56749fb4a870e120f4a63d88b33caa525ef25d7a6046aec44db1",
+      "signal_json": "fresh-face-continuous/signal.json",
+      "signal_json_sha256": "7dcc41245ca87494e4c6f764db7110d0b0849fdcb632673c7a99854890a68b2a",
+      "signal_type": "face-continuous",
+      "state": "fresh",
+      "summary": "Fresh face-continuous signal at G1 (age 2.5s ≤ 5s); verifier MUST accept with verdict=ok.",
+      "verdict": "ok"
+    },
+    {
+      "expected": "fresh-fingerprint-tap/expected.json",
+      "grade": "G2",
+      "name": "fresh-fingerprint-tap",
+      "signal_cbor": "fresh-fingerprint-tap/signal.cbor",
+      "signal_cbor_sha256": "0a52e8a2001f513f45068f725d6488ed795872a2cabda68b666bf037d95319e7",
+      "signal_json": "fresh-fingerprint-tap/signal.json",
+      "signal_json_sha256": "51457fad6360bf145cfd729717c5398c3cefa84b1782d0c2bdc99c9f4326ef7d",
+      "signal_type": "fingerprint-tap",
+      "state": "fresh",
+      "summary": "Fresh fingerprint-tap signal at G2 (age 20s ≤ 60s); verifier MUST accept with verdict=ok.",
+      "verdict": "ok"
+    },
+    {
+      "expected": "fresh-presence-heartbeat-only/expected.json",
+      "grade": "G4",
+      "name": "fresh-presence-heartbeat-only",
+      "signal_cbor": "fresh-presence-heartbeat-only/signal.cbor",
+      "signal_cbor_sha256": "26dcf56d70c3907e84932b2ba8c62444a485624569a8d0d2e719a50a43dc9156",
+      "signal_json": "fresh-presence-heartbeat-only/signal.json",
+      "signal_json_sha256": "279e6a0d698019aabd38ac79732be11f1f74d6b5465eb4b6fbfaab0a20fdaf89",
+      "signal_type": "presence-heartbeat-only",
+      "state": "fresh",
+      "summary": "Fresh heartbeat at G4 (age 10min ≤ 30min); verifier MUST accept with verdict=ok.",
+      "verdict": "ok"
+    },
+    {
+      "expected": "fresh-intent-ticket/expected.json",
+      "grade": "G3",
+      "name": "fresh-intent-ticket",
+      "signal_cbor": "fresh-intent-ticket/signal.cbor",
+      "signal_cbor_sha256": "4de4c7d2c22499d1e8e573e43ee264a526a0e0a05fe09da5560aecdab2c9d228",
+      "signal_json": "fresh-intent-ticket/signal.json",
+      "signal_json_sha256": "115a5d11a36ae2ea2c5ec4113916b4db61aa1bdf9c599bdaf5589759535a5ff8",
+      "signal_type": "intent-ticket",
+      "state": "fresh",
+      "summary": "Fresh intent-ticket at G3 (age 1.5min ≤ 5min); verifier MUST accept with verdict=ok.",
+      "verdict": "ok"
+    },
+    {
+      "expected": "stale-webauthn-uv/expected.json",
+      "grade": "G1",
+      "name": "stale-webauthn-uv",
+      "signal_cbor": "stale-webauthn-uv/signal.cbor",
+      "signal_cbor_sha256": "a6e4e5bc559894262aadc825bd37aa7b7a2da12d776c056244bb6fcf4468696b",
+      "signal_json": "stale-webauthn-uv/signal.json",
+      "signal_json_sha256": "614ef1288f302c45620b5169f98834dafe83ed8d9ec4964c9d1dfc7bb5d7a0ec",
+      "signal_type": "webauthn-uv-fresh",
+      "state": "stale",
+      "summary": "Stale webauthn-uv-fresh signal at G1 (age 11s > 5s); verifier MUST reject with verdict=stale.",
+      "verdict": "stale"
+    },
+    {
+      "expected": "stale-face-continuous/expected.json",
+      "grade": "G1",
+      "name": "stale-face-continuous",
+      "signal_cbor": "stale-face-continuous/signal.cbor",
+      "signal_cbor_sha256": "167393cc04a2cadad09c3d7931e1132358209a764941a27f47781a9c896931ea",
+      "signal_json": "stale-face-continuous/signal.json",
+      "signal_json_sha256": "b3f9b3b326db8ab8e11f952e83a76d78335f72a3e1fc5d3a4a5fab90a117b5d2",
+      "signal_type": "face-continuous",
+      "state": "stale",
+      "summary": "Stale face-continuous signal at G1 (age 8s > 5s); verifier MUST reject with verdict=stale.",
+      "verdict": "stale"
+    },
+    {
+      "expected": "stale-fingerprint-tap/expected.json",
+      "grade": "G2",
+      "name": "stale-fingerprint-tap",
+      "signal_cbor": "stale-fingerprint-tap/signal.cbor",
+      "signal_cbor_sha256": "6288e3ac384bb038d9cb0b3604d8c372535ec7cbea441416f8795cae9b2d6869",
+      "signal_json": "stale-fingerprint-tap/signal.json",
+      "signal_json_sha256": "ac391de9c5e21e5b67960806bc41af2caf783359f7c60cd3a74616c2787e4f3a",
+      "signal_type": "fingerprint-tap",
+      "state": "stale",
+      "summary": "Stale fingerprint-tap signal at G2 (age 90s > 60s); verifier MUST reject with verdict=stale.",
+      "verdict": "stale"
+    },
+    {
+      "expected": "stale-presence-heartbeat-only/expected.json",
+      "grade": "G4",
+      "name": "stale-presence-heartbeat-only",
+      "signal_cbor": "stale-presence-heartbeat-only/signal.cbor",
+      "signal_cbor_sha256": "968266698dc4c25eed6d8bd21778a1134a00177279760229d981b1acb2ace155",
+      "signal_json": "stale-presence-heartbeat-only/signal.json",
+      "signal_json_sha256": "ea0a79b1c74d56198bea08e2d248d6fc85910a97155246c608678298aad8e66a",
+      "signal_type": "presence-heartbeat-only",
+      "state": "stale",
+      "summary": "Stale heartbeat at G4 (age 35min > 30min); verifier MUST reject with verdict=stale.",
+      "verdict": "stale"
+    },
+    {
+      "expected": "stale-intent-ticket/expected.json",
+      "grade": "G3",
+      "name": "stale-intent-ticket",
+      "signal_cbor": "stale-intent-ticket/signal.cbor",
+      "signal_cbor_sha256": "a029dda8a6ad8e6e5249a3a7efbcaec934608b6fbc4092b3eed1757c6c72dfed",
+      "signal_json": "stale-intent-ticket/signal.json",
+      "signal_json_sha256": "f95ade53b4eb12f4fcb301e9616d58699d3457e618eeb9b370732738b19b4744",
+      "signal_type": "intent-ticket",
+      "state": "stale",
+      "summary": "Stale intent-ticket at G3 (age 6min > 5min); verifier MUST reject with verdict=stale.",
+      "verdict": "stale"
+    },
+    {
+      "expected": "tampered-webauthn-uv-bad-signature/expected.json",
+      "grade": "G1",
+      "name": "tampered-webauthn-uv-bad-signature",
+      "signal_cbor": "tampered-webauthn-uv-bad-signature/signal.cbor",
+      "signal_cbor_sha256": "f8ab31b131334028d63bd8b300b3bfe5b11848430f26797124db6f028a5ffee6",
+      "signal_json": "tampered-webauthn-uv-bad-signature/signal.json",
+      "signal_json_sha256": "e1e01ae3998c13a25494223ac44dffcf3c6f2fd8399b8c04c0cfb74998480987",
+      "signal_type": "webauthn-uv-fresh",
+      "state": "tampered",
+      "summary": "Tampered webauthn-uv-fresh: outer signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+      "verdict": "attestation-invalid"
+    },
+    {
+      "expected": "tampered-face-continuous-bad-attestation/expected.json",
+      "grade": "G1",
+      "name": "tampered-face-continuous-bad-attestation",
+      "signal_cbor": "tampered-face-continuous-bad-attestation/signal.cbor",
+      "signal_cbor_sha256": "aa7373592b2422578dca9d54f33129df8469507d037e37db15b8d80b8e0b8102",
+      "signal_json": "tampered-face-continuous-bad-attestation/signal.json",
+      "signal_json_sha256": "21d2f69f098d929ef99e5563cf0da95efb0063cf0c11f665f918beaf23ab3d87",
+      "signal_type": "face-continuous",
+      "state": "tampered",
+      "summary": "Tampered face-continuous: device-attestation signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+      "verdict": "attestation-invalid"
+    },
+    {
+      "expected": "tampered-fingerprint-tap-replay/expected.json",
+      "grade": "G2",
+      "name": "tampered-fingerprint-tap-replay",
+      "signal_cbor": "tampered-fingerprint-tap-replay/signal.cbor",
+      "signal_cbor_sha256": "99c7a5896f190ec2961b73aaef82ffa663f3d760b5f7643141d16b1b47c7cd3f",
+      "signal_json": "tampered-fingerprint-tap-replay/signal.json",
+      "signal_json_sha256": "2ac361fb2a656abaf780d098819747911cc99c18b1f467b42a986ae655afd144",
+      "signal_type": "fingerprint-tap",
+      "state": "tampered",
+      "summary": "Replay fingerprint-tap: identical (mandate-id, nonce) tuple as a previously-accepted signal; verifier MUST reject with verdict=replay.",
+      "verdict": "replay"
+    },
+    {
+      "expected": "tampered-presence-heartbeat-only-bad-signature/expected.json",
+      "grade": "G4",
+      "name": "tampered-presence-heartbeat-only-bad-signature",
+      "signal_cbor": "tampered-presence-heartbeat-only-bad-signature/signal.cbor",
+      "signal_cbor_sha256": "685d0a3164aed3c5259d87ffe00811de47d1b54011555ea690c354efa1db55ee",
+      "signal_json": "tampered-presence-heartbeat-only-bad-signature/signal.json",
+      "signal_json_sha256": "7693f41c729633750e51fb7768b7f1c34cfd8d5f064ff081834d49b20a33682c",
+      "signal_type": "presence-heartbeat-only",
+      "state": "tampered",
+      "summary": "Tampered heartbeat: outer signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+      "verdict": "attestation-invalid"
+    },
+    {
+      "expected": "tampered-intent-ticket-replay/expected.json",
+      "grade": "G3",
+      "name": "tampered-intent-ticket-replay",
+      "signal_cbor": "tampered-intent-ticket-replay/signal.cbor",
+      "signal_cbor_sha256": "a47f9d531c8aa06d00a2d8cec0ee25eeda7ee30cd7298f305ca5554367fbefac",
+      "signal_json": "tampered-intent-ticket-replay/signal.json",
+      "signal_json_sha256": "4f373cf9deef8817b7a40a56aab69a38141d846be0f404016c31e7a5f9ead8e3",
+      "signal_type": "intent-ticket",
+      "state": "tampered",
+      "summary": "Replay intent-ticket: identical (mandate-id, nonce) tuple as a previously-consumed ticket; verifier MUST reject with verdict=replay.",
+      "verdict": "replay"
+    }
+  ],
+  "verdicts": [
+    "ok",
+    "stale",
+    "replay",
+    "attestation-invalid"
+  ]
+}

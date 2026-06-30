@@ -1,0 +1,34 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": "YXR0ZXN0YXRpb24tcGF5bG9hZC1wbGFjZWhvbGRlci12MQ",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+      "sig": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "signer": "ms:demo-mandate-service"
+  },
+  "claims": {
+    "cascade": true,
+    "effective-at": "2025-11-25T10:00:30Z",
+    "mandate-id": "mdt:01HX8K3F2Q7JX9V5N6T4R8M3PD",
+    "reason": "human-initiated"
+  },
+  "header": {
+    "expiry": "2025-11-25T10:01:00Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T10:00:00Z",
+    "issuer": "hp:01HX8K3F2Q7JX9V5N6T4R8M1ZA",
+    "msg-id": "msg:01HX8K3F2Q7JX9V5N6T4R8ME005",
+    "msg-type": "REVOKE",
+    "nonce": "QEFCQ0RFRkdISVBRUlNUVQ",
+    "subject": "fay:01HX8K3F2Q7JX9V5N6T4R8M2WC",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": "KWGI0xxN2k16f9d4tyQc2plK4bh5bxrMcFtjiiYoFYI",
+    "sig": "DCuEBPDe4iGwchSfYcQfOkp5Uq1rJIAlS_6Mt7YmSlLq3awsSbuILTmVWfjBck7JklNtO7IgisFc7nC2SDQVDw"
+  }
+}

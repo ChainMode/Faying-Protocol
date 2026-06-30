@@ -1,0 +1,493 @@
+{
+  "generator": {
+    "cbor_profile": "RFC 8949 §4.2.1 deterministic (canonical=True)",
+    "deterministic_now": "2025-12-17T12:00:00Z",
+    "json_profile": "sort_keys=True, indent=2, ensure_ascii=False",
+    "script": "vectors/errors/_generator.py"
+  },
+  "spec": {
+    "anchor": "§5.4 / §EH.1 / §EH.3",
+    "doc": "docs/zh-CN/specification/draft/Faying-Protocol-1.0.md",
+    "name": "Faying Protocol",
+    "version": "Faying Protocol/1.0"
+  },
+  "totals": {
+    "audit_required_count": 14,
+    "error_codes_covered": 15,
+    "error_codes_in_spec": 15,
+    "must_push_hp_view_count": 6
+  },
+  "vectors": [
+    {
+      "audit_required": false,
+      "code": 1001,
+      "directory": "1001-E_NO_MANDATE",
+      "files": {
+        "error.cbor": {
+          "sha256": "97580cf9aeead19795bf54873355009457299f897f86d6f27a0deab215f07f1b",
+          "size": 947
+        },
+        "error.json": {
+          "path": "1001-E_NO_MANDATE/error.json"
+        },
+        "expected.json": {
+          "path": "1001-E_NO_MANDATE/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "83b5e7c42004d6b4f197388cbd73813594ee63c01760f0566cb73f51255b06cb",
+          "size": 914
+        },
+        "trigger.json": {
+          "path": "1001-E_NO_MANDATE/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_NO_MANDATE",
+      "summary": "请求未携带 Mandate",
+      "trace": [
+        "R2.1.1"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1002,
+      "directory": "1002-E_MANDATE_EXPIRED",
+      "files": {
+        "error.cbor": {
+          "sha256": "6a31b73fb0100da3ba7d76b5a31769995324fa262f84f10fb3eb608515345f80",
+          "size": 989
+        },
+        "error.json": {
+          "path": "1002-E_MANDATE_EXPIRED/error.json"
+        },
+        "expected.json": {
+          "path": "1002-E_MANDATE_EXPIRED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "c04b4f76167eb0b3882ba53c5ff636e06e4b5f6d937a9e6585e8503956f9404f",
+          "size": 1895
+        },
+        "trigger.json": {
+          "path": "1002-E_MANDATE_EXPIRED/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_MANDATE_EXPIRED",
+      "summary": "Mandate 已过期（now > Mandate.not_after）",
+      "trace": [
+        "R2.2.4"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1003,
+      "directory": "1003-E_SCOPE_VIOLATION",
+      "files": {
+        "error.cbor": {
+          "sha256": "ca7f12b9ffc124d20a65205ad659a9de84e72109ea1d35f196d2fa7b1aa21781",
+          "size": 982
+        },
+        "error.json": {
+          "path": "1003-E_SCOPE_VIOLATION/error.json"
+        },
+        "expected.json": {
+          "path": "1003-E_SCOPE_VIOLATION/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "fe71a902f842163e8491dd12a927ebd4e429d173da766c21ef8212bcd40ebd01",
+          "size": 1871
+        },
+        "trigger.json": {
+          "path": "1003-E_SCOPE_VIOLATION/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_SCOPE_VIOLATION",
+      "summary": "调用动作 ∉ Mandate.scope.actions",
+      "trace": [
+        "R2.1.2"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1004,
+      "directory": "1004-E_GRADE_INSUFFICIENT",
+      "files": {
+        "error.cbor": {
+          "sha256": "deb7a82190482c6b1e039bb0bae000099a50c1320ad9fb954078930ad7fd2a6c",
+          "size": 1000
+        },
+        "error.json": {
+          "path": "1004-E_GRADE_INSUFFICIENT/error.json"
+        },
+        "expected.json": {
+          "path": "1004-E_GRADE_INSUFFICIENT/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "3d6c18b7c65dff8361147919020f331c8bac843cde5360aaee36ad90549086f3",
+          "size": 1889
+        },
+        "trigger.json": {
+          "path": "1004-E_GRADE_INSUFFICIENT/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_GRADE_INSUFFICIENT",
+      "summary": "RP 要求的 grade 强于当前 Mandate.grade",
+      "trace": [
+        "R6.3.3"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1005,
+      "directory": "1005-E_PRESENCE_STALE",
+      "files": {
+        "error.cbor": {
+          "sha256": "782a9961bce957d26d6081040e61bd15a29c09b8110e2f27935f69e0d0e48ed2",
+          "size": 963
+        },
+        "error.json": {
+          "path": "1005-E_PRESENCE_STALE/error.json"
+        },
+        "expected.json": {
+          "path": "1005-E_PRESENCE_STALE/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "0d64dd633ee29e58f44dad9a369f1ab94141e62ef1a84761e8b7ae5a4bde31f6",
+          "size": 1949
+        },
+        "trigger.json": {
+          "path": "1005-E_PRESENCE_STALE/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_PRESENCE_STALE",
+      "summary": "presence.last_freshness 超过 max_staleness_ms",
+      "trace": [
+        "R5.1.2"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1006,
+      "directory": "1006-E_REVOKED",
+      "files": {
+        "error.cbor": {
+          "sha256": "64f6d250d26ca041171a1791253a690f8e9e8e17a644bfd3e8c706863b11b70d",
+          "size": 985
+        },
+        "error.json": {
+          "path": "1006-E_REVOKED/error.json"
+        },
+        "expected.json": {
+          "path": "1006-E_REVOKED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "34c4a689a9cfa98cd74701e0755ae594b0da906d3b450111fe1cf4b5717513bf",
+          "size": 1991
+        },
+        "trigger.json": {
+          "path": "1006-E_REVOKED/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_REVOKED",
+      "summary": "Mandate 已撤销",
+      "trace": [
+        "R4.3.1",
+        "R3.2.3"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1007,
+      "directory": "1007-E_ATTESTATION_INVALID",
+      "files": {
+        "error.cbor": {
+          "sha256": "54b816e54d0084e726d4c28f6ce82fc2b05e0385b3149ae41b2748d1843c722b",
+          "size": 928
+        },
+        "error.json": {
+          "path": "1007-E_ATTESTATION_INVALID/error.json"
+        },
+        "expected.json": {
+          "path": "1007-E_ATTESTATION_INVALID/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "00ca98877eb2faf159fb082569fed76a74a23accaa2d9447a4df5f3f80a84a68",
+          "size": 2158
+        },
+        "trigger.json": {
+          "path": "1007-E_ATTESTATION_INVALID/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_ATTESTATION_INVALID",
+      "summary": "Attestation Chain 节点签名校验失败 / endorsement 篡改",
+      "trace": [
+        "R3.1.3",
+        "R11.1.4"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1008,
+      "directory": "1008-E_RR_UNAVAILABLE",
+      "files": {
+        "error.cbor": {
+          "sha256": "cdda9d630bf6f9f973a25d41c1e904bf1760da70480114e8f0edae78be0f3150",
+          "size": 1005
+        },
+        "error.json": {
+          "path": "1008-E_RR_UNAVAILABLE/error.json"
+        },
+        "expected.json": {
+          "path": "1008-E_RR_UNAVAILABLE/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "75999a60edee364dfef527e96a85010597b4cb99dcc5e37e1fcca1d227059a90",
+          "size": 1971
+        },
+        "trigger.json": {
+          "path": "1008-E_RR_UNAVAILABLE/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_RR_UNAVAILABLE",
+      "summary": "RR 查询超时 ≥ StaleBudget",
+      "trace": [
+        "R2.1.4",
+        "R4.2.4"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1009,
+      "directory": "1009-E_REPLAY",
+      "files": {
+        "error.cbor": {
+          "sha256": "e6dfe5b980c90f7e47f37e069bf6f786573c4377e1a129e677e30b63726fb0a6",
+          "size": 963
+        },
+        "error.json": {
+          "path": "1009-E_REPLAY/error.json"
+        },
+        "expected.json": {
+          "path": "1009-E_REPLAY/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "1fe4ea9995f0ff192b453e566f1300df3aad019e2e6b23b2a11d7e38bf10bb05",
+          "size": 1846
+        },
+        "trigger.json": {
+          "path": "1009-E_REPLAY/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_REPLAY",
+      "summary": "nonce 在 2 × max_message_lifetime 内对相同 subject 已被见",
+      "trace": [
+        "R9.1.2",
+        "R3.2.3"
+      ],
+      "trigger_msg_type": "PRESENCE"
+    },
+    {
+      "audit_required": true,
+      "code": 1010,
+      "directory": "1010-E_HUMAN_WITNESS_REQUIRED",
+      "files": {
+        "error.cbor": {
+          "sha256": "2b6f4ead5b105e2f68db1dc0ba92fbb922d70b4b7e8ed2112cbcf2e9f1423a80",
+          "size": 1018
+        },
+        "error.json": {
+          "path": "1010-E_HUMAN_WITNESS_REQUIRED/error.json"
+        },
+        "expected.json": {
+          "path": "1010-E_HUMAN_WITNESS_REQUIRED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "a03b7eeaa84bf774bb479dbc3808c0f5a002885d2c9f0a5d243a8b5818a5e67a",
+          "size": 922
+        },
+        "trigger.json": {
+          "path": "1010-E_HUMAN_WITNESS_REQUIRED/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_HUMAN_WITNESS_REQUIRED",
+      "summary": "等级升级 / 双向 Faying 缺人类见证",
+      "trace": [
+        "R6.1.2"
+      ],
+      "trigger_msg_type": "GRADE_SWITCH"
+    },
+    {
+      "audit_required": true,
+      "code": 1011,
+      "directory": "1011-E_ROGUE_DETECTED",
+      "files": {
+        "error.cbor": {
+          "sha256": "7a5122287e24d0f71695728db0c40597605cc3ae8d07169c47de7ed66d7dfb1e",
+          "size": 928
+        },
+        "error.json": {
+          "path": "1011-E_ROGUE_DETECTED/error.json"
+        },
+        "expected.json": {
+          "path": "1011-E_ROGUE_DETECTED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "9b26717e3d2bbe72d58c1bd135baec4bfdc9f753cf7d92ae78774f5a64e838a0",
+          "size": 1160
+        },
+        "trigger.json": {
+          "path": "1011-E_ROGUE_DETECTED/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_ROGUE_DETECTED",
+      "summary": "检测到 Rogue 行为（ego-deviation / 行为基线超阈）",
+      "trace": [
+        "R9.4.5",
+        "R3.2.3"
+      ],
+      "trigger_msg_type": "DISCLOSURE"
+    },
+    {
+      "audit_required": true,
+      "code": 1012,
+      "directory": "1012-E_BUDGET_EXCEEDED",
+      "files": {
+        "error.cbor": {
+          "sha256": "dd89cef0ede22b92a3abedfcaa9dec2b4b5fc8e908a07c990c54a9680aec15d9",
+          "size": 985
+        },
+        "error.json": {
+          "path": "1012-E_BUDGET_EXCEEDED/error.json"
+        },
+        "expected.json": {
+          "path": "1012-E_BUDGET_EXCEEDED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "684412999b64c118e65d450b3ac96a4b5a9e0774ee3a6cb0439f9c99097553d0",
+          "size": 2032
+        },
+        "trigger.json": {
+          "path": "1012-E_BUDGET_EXCEEDED/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_BUDGET_EXCEEDED",
+      "summary": "调用累计超过 Scope.budget / ResourceBudget",
+      "trace": [
+        "R2.1.3"
+      ],
+      "trigger_msg_type": "BUSINESS_CALL"
+    },
+    {
+      "audit_required": true,
+      "code": 1013,
+      "directory": "1013-E_ENDORSEMENT_INVALID",
+      "files": {
+        "error.cbor": {
+          "sha256": "49551a8ecdd0c56b91fdb1e18d777aeca04940705c6e67c7c2a039f670932712",
+          "size": 1023
+        },
+        "error.json": {
+          "path": "1013-E_ENDORSEMENT_INVALID/error.json"
+        },
+        "expected.json": {
+          "path": "1013-E_ENDORSEMENT_INVALID/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "89331617fd6b47337b9ee499838c3f09971e93096037ef6327d446f1ac55d69a",
+          "size": 1489
+        },
+        "trigger.json": {
+          "path": "1013-E_ENDORSEMENT_INVALID/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_ENDORSEMENT_INVALID",
+      "summary": "endorsement 收敛违反 / 篡改 / lifetime 越界",
+      "trace": [
+        "R11.2.4",
+        "R3.2.3"
+      ],
+      "trigger_msg_type": "BOOTSTRAP"
+    },
+    {
+      "audit_required": true,
+      "code": 1014,
+      "directory": "1014-E_FAYING_REQUEST_NOT_CONFIRMED",
+      "files": {
+        "error.cbor": {
+          "sha256": "771cdaabe3d74b472e1e6138982a31177ee50b4b4b9ecb9f6bc66bb1f7e6a9dd",
+          "size": 995
+        },
+        "error.json": {
+          "path": "1014-E_FAYING_REQUEST_NOT_CONFIRMED/error.json"
+        },
+        "expected.json": {
+          "path": "1014-E_FAYING_REQUEST_NOT_CONFIRMED/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "898c013b42c3df77f34c960fa1d9ac9f2903376513d843ad103904f609595bd1",
+          "size": 1242
+        },
+        "trigger.json": {
+          "path": "1014-E_FAYING_REQUEST_NOT_CONFIRMED/trigger.json"
+        }
+      },
+      "must_push_hp_view": false,
+      "name": "E_FAYING_REQUEST_NOT_CONFIRMED",
+      "summary": "iFay 主动 FAYING_REQUEST 在 BootstrapTimeout 内未获 HP 见证",
+      "trace": [
+        "R1.3.3"
+      ],
+      "trigger_msg_type": "FAYING_REQUEST"
+    },
+    {
+      "audit_required": true,
+      "code": 1099,
+      "directory": "1099-E_PROTOCOL",
+      "files": {
+        "error.cbor": {
+          "sha256": "4727aa7e8abb9eb2693dc2049c6518e595a7ea178506ce1d63f9631b382ea917",
+          "size": 1017
+        },
+        "error.json": {
+          "path": "1099-E_PROTOCOL/error.json"
+        },
+        "expected.json": {
+          "path": "1099-E_PROTOCOL/expected.json"
+        },
+        "trigger.cbor": {
+          "sha256": "ea7cbf0123e5cf5d06a6f4ea17b4c455fc8e1ffbb9558c33ef108fd8234b490d",
+          "size": 1038
+        },
+        "trigger.json": {
+          "path": "1099-E_PROTOCOL/trigger.json"
+        }
+      },
+      "must_push_hp_view": true,
+      "name": "E_PROTOCOL",
+      "summary": "协议层错误（DISCLOSURE mandatory_fields 缺失或不可解析）",
+      "trace": [
+        "R13.3.1"
+      ],
+      "trigger_msg_type": "DISCLOSURE"
+    }
+  ]
+}

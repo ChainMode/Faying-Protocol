@@ -1,0 +1,39 @@
+{
+  "device_id": "presence-device:vector-stale-face-continuous",
+  "digests": {
+    "signal_cbor_sha256": "167393cc04a2cadad09c3d7931e1132358209a764941a27f47781a9c896931ea",
+    "signal_json_sha256": "b3f9b3b326db8ab8e11f952e83a76d78335f72a3e1fc5d3a4a5fab90a117b5d2",
+    "signing_input_sha256": "7841d9f1b7a315b9bab89b39704222498634401259ca0eb4fe7510ddbfe5a991"
+  },
+  "error_code": 1005,
+  "error_name": "E_PRESENCE_STALE",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 8000,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:52Z",
+    "within_budget": false
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-STALE-FACE-CONTINUOUS",
+  "nonce_b64u": "aHnZnYTNOKXvvgC0TXL76A",
+  "notes": "Drives the §3.2 'face-continuous → degrade to G2' path: the verifier rejects this signal with E_PRESENCE_STALE and the operator policy (`on-loss`) decides whether to downgrade or suspend.",
+  "requirements_validated": [
+    "5.1",
+    "5.2",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "face-continuous",
+  "state": "stale",
+  "summary": "Stale face-continuous signal at G1 (age 8s > 5s); verifier MUST reject with verdict=stale.",
+  "tamper": null,
+  "vector_name": "stale-face-continuous",
+  "verdict": "stale"
+}

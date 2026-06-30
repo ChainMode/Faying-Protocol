@@ -1,26 +1,34 @@
 # === 仓库根目录：默认忽略一切 ===
 /*
 
-# === 显式放行 ===
+# === 显式放行（用户可见的「产物」）===
 !/docs/
 !/README.md
 !/.gitignore
+!/LICENSE
+# 协议规范性工件 = 产物（PO 裁定 2026-06-29）：第三方据此实现并自测，"开放协议"才名副其实
+!/schemas/
+!/vectors/
 
-# === 在已放行的目录内仍要剔除的常见噪声 ===
+# === 已放行目录内仍要剔除的噪声 ===
 .DS_Store
 *.swp
 *.swo
 *~
 Thumbs.db
+__pycache__/
+*.py[cod]
 
-# === 不进入 GitHub 管控的内部文件 ===
-# 各语言蓝图的 glossary.md 仅作为内部对照表，不公开
+# === 内部文件（工程过程文档，留本地，不公开）===
+# 蓝图内部对照表 / 同步状态（仅维护用）
 docs/*/blueprint/glossary.md
-# 蓝图同步状态文件仅作为内部维护，不公开
 docs/*/blueprint/sync-status.yaml
 
 # 备注：
-# 1. /* 仅匹配仓库根目录的一级条目；!/docs/ 一旦放行，docs/ 内所有文件默认被跟踪
-# 2. .kiro/ 因未被显式放行（且 /* 已在根级忽略），自然不会被推送
-# 3. LICENSE、schema/ 因未被显式放行，亦不会被推送
-# 4. 后续如需纳入 schema/，追加一行 !/schema/ 即可
+# 1. /* 仅匹配仓库根一级条目；任一 !/<dir>/ 放行后，其内文件默认被跟踪，再由上方噪声规则剔除。
+# 2. 「产物」（公开）：docs/、README、LICENSE、schemas/（CDDL 规范）、vectors/（官方测试向量）。
+#    vectors/ 内的密钥均为确定性「测试向量」固定值（非生产密钥），公开符合协议标准惯例。
+# 3. 「工程过程」（留本地、未放行故不推送）：schema/（单数占位 {}）、conformance/、reference-impls/、
+#    pbt/、.kiro/、.dev-os/、.cursor/、.githooks/、AGENTS.md、decisions/、openspec/、.github/。
+# 4. 质量门禁走本地 .githooks/pre-push 跑测试栈；GitHub Actions 暂不依赖（工程栈未公开）。
+# 5. 后续如需公开更多目录，追加一行 !/<dir>/ 即可。

@@ -1,0 +1,43 @@
+{
+  "final_state": "Active",
+  "reconcile_result": "success",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:30:00Z",
+    "reconcile_result": "success",
+    "post_state": "Active"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z", "mandate_id": "mandate-c1-001" },
+    { "seq": 2, "event": "PresenceStaleDetected", "ts": "2025-11-25T08:02:00Z" },
+    { "seq": 3, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:00Z",
+      "from": "Active", "to": "Disconnected" },
+    { "seq": 4, "event": "EndorsedActionPerformed", "ts": "2025-11-25T08:10:00Z",
+      "action": "files.read", "endorsement_id": "endorsement-c1-001",
+      "accountable_party": "fay:hp/eve" },
+    { "seq": 5, "event": "ReconcileRequest", "ts": "2025-11-25T08:30:00Z",
+      "mandate_id": "mandate-c1-001",
+      "endorsed_actions_count": 1 },
+    { "seq": 6, "event": "RPCallRejectedDuringReconcileWindow", "ts": "2025-11-25T08:30:00.500Z",
+      "action": "files.write", "error": "E_PRESENCE_STALE" },
+    { "seq": 7, "event": "ReconcileResult", "ts": "2025-11-25T08:30:01Z",
+      "result": "success", "revoked_mandates": [],
+      "endorsed_actions_audited": 1 },
+    { "seq": 8, "event": "MandateStateTransition", "ts": "2025-11-25T08:30:01Z",
+      "from": "Disconnected", "to": "Active" }
+  ],
+  "expected_errors": [
+    { "code": "E_PRESENCE_STALE",
+      "context": "对账事务未完成前任何 D 维度调用必拒（§8.4.4 D 维度禁令）" }
+  ],
+  "rp_calls_during_window": [
+    { "ts": "2025-11-25T08:30:00.500Z", "verdict": "rejected", "error": "E_PRESENCE_STALE" },
+    { "ts": "2025-11-25T08:30:30Z", "verdict": "accepted",
+      "note": "对账完成后恢复 Active，files.write 落在主 scope 内 ⇒ 允许" }
+  ],
+  "invariants_checked": [
+    "§8.4.3 success：reconcile 在 BootstrapTimeout 内完成 ⇒ Disconnected → Active",
+    "§8.4.4 D 维度禁令：对账事务未完成前的所有 D 维度调用必拒",
+    "禁止静默续传：必须经过 RECONCILE_REQUEST / RECONCILE_RESP 才能转 Active"
+  ]
+}

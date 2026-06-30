@@ -1,0 +1,51 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload_hex": "",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "signer": "presence-device-1"
+  },
+  "claims": {
+    "expected_lifetime_ms": 3600000,
+    "initiator": "fay:01HXR000000000000000000IF",
+    "proposed_grade": 3,
+    "proposed_scope": {
+      "actions": [
+        "read:profile"
+      ],
+      "domains": [
+        "api.example.com"
+      ]
+    },
+    "reason": "establish a new monitored relationship",
+    "reason_code": "establish",
+    "target_human": "hp:01HXR000000000000000000HP",
+    "timeline": {
+      "bootstrap_timeout_ms": 60000,
+      "confirmation_deadline": "2025-12-17T11:59:00Z",
+      "hp_witness_received": false,
+      "issued_at": "2025-12-17T11:58:00Z",
+      "now": "2025-12-17T12:00:00Z"
+    }
+  },
+  "header": {
+    "expiry": "2025-12-17T13:00:00Z",
+    "grade": 3,
+    "issued_at": "2025-12-17T12:00:00Z",
+    "issuer": "fay:01HXR000000000000000000IF",
+    "msg_id": "msg:err-1014-trigger",
+    "msg_type": "FAYING_REQUEST",
+    "nonce_hex": "00112233445566778899aabbccddeeff",
+    "subject": "fay:01HXR000000000000000000IF",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

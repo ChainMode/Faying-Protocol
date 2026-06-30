@@ -1,0 +1,37 @@
+{
+  "device_id": "presence-device:vector-fresh-webauthn-uv",
+  "digests": {
+    "signal_cbor_sha256": "0a3aa6109e47bc1994fbe5bf8567ad2aea1eaf7481b2243c08ea15cf80ce086a",
+    "signal_json_sha256": "31ec27b9229a2c6d0b1a7464600a78531fb2642143ae0be24fba0f060a83fc18",
+    "signing_input_sha256": "6dd3886a335a57cd1cfa8952459b61ec009687d5a05f7cded99b87f6c88fe6c7"
+  },
+  "error_code": null,
+  "error_name": null,
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 1500,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:58.500Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-FRESH-WEBAUTHN-UV",
+  "nonce_b64u": "kRUJK3t1_G06Bn1KF7QbHg",
+  "notes": "Drives the §3.2 strong-presence path: WebAuthn user-verification anchors the G1 Strict budget.",
+  "requirements_validated": [
+    "5.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "webauthn-uv-fresh",
+  "state": "fresh",
+  "summary": "Fresh webauthn-uv-fresh signal at G1 (age 1.5s ≤ 5s); verifier MUST accept with verdict=ok.",
+  "tamper": null,
+  "vector_name": "fresh-webauthn-uv",
+  "verdict": "ok"
+}

@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Reversibility is a hard input to the HP confirmation UI."
+  ],
+  "case": "b",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "missing_field": "reversibility",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "06-missing-reversibility"
+}

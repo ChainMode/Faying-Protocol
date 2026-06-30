@@ -1,0 +1,770 @@
+// =============================================================================
+//  Faying Protocol/1.0 — Optional gRPC Transport Binding
+//
+//  File:        schemas/fap-1.0.proto
+//  Status:      Optional gRPC transport binding; CBOR over HTTP remains primary.
+//  Authority:   schemas/fap-1.0.cddl is NORMATIVE. This file is a NON-NORMATIVE
+//               wire-equivalent of the CDDL schema, exposed for implementations
+//               that prefer Protocol Buffers v3 / gRPC. In any conflict the
+//               CDDL is authoritative.
+//
+//  Naming note: The historical short-form "FAP" has been deprecated in favour
+//               of the full name "Faying Protocol/1.0" (see design.md §1.1).
+//               The filename `fap-1.0.proto` is preserved per tasks.md §2.3
+//               (filename stability across draft cycles); inside this file the
+//               package and service names use the modern "faying_protocol"
+//               naming.
+//
+//  Mapping policy (CDDL ↔ proto3):
+//    - CDDL `tstr`           → proto `string`
+//    - CDDL `bstr`           → proto `bytes`
+//    - CDDL `uint`           → proto `uint64`
+//    - CDDL `bool`           → proto `bool`
+//    - CDDL `iso-time`       → proto `string` (RFC 3339)
+//    - CDDL string-sums      → proto `enum` with stable numeric values
+//    - CDDL `?`-optional     → proto plural-default fields; truly-absent vs.
+//                              defaulted fields are flagged via `optional`
+//                              (proto3 field presence) where semantically
+//                              meaningful (e.g. parent, endorsement).
+//    - CDDL field name       → proto `snake_case` (preserved verbatim from
+//                              the CDDL line; e.g. `mandate-id` → `mandate_id`).
+//
+//  Field-number stability contract:
+//    1. Every numeric tag below is treated as part of the wire ABI.
+//       Once a tag is published, it MUST NOT be reused for a different field
+//       and MUST NOT be repurposed with a different type.
+//    2. Removed fields MUST be migrated to a `reserved` clause inside the
+//       same message so future authors cannot accidentally rebind the tag.
+//    3. New fields MUST be appended at the next free tag in the documented
+//       reserved-range, never in the middle of an existing block.
+//    4. Each message below carries a `// @stable-since: Faying Protocol/1.0`
+//       comment marking the freeze point for its initial field set.
+//    5. Enum values are part of the same ABI contract; new variants MUST be
+//       appended with a fresh numeric value, never replace an existing one.
+//
+//  Verification: `protoc --proto_path=schemas fap-1.0.proto -o /dev/null`
+//                MUST exit 0. See tasks.md §2.3.
+// =============================================================================
+
+syntax = "proto3";
+
+package faying_protocol.v1;
+
+option go_package    = "github.com/faying-protocol/spec/gen/go/faying_protocol/v1;faying_protocolv1";
+option java_package  = "org.faying_protocol.v1";
+option java_multiple_files = true;
+option csharp_namespace = "FayingProtocol.V1";
+
+// -----------------------------------------------------------------------------
+// 1. Enumerations (CDDL string-sums → stable numeric variants)
+// -----------------------------------------------------------------------------
+
+// Authorization Grade. CDDL: faying-grade = 0..4.
+// Numeric values intentionally match the CDDL integer encoding so a CBOR-side
+// `grade: 2` and a proto-side `GRADE_MODERATE` decode to the same value.
+// @stable-since: Faying Protocol/1.0
+enum Grade {
+  // Sentinel only; never appears on the wire. Decoders MUST treat
+  // GRADE_UNSPECIFIED as a protocol error (E_PROTOCOL).
+  GRADE_UNSPECIFIED        = 0;  // reserved sentinel — DO NOT REUSE for G0
+  // NOTE: CDDL maps 0=EmergencyOverride. To preserve proto3's "unspecified=0"
+  // hygiene, the wire-numeric mapping is documented here:
+  //   CDDL 0 (EmergencyOverride) → proto GRADE_EMERGENCY_OVERRIDE = 10
+  //   CDDL 1 (Strict)            → proto GRADE_STRICT             = 11
+  //   CDDL 2 (Moderate)          → proto GRADE_MODERATE           = 12
+  //   CDDL 3 (Loose)             → proto GRADE_LOOSE              = 13
+  //   CDDL 4 (Autonomous)        → proto GRADE_AUTONOMOUS         = 14
+  // Implementations bridging proto ↔ CDDL MUST translate via this table; the
+  // CDDL integer value is the authoritative on-wire grade in CBOR encodings.
+  GRADE_EMERGENCY_OVERRIDE = 10;
+  GRADE_STRICT             = 11;
+  GRADE_MODERATE           = 12;
+  GRADE_LOOSE              = 13;
+  GRADE_AUTONOMOUS         = 14;
+}
+
+// Presence signal type. CDDL: presence-signal-type string-sum.
+// @stable-since: Faying Protocol/1.0
+enum PresenceSignalType {
+  PRESENCE_SIGNAL_TYPE_UNSPECIFIED        = 0;
+  PRESENCE_SIGNAL_TYPE_WEBAUTHN_UV_FRESH  = 1;  // "webauthn-uv-fresh"
+  PRESENCE_SIGNAL_TYPE_FACE_CONTINUOUS    = 2;  // "face-continuous"
+  PRESENCE_SIGNAL_TYPE_FINGERPRINT_TAP    = 3;  // "fingerprint-tap"
+  PRESENCE_SIGNAL_TYPE_HEARTBEAT_ONLY     = 4;  // "presence-heartbeat-only"
+  PRESENCE_SIGNAL_TYPE_INTENT_TICKET      = 5;  // "intent-ticket"
+}
+
+// Attestation format. CDDL: attestation.format string-sum.
+// @stable-since: Faying Protocol/1.0
+enum AttestationFormat {
+  ATTESTATION_FORMAT_UNSPECIFIED       = 0;
+  ATTESTATION_FORMAT_WEBAUTHN          = 1;  // "webauthn"
+  ATTESTATION_FORMAT_TPM_QUOTE         = 2;  // "tpm-quote"
+  ATTESTATION_FORMAT_PLATFORM_KEYSTORE = 3;  // "platform-keystore"
+  ATTESTATION_FORMAT_SELF_SIGNED       = 4;  // "self-signed"
+}
+
+// Signature algorithm. CDDL: signature-bundle.alg string-sum (PQC negotiation).
+// @stable-since: Faying Protocol/1.0
+enum SignatureAlgorithm {
+  SIGNATURE_ALGORITHM_UNSPECIFIED = 0;
+  SIGNATURE_ALGORITHM_ED25519     = 1;  // "Ed25519"  — default per design.md §6.1
+  SIGNATURE_ALGORITHM_ES256       = 2;  // "ES256"    — ECDSA-P256 alternate
+  SIGNATURE_ALGORITHM_ML_DSA_65   = 3;  // "ML-DSA-65" — FIPS 204 PQC
+}
+
+// Endorsement.offline_revocation_policy. CDDL string-sum.
+// @stable-since: Faying Protocol/1.0
+enum OfflineRevocationPolicy {
+  OFFLINE_REVOCATION_POLICY_UNSPECIFIED   = 0;
+  OFFLINE_REVOCATION_POLICY_STOP_AND_AUDIT = 1;  // "stop-and-audit" (default)
+  OFFLINE_REVOCATION_POLICY_STOP_ONLY      = 2;  // "stop-only"
+  OFFLINE_REVOCATION_POLICY_GRACEFUL_STOP  = 3;  // "graceful-stop"
+}
+
+// PresenceRequirement.on_loss policy. design.md §4.1 / §7.
+// CDDL stores this as a free-form tstr; this proto definition pre-allocates
+// stable codes for the documented variants and falls back to the raw string
+// in the `on_loss_raw` field for forwards-compatibility (e.g. `downgrade-to:G2`
+// with arbitrary G index).
+// @stable-since: Faying Protocol/1.0
+enum OnLossPolicyKind {
+  ON_LOSS_POLICY_KIND_UNSPECIFIED        = 0;
+  ON_LOSS_POLICY_KIND_DOWNGRADE_TO_GRADE = 1;  // "downgrade-to:Gx"
+  ON_LOSS_POLICY_KIND_SUSPEND            = 2;  // "suspend"
+  ON_LOSS_POLICY_KIND_EMERGENCY_OVERRIDE = 3;  // "emergency-override"
+}
+
+// Revoke reason. design.md §5.3.5.
+// @stable-since: Faying Protocol/1.0
+enum RevokeReason {
+  REVOKE_REASON_UNSPECIFIED                     = 0;
+  REVOKE_REASON_HUMAN_INITIATED                 = 1;  // "human-initiated"
+  REVOKE_REASON_EXPIRY                          = 2;  // "expiry"
+  REVOKE_REASON_TASK_COMPLETED                  = 3;  // "task-completed"
+  REVOKE_REASON_HUMAN_PRIME_UNREACHABLE         = 4;  // "human-prime-unreachable"
+  REVOKE_REASON_EGO_DEVIATION                   = 5;  // "ego-deviation"
+  REVOKE_REASON_FAY_CREDENTIAL_INVALID          = 6;  // "fay-credential-invalid"
+  REVOKE_REASON_HUMAN_PRIME_CREDENTIAL_INVALID  = 7;  // "human-prime-credential-invalid"
+  REVOKE_REASON_REGULATORY_ORDER                = 8;  // "regulatory-order"
+  REVOKE_REASON_TERMINAL_DISCONNECTED           = 9;  // "terminal-disconnected"
+}
+
+// GradeSwitch reason. design.md §5.3.3.
+// @stable-since: Faying Protocol/1.0
+enum GradeSwitchReason {
+  GRADE_SWITCH_REASON_UNSPECIFIED     = 0;
+  GRADE_SWITCH_REASON_HUMAN_INITIATED = 1;  // "human-initiated"
+  GRADE_SWITCH_REASON_PRESENCE_LOSS   = 2;  // "presence-loss"
+  GRADE_SWITCH_REASON_POLICY_TRIGGER  = 3;  // "policy-trigger"
+}
+
+// FayingRequest reason code. design.md §5.3.6.
+// @stable-since: Faying Protocol/1.0
+enum FayingRequestReasonCode {
+  FAYING_REQUEST_REASON_CODE_UNSPECIFIED          = 0;
+  FAYING_REQUEST_REASON_CODE_ESTABLISH            = 1;  // "establish"
+  FAYING_REQUEST_REASON_CODE_ADJUST_SCOPE         = 2;  // "adjust-scope"
+  FAYING_REQUEST_REASON_CODE_ADJUST_GRADE         = 3;  // "adjust-grade"
+  FAYING_REQUEST_REASON_CODE_RENEW                = 4;  // "renew"
+  FAYING_REQUEST_REASON_CODE_ENDORSEMENT_REQUEST  = 5;  // "endorsement-request"
+}
+
+// FayingRequestResp status. design.md §5.3.6.
+// @stable-since: Faying Protocol/1.0
+enum FayingRequestStatus {
+  FAYING_REQUEST_STATUS_UNSPECIFIED = 0;
+  FAYING_REQUEST_STATUS_ACCEPTED    = 1;  // "accepted"
+  FAYING_REQUEST_STATUS_REJECTED    = 2;  // "rejected"
+  FAYING_REQUEST_STATUS_TIMEOUT     = 3;  // "timeout"
+}
+
+// Disclosure.risk_level. design.md §5.3.7.
+// @stable-since: Faying Protocol/1.0
+enum RiskLevel {
+  RISK_LEVEL_UNSPECIFIED = 0;
+  RISK_LEVEL_LOW         = 1;  // "low"
+  RISK_LEVEL_NORMAL      = 2;  // "normal"
+  RISK_LEVEL_HIGH        = 3;  // "high"
+  RISK_LEVEL_CRITICAL    = 4;  // "critical"
+}
+
+// Disclosure.reversibility. design.md §5.3.7.
+// @stable-since: Faying Protocol/1.0
+enum Reversibility {
+  REVERSIBILITY_UNSPECIFIED          = 0;
+  REVERSIBILITY_REVERSIBLE           = 1;  // "reversible"
+  REVERSIBILITY_PARTIALLY_REVERSIBLE = 2;  // "partially-reversible"
+  REVERSIBILITY_IRREVERSIBLE         = 3;  // "irreversible"
+}
+
+// Disclosure.intent. design.md §5.3.7.
+// @stable-since: Faying Protocol/1.0
+enum DisclosureIntent {
+  DISCLOSURE_INTENT_UNSPECIFIED         = 0;
+  DISCLOSURE_INTENT_REPORT              = 1;  // "report"
+  DISCLOSURE_INTENT_REQUEST_CONFIRMATION = 2; // "request-confirmation"
+}
+
+// FayingProtocolEnvelope.msg_type. design.md §5.2.
+// Numeric values are part of the wire ABI; appended only.
+// @stable-since: Faying Protocol/1.0
+enum FayingProtocolMsgType {
+  MSG_TYPE_UNSPECIFIED         = 0;
+  MSG_TYPE_BOOTSTRAP           = 1;
+  MSG_TYPE_BOOTSTRAP_RESP      = 2;
+  MSG_TYPE_PRESENCE            = 3;
+  MSG_TYPE_PRESENCE_ACK        = 4;
+  MSG_TYPE_GRADE_SWITCH        = 5;
+  MSG_TYPE_GRADE_SWITCH_RESP   = 6;
+  MSG_TYPE_DELEGATE            = 7;
+  MSG_TYPE_DELEGATE_RESP       = 8;
+  MSG_TYPE_REVOKE              = 9;
+  MSG_TYPE_REVOKE_RECEIPT      = 10;
+  MSG_TYPE_FAYING_REQUEST      = 11;
+  MSG_TYPE_FAYING_REQUEST_RESP = 12;
+  MSG_TYPE_DISCLOSURE          = 13;
+  MSG_TYPE_ERROR               = 14;
+}
+
+// Protocol-level error code. design.md §5.4.
+// Numeric values mirror the four-digit error codes (1001..1099) so a single
+// integer can travel both as proto enum and as the over-the-wire integer code.
+// @stable-since: Faying Protocol/1.0
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED                 = 0;
+  ERROR_CODE_NO_MANDATE                  = 1001;
+  ERROR_CODE_MANDATE_EXPIRED             = 1002;
+  ERROR_CODE_SCOPE_VIOLATION             = 1003;
+  ERROR_CODE_GRADE_INSUFFICIENT          = 1004;
+  ERROR_CODE_PRESENCE_STALE              = 1005;
+  ERROR_CODE_REVOKED                     = 1006;
+  ERROR_CODE_ATTESTATION_INVALID         = 1007;
+  ERROR_CODE_RR_UNAVAILABLE              = 1008;
+  ERROR_CODE_REPLAY                      = 1009;
+  ERROR_CODE_HUMAN_WITNESS_REQUIRED      = 1010;
+  ERROR_CODE_ROGUE_DETECTED              = 1011;
+  ERROR_CODE_BUDGET_EXCEEDED             = 1012;
+  ERROR_CODE_ENDORSEMENT_INVALID         = 1013;
+  ERROR_CODE_FAYING_REQUEST_NOT_CONFIRMED = 1014;
+  ERROR_CODE_PROTOCOL                    = 1099;
+}
+
+// -----------------------------------------------------------------------------
+// 2. Common value types (CDDL: scope, resource-budget, signature-bundle, ...)
+// -----------------------------------------------------------------------------
+
+// CDDL:
+//   resource-budget = {
+//     time-window:        [iso-time, iso-time],
+//     ? max-invocations:  uint,
+//     ? max-cost-units:   uint
+//   }
+// @stable-since: Faying Protocol/1.0
+message ResourceBudget {
+  // RFC 3339 timestamps. CDDL `iso-time = #6.0(tstr)`.
+  string time_window_start = 1;
+  string time_window_end   = 2;
+
+  // proto3 field presence (`optional`) lets us distinguish "absent" from "0".
+  optional uint64 max_invocations = 3;
+  optional uint64 max_cost_units  = 4;
+
+  // reserved 5 to 15;  // reserved for future budget dimensions
+}
+
+// CDDL:
+//   scope = {
+//     domains:    [* tstr],
+//     actions:    [* tstr],
+//     ? terminals: [* tstr],
+//     ? budget:   resource-budget
+//   }
+//
+// Note: `actions` MUST NOT contain wildcards (see design.md §9.10.3 / P18.2).
+// @stable-since: Faying Protocol/1.0
+message Scope {
+  repeated string domains   = 1;
+  repeated string actions   = 2;
+  repeated string terminals = 3;  // optional in CDDL; empty list ↔ absent
+  optional ResourceBudget budget = 4;
+
+  // reserved 5 to 15;
+}
+
+// CDDL:
+//   signature-bundle = {
+//     alg:       "Ed25519" / "ES256" / "ML-DSA-65",
+//     pubkey:    bstr,
+//     sig:       bstr,
+//     ? chain:   [* bstr]
+//   }
+// @stable-since: Faying Protocol/1.0
+message SignatureBundle {
+  SignatureAlgorithm alg = 1;
+  bytes              pubkey = 2;
+  bytes              sig    = 3;
+  // Optional parent-chain co-signatures. Empty list ↔ absent.
+  repeated bytes     chain  = 4;
+
+  // reserved 5 to 15;
+}
+
+// CDDL:
+//   attestation = {
+//     format:    "webauthn" / "tpm-quote" / "platform-keystore" / "self-signed",
+//     payload:   bstr,
+//     signer:    tstr,
+//     signature: signature-bundle
+//   }
+// @stable-since: Faying Protocol/1.0
+message Attestation {
+  AttestationFormat format    = 1;
+  bytes             payload   = 2;
+  string            signer    = 3;
+  SignatureBundle   signature = 4;
+
+  // reserved 5 to 15;
+}
+
+// CDDL:
+//   presence-requirement = {
+//     signal-types:        [+ presence-signal-type],
+//     max-staleness-ms:    uint,
+//     on-loss:             tstr
+//   }
+//
+// `on_loss_kind` carries the parsed kind; `on_loss_target_grade` is set when
+// `on_loss_kind == ON_LOSS_POLICY_KIND_DOWNGRADE_TO_GRADE` (e.g. "downgrade-to:G2"
+// → ON_LOSS_POLICY_KIND_DOWNGRADE_TO_GRADE + GRADE_MODERATE). The original
+// CDDL string is preserved in `on_loss_raw` for round-trip fidelity.
+// @stable-since: Faying Protocol/1.0
+message PresenceRequirement {
+  repeated PresenceSignalType signal_types        = 1;
+  uint64                      max_staleness_ms    = 2;
+  string                      on_loss_raw         = 3;  // original tstr
+  OnLossPolicyKind            on_loss_kind        = 4;
+  optional Grade              on_loss_target_grade = 5; // only when DOWNGRADE_TO_GRADE
+
+  // reserved 6 to 15;
+}
+
+// CDDL: presence-signal { ... } (design.md §4.2)
+// @stable-since: Faying Protocol/1.0
+message PresenceSignal {
+  string             mandate_id        = 1;
+  PresenceSignalType signal_type       = 2;
+  string             produced_at       = 3;  // iso-time
+  bytes              nonce             = 4;  // 16 bytes, enforced by validator
+  string             device_id         = 5;
+  Attestation        device_attestation = 6;
+  SignatureBundle    signature         = 7;
+
+  // reserved 8 to 15;
+}
+
+// CDDL:
+//   endorsement = {
+//     enabled:                       bool,
+//     endorsed-scope:                scope,
+//     endorsed-grade:                faying-grade,
+//     endorsed-lifetime-ms:          uint,
+//     offline-revocation-policy:     "stop-and-audit" / "stop-only" / "graceful-stop"
+//   }
+//
+// Convergence invariants (P16.3, design.md §11.2) are enforced at validation
+// time, not at the proto schema level:
+//     endorsed_scope ⊆ Mandate.scope
+//     endorsed_grade.autonomy ≤ Mandate.grade.autonomy
+//     0 < endorsed_lifetime_ms ≤ (mandate.not_after − mandate.not_before)
+// @stable-since: Faying Protocol/1.0
+message Endorsement {
+  bool                    enabled                   = 1;
+  Scope                   endorsed_scope            = 2;
+  Grade                   endorsed_grade            = 3;
+  uint64                  endorsed_lifetime_ms      = 4;
+  OfflineRevocationPolicy offline_revocation_policy = 5;
+
+  // Optional: anchor time when the endorsement window starts (used by P16.4
+  // hard-stop logic). When unset, the validator MUST default to mandate.not_before.
+  optional string         start_at                  = 6;  // iso-time
+
+  // reserved 7 to 15;
+}
+
+// CDDL:
+//   mandate = { version, id, issued-at, not-before, not-after, issuer, ms-id,
+//               subject, scope, grade, presence-req, ?parent, ?endorsement,
+//               attestation, signature }
+// @stable-since: Faying Protocol/1.0
+message Mandate {
+  string              version       = 1;   // MUST equal "Faying Protocol/1.0"
+  string              id            = 2;   // ULID
+  string              issued_at     = 3;   // iso-time
+  string              not_before    = 4;
+  string              not_after     = 5;   // MUST be finite (Requirement 2.2)
+  string              issuer        = 6;   // Human Prime ID
+  string              ms_id         = 7;
+  string              subject       = 8;   // FayID
+  Scope               scope         = 9;
+  Grade               grade         = 10;
+  PresenceRequirement presence_req  = 11;
+  optional string     parent        = 12;  // Parent MandateID for derivations
+  optional Endorsement endorsement  = 13;
+  Attestation         attestation   = 14;
+  SignatureBundle     signature     = 15;
+
+  // reserved 16 to 31;  // reserve a future-extension block
+}
+
+// -----------------------------------------------------------------------------
+// 3. Auxiliary types referenced by message claims (design.md §5.3)
+// -----------------------------------------------------------------------------
+
+// WebAuthn assertion blob (FIDO2 / CTAP2). The CDDL keeps this as an opaque
+// `bstr`; the proto binding wraps it for type clarity.
+//
+// `user_verification` MUST be true on bootstrap / upgrade flows
+// (design.md §5.3.1, §5.3.3 protocol-level invariant).
+// @stable-since: Faying Protocol/1.0
+message WebAuthnAssertion {
+  // Raw CBOR-encoded WebAuthn assertion (clientDataJSON + authenticatorData
+  // + signature). Validators MUST parse this through a FIDO2 stack, never
+  // by hand.
+  bytes assertion_cbor = 1;
+
+  // Cached / mirrored flags so an auditor can scan a chain without parsing
+  // the assertion. Authoritative source remains `assertion_cbor`.
+  bool  user_verification = 2;
+  bool  user_presence     = 3;
+
+  // reserved 4 to 15;
+}
+
+// design.md §5.3.2 PRESENCE.device_health
+// @stable-since: Faying Protocol/1.0
+message DeviceHealth {
+  bool   secure_element = 1;
+  bool   tampered       = 2;
+  string last_boot_at   = 3;  // iso-time
+
+  // reserved 4 to 15;
+}
+
+// -----------------------------------------------------------------------------
+// 4. Envelope (design.md §5.2) and message claim types (§5.3.1 — §5.3.7)
+// -----------------------------------------------------------------------------
+
+// design.md §5.2 — `FayingProtocolEnvelope.header`. Carried as an explicit
+// sub-message in every Request/Response wrapper below so the proto binding is
+// shape-equivalent to the CBOR/HTTP envelope.
+// @stable-since: Faying Protocol/1.0
+message Header {
+  string                version    = 1;  // MUST equal "Faying Protocol/1.0"
+  FayingProtocolMsgType msg_type   = 2;
+  string                msg_id     = 3;  // ULID
+  string                issued_at  = 4;  // iso-time
+  string                expiry     = 5;  // iso-time
+  bytes                 nonce      = 6;
+  Grade                 grade      = 7;  // session grade (design.md §5.2)
+  string                issuer     = 8;  // Human Prime ID or upstream sender
+  string                subject    = 9;  // FayID
+
+  // reserved 10 to 15;
+}
+
+// design.md §5.3.1 BootstrapClaims
+// @stable-since: Faying Protocol/1.0
+message BootstrapClaims {
+  string              human_prime         = 1;  // HumanPrimeID
+  string              fay                 = 2;  // FayID
+  Scope               scope               = 3;
+  Grade               grade               = 4;
+  PresenceRequirement presence_req        = 5;
+  string              not_after           = 6;  // iso-time, MUST be finite
+  WebAuthnAssertion   human_witness       = 7;  // user-verification = true
+  optional Endorsement endorsement        = 8;  // present ⇒ Endorsed Mandate
+  optional string     faying_request_ref  = 9;  // IF-initiated path; references FAYING_REQUEST.msg_id
+
+  // reserved 10 to 15;
+}
+
+// design.md §5.3.2 PresenceClaims
+// @stable-since: Faying Protocol/1.0
+message PresenceClaims {
+  string         mandate_id    = 1;
+  PresenceSignal signal        = 2;
+  DeviceHealth   device_health = 3;
+
+  // reserved 4 to 15;
+}
+
+// design.md §5.3.3 GradeSwitchClaims
+// @stable-since: Faying Protocol/1.0
+message GradeSwitchClaims {
+  string                       mandate_id    = 1;
+  Grade                        target_grade  = 2;
+  GradeSwitchReason            reason        = 3;
+  // MUST be set when target_grade is strictly more autonomous (design.md
+  // §5.3.3 protocol-level invariant). Validator enforces presence.
+  optional WebAuthnAssertion   human_witness = 4;
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.3.4 DelegateClaims
+// @stable-since: Faying Protocol/1.0
+message DelegateClaims {
+  string         parent_mandate = 1;
+  string         child_subject  = 2;  // derivative FayID
+  Scope          child_scope    = 3;  // MUST ⊆ parent.scope
+  Grade          child_grade    = 4;  // MUST ≥ parent.grade (stricter / lower autonomy)
+  optional string device_id     = 5;
+
+  // reserved 6 to 15;
+}
+
+// design.md §5.3.5 RevokeClaims
+// @stable-since: Faying Protocol/1.0
+message RevokeClaims {
+  string       mandate_id    = 1;
+  bool         cascade       = 2;  // default true (per design); proto3 zero-value = false
+  RevokeReason reason        = 3;
+  string       effective_at  = 4;  // iso-time; default = now (validator-supplied)
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.3.6 FayingRequestClaims (IF-initiated bidirectional Faying)
+// @stable-since: Faying Protocol/1.0
+message FayingRequestClaims {
+  string                  initiator             = 1;  // FayID (iFay self)
+  string                  target_human          = 2;  // HumanPrimeID
+  Scope                   proposed_scope        = 3;
+  Grade                   proposed_grade        = 4;
+  string                  reason                = 5;  // free-form text
+  FayingRequestReasonCode reason_code           = 6;
+  optional uint64         expected_lifetime_ms  = 7;
+  optional Endorsement    proposed_endorsement  = 8;
+
+  // reserved 9 to 15;
+}
+
+// design.md §5.3.6 FayingRequestRespClaims
+// @stable-since: Faying Protocol/1.0
+message FayingRequestRespClaims {
+  string              request_msg_id = 1;  // upstream FAYING_REQUEST.msg_id
+  FayingRequestStatus status         = 2;
+  optional string     bootstrap_ref  = 3;  // set when status == ACCEPTED
+  optional string     reject_reason  = 4;
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.3.7 DisclosureClaims
+// @stable-since: Faying Protocol/1.0
+message DisclosureClaims {
+  string                   mandate_id         = 1;
+  // `action` carries an Atomic_Action descriptor. Schema-level audit
+  // (design.md §9.10.4 T3) requires the field to be parseable; the exact
+  // shape of an Atomic_Action is governed by the host application and is
+  // not normatively constrained by Faying Protocol/1.0.
+  string                   action             = 2;
+  Scope                    scope_used         = 3;  // actually-exercised subset of mandate.scope
+  RiskLevel                risk_level         = 4;
+  Reversibility            reversibility      = 5;
+  repeated string          affected_resources = 6;
+  repeated string          uncertainty_flags  = 7;
+  optional string          free_text          = 8;
+  optional DisclosureIntent intent            = 9;
+  optional string          endorsement_id     = 10; // cites endorsement when emitted while disconnected
+
+  // reserved 11 to 15;
+}
+
+// design.md §5.4 — error envelope payload.
+// @stable-since: Faying Protocol/1.0
+message ErrorClaims {
+  ErrorCode code    = 1;
+  string    name    = 2;  // mnemonic (e.g. "E_GRADE_INSUFFICIENT")
+  string    message = 3;  // human-readable detail (do not include secrets)
+  string    ref_msg_id = 4; // optional pointer to the offending request
+
+  // reserved 5 to 15;
+}
+
+// -----------------------------------------------------------------------------
+// 5. Request / Response envelopes (one per RPC)
+// -----------------------------------------------------------------------------
+// Each Request/Response below is a wire-faithful proto3 view of the CBOR
+// envelope (design.md §5.2): header + claims + attestation + signature.
+// Signature input MUST be computed exactly as in §6.3 (deterministic CBOR of
+// the envelope-without-signature); proto encodings MUST be re-serialised to
+// CBOR for that purpose. This is one of the reasons CDDL remains normative.
+
+// @stable-since: Faying Protocol/1.0
+message BootstrapRequest {
+  Header          header      = 1;
+  BootstrapClaims claims      = 2;
+  Attestation     attestation = 3;
+  SignatureBundle signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message PresenceRequest {
+  Header          header      = 1;
+  PresenceClaims  claims      = 2;
+  Attestation     attestation = 3;
+  SignatureBundle signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.2 PRESENCE_ACK — minimal acknowledgement so MS can confirm the
+// presence signal was accepted and returns the next-expected staleness window.
+// @stable-since: Faying Protocol/1.0
+message PresenceAck {
+  Header          header                = 1;
+  string          mandate_id            = 2;
+  string          accepted_at           = 3;  // iso-time
+  uint64          next_max_staleness_ms = 4;
+  Grade           effective_grade       = 5;  // post-ack session grade
+  SignatureBundle signature             = 6;
+
+  // reserved 7 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message GradeSwitchRequest {
+  Header            header      = 1;
+  GradeSwitchClaims claims      = 2;
+  Attestation       attestation = 3;
+  SignatureBundle   signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message DelegateRequest {
+  Header          header      = 1;
+  DelegateClaims  claims      = 2;
+  Attestation     attestation = 3;
+  SignatureBundle signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message RevokeRequest {
+  Header          header      = 1;
+  RevokeClaims    claims      = 2;
+  Attestation     attestation = 3;
+  SignatureBundle signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.3.5 — REVOKE_RECEIPT carries the post-revocation state so
+// downstream RPs can short-circuit cached Mandate evaluations.
+// @stable-since: Faying Protocol/1.0
+message RevokeReceipt {
+  Header          header        = 1;
+  string          mandate_id    = 2;
+  RevokeReason    reason        = 3;
+  string          revoked_at    = 4;  // iso-time
+  bool            cascade       = 5;  // mirrored from the request
+  repeated string cascaded_mandate_ids = 6;  // child IDs revoked transitively
+  SignatureBundle signature     = 7;
+
+  // reserved 8 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message FayingRequestRpc {
+  Header              header      = 1;
+  FayingRequestClaims claims      = 2;
+  Attestation         attestation = 3;
+  SignatureBundle     signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message FayingRequestResp {
+  Header                  header      = 1;
+  FayingRequestRespClaims claims      = 2;
+  Attestation             attestation = 3;
+  SignatureBundle         signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// @stable-since: Faying Protocol/1.0
+message DisclosureRequest {
+  Header           header      = 1;
+  DisclosureClaims claims      = 2;
+  Attestation      attestation = 3;
+  SignatureBundle  signature   = 4;
+
+  // reserved 5 to 15;
+}
+
+// design.md §5.3.7 — there is no normative DISCLOSURE_RESP message type in
+// the envelope enum; this ack is provided solely for the gRPC binding so the
+// unary RPC has a typed return. CBOR/HTTP transports MAY skip the ack and
+// treat 200 OK as success.
+// @stable-since: Faying Protocol/1.0
+message DisclosureAck {
+  Header header        = 1;
+  string disclosure_msg_id = 2;
+  string accepted_at   = 3;  // iso-time
+  // Set when MS decides the disclosure requires HP confirmation
+  // (intent == REQUEST_CONFIRMATION or risk_level ∈ {HIGH, CRITICAL}).
+  bool   confirmation_required = 4;
+  SignatureBundle signature = 5;
+
+  // reserved 6 to 15;
+}
+
+// -----------------------------------------------------------------------------
+// 6. Service definition (design.md §5.1 — optional gRPC transport binding)
+// -----------------------------------------------------------------------------
+//
+// `service Fap` is the gRPC surface mandated by tasks.md §2.3. The historical
+// short-form "Fap" is preserved here per the task contract; the package and
+// option namespaces use the modern "faying_protocol" naming.
+//
+// All methods are unary; streaming variants are deferred to a future minor
+// revision and MUST keep the unary forms below stable.
+//
+// Method-number stability is provided implicitly by the method name (gRPC
+// dispatches by string). Renaming a method is a breaking change; new methods
+// MUST be appended below the existing block.
+service Fap {
+  // BOOTSTRAP — Faying Action that mints a fresh Mandate (design.md §5.3.1).
+  rpc Bootstrap   (BootstrapRequest)    returns (Mandate);
+
+  // PRESENCE — continuous calibration heartbeat (design.md §5.3.2).
+  rpc Presence    (PresenceRequest)     returns (PresenceAck);
+
+  // GRADE_SWITCH — request a grade transition; returns the post-switch
+  // Mandate (design.md §5.3.3).
+  rpc GradeSwitch (GradeSwitchRequest)  returns (Mandate);
+
+  // DELEGATE — derive a child Mandate (design.md §5.3.4).
+  rpc Delegate    (DelegateRequest)     returns (Mandate);
+
+  // REVOKE — terminate a Mandate (design.md §5.3.5).
+  rpc Revoke      (RevokeRequest)       returns (RevokeReceipt);
+
+  // FAYING_REQUEST — IF-initiated bidirectional Faying (design.md §5.3.6).
+  // MS forwards the request to HP's view channel and synthesises the
+  // FAYING_REQUEST_RESP; this RPC NEVER directly mutates Faying state
+  // (HP must reply with a separate Bootstrap call).
+  rpc FayingRequest (FayingRequestRpc)  returns (FayingRequestResp);
+
+  // DISCLOSURE — structured disclosure stream (design.md §5.3.7).
+  rpc Disclosure  (DisclosureRequest)   returns (DisclosureAck);
+}

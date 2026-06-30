@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "Empty list `[]` is allowed; the field itself MUST be present."
+  ],
+  "case": "b",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "missing_field": "uncertainty_flags",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "08-missing-uncertainty-flags"
+}

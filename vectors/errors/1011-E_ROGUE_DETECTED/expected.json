@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1011,
+    "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+    "reason": "检测到 Rogue 行为（ego-deviation / 行为基线超阈）",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1011,
+  "must-push-hp-view": true,
+  "name": "E_ROGUE_DETECTED",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "检测到 Rogue 行为（ego-deviation / 行为基线超阈）",
+  "trace": [
+    "R9.4.5",
+    "R3.2.3"
+  ]
+}

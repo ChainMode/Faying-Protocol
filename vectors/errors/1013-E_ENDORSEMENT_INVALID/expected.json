@@ -1,0 +1,22 @@
+{
+  "audit-log-entry": {
+    "error_code": 1013,
+    "mandate_id": null,
+    "reason": "endorsement 收敛违反 / 篡改 / lifetime 越界",
+    "rp_id": "rp:fap-test-rp-1",
+    "ts": "2025-12-17T12:00:00Z"
+  },
+  "code": 1013,
+  "must-push-hp-view": true,
+  "name": "E_ENDORSEMENT_INVALID",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "endorsement 收敛违反 / 篡改 / lifetime 越界",
+  "trace": [
+    "R11.2.4",
+    "R3.2.3"
+  ]
+}

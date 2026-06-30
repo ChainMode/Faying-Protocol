@@ -1,0 +1,15 @@
+{
+  "audit-log-entry": null,
+  "code": 1001,
+  "must-push-hp-view": false,
+  "name": "E_NO_MANDATE",
+  "spec_anchors": [
+    "§5.4",
+    "§EH.1",
+    "§EH.3"
+  ],
+  "summary": "请求未携带 Mandate",
+  "trace": [
+    "R2.1.1"
+  ]
+}

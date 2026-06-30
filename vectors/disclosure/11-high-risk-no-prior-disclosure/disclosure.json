@@ -1,0 +1,62 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64u": "U1RVQi1BVFRFU1RBVElPTi1QQVlMT0FE"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64u": "U1RVQi1QVUJLRVktRkFQLTEuMAA"
+      },
+      "sig": {
+        "$b64u": "U1RVQi1TSUctRkFQLTEuMAAAAAAA"
+      }
+    },
+    "signer": "hp:01HX4KZ8N0Y6F8MWQ8R7C0V0G2"
+  },
+  "claims": {
+    "action": "payment:transfer",
+    "affected-resources": [
+      "urn:wallet:account:src:01HX4M5N8P0Q",
+      "urn:wallet:account:dst:01HX4M5N8P0R"
+    ],
+    "intent": "request-confirmation",
+    "mandate-id": "mandate:01HX4M0T9V8H8Q4N6Z2K7G3J5W",
+    "reversibility": "irreversible",
+    "risk-level": "high",
+    "scope-used": {
+      "actions": [
+        "payment:transfer"
+      ],
+      "domains": [
+        "urn:wallet:account"
+      ]
+    },
+    "uncertainty-flags": [
+      "irreversible-funds-move"
+    ]
+  },
+  "header": {
+    "expiry": "2025-11-25T11:05:05Z",
+    "grade": 2,
+    "issued-at": "2025-11-25T11:00:05Z",
+    "issuer": "hp:01HX4KZ8N0Y6F8MWQ8R7C0V0G2",
+    "msg-id": "msg:01HX4MABBBBBBBBBBBBBBBBBBB",
+    "msg-type": "DISCLOSURE",
+    "nonce": {
+      "$b64u": "AAAAAAAAAAAAAAAAAAAACw"
+    },
+    "subject": "fay:01HX4KZBQ4P9JK1H6QY7V0X8B5",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64u": "U1RVQi1QVUJLRVktRkFQLTEuMAA"
+    },
+    "sig": {
+      "$b64u": "U1RVQi1TSUctRkFQLTEuMAAAAAAA"
+    }
+  }
+}

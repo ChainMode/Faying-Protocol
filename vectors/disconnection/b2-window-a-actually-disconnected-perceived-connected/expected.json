@@ -1,0 +1,32 @@
+{
+  "final_state": "Disconnected",
+  "reconcile_result": "n/a",
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:01:30Z",
+    "t_reconnect": null,
+    "reconcile_result": "n/a",
+    "post_state": "Disconnected"
+  },
+  "audit_chain": [
+    { "seq": 1, "event": "MandateIssued", "ts": "2025-11-25T08:00:00Z", "mandate_id": "mandate-b2-001" },
+    { "seq": 2, "event": "WindowAObserved", "ts": "2025-11-25T08:02:00Z",
+      "context": { "actually_disconnected": true, "perceived_disconnected": false } },
+    { "seq": 3, "event": "RPCallRejected", "ts": "2025-11-25T08:02:00Z",
+      "action": "chat.send", "sensitivity": "high", "error": "E_PRESENCE_STALE" },
+    { "seq": 4, "event": "PresenceStaleDetected", "ts": "2025-11-25T08:02:30Z",
+      "mandate_id": "mandate-b2-001" },
+    { "seq": 5, "event": "MandateStateTransition", "ts": "2025-11-25T08:02:30Z",
+      "from": "Active", "to": "Disconnected" }
+  ],
+  "expected_errors": [
+    { "code": "E_PRESENCE_STALE", "context": "窗口 A 期间高敏感动作必须额外校验在场，且不得豁免" }
+  ],
+  "rp_calls_during_window": [
+    { "ts": "2025-11-25T08:02:00Z", "verdict": "rejected", "error": "E_PRESENCE_STALE" }
+  ],
+  "invariants_checked": [
+    "§9.9 双语义：协议决策只读 Perceived 通道",
+    "§9.8 矩阵第 2 行（窗口 A）：高敏感动作必须额外校验在场新鲜度，不得乐观放行",
+    "P17.1：Actually(t) ∉ inputs(protocol_decision)"
+  ]
+}

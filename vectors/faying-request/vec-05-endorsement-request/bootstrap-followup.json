@@ -1,0 +1,101 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "BOOTSTRAP",
+    "msg_id": "bs:vec-05-endorsement-request:01HZZ0000000000000001st",
+    "issued_at": "2026-01-15T09:00:30Z",
+    "expiry": "2026-01-15T09:00:35Z",
+    "nonce": {
+      "$b64": "08oH3fj0+j9Td6xc/iCLhw=="
+    },
+    "grade": 3,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "human_prime": "hp:prime-alice@example",
+    "fay": "fay:alice/iFay-01",
+    "scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "grade": 3,
+    "presence_req": {
+      "signal_types": [
+        "webauthn-uv-fresh",
+        "presence-heartbeat-only"
+      ],
+      "max_staleness_ms": 30000,
+      "on_loss": "downgrade-to:G3"
+    },
+    "not_after": "2026-01-15T21:00:30Z",
+    "faying_request_ref": "req:vec-05-endorsement-request:01HZZ0000000000000000st",
+    "human_witness": {
+      "format": "webauthn",
+      "payload": {
+        "$b64": "pGlhdXRoX2RhdGFYIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWx1c2VyX3ByZXNlbnT1bXVzZXJfdmVyaWZpZWT1cGNsaWVudF9kYXRhX2pzb25YiHsiY2hhbGxlbmdlIjoiOTExNjMyYTBlOWZkN2QxZjY4NmQxMGQ4MjhkZWJjY2ExMzIzNzExZDVmMDgxYWUwZmRhMmViMGUxN2E2OGY4ZCIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJ0eXBlIjoid2ViYXV0aG4uZ2V0In0="
+      },
+      "signer": "pd:webauthn-key/alice",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$b64": "dCLAwPrL9LLWsQoJIFcHBdTsbSMJKj6VlEBh95sZ/O4="
+        },
+        "sig": {
+          "$b64": "E1nBggSBOsKM64ZBsb+bcyJ42PdmFgS5qU0OgOtMIAHYuJX67mPNgZagbUxG+XkMjY3SBfAnVblRtE+IHpy+DQ=="
+        }
+      }
+    },
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": [
+          "calendar.example.com"
+        ],
+        "actions": [
+          "calendar:read"
+        ],
+        "terminals": [
+          "device:laptop-01"
+        ]
+      },
+      "endorsed_grade": 3,
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit"
+    }
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "Ym9vdHN0cmFwLWF0dGVzdGF0aW9uOmJzOnZlYy0wNS1lbmRvcnNlbWVudC1yZXF1ZXN0OjAxSFpaMDAwMDAwMDAwMDAwMDAwMXN0"
+    },
+    "signer": "hp:hp:prime-alice@example",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+      },
+      "sig": {
+        "$b64": "OzqWbjfdoZqeKfMh7JhVQIBna3NwXAOhQlXdwGXo+JQGbNhBncuQonHeAeInBXP0TL2mX5Hu06r30u2fe9Z8Cw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+    },
+    "sig": {
+      "$b64": "lpMfb/4R8YYMA4iphWQjLu8dNmMxVIvTWNJxkQ/Cd4R7X7H6Bdwsts5yuAExFwtsZBFUAfx44rCUhadon4U8AA=="
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "_pre_signed_request": true,
+  "algorithm": "Ed25519",
+  "digests": {
+    "request_sha256": "e42dc982d3ac6913b6cef801ed0f6fb136bc516dae3c4ee71d0da9504ebe5ec7",
+    "response_sha256": "b81b48b99b2b7e6f264b4c5435c1eba53bae2b8bf399d4d9d71fbb8a03353cff"
+  },
+  "encoding": "cbor",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "files": {
+    "request": "request.cbor",
+    "response": "response.cbor"
+  },
+  "kind": "negative",
+  "mandate_id": null,
+  "notes": "Verifies acceptance criterion 8.1 (algorithm suite negotiation): clients advertising an algorithm outside the supported set must be rejected at the protocol layer.",
+  "outcome": "rejected",
+  "requirements_validated": [
+    "8.1",
+    "10.1",
+    "10.3"
+  ],
+  "signature_verification": {
+    "note": "alg = 'RSA-PKCS1-v1_5-SHA1' is rejected at the schema layer (CDDL `signature-bundle.alg` enum) before any cryptographic check.",
+    "request_envelope": false,
+    "response_envelope": true
+  },
+  "summary": "Negative case: BOOTSTRAP whose signature_bundle advertises an algorithm outside the Faying Protocol/1.0 suite must be rejected with E_PROTOCOL (1099).",
+  "vector_name": "neg-unsupported-alg"
+}

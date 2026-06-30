@@ -1,0 +1,79 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload_hex": "",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "signer": "presence-device-1"
+  },
+  "claims": {
+    "called_at": "2025-12-17T12:00:00Z",
+    "mandate": {
+      "attestation": {
+        "format": "webauthn",
+        "payload_hex": "00010203",
+        "signature": {
+          "alg": "Ed25519",
+          "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+          "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "signer": "presence-device-1"
+      },
+      "grade": 3,
+      "id": "mnd:01HXR000000000000000ACTIVE",
+      "issued_at": "2025-12-17T11:00:00Z",
+      "issuer": "hp:01HXR000000000000000000HP",
+      "ms_id": "ms:fap-test-ms-1",
+      "not_after": "2025-12-18T11:00:00Z",
+      "not_before": "2025-12-17T11:00:00Z",
+      "presence_req": {
+        "max_staleness_ms": 60000,
+        "on_loss": "downgrade-to:G3",
+        "signal_types": [
+          "fingerprint-tap"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "read:profile"
+        ],
+        "domains": [
+          "api.example.com"
+        ]
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+        "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+      },
+      "subject": "fay:01HXR000000000000000000IF",
+      "version": "Faying Protocol/1.0"
+    },
+    "operation": "read:profile",
+    "presence_state": {
+      "last_freshness": "2025-12-17T11:50:00Z",
+      "max_staleness_ms": 60000,
+      "stale": true
+    },
+    "rp_id": "rp:fap-test-rp-1"
+  },
+  "header": {
+    "expiry": "2025-12-17T13:00:00Z",
+    "grade": 3,
+    "issued_at": "2025-12-17T12:00:00Z",
+    "issuer": "hp:01HXR000000000000000000HP",
+    "msg_id": "msg:err-1005-trigger",
+    "msg_type": "BUSINESS_CALL",
+    "nonce_hex": "00112233445566778899aabbccddeeff",
+    "subject": "fay:01HXR000000000000000000IF",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

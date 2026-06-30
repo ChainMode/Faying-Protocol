@@ -1,0 +1,84 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "BOOTSTRAP",
+    "msg_id": "bs:vec-01-establish:01HZZ0000000000000001sh",
+    "issued_at": "2026-01-15T09:00:30Z",
+    "expiry": "2026-01-15T09:00:35Z",
+    "nonce": {
+      "$b64": "k3pOCZBGxKhqyykTJ4srTQ=="
+    },
+    "grade": 3,
+    "issuer": "hp:prime-alice@example",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "human_prime": "hp:prime-alice@example",
+    "fay": "fay:alice/iFay-01",
+    "scope": {
+      "domains": [
+        "calendar.example.com",
+        "docs.example.com"
+      ],
+      "actions": [
+        "calendar:read",
+        "docs:read"
+      ],
+      "terminals": [
+        "device:laptop-01"
+      ]
+    },
+    "grade": 3,
+    "presence_req": {
+      "signal_types": [
+        "webauthn-uv-fresh",
+        "presence-heartbeat-only"
+      ],
+      "max_staleness_ms": 30000,
+      "on_loss": "downgrade-to:G3"
+    },
+    "not_after": "2026-01-15T21:00:30Z",
+    "faying_request_ref": "req:vec-01-establish:01HZZ0000000000000000sh",
+    "human_witness": {
+      "format": "webauthn",
+      "payload": {
+        "$b64": "pGlhdXRoX2RhdGFYIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWx1c2VyX3ByZXNlbnT1bXVzZXJfdmVyaWZpZWT1cGNsaWVudF9kYXRhX2pzb25YiHsiY2hhbGxlbmdlIjoiMGJiZGVhMTg4OWIxYTgzMjM4OGYyOTBmNmQ4NDJiOGVmYjk1ZTY0MTU5NzJlZmFkMWU0NjVlYjc4OGI0ZDQ5YiIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJ0eXBlIjoid2ViYXV0aG4uZ2V0In0="
+      },
+      "signer": "pd:webauthn-key/alice",
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$b64": "dCLAwPrL9LLWsQoJIFcHBdTsbSMJKj6VlEBh95sZ/O4="
+        },
+        "sig": {
+          "$b64": "va6YJRHKl0KGyRvs3Xm9EOoIniIxidfUcwRvX6PE2808ADKaIYDfAf4VRs7UTxKLvaPQjdlUYa3PzWP76VODDg=="
+        }
+      }
+    }
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "Ym9vdHN0cmFwLWF0dGVzdGF0aW9uOmJzOnZlYy0wMS1lc3RhYmxpc2g6MDFIWlowMDAwMDAwMDAwMDAwMDAxc2g="
+    },
+    "signer": "hp:hp:prime-alice@example",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+      },
+      "sig": {
+        "$b64": "BPFRDcX3LT/yJwbAr3HZ/RJkeVd7bIfrxzQfzFsGtNVSGlwdksFjjfXsfvNbXo3RjbODna7K74VodiEQVjitAA=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "kgLXP/u3VaH7UI2zkyvFJ+IjQ3yTwb3AdwsILDKVSlM="
+    },
+    "sig": {
+      "$b64": "dHC6r0XUOjGBIhHaFsVJwRZgKPiR5Rpuuo+iMYiOTXDFAM6rm5BZyufRJ2cxUYMF1eAXje4eq6HkyBZTQQNQBg=="
+    }
+  }
+}

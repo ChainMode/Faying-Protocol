@@ -1,0 +1,38 @@
+{
+  "device_id": "presence-device:vector-tampered-face-continuous-bad-attestation",
+  "digests": {
+    "signal_cbor_sha256": "aa7373592b2422578dca9d54f33129df8469507d037e37db15b8d80b8e0b8102",
+    "signal_json_sha256": "21d2f69f098d929ef99e5563cf0da95efb0063cf0c11f665f918beaf23ab3d87",
+    "signing_input_sha256": "df01b3bfe131a984add28b45a0170b16dc8bdab56f2ff2226a9831b2a624c9b0"
+  },
+  "error_code": 1007,
+  "error_name": "E_ATTESTATION_INVALID",
+  "files": {
+    "signal_cbor": "signal.cbor",
+    "signal_json": "signal.json"
+  },
+  "freshness_window": {
+    "age_ms": 1000,
+    "description": "G1 Strict — real-time presence (≤ 5s)",
+    "evaluated_at": "2026-03-15T12:00:00Z",
+    "grade": "G1",
+    "max_staleness_ms": 5000,
+    "produced_at": "2026-03-15T11:59:59Z",
+    "within_budget": true
+  },
+  "mandate_id": "01HXMNDT-PRESENCE-TAMPERED-FACE-CONTINUOUS-BAD-ATTESTATION",
+  "nonce_b64u": "_yy8xprjQGAOGGdIk_nVIQ",
+  "notes": "The presence-signal envelope signature is intact — the rejection comes from the device-attestation block failing verification.",
+  "requirements_validated": [
+    "5.1",
+    "9.1",
+    "10.1",
+    "10.3"
+  ],
+  "signal_type": "face-continuous",
+  "state": "tampered",
+  "summary": "Tampered face-continuous: device-attestation signature flipped after signing; verifier MUST reject with verdict=attestation-invalid.",
+  "tamper": "bad-attestation",
+  "vector_name": "tampered-face-continuous-bad-attestation",
+  "verdict": "attestation-invalid"
+}

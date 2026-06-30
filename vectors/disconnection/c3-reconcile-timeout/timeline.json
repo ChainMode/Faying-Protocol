@@ -1,0 +1,88 @@
+{
+  "vector_id": "c3-reconcile-timeout",
+  "title": "重连对账事务结局 timeout：Disconnected → Unpaired（reconcile 自身超过 BootstrapTimeout）",
+  "spec_refs": ["§4.3", "§8.4.3 timeout 行", "§8.4.4 超时即退回 Rogue Fay", "P17.4"],
+  "requirements": ["12.4"],
+  "tuple": {
+    "t_disconnect": "2025-11-25T08:02:00Z",
+    "t_reconnect": "2025-11-25T08:45:00Z",
+    "reconcile_result": "timeout",
+    "post_state": "Unpaired"
+  },
+  "actually_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:01:30Z", "value": false },
+    { "from": "2025-11-25T08:01:30Z", "to": "2025-11-25T08:45:00Z", "value": true },
+    { "from": "2025-11-25T08:45:00Z", "to": "2025-11-25T08:47:00Z", "value": false }
+  ],
+  "perceived_disconnected": [
+    { "from": "2025-11-25T08:00:00Z", "to": "2025-11-25T08:02:00Z", "value": false },
+    { "from": "2025-11-25T08:02:00Z", "to": "2025-11-25T08:47:00Z", "value": true }
+  ],
+  "mandate": {
+    "mandate_id": "mandate-c3-001",
+    "issuer": "fay:hp/grace",
+    "subject": "fay:if/assistant-25",
+    "scope": {
+      "domains": ["search.example.com"],
+      "actions": ["search.read"],
+      "terminals": ["device-laptop-05"]
+    },
+    "grade": { "level": "G3-Supervised", "autonomy": 3 },
+    "presence_req": {
+      "signal_types": ["webauthn-uv-fresh"],
+      "max_staleness_ms": 60000,
+      "on_loss": "suspend"
+    },
+    "not_before": "2025-11-25T08:00:00Z",
+    "not_after": "2025-11-25T16:00:00Z",
+    "endorsement": {
+      "enabled": true,
+      "endorsed_scope": {
+        "domains": ["search.example.com"],
+        "actions": ["search.read"],
+        "terminals": ["device-laptop-05"]
+      },
+      "endorsed_grade": { "level": "G3-Supervised", "autonomy": 3 },
+      "endorsed_lifetime_ms": 14400000,
+      "offline_revocation_policy": "stop-and-audit",
+      "start_at": "2025-11-25T08:00:00Z"
+    }
+  },
+  "events": [
+    { "seq": 1, "t": "2025-11-25T08:00:00Z", "actor": "MS", "type": "MandateIssued",
+      "payload": { "mandate_id": "mandate-c3-001", "state": "Active" } },
+
+    { "seq": 2, "t": "2025-11-25T08:01:30Z", "actor": "IF", "type": "PhysicalDisconnect",
+      "payload": { "reason": "wifi-loss" } },
+
+    { "seq": 3, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "PresenceStaleDetected",
+      "payload": { "elapsed_ms": 60001 } },
+
+    { "seq": 4, "t": "2025-11-25T08:02:00Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Active", "to": "Disconnected" } },
+
+    { "seq": 5, "t": "2025-11-25T08:45:00Z", "actor": "IF", "type": "ReconcileRequest",
+      "payload": {
+        "msg_type": "RECONCILE_REQUEST",
+        "mandate_id": "mandate-c3-001",
+        "last_known_seq": 4,
+        "endorsed_actions": []
+      } },
+
+    { "seq": 6, "t": "2025-11-25T08:45:30Z", "actor": "MS", "type": "ReconcileNetworkFailure",
+      "payload": { "note": "上游链路抖动；MS 与 RR / HP 之间无法在 BootstrapTimeout 内完成校验" } },
+
+    { "seq": 7, "t": "2025-11-25T08:46:01Z", "actor": "MS", "type": "ReconcileResponse",
+      "payload": {
+        "msg_type": "RECONCILE_RESP",
+        "status": "timeout",
+        "reason": "reconcile-timeout",
+        "elapsed_ms": 61000,
+        "bootstrap_timeout_ms": 60000
+      } },
+
+    { "seq": 8, "t": "2025-11-25T08:46:01Z", "actor": "MS", "type": "MandateStateTransition",
+      "payload": { "from": "Disconnected", "to": "Unpaired",
+                   "trigger": "Reconcile timeout ⇒ 退回 Rogue Fay" } }
+  ]
+}

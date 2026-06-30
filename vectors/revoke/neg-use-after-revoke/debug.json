@@ -1,0 +1,109 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLW5lZy11c2UtYWZ0ZXItcmV2b2tl"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "qxlmLxx3x-kpMRsDQ4nJFVnrHG1xtXZ9oNcpAAlAYLA"
+        },
+        "sig": {
+          "$bytes": "zR-vJSHG1gpNKeewvLpGc_AZRmMZ8B8YmPiHyYi5Vikpgbb8aiCSj8yvhbU_D5MdoayDKv6nG26TiQyNz9b3Dw"
+        }
+      },
+      "signer": "hp:vector-req-neg-use-after-revoke"
+    },
+    "claims": {
+      "cascade": true,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:30:00Z"
+      },
+      "mandate_id": "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE",
+      "reason": "human-initiated"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-NEG_USE_AFTER_REVOKE",
+      "msg_id": "01HXMSG-RVK-REQ-NEG_USE_AFTER_REVOKE",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "rjZ4ESViDKiiOXIIhl1hPA"
+      },
+      "subject": "fay:01HXFAY-NEG_USE_AFTER_REVOKE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "qxlmLxx3x-kpMRsDQ4nJFVnrHG1xtXZ9oNcpAAlAYLA"
+      },
+      "sig": {
+        "$bytes": "BP_5ycllpDmSuHPB-y8OLzxRLz6dxYDxZ0bblD7PJpFHHBSKJuvA3szbqag8b_9ePenIIRN4l3PkqlQDTqSmCQ"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1uZWctdXNlLWFmdGVyLXJldm9rZQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "WVYqCVMwlPjr2A2fqVU7At3cAa9Hdvckb620mHpnt4s"
+        },
+        "sig": {
+          "$bytes": "7Ma7HJaHU10f1AXFAgun-TctT4WKucbg63emnxboCinkxBof1_qnX2BHSOUcSI-DcrzMuDF8EuU_vpnn6qZVBA"
+        }
+      },
+      "signer": "hp:vector-resp-neg-use-after-revoke"
+    },
+    "claims": {
+      "code": 1006,
+      "detail": "Mandate already Revoked at an earlier timestamp; any subsequent RP-side use is rejected with 1006. ERROR responses MUST NOT leak MS internal state, private key fingerprints, or other HP identities (design.md §EH.3).",
+      "mandate_id": "01HXMNDT-TARGET-NEG_USE_AFTER_REVOKE",
+      "name": "E_REVOKED"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-NEG_USE_AFTER_REVOKE",
+      "msg_id": "01HXMSG-ERR-NEG_USE_AFTER_REVOKE",
+      "msg_type": "ERROR",
+      "nonce": {
+        "$bytes": "LXRyTMPUBFqY5bKuQGgISA"
+      },
+      "subject": "fay:01HXFAY-NEG_USE_AFTER_REVOKE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "WVYqCVMwlPjr2A2fqVU7At3cAa9Hdvckb620mHpnt4s"
+      },
+      "sig": {
+        "$bytes": "m5oBZjRuz_WjI60ZOx3E_5TN1W5q6cFMUqdLinrfgcUYHDa9YMT2sz0RvbYOMJ_-1HvviH9nX6tFls1r5ED0Ag"
+      }
+    }
+  }
+}

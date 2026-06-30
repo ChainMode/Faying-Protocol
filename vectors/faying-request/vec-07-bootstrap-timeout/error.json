@@ -1,0 +1,46 @@
+{
+  "header": {
+    "version": "Faying Protocol/1.0",
+    "msg_type": "ERROR",
+    "msg_id": "err:vec-07-bootstrap-timeout:01HZZ2000000000000002",
+    "issued_at": "2026-01-15T11:01:01Z",
+    "expiry": "2026-01-15T11:01:11Z",
+    "nonce": {
+      "$b64": "3Fz7Q6j7L90tFsnOwzsv8g=="
+    },
+    "grade": 4,
+    "issuer": "ms:alice-default",
+    "subject": "fay:alice/iFay-01"
+  },
+  "claims": {
+    "code": 1014,
+    "code_name": "E_FAYING_REQUEST_NOT_CONFIRMED",
+    "message": "iFay-initiated FAYING_REQUEST not confirmed by HP within BootstrapTimeout",
+    "request_ref": "req:vec-07-bootstrap-timeout:01HZZ2000000000000000"
+  },
+  "attestation": {
+    "format": "self-signed",
+    "payload": {
+      "$b64": "bXMtZXJyb3ItYXR0ZXN0YXRpb246ZXJyOnZlYy0wNy1ib290c3RyYXAtdGltZW91dDowMUhaWjIwMDAwMDAwMDAwMDAwMDI="
+    },
+    "signer": "ms:ms:alice-default",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+      },
+      "sig": {
+        "$b64": "EPADkQH3Dy9Pns1kSsWpGm1v6lQbT4d0ZhN0xShiOwAgWmqaBdIsiF9R4BGtOuct6sevl6LNGGU5ALw360f0Dw=="
+      }
+    }
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey": {
+      "$b64": "S/LBdViUu4863EtroDf1SPbgOcN48R265PhP706n6nw="
+    },
+    "sig": {
+      "$b64": "m+GQsK73w4zW35etVv4p9TObzpyam/om4B3p6oKi49OAx+S9FlJXEKyNXOkxUayG7ybP+u/lq591kNo9uBzUAQ=="
+    }
+  }
+}

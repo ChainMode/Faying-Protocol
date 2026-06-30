@@ -1,0 +1,226 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cG9zLWNib3ItbWwtZHNhLTY1"
+      },
+      "signature": {
+        "alg": "ML-DSA-65",
+        "pubkey": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXktoUKqnuZ9seZfDypu8MZNB-PmZJuEHR21MIrhxwP96lQ"
+        },
+        "sig": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctYXR0LXBvcy0oEoePmXn9fkcHTS2cwkumoBPS_akVjaS8VI8tEL4OQw"
+        }
+      },
+      "signer": "hp:vector-pos-cbor-ml-dsa-65"
+    },
+    "claims": {
+      "fay": "fay:01HXFAY-ML-DSA-EXAMPLE",
+      "grade": 2,
+      "human_prime": "hp:01HXPOS-CBOR-ML-",
+      "human_witness": {
+        "authenticator_data": {
+          "$bytes": "uH2_VcJ7qsQ0Temz99ihyeCE3RdZdvHDJOo6TNddGbnahxDmcQ"
+        },
+        "client_data_json": {
+          "$bytes": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiUGZYRE5LNUlZbl9raDRGR2JnWWN0c0tWaFROZFBoY2dsTjFDQXl1Y0tjcyIsIm9yaWdpbiI6Imh0dHBzOi8vZmF5aW5nLmV4YW1wbGUiLCJjcm9zc09yaWdpbiI6ZmFsc2V9"
+        },
+        "credential_id": "MAZnvM9bKi-Z9TzBMKsiKA",
+        "signature": {
+          "$bytes": "XMEw1NerI3XyXe1EfJz9ipdsbFsr55E43Z1akSXkI6Y_1g3rY6gXnl8fgXkH1_7HXb7fEGToglYNFvzEsx52vw"
+        }
+      },
+      "not_after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "presence_req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ML-",
+      "msg_id": "01HXMSG-BOOTSTRAP-MLDSA65-CBOR",
+      "msg_type": "BOOTSTRAP",
+      "nonce": {
+        "$bytes": "OdliTSk_CEXgqnCXP2pcBA"
+      },
+      "subject": "fay:01HXFAY-ML-DSA-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "ML-DSA-65",
+      "pubkey": {
+        "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXktoUKqnuZ9seZfDypu8MZNB-PmZJuEHR21MIrhxwP96lQ"
+      },
+      "sig": {
+        "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctcmVxLXBvcy0PZqjSITyC0N--N6V_09yg0WSTbIuuaTXN1zMD77hLpw"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1wb3MtY2Jvci1tbC1kc2EtNjU"
+      },
+      "signature": {
+        "alg": "ML-DSA-65",
+        "pubkey": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXkteCF3wmGaZ25diK-i6pDraRqe8MwznIYO-EezlFNdC7A"
+        },
+        "sig": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctYXR0LXJlc3A8HGJH-6wtUDkChOPltgHlGCgu6CH6b1V6uTK70H2ogg"
+        }
+      },
+      "signer": "hp:vector-resp-pos-cbor-ml-dsa-65"
+    },
+    "claims": {
+      "attestation": {
+        "format": "self-signed",
+        "payload": {
+          "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6bXMtcG9zLWNib3ItbWwtZHNhLTY1"
+        },
+        "signature": {
+          "alg": "ML-DSA-65",
+          "pubkey": {
+            "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXkteCF3wmGaZ25diK-i6pDraRqe8MwznIYO-EezlFNdC7A"
+          },
+          "sig": {
+            "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctYXR0LW1zLXAhJODOdi_zYNfNd8mjFg4E5Do7Kv-eY_bQ4hhlYRCyBQ"
+          }
+        },
+        "signer": "hp:vector-ms-pos-cbor-ml-dsa-65"
+      },
+      "grade": 2,
+      "id": "01HXMNDT-BOOTSTRAP-MLDSA65-CBOR",
+      "issued-at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ML-",
+      "ms-id": "ms:vector-pos-cbor-ml-dsa-65",
+      "not-after": {
+        "$tag": 0,
+        "$value": "2026-01-01T23:59:59Z"
+      },
+      "not-before": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "presence-req": {
+        "max-staleness-ms": 5000,
+        "on-loss": "downgrade-to:G3",
+        "signal-types": [
+          "webauthn-uv-fresh",
+          "presence-heartbeat-only"
+        ]
+      },
+      "scope": {
+        "actions": [
+          "calendar:event:create",
+          "calendar:event:read"
+        ],
+        "budget": {
+          "max-invocations": 100,
+          "time-window": [
+            {
+              "$tag": 0,
+              "$value": "2026-01-01T00:00:00Z"
+            },
+            {
+              "$tag": 0,
+              "$value": "2026-01-02T00:00:00Z"
+            }
+          ]
+        },
+        "domains": [
+          "https://api.example.com/v1/calendar"
+        ],
+        "terminals": [
+          "terminal:laptop:fixed-1"
+        ]
+      },
+      "signature": {
+        "alg": "ML-DSA-65",
+        "pubkey": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXkteCF3wmGaZ25diK-i6pDraRqe8MwznIYO-EezlFNdC7A"
+        },
+        "sig": {
+          "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctbWFuZGF0ZS2L_YOVyXzgKZ3kswxwKTRjzlAZAkmn9zvBK5fLTnUtng"
+        }
+      },
+      "subject": "fay:01HXFAY-ML-DSA-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXPOS-CBOR-ML-",
+      "msg_id": "01HXMSG-RESP-MLDSA65-CBOR",
+      "msg_type": "BOOTSTRAP_RESP",
+      "nonce": {
+        "$bytes": "mZ1QyICvKIIAHDnRNc20dg"
+      },
+      "subject": "fay:01HXFAY-ML-DSA-EXAMPLE",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "ML-DSA-65",
+      "pubkey": {
+        "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1wdWJrZXkteCF3wmGaZ25diK-i6pDraRqe8MwznIYO-EezlFNdC7A"
+      },
+      "sig": {
+        "$bytes": "dGVzdC1vbmx5LW1sLWRzYS02NS1zaWctcmVzcC1wb3PNlkDmKsxJjIVq5oM8LfYtFoWYzdDr-GaVHNm90dlCDQ"
+      }
+    }
+  }
+}

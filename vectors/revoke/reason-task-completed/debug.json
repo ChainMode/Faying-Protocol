@@ -1,0 +1,113 @@
+{
+  "request_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVxLXJlYXNvbi10YXNrLWNvbXBsZXRlZA"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "naXrutAXg8tCFRQxg2-6IzEVj_ilxAWeUivJu7D6ZYk"
+        },
+        "sig": {
+          "$bytes": "aRxEOJ-UgzETi2erRISxYEAjqCILA9ay-1IQw0D473j33gABZJ-iS5lxVf66yYDRg1XiMe-8F0sByLkRGk0NBg"
+        }
+      },
+      "signer": "hp:vector-req-reason-task-completed"
+    },
+    "claims": {
+      "cascade": true,
+      "effective_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      },
+      "mandate_id": "01HXMNDT-TARGET-REASON_TASK_COMPLETED",
+      "reason": "task-completed"
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_TASK_COMPLETED",
+      "msg_id": "01HXMSG-RVK-REQ-REASON_TASK_COMPLETED",
+      "msg_type": "REVOKE",
+      "nonce": {
+        "$bytes": "ZmVX7M5i32hRnfcz5dGgDA"
+      },
+      "subject": "fay:01HXFAY-REASON_TASK_COMPLETED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "naXrutAXg8tCFRQxg2-6IzEVj_ilxAWeUivJu7D6ZYk"
+      },
+      "sig": {
+        "$bytes": "-cgXLt9W3rOcX3cIL-lF8fkKDa-G36Z8wTaPo0cVlyaGblInWYXtciiK6SuVIkfSQWFgBxFgMPZhrH1JOpHPCw"
+      }
+    }
+  },
+  "response_view": {
+    "attestation": {
+      "format": "self-signed",
+      "payload": {
+        "$bytes": "ZmF5aW5nLWF0dGVzdGF0aW9uLXBheWxvYWQ6cmVzcC1yZWFzb24tdGFzay1jb21wbGV0ZWQ"
+      },
+      "signature": {
+        "alg": "Ed25519",
+        "pubkey": {
+          "$bytes": "jfKKGvhnpwbWXcdTyi8FlLeIf4M0hmmYwcG4hE6lLAU"
+        },
+        "sig": {
+          "$bytes": "BRneClxVA65tHPYASNOkM1IjHt-D4HrvyIznf3RtryXUT_WNI8dN98n0iIxiNTEYoVBlgImzurI8MMqpbu5eCg"
+        }
+      },
+      "signer": "hp:vector-resp-reason-task-completed"
+    },
+    "claims": {
+      "cascade": true,
+      "cascaded_mandate_ids": [],
+      "mandate_id": "01HXMNDT-TARGET-REASON_TASK_COMPLETED",
+      "reason": "task-completed",
+      "revoked_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T12:00:00Z"
+      }
+    },
+    "header": {
+      "expiry": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:01:00Z"
+      },
+      "grade": 2,
+      "issued_at": {
+        "$tag": 0,
+        "$value": "2026-01-01T00:00:00Z"
+      },
+      "issuer": "hp:01HXHP-REASON_TASK_COMPLETED",
+      "msg_id": "01HXMSG-RVK-RCT-REASON_TASK_COMPLETED",
+      "msg_type": "REVOKE_RECEIPT",
+      "nonce": {
+        "$bytes": "UiVU4tjJ_ldFzM-1yyggcQ"
+      },
+      "subject": "fay:01HXFAY-REASON_TASK_COMPLETED",
+      "version": "Faying Protocol/1.0"
+    },
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey": {
+        "$bytes": "jfKKGvhnpwbWXcdTyi8FlLeIf4M0hmmYwcG4hE6lLAU"
+      },
+      "sig": {
+        "$bytes": "rBR95P-0mxLixARCYsXEtK_XfuJnXkbG9BkT5wZf05QpliYTf0eoaOx9_OZQOZAXp65mJF-nW1O1dIzeTgK5Aw"
+      }
+    }
+  }
+}

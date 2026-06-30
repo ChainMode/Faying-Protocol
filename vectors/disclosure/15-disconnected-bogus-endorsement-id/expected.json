@@ -1,0 +1,14 @@
+{
+  "audit_notes": [
+    "endorsement_id refers to an endorsement not present on the Mandate.",
+    "Independently-verifiable linkage fails — schema-level rejection."
+  ],
+  "case": "f",
+  "endorsement_id_referenced": "endorsement:DOES-NOT-EXIST-01",
+  "endorsement_id_resolves": false,
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "15-disconnected-bogus-endorsement-id"
+}

@@ -1,0 +1,35 @@
+{
+  "attestation": {
+    "format": "self-signed",
+    "payload_hex": "",
+    "signature": {
+      "alg": "Ed25519",
+      "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "signer": "presence-device-1"
+  },
+  "claims": {
+    "code": 1009,
+    "mandate_id": "mnd:01HXR000000000000000ACTIVE",
+    "message": "nonce replay detected",
+    "name": "E_REPLAY",
+    "recovery_hint": "rotate session key and reissue with fresh nonce"
+  },
+  "header": {
+    "expiry": "2025-12-17T13:00:00Z",
+    "grade": 3,
+    "issued_at": "2025-12-17T12:00:00Z",
+    "issuer": "ms:fap-test-ms-1",
+    "msg_id": "msg:err-1009-error",
+    "msg_type": "ERROR",
+    "nonce_hex": "0123456789abcdef0123456789abcdef",
+    "subject": "fay:01HXR000000000000000000IF",
+    "version": "Faying Protocol/1.0"
+  },
+  "signature": {
+    "alg": "Ed25519",
+    "pubkey_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sig_hex": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

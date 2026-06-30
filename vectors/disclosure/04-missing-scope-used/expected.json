@@ -1,0 +1,12 @@
+{
+  "audit_notes": [
+    "DISCLOSURE-path E_PROTOCOL MUST be pushed to HP view."
+  ],
+  "case": "b",
+  "error_code": 1099,
+  "error_name": "E_PROTOCOL",
+  "missing_field": "scope_used",
+  "ms_action": "reject + push-to-hp-view",
+  "outcome": "E_PROTOCOL",
+  "vector_id": "04-missing-scope-used"
+}

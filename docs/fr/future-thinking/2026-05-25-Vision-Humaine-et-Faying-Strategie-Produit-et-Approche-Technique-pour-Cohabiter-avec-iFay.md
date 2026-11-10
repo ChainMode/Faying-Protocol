@@ -1,6 +1,6 @@
 <!-- Mis à jour : 2026-05-25 -->
 
-# Vision Humaine et Faying : stratégie produit et approche technique pour cohabiter avec iFay
+# Point de vue humain et Faying : stratégie produit et approche technique pour cohabiter avec iFay
 
 Si, à l'avenir, l'IA fait réellement les choses à votre place, opère les terminaux à votre place, interagit avec le monde à votre place, alors « comment les humains et l'IA cohabitent » n'est plus une discussion philosophique mais un **protocole de sécurité qui doit être rendu concret**.
 Je ne cesse de le dire : faire courir l'IA plus vite est facile ; la faire « agir de manière responsable au sein de la société » est la partie difficile.

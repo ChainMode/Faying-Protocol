@@ -139,7 +139,7 @@ Para el conjunto completo de fronteras y condiciones de activación, lea "Estado
 
 Esta es la analogía que conviene tener:  
 **Una entidad automática sin Faying es como un sitio sin HTTPS** — se puede visitar, pero el navegador lo marca en rojo, y por instinto se sabe que no debería estar portando comportamiento sensible.  
-De la misma forma, un Agent o entidad de ejecución automática fuera de Faying no es necesariamente "malvado de inmediato", pero es estructuralmente inseguro: puede caer en situaciones de "No Autorizado / Inconsciente / Fuera de Control" en cualquier momento, y usted no tiene ninguna compuerta a nivel de protocolo.
+De la misma forma, un agente o entidad de ejecución automática fuera de Faying no es necesariamente "malvado de inmediato", pero es estructuralmente inseguro: puede caer en situaciones de "No Autorizado / Inconsciente / Fuera de Control" en cualquier momento, y usted no tiene ninguna compuerta a nivel de protocolo.
 
 ---
 

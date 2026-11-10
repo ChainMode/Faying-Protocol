@@ -1,10 +1,10 @@
-# Phase 5：エコシステム終態
+# Phase 5：エコシステム最終形態
 
-Phase 5 はミッション・パスの終態展望です。Faying Protocol に新しい関係タイプを導入することはなく、より長期的な問いに答えます。
+Phase 5 はミッション・パスの最終形態の展望です。Faying Protocol に新しい関係タイプを導入することはなく、より長期的な問いに答えます。
 
 > **Phase 1 から Phase 4 までの全関係タイプが社会の中で同時に展開し、相互に絡み合い、規模化稼働するとき、Faying エコシステムはどのような全体的姿を呈するか？**
 
-Phase 5 において、Faying のカバー範囲はすでに Human Prime ↔ iFay（Phase 1）、iFay による端末の派生接収（Phase 2）、iFay によるソフトウェアアプリの派生接収（Phase 3）、iFay ↔ coFay の委託と協働（Phase 4）、およびこれら基礎関係から自然に派生する iFay ↔ iFay の跨組織・跨エコシステム多向協働を含みます。
+Phase 5 において、Faying のカバー範囲はすでに Human Prime ↔ iFay（Phase 1）、iFay による端末の派生的な引き継ぎ（Phase 2）、iFay によるソフトウェアアプリの派生的な引き継ぎ（Phase 3）、iFay ↔ coFay の委託と協働（Phase 4）、およびこれら基礎関係から自然に派生する iFay ↔ iFay の跨組織・跨エコシステム多向協働を含みます。
 
 Phase 5 の鍵は「もう一類の関係を拡張する」ことではなく、Faying エコシステム全体が大規模稼働下でも帰責の一貫性を保つことにあります。これはミッション・パス全体で最も深い約束です。
 
@@ -26,6 +26,6 @@ Phase 5 が描く遠景は [ifay.ai](https://ifay.ai) が提示する「新し�
 
 Faying Protocol は社会形態自体の形成問題を解決しません。それは ifay.ai 全景のより高層の議題に属します。しかし Faying Protocol は新しい社会形態が責任、監護、帰属に対して持つ全要求を引き受けねばならず、新しい社会形態をプロトコル層で裸で走らせてはなりません。
 
-![Phase 5 概念図：Faying エコシステム終態の展望](../../zh-CN/blueprint/illustration/phase5-concept.png)
+![Phase 5 概念図：Faying エコシステム最終形態の展望](../../zh-CN/blueprint/illustration/phase5-concept.png)
 
 > Phase 5 は現在のイラスト集に architecture 図を提供しません。この段階は現在からまだ遠く、工学層面の具体的アーキテクチャを早期に確定図として固化させるのは適切ではありません。

@@ -1,0 +1,41 @@
+# Faying Protocol/1.0 — Conformance Matrix
+#
+# 本文件是 Requirement 10.3 强制互操作矩阵的机器可读声明，对应
+# design.md §TS.4「互操作测试矩阵」。
+#
+# 维度定义（5 维笛卡尔积）：
+#   encoding × signing-alg × hash × channel × impl-language
+#
+# 当前规模：2 × 3 × 2 × 2 × 2 = 48 组合（满足 Requirement 10.3 ≥ 24 的下限）。
+# task 5.6 已把 impl-language 扩到 2（typescript + rust），两份 reference 实现
+# 见 reference-impls/，跨实现跑测结果见 conformance/cross-impl/results.md。
+#
+# 文件格式约定（runner.py 内置最小解析器仅识别下列子集，禁止使用其他特性）：
+#   - 顶层 `key: value` 标量
+#   - 顶层 `key:` 引出 2 空格缩进的子映射
+#   - 子映射中的 `key:` 引出 4 空格缩进的标量列表（`- value`）
+#   - `#` 起始为注释，整行或行尾均可
+#   - 字符串可加双引号；裸标量按字面量保留
+
+spec_version: "Faying Protocol/1.0"
+requirement: "10.3"
+design_anchor: "design.md §TS.4"
+acceptance_min_combinations: 24
+
+dimensions:
+  encoding:
+    - cbor
+    - json
+  signing-alg:
+    - ed25519
+    - ecdsa-p256
+    - ml-dsa-65
+  hash:
+    - sha-256
+    - blake3
+  channel:
+    - tls-only
+    - mtls
+  impl-language:
+    - typescript
+    - rust

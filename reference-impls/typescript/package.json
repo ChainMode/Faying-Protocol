@@ -1,0 +1,25 @@
+{
+  "name": "faying-protocol-reference-ts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reference Implementation, Not Normative — Faying Protocol/1.0 TypeScript reference impl for conformance testing only.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "matrix": "node src/cli.ts matrix",
+    "produce": "node src/cli.ts produce",
+    "verify": "node src/cli.ts verify",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.4.0",
+    "cbor-x": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}

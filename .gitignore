@@ -6,9 +6,11 @@
 !/README.md
 !/.gitignore
 !/LICENSE
-# 协议规范性工件 = 产物（PO 裁定 2026-06-29）：第三方据此实现并自测，"开放协议"才名副其实
+# 协议规范性工件与参考验证套件 = 产物（PO 裁定 2026-06-29 & 2026-11-15）
 !/schemas/
 !/vectors/
+!/reference-impls/
+!/conformance/
 
 # === 已放行目录内仍要剔除的噪声 ===
 .DS_Store
@@ -18,6 +20,11 @@
 Thumbs.db
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.hypothesis/
+target/
+node_modules/
+pnpm-lock.yaml
 
 # === 内部文件（工程过程文档，留本地，不公开）===
 # 蓝图内部对照表 / 同步状态（仅维护用）

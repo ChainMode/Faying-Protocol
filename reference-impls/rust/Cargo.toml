@@ -1,0 +1,26 @@
+[package]
+name = "faying-protocol-reference-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Reference Implementation, Not Normative — Faying Protocol/1.0 Rust reference impl for conformance testing only."
+publish = false
+
+[[bin]]
+name = "faying-ref"
+path = "src/main.rs"
+
+[lib]
+name = "faying_ref"
+path = "src/lib.rs"
+
+[dependencies]
+ed25519-dalek = "2"
+p256 = { version = "0.13", features = ["ecdsa"] }
+ciborium = "0.2"
+sha2 = "0.10"
+blake3 = "1"
+serde_json = "1"
+hex = "0.4"
+base64 = "0.22"
+
+[dev-dependencies]

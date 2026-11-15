@@ -38,10 +38,11 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 | 路径 | 内容 | 状态 |
 | --- | --- | --- |
 | `docs/{lang}/blueprint/` | **蓝图** —— 动机、定位、愿景、使命路径、价值观、前瞻议题 | zh-CN 为源语言、已定稿；其余 8 语言派生翻译 |
-| `docs/{lang}/specification/2025-10-25/` | **协议规范** —— 概述、架构、组件与接口、数据模型、协议报文、密码学、授权等级、生命周期、安全考量、错误处理、开放议题 + 附录 | **Final · Faying Protocol/1.0 · 2025-10-25 发布** |
-| `schemas/` | **机器可读 schema** —— `fap-1.0.cddl`（Normative）、`types.ts`（人读视图）、`fap-1.0.proto`（备选绑定） | 随规范发布 |
-| `vectors/` | **官方测试向量** —— bootstrap / presence / grade-switch / delegate / revoke / endorsement / disclosure / disconnection / errors / encoding-equivalence 等族 | 随规范发布 |
-| `reference-impls/` | **双语言参考实现** —— Rust 与 TypeScript 参考编解码、签名输入与维度验证（非规范性） | 随规范发布 |
+| `docs/{lang}/specification/2025-10-25/` | **协议规范（1.0）** —— 概述、架构、组件与接口、数据模型、协议报文、密码学、授权等级、生命周期、安全考量、错误处理、开放议题 + 附录 | **Final · Faying Protocol/1.0 · 2025-10-25 发布** |
+| `docs/{lang}/specification/1.1-cofay/` | **扩展规范（1.1）** —— `coFay` 委派托管（三层责任穿透、单跳不放大、上游 `G0` 级联停机）与双签原子移交（向后兼容 1.0） | **Final · Faying Protocol/1.1 · 2026-11-16 发布** |
+| `schemas/` | **机器可读 schema** —— `fap-1.0.cddl`（1.0 Normative）、`fap-1.1-cofay.cddl` & `fap-1.1-cofay.json`（1.1 Normative）、`types.ts`、`fap-1.0.proto` | 随规范发布 |
+| `vectors/` | **官方测试向量** —— 1.0 各协议报文向量族 + `cofay-stewardship-v1.1.json`（1.1 委派托管与双签移交向量） | 随规范发布 |
+| `reference-impls/` | **双语言参考实现** —— Rust 与 TypeScript 参考编解码、签名输入、维度验证及 1.1 `coFay` 委派托管校验（非规范性） | 随规范发布 |
 | `conformance/` | **互操作一致性测试套件** —— Python 四维合规矩阵（encoding / signing / hash / channel）与攻击向量验证（973 测试） | 随规范发布 |
 
 蓝图是宣言式、纲领性文档，**不收录字段定义、报文格式、API、状态机表、密码学算法、协议版本号等技术细节**；这些内容由 `docs/{lang}/specification/` 协议规范与 `schemas/` 承接，蓝图正文仅以链接引用，绝不复述。规范正本以 `schemas/fap-1.0.cddl`（线格式语法）与规范正文为准；`reference-impls/` 与 `conformance/` 用于可执行验证与跨语言互操作回归，不替代规范正文。
@@ -69,9 +70,11 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 
 进入任一语言版本即可阅读完整正文：[zh-CN](./docs/zh-CN/blueprint/) · [zh-TW](./docs/zh-TW/blueprint/) · [en](./docs/en/blueprint/) · [ja](./docs/ja/blueprint/) · [ko](./docs/ko/blueprint/) · [de](./docs/de/blueprint/) · [es](./docs/es/blueprint/) · [fr](./docs/fr/blueprint/) · [ru](./docs/ru/blueprint/)
 
-## 本期范围
+## 协议覆盖范围
 
-本期 Faying Protocol 仅覆盖**人类原型 ↔ iFay**一类受控关系。其他 Faying 关系——人类 ↔ 终端、人类 ↔ 软件、iFay ↔ coFay、iFay ↔ iFay 等——作为前瞻议题列在第 14 章，不在本期协议设计范围内。
+- **`Faying Protocol/1.0`（2025-10-25）**：覆盖**人类原型（Human Prime）↔ iFay** 的持续性授权、在场信号校准、五档授权等级（G0–G4）与对称撤销。
+- **`Faying Protocol/1.1`（`1.1-cofay` 扩展配置）**：在不破坏 `1.0` 兼容性的前提下，覆盖 **人类原型 / 组织托管方 → `iFay` 管理者 → `coFay`** 的单跳委派托管与双签原子移交。
+- 人类 ↔ 终端、人类 ↔ 软件、`iFay` ↔ `iFay` 等其他跨层协同关系由协议族中对应子协议承接或作为前瞻议题列在第 14 章。
 
 ## 多语言
 

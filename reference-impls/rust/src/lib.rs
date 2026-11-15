@@ -5,6 +5,7 @@
 // (task 5.6). It is NOT the protocol itself and carries no normative weight;
 // the authoritative wire-format definition is `schemas/fap-1.0.cddl`.
 
+pub mod cofay_stewardship;
 pub mod crypto;
 pub mod detcbor;
 pub mod dimensions;

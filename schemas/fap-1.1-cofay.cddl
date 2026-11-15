@@ -1,0 +1,97 @@
+; ============================================================================
+; Normative; authoritative schema for Faying Protocol/1.1 coFay Stewardship.
+; ============================================================================
+;
+; File:        schemas/fap-1.1-cofay.cddl
+; Protocol:    Faying Protocol/1.1 (coFay Delegated Stewardship Profile)
+; Compatibility:
+;              Backward-compatible MINOR extension over `schemas/fap-1.0.cddl`
+;              per §1.7.2. All Faying Protocol/1.0 wire definitions remain
+;              unchanged and valid; 1.0 peers safely ignore unknown 1.1
+;              optional fields and profile messages.
+; Encoding:    CBOR (RFC 8949 Deterministic CBOR §4.2.1) and canonical JSON
+;              fallback (RFC 8785 JCS) with explicit domain separation:
+;                - Stewardship signing domain:
+;                  "ifay.faying.cofay-stewardship.v1:"
+;                - Ownership/stewardship transfer dual-signing domain:
+;                  "ifay.faying.cofay-transfer.v1:"
+; ============================================================================
+
+faying-grade = 0..4    ; 0=EmergencyOverride, 1=Strict, 2=Moderate, 3=Loose, 4=Autonomous
+
+iso-time = #6.0(tstr) / tstr
+
+resource-budget = {
+  ? max-invocations: uint,
+  ? max-cost-units:  uint
+}
+
+scope = {
+  domains:    [+ tstr],
+  actions:    [+ tstr],
+  ? terminals: [* tstr],
+  ? budget:   resource-budget
+}
+
+signature-bundle = {
+  alg:       "Ed25519" / "ES256" / "ML-DSA-65",
+  pubkey:    bstr / tstr,   ; raw bytes in CBOR, lowercase hex in JSON view
+  sig:       bstr / tstr
+}
+
+ifay-manager-id  = tstr .regexp "^ifay_[a-z0-9][a-z0-9_-]{2,63}$"
+cofay-subject-id = tstr .regexp "^cofay_[a-z0-9][a-z0-9_-]{2,63}$"
+human-prime-id   = tstr .regexp "^hp_[a-z0-9][a-z0-9_-]{2,63}$"
+steward-party-id = tstr .regexp "^(hp|org)_[a-z0-9][a-z0-9_-]{2,63}$"
+
+upstream-state = "Active" / "Degraded" / "G0" / "Revoked"
+
+; Three-tier responsibility attribution mandate:
+;   accountable-human-prime (hp_*) -> manager-fay-id (ifay_*) -> subject-cofay-id (cofay_*)
+cofay-stewardship-mandate = {
+  version:                 "Faying Protocol/1.1",
+  profile:                 "cofay-stewardship",
+  id:                      tstr,
+  issued-at:               iso-time,
+  not-before:              iso-time,
+  not-after:               iso-time,
+  steward-entity:          steward-party-id,
+  accountable-human-prime: human-prime-id,
+  parent-mandate-id:       tstr,
+  manager-fay-id:          ifay-manager-id,
+  manager-grade:           faying-grade,
+  manager-not-before:      iso-time,
+  manager-not-after:       iso-time,
+  manager-scope:           scope,
+  subject-cofay-id:        cofay-subject-id,
+  charter-id:              tstr,
+  charter-scope:           scope,
+  scope:                   scope,          ; MUST satisfy scope <= charter-scope INTERSECT manager-scope
+  grade:                   faying-grade,   ; MUST satisfy grade <= manager-grade
+  hop-count:               1,              ; Single-hop stewardship ceiling (coFay MUST NOT sub-delegate)
+  max-stewardship-hops:    1,
+  on-upstream-g0:          "safe-state-halt",
+  manager-signature:       signature-bundle
+}
+
+; Atomic dual-signed stewardship / ownership transfer authorization:
+;   Requires valid cryptographic signatures from BOTH from-steward and to-steward
+;   over "ifay.faying.cofay-transfer.v1:" || JCS(unsigned-payload).
+cofay-transfer-authorization = {
+  version:                 "Faying Protocol/1.1",
+  profile:                 "cofay-transfer",
+  transfer-id:             tstr,
+  cofay-id:                cofay-subject-id,
+  charter-id:              tstr,
+  previous-mandate-id:     tstr,
+  from-steward:            steward-party-id,
+  from-human-prime:        human-prime-id,
+  to-steward:              steward-party-id,
+  to-human-prime:          human-prime-id,
+  next-manager-fay-id:     ifay-manager-id,
+  issued-at:               iso-time,
+  expires-at:              iso-time,
+  nonce:                   tstr,
+  from-steward-signature:  signature-bundle,
+  to-steward-signature:    signature-bundle
+}

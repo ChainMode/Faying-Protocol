@@ -1,0 +1,758 @@
+{
+  "suite": "faying-protocol-1.1-cofay-stewardship",
+  "version": "Faying Protocol/1.1",
+  "evaluated_at_default": "2026-11-16T03:00:00Z",
+  "vectors": [
+    {
+      "id": "V01-valid-individual-hp-stewardship",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_01",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "hp_lin_wei_001",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_chief_ops_01",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 2,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "e51d7d2e1d343c5cb72a39596dce4f7b93338a8028c2c16d489b83b0fc6b8a6b",
+          "sig": "05db4e37bf57e08934d5f3d7772dee689d334d987af33920fcc01786cbf57214962c1bf63a46bfaed9ed109c6778966f7157fd326e5aceb58956dc6ad1e62406"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "runtime_state": "active",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "effective_grade": 2
+      }
+    },
+    {
+      "id": "V02-valid-org-steward-stewardship",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_02",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "org_meridian_guild_01",
+        "accountable_human_prime": "hp_chen_yu_steward",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_guild_director_02",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_triage_specialist_02",
+        "charter_id": "charter_triage_specialist_v1",
+        "charter_scope": {
+          "domains": [
+            "support.triage",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 400,
+            "max_cost_units": 800
+          }
+        },
+        "scope": {
+          "domains": [
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory"
+          ],
+          "terminals": [
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 100,
+            "max_cost_units": 200
+          }
+        },
+        "grade": 3,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "678da5edd30a044083af36aa32442771b7d38f090b8e89b8890fec372d8c8a55",
+          "sig": "3af4050ec4a06e0623422bcbae732c59297526f8aa0e2933f4aa86f3e64161ae73bd10a7a17129726300b75d632921c75af6d7d72c388a6d6fbeabd643f5ae05"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "runtime_state": "active",
+        "accountable_human_prime": "hp_chen_yu_steward",
+        "effective_grade": 3
+      }
+    },
+    {
+      "id": "V03-reject-grade-amplification",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_03",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "hp_lin_wei_001",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_chief_ops_01",
+        "manager_grade": 2,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 4,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "e51d7d2e1d343c5cb72a39596dce4f7b93338a8028c2c16d489b83b0fc6b8a6b",
+          "sig": "6c16d14a06f4d119280f87d05df1a97726480d607197839e4bec510e31a64304db74bf48d9f90fdd1e640979d13f19baf8ba25a9acfcd5c5c416df61367ced08"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "runtime_state": "rejected",
+        "error_code": 1021,
+        "error_name": "E_GRADE_AMPLIFICATION"
+      }
+    },
+    {
+      "id": "V04-reject-scope-escape",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_04",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "hp_lin_wei_001",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_chief_ops_01",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 2,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "e51d7d2e1d343c5cb72a39596dce4f7b93338a8028c2c16d489b83b0fc6b8a6b",
+          "sig": "76560b1bef3477099cc56505a935459b3e7a098efdd2815b634d4b1f66aa610fa893f80bbdcf35b495bda503fd84138aa155acbbe9c9c91d93ae98e9c2ca490a"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "runtime_state": "rejected",
+        "error_code": 1022,
+        "error_name": "E_SCOPE_ESCAPE"
+      }
+    },
+    {
+      "id": "V05-reject-hop-limit-exceeded",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_05",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "hp_lin_wei_001",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "cofay_upstream_peer_99",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 2,
+        "hop_count": 2,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "e51d7d2e1d343c5cb72a39596dce4f7b93338a8028c2c16d489b83b0fc6b8a6b",
+          "sig": "620346f7d3ed71b142cbdd3b1a3bee72da25ed46d273c38f999b92a3897b34b21beffc327072951b9e4e8b299846d88fc31925ba92184f668fb6fac297c36d0c"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "runtime_state": "rejected",
+        "error_code": 1023,
+        "error_name": "E_STEWARDSHIP_HOP_LIMIT"
+      }
+    },
+    {
+      "id": "V06-reject-unanchored-org-steward",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "Active",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_06",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "org_unanchored_dao",
+        "accountable_human_prime": "",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_chief_ops_01",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 2,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "678da5edd30a044083af36aa32442771b7d38f090b8e89b8890fec372d8c8a55",
+          "sig": "724682ba1909ae61fd617b96495a60ac1fd2cbb570393ed2c4d55d873e494df3af3a8be333142542ef1c0f1bfa935c9ba1456aec1bf4a7438597b1523811de02"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "runtime_state": "rejected",
+        "error_code": 1010,
+        "error_name": "E_HUMAN_WITNESS_REQUIRED"
+      }
+    },
+    {
+      "id": "V07-enforce-g0-emergency-propagation",
+      "kind": "stewardship",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "upstream_state": "G0",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-stewardship",
+        "id": "mandate_cofay_20261116_01",
+        "issued_at": "2026-11-16T00:00:00Z",
+        "not_before": "2026-11-16T00:00:00Z",
+        "not_after": "2026-11-17T00:00:00Z",
+        "steward_entity": "hp_lin_wei_001",
+        "accountable_human_prime": "hp_lin_wei_001",
+        "parent_mandate_id": "mandate_hp_ifay_0091",
+        "manager_fay_id": "ifay_chief_ops_01",
+        "manager_grade": 3,
+        "manager_not_before": "2026-11-15T00:00:00Z",
+        "manager_not_after": "2026-11-20T00:00:00Z",
+        "manager_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit",
+            "support.triage"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route",
+            "dispatch_order"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 500,
+            "max_cost_units": 1000
+          }
+        },
+        "subject_cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "charter_scope": {
+          "domains": [
+            "logistics.dispatch",
+            "warehouse.audit"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01",
+            "term_hub_02"
+          ],
+          "budget": {
+            "max_invocations": 300,
+            "max_cost_units": 600
+          }
+        },
+        "scope": {
+          "domains": [
+            "logistics.dispatch"
+          ],
+          "actions": [
+            "read_inventory",
+            "propose_route"
+          ],
+          "terminals": [
+            "term_hub_01"
+          ],
+          "budget": {
+            "max_invocations": 200,
+            "max_cost_units": 400
+          }
+        },
+        "grade": 2,
+        "hop_count": 1,
+        "max_stewardship_hops": 1,
+        "on_upstream_g0": "safe-state-halt",
+        "manager_signature": {
+          "alg": "Ed25519",
+          "pubkey": "e51d7d2e1d343c5cb72a39596dce4f7b93338a8028c2c16d489b83b0fc6b8a6b",
+          "sig": "05db4e37bf57e08934d5f3d7772dee689d334d987af33920fcc01786cbf57214962c1bf63a46bfaed9ed109c6778966f7157fd326e5aceb58956dc6ad1e62406"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "runtime_state": "safe-state-halt",
+        "error_code": 1024,
+        "error_name": "E_UPSTREAM_EMERGENCY_HALT"
+      }
+    },
+    {
+      "id": "V08-valid-dual-signed-transfer",
+      "kind": "transfer",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-transfer",
+        "transfer_id": "xfer_cofay_20261116_01",
+        "cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "previous_mandate_id": "mandate_cofay_20261116_01",
+        "from_steward": "hp_lin_wei_001",
+        "from_human_prime": "hp_lin_wei_001",
+        "to_steward": "org_meridian_guild_01",
+        "to_human_prime": "hp_chen_yu_steward",
+        "next_manager_fay_id": "ifay_guild_director_02",
+        "issued_at": "2026-11-16T02:00:00Z",
+        "expires_at": "2026-11-16T06:00:00Z",
+        "nonce": "xfer_nonce_20261116_alpha01",
+        "from_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "1d5902397ef072f50829072a3507484043c85a7665bbacfb2de025a8e23f579b",
+          "sig": "e780dde2efdbde419095220b5ebaec82705ba6ffc891c22e34e64c4a11b82c88c1720a5cef7eabf74ffcdb14e6aa2a8ab8b456b7b0c62b426c0bc893b48ac60c"
+        },
+        "to_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "dd3a8feb0af039364d5a43e954b6834c814eb5c4695667e5d3aa75ccf981ed27",
+          "sig": "240403c72f918028496d4ad45c9de4809027268348785df8cf765a03c6e0eb12c5f9253ef76355bce7f5bc11699fed87e20f3b096498fce1c1044b54e4f04409"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "active_steward": "org_meridian_guild_01",
+        "accountable_human_prime": "hp_chen_yu_steward",
+        "next_manager_fay_id": "ifay_guild_director_02"
+      }
+    },
+    {
+      "id": "V09-reject-single-signature-transfer",
+      "kind": "transfer",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-transfer",
+        "transfer_id": "xfer_cofay_20261116_02",
+        "cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "previous_mandate_id": "mandate_cofay_20261116_01",
+        "from_steward": "hp_lin_wei_001",
+        "from_human_prime": "hp_lin_wei_001",
+        "to_steward": "org_meridian_guild_01",
+        "to_human_prime": "hp_chen_yu_steward",
+        "next_manager_fay_id": "ifay_guild_director_02",
+        "issued_at": "2026-11-16T02:00:00Z",
+        "expires_at": "2026-11-16T06:00:00Z",
+        "nonce": "xfer_nonce_20261116_alpha01",
+        "from_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "1d5902397ef072f50829072a3507484043c85a7665bbacfb2de025a8e23f579b",
+          "sig": "77c43e0dccc76de31a06fb41ae4c9650bf0688c279a55716f18d658fd64f5047a8af8b748a4413c9b4cfe793a3abc3563bb0919d19ef34d91dcbaa139798380a"
+        },
+        "to_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "dd3a8feb0af039364d5a43e954b6834c814eb5c4695667e5d3aa75ccf981ed27",
+          "sig": "fbc175cfab2734b43c75ffe9096fe9dd7dfaba57d427b26712174804ea7df42bdda0390a4ef41568552d460c36bbdf70a0c61ac68e95be303f5d5c0e01492203"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_code": 1025,
+        "error_name": "E_TRANSFER_DUAL_SIG_REQUIRED"
+      }
+    },
+    {
+      "id": "V10-reject-self-or-expired-transfer",
+      "kind": "transfer",
+      "evaluated_at": "2026-11-16T03:00:00Z",
+      "payload": {
+        "version": "Faying Protocol/1.1",
+        "profile": "cofay-transfer",
+        "transfer_id": "xfer_cofay_20261116_03",
+        "cofay_id": "cofay_route_planner_01",
+        "charter_id": "charter_logistics_planner_v1",
+        "previous_mandate_id": "mandate_cofay_20261116_01",
+        "from_steward": "hp_lin_wei_001",
+        "from_human_prime": "hp_lin_wei_001",
+        "to_steward": "hp_lin_wei_001",
+        "to_human_prime": "hp_lin_wei_001",
+        "next_manager_fay_id": "ifay_guild_director_02",
+        "issued_at": "2026-11-16T02:00:00Z",
+        "expires_at": "2026-11-16T06:00:00Z",
+        "nonce": "xfer_nonce_20261116_alpha01",
+        "from_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "1d5902397ef072f50829072a3507484043c85a7665bbacfb2de025a8e23f579b",
+          "sig": "31ec1d0db0c7114549f223e85d1446e835b8c55687e1837a6e1284edd27ccac1f2a0852d8a493498aec387180888e06b3768253934856fa3805667f5524db005"
+        },
+        "to_steward_signature": {
+          "alg": "Ed25519",
+          "pubkey": "1d5902397ef072f50829072a3507484043c85a7665bbacfb2de025a8e23f579b",
+          "sig": "31ec1d0db0c7114549f223e85d1446e835b8c55687e1837a6e1284edd27ccac1f2a0852d8a493498aec387180888e06b3768253934856fa3805667f5524db005"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_code": 1026,
+        "error_name": "E_TRANSFER_WINDOW_OR_PARTY_INVALID"
+      }
+    }
+  ]
+}

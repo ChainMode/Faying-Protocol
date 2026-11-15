@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ifay.ai/schemas/faying-protocol/fap-1.1-cofay.json",
+  "title": "Faying Protocol/1.1 coFay Delegated Stewardship & Transfer Schema",
+  "description": "Backward-compatible Faying Protocol/1.1 JSON wire view for coFay delegated stewardship mandates and atomic dual-signed stewardship transfer authorizations.",
+  "$defs": {
+    "FayingGrade": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "ResourceBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_invocations": { "type": "integer", "minimum": 1 },
+        "max_cost_units": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "Scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domains", "actions"],
+      "properties": {
+        "domains": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "terminals": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "budget": { "$ref": "#/$defs/ResourceBudget" }
+      }
+    },
+    "SignatureBundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alg", "pubkey", "sig"],
+      "properties": {
+        "alg": { "enum": ["Ed25519", "ES256", "ML-DSA-65"] },
+        "pubkey": { "type": "string", "pattern": "^[0-9a-f]+$" },
+        "sig": { "type": "string", "pattern": "^[0-9a-f]+$" }
+      }
+    },
+    "CofayStewardshipMandate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "profile",
+        "id",
+        "issued_at",
+        "not_before",
+        "not_after",
+        "steward_entity",
+        "accountable_human_prime",
+        "parent_mandate_id",
+        "manager_fay_id",
+        "manager_grade",
+        "manager_not_before",
+        "manager_not_after",
+        "manager_scope",
+        "subject_cofay_id",
+        "charter_id",
+        "charter_scope",
+        "scope",
+        "grade",
+        "hop_count",
+        "max_stewardship_hops",
+        "on_upstream_g0",
+        "manager_signature"
+      ],
+      "properties": {
+        "version": { "const": "Faying Protocol/1.1" },
+        "profile": { "const": "cofay-stewardship" },
+        "id": { "type": "string", "minLength": 1 },
+        "issued_at": { "type": "string", "format": "date-time" },
+        "not_before": { "type": "string", "format": "date-time" },
+        "not_after": { "type": "string", "format": "date-time" },
+        "steward_entity": { "type": "string", "pattern": "^(hp|org)_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "accountable_human_prime": { "type": "string", "pattern": "^hp_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "parent_mandate_id": { "type": "string", "minLength": 1 },
+        "manager_fay_id": { "type": "string", "pattern": "^ifay_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "manager_grade": { "$ref": "#/$defs/FayingGrade" },
+        "manager_not_before": { "type": "string", "format": "date-time" },
+        "manager_not_after": { "type": "string", "format": "date-time" },
+        "manager_scope": { "$ref": "#/$defs/Scope" },
+        "subject_cofay_id": { "type": "string", "pattern": "^cofay_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "charter_id": { "type": "string", "minLength": 1 },
+        "charter_scope": { "$ref": "#/$defs/Scope" },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "grade": { "$ref": "#/$defs/FayingGrade" },
+        "hop_count": { "const": 1 },
+        "max_stewardship_hops": { "const": 1 },
+        "on_upstream_g0": { "const": "safe-state-halt" },
+        "manager_signature": { "$ref": "#/$defs/SignatureBundle" }
+      }
+    },
+    "CofayTransferAuthorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "profile",
+        "transfer_id",
+        "cofay_id",
+        "charter_id",
+        "previous_mandate_id",
+        "from_steward",
+        "from_human_prime",
+        "to_steward",
+        "to_human_prime",
+        "next_manager_fay_id",
+        "issued_at",
+        "expires_at",
+        "nonce",
+        "from_steward_signature",
+        "to_steward_signature"
+      ],
+      "properties": {
+        "version": { "const": "Faying Protocol/1.1" },
+        "profile": { "const": "cofay-transfer" },
+        "transfer_id": { "type": "string", "minLength": 1 },
+        "cofay_id": { "type": "string", "pattern": "^cofay_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "charter_id": { "type": "string", "minLength": 1 },
+        "previous_mandate_id": { "type": "string", "minLength": 1 },
+        "from_steward": { "type": "string", "pattern": "^(hp|org)_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "from_human_prime": { "type": "string", "pattern": "^hp_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "to_steward": { "type": "string", "pattern": "^(hp|org)_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "to_human_prime": { "type": "string", "pattern": "^hp_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "next_manager_fay_id": { "type": "string", "pattern": "^ifay_[a-z0-9][a-z0-9_-]{2,63}$" },
+        "issued_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "nonce": { "type": "string", "minLength": 8 },
+        "from_steward_signature": { "$ref": "#/$defs/SignatureBundle" },
+        "to_steward_signature": { "$ref": "#/$defs/SignatureBundle" }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/CofayStewardshipMandate" },
+    { "$ref": "#/$defs/CofayTransferAuthorization" }
+  ]
+}

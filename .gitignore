@@ -6,6 +6,10 @@
 !/README.md
 !/.gitignore
 !/LICENSE
+!/LICENSE-DOCS
+!/SECURITY.md
+!/CONTRIBUTING.md
+!/CODE_OF_CONDUCT.md
 # 协议规范性工件与参考验证套件 = 产物（PO 裁定 2026-06-29 & 2026-11-15）
 !/schemas/
 !/vectors/

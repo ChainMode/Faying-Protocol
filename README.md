@@ -85,9 +85,12 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 
 跨语言术语对齐规则与各章节同步状态由维护者内部维护（不在公开仓库分发）。
 
-## 许可
+## License
 
-本仓库以 [MIT License](./LICENSE) 授权，详见仓库根 `LICENSE` 文件。
+**MIT (Reference Implementations, Schemas & Test Vectors) / CC BY 4.0 (Specifications & Blueprints)** — Copyright (c) 2025-2026 ChainMode contributors.
+
+- 参考实现、一致性套件、Schema 与测试向量（`reference-impls/`、`conformance/`、`schemas/`、`vectors/`）以 [MIT License](./LICENSE) 授权。
+- `docs/` 下的协议规范与架构蓝图文档以 [CC BY 4.0](./LICENSE-DOCS) 授权。
 
 ## 相关
 

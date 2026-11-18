@@ -1,5 +1,12 @@
 # Faying Protocol
 
+[![Docs CI](https://github.com/ChainMode/Faying-Protocol/actions/workflows/docs-ci.yml/badge.svg)](https://github.com/ChainMode/Faying-Protocol/actions/workflows/docs-ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Docs: CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey.svg)](./LICENSE-DOCS)
+[![Website: ifay.ai](https://img.shields.io/badge/Website-ifay.ai-blue)](https://ifay.ai)
+
+**Faying Protocol** is the cryptographic mandate, lifecycle, and accountability-anchoring protocol of the **iFay** ecosystem, ensuring every autonomous **Fay** (`iFay` or `coFay`) acts strictly within verifiable authority delegated by an accountable **Human Prime** (`人类原型`) or organization.
+
 让 AI Agent 可追溯到具体的责任实体——人类原型或组织角色——而不是停在"模型在做什么"。
 
 [blueprint - 中文简体](./docs/zh-CN/blueprint/) ·

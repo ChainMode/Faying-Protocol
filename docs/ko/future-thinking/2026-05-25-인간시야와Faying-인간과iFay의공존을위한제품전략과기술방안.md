@@ -146,7 +146,7 @@ Faying 의 핵심은 “내가 너에게 권한을 주어 밖에 나가서 달�
 ## 프로토콜로 Human View 를 구현하기: Human Prime 이 언제든 보고, 브레이크를 걸 수 있게
 
 Human View 는 한마디 구호가 아니며, 저희는 그것을 프로토콜과 제품 안의 기본 능력으로 만들어야 합니다: 가시, 회고 가능, 개입 가능.  
-여기서 말하는 Human Prime（인간 원형）은 iFay 체계 안의 책임 주체 정의이며, 이 개념을 알고 싶다면 “정의와 개념”을 보실 수 있습니다: https://ifay.ai/ko/docs/iFay/blueprint/02-%EC%A0%95%EC%9D%98%EC%99%80%20%EA%B0%9C%EB%85%90
+여기서 말하는 Human Prime（인간 원형）은 iFay 체계 안의 책임 주체 정의이며, 이 개념을 알고 싶다면 “정의와 개념”을 보실 수 있습니다: https://ifay.ai/ko/docs/iFay/blueprint/02-%EC%A0%95%EC%9D%98%EC%99%80-%EA%B0%9C%EB%85%90
 
 ### 1) 상태가 보일 수 있음: 네가 Faying 안에 있는지를 내가 언제든 안다
 

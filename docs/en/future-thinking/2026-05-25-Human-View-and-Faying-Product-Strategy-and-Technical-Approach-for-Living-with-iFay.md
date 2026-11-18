@@ -146,7 +146,7 @@ In the same way, an Agent or auto-running entity outside Faying is not necessari
 ## Building Human View through the protocol: keeping Human Prime always able to see and brake
 
 Human View is not a slogan; we have to turn it into a default capability inside the protocol and the product: visible, traceable, intervenable.  
-The Human Prime referenced here is the responsible end as defined within the iFay system. To learn more about this concept, see "Definitions and Concepts": https://ifay.ai/en/docs/iFay/blueprint/02-Definitions%20and%20Concepts
+The Human Prime referenced here is the responsible end as defined within the iFay system. To learn more about this concept, see "Definitions and Concepts": https://ifay.ai/en/docs/iFay/blueprint/02-Definition-and-Concept
 
 ### 1) State being able to be seen: I always know whether you are in Faying
 

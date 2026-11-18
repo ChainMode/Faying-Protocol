@@ -146,7 +146,7 @@ Genauso ist ein Agent oder eine automatisch laufende Entität außerhalb von Fay
 ## Human View durch das Protokoll bauen: den Human Prime stets in der Lage halten zu sehen und zu bremsen
 
 Human View ist kein Slogan; wir müssen es in eine Standardfähigkeit innerhalb von Protokoll und Produkt verwandeln: sichtbar, nachverfolgbar, interventionsfähig.
-Der hier referenzierte Human Prime ist das verantwortliche Ende, wie es innerhalb des iFay-Systems definiert ist. Mehr zu diesem Konzept finden Sie in „Definitionen und Konzepte": https://ifay.ai/de/docs/iFay/blueprint/02-Definitionen%20und%20Konzepte
+Der hier referenzierte Human Prime ist das verantwortliche Ende, wie es innerhalb des iFay-Systems definiert ist. Mehr zu diesem Konzept finden Sie in „Definitionen und Konzepte": https://ifay.ai/de/docs/iFay/blueprint/02-Definition-und-Konzept
 
 ### 1) Zustand sichtbar machen können: Ich weiß stets, ob Sie in Faying sind
 

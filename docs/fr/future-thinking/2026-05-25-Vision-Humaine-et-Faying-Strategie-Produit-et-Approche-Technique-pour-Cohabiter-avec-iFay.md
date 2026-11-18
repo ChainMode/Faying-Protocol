@@ -146,7 +146,7 @@ De la même manière, un Agent ou une entité s'exécutant automatiquement en de
 ## Construire Human View à travers le protocole : maintenir Human Prime toujours en mesure de voir et de freiner
 
 Human View n'est pas un slogan ; nous devons la transformer en une capacité par défaut à l'intérieur du protocole et du produit : visible, traçable, intervenable.
-Le Human Prime référencé ici est l'extrémité responsable telle que définie au sein du système iFay. Pour en savoir plus sur ce concept, voir « Définitions et Concepts » : https://ifay.ai/fr/docs/iFay/blueprint/02-D%C3%A9finitions%20et%20Concepts
+Le Human Prime référencé ici est l'extrémité responsable telle que définie au sein du système iFay. Pour en savoir plus sur ce concept, voir « Définitions et Concepts » : https://ifay.ai/fr/docs/iFay/blueprint/02-D%C3%A9finition-et-concept
 
 ### 1) L'état pouvant être vu : je sais toujours si vous êtes en Faying
 

@@ -15,6 +15,12 @@
 !/.github/workflows/
 /.github/workflows/*
 !/.github/workflows/docs-ci.yml
+!/.github/ISSUE_TEMPLATE/
+/.github/ISSUE_TEMPLATE/*
+!/.github/ISSUE_TEMPLATE/bug_report.yml
+!/.github/ISSUE_TEMPLATE/feature_request.yml
+!/.github/ISSUE_TEMPLATE/config.yml
+!/.github/pull_request_template.md
 # 协议规范性工件与参考验证套件 = 产物（PO 裁定 2026-06-29 & 2026-11-15）
 !/schemas/
 !/vectors/

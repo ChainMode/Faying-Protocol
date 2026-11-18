@@ -146,7 +146,7 @@ De la misma forma, un agente o entidad de ejecución automática fuera de Faying
 ## Construir Human View a través del protocolo: mantener al Human Prime siempre capaz de ver y de frenar
 
 Human View no es un eslogan; tenemos que convertirlo en una capacidad por defecto dentro del protocolo y del producto: visible, trazable, intervenible.  
-El Human Prime al que se hace referencia aquí es el extremo responsable tal como se define dentro del sistema iFay. Para saber más sobre este concepto, véase "Definiciones y Conceptos": https://ifay.ai/es/docs/iFay/blueprint/02-Definiciones%20y%20Conceptos
+El Human Prime al que se hace referencia aquí es el extremo responsable tal como se define dentro del sistema iFay. Para saber más sobre este concepto, véase "Definiciones y Conceptos": https://ifay.ai/es/docs/iFay/blueprint/02-Definici%C3%B3n-y-concepto
 
 ### 1) Que el estado pueda ser visto: siempre sé si está en Faying
 

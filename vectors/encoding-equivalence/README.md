@@ -1,9 +1,8 @@
 # Encoding Equivalence Vectors — `vectors/encoding-equivalence/`
 
-> **Spec:** Faying Protocol/1.0
-> **Task:** [`tasks.md` 3.7](../../.kiro/specs/faying-auth-protocol/tasks.md) — 跨编码 round-trip 向量（CBOR ↔ JSON 等价）
+> **Spec:** [Faying Protocol/1.0 (`2025-10-25`)](../../docs/zh-CN/specification/2025-10-25/README.md) — 跨编码 round-trip 向量（CBOR ↔ JSON 等价）
 > **Requirements covered:** `R10.1.3`, `R10.1.4`, `R10.2.1`, `R10.2.4`
-> **Normative references:** [`design.md` §5.1 编码规则](../../docs/zh-CN/specification/draft/Faying-Protocol-1.0.md), §5.2 信封结构, §6.3 签名格式（S2 / S4）；[RFC 8949](https://www.rfc-editor.org/rfc/rfc8949) §4.2.1 Core Deterministic Encoding；[RFC 8259](https://www.rfc-editor.org/rfc/rfc8259) JSON；[RFC 4648](https://www.rfc-editor.org/rfc/rfc4648) §5 base64url
+> **Normative references:** [`05-协议报文.md` §5.1 编码规则 / §5.2 信封结构](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md), [`06-密码学.md` §6.3 签名格式（S2 / S4）](../../docs/zh-CN/specification/2025-10-25/06-密码学.md)；[RFC 8949](https://www.rfc-editor.org/rfc/rfc8949) §4.2.1 Core Deterministic Encoding；[RFC 8259](https://www.rfc-editor.org/rfc/rfc8259) JSON；[RFC 4648](https://www.rfc-editor.org/rfc/rfc4648) §5 base64url
 
 ---
 

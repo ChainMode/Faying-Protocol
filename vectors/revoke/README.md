@@ -7,11 +7,11 @@ issue must be reachable by an equally-authenticated REVOKE, must
 become visible on the Revocation Registry within
 `RevocationVisibilityBudget`, and must remain Revoked forever.
 
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §5.3.5 — `REVOKE` wire shape (`mandate_id`, `cascade`, `reason ∈ RevokeReason`, `effective_at`) and `REVOKE_RECEIPT` post-revocation state.
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §3.4 / §9.6 — Revocation Registry visibility within `RevocationVisibilityBudget` (default 1s).
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §4.3 / §8.1 — Mandate state machine: `Revoked` is a terminal state, no `Revoked → Active` transition exists.
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §7.5 / §9.7 — cascade revocation across the derivation subtree.
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §EH.1 / §EH.3 — `1006 E_REVOKED` routes to audit-log and HP view channel (critical bucket).
+- [`05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.3.5 — `REVOKE` wire shape (`mandate_id`, `cascade`, `reason ∈ RevokeReason`, `effective_at`) and `REVOKE_RECEIPT` post-revocation state.
+- [`03-组件与接口.md`](../../docs/zh-CN/specification/2025-10-25/03-组件与接口.md) §3.4 / [`09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) §9.6 — Revocation Registry visibility within `RevocationVisibilityBudget` (default 1s).
+- [`04-数据模型.md`](../../docs/zh-CN/specification/2025-10-25/04-数据模型.md) §4.3 / [`08-生命周期.md`](../../docs/zh-CN/specification/2025-10-25/08-生命周期.md) §8.1 — Mandate state machine: `Revoked` is a terminal state, no `Revoked → Active` transition exists.
+- [`07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md) §7.5 / [`09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) §9.7 — cascade revocation across the derivation subtree.
+- [`10-错误处理.md`](../../docs/zh-CN/specification/2025-10-25/10-错误处理.md) §EH.1 / §EH.3 — `1006 E_REVOKED` routes to audit-log and HP view channel (critical bucket).
 - Blueprint chapter 13 — the nine `RevokeReason` values exhaustively cover the nine decoupling triggers.
 
 The schema-of-record is [`schemas/fap-1.0.cddl`](../../schemas/fap-1.0.cddl); the
@@ -211,7 +211,7 @@ Exit code is `0` on success, `1` on any failure.
 ## Requirements traceability
 
 These vectors validate the following acceptance criteria
-(see [`requirements.md`](../../.kiro/specs/faying-auth-protocol/requirements.md)):
+(see [`docs/zh-CN/specification/2025-10-25/08-生命周期.md`](../../docs/zh-CN/specification/2025-10-25/08-生命周期.md)):
 
 | Requirement | Acceptance criterion verified                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |

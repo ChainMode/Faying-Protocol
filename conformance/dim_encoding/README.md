@@ -28,7 +28,7 @@ design.md §5.1 and Requirement 10.1.2 define the **normative** JSON media type:
 application/faying-protocol+json
 ```
 
-The conformance driver also recognises the **legacy alias** `application/fap+json` because tasks 3.7 / 5.2 and several `vectors/*/index.json` files still emit it for backward compatibility. The protocol body itself retired the `fap` short form — see [`docs/zh-CN/specification/draft/Faying-Protocol-1.0.md` §1.1](../../docs/zh-CN/specification/draft/Faying-Protocol-1.0.md).
+The conformance driver also recognises the **legacy alias** `application/fap+json` because tasks 3.7 / 5.2 and several `vectors/*/index.json` files still emit it for backward compatibility. The protocol body itself retired the `fap` short form — see [`docs/zh-CN/specification/2025-10-25/01-概述.md` §1.1](../../docs/zh-CN/specification/2025-10-25/01-概述.md).
 
 ```python
 ACCEPTED_JSON_CONTENT_TYPES = (

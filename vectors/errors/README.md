@@ -1,6 +1,6 @@
 # `vectors/errors/` — Error-Code Test Vectors
 
-> **Spec authority**: [`docs/zh-CN/specification/draft/Faying-Protocol-1.0.md`](../../docs/zh-CN/specification/draft/Faying-Protocol-1.0.md) §5.4 (error code table) and §10 / §EH.1 / §EH.3 / §EH.4 (Error Handling).
+> **Spec authority**: [`docs/zh-CN/specification/2025-10-25/05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.4 (error code table) and [`docs/zh-CN/specification/2025-10-25/10-错误处理.md`](../../docs/zh-CN/specification/2025-10-25/10-错误处理.md) §10 / §EH.1 / §EH.3 / §EH.4 (Error Handling).
 >
 > **Task**: `tasks.md` 3.6 — *错误码 test vectors（覆盖 12 项错误码）*. The task heading says "12"; design.md §5.4 (and the spec doc §5.4 / §EH.1) actually defines **15 codes** (`1001`–`1014` + `1099`). This vector set covers all 15.
 

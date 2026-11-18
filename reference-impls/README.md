@@ -8,7 +8,7 @@
 > specification** and **MUST NOT** be cited as authoritative. The authoritative
 > grammar is [`schemas/fap-1.0.cddl`](../schemas/fap-1.0.cddl); the
 > authoritative wire format is described in the protocol正本
-> [`docs/zh-CN/specification/draft/Faying-Protocol-1.0.md`](../docs/zh-CN/specification/draft/Faying-Protocol-1.0.md)
+> [`docs/zh-CN/specification/2025-10-25/README.md`](../docs/zh-CN/specification/2025-10-25/README.md)
 > §5 / §6.
 
 ## Layout

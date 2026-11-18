@@ -3,7 +3,7 @@
 This directory holds the official PRESENCE test vectors for Faying
 Protocol/1.0. They exercise the `presence-signal` rule of
 `schemas/fap-1.0.cddl` and the verdict matrix derived from
-[`design.md`](../../.kiro/specs/faying-auth-protocol/design.md):
+[`03-组件与接口.md`](../../docs/zh-CN/specification/2025-10-25/03-组件与接口.md) and [`07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md):
 
 - §3.2 Presence Channel — signal-type strength table and on-loss policy
 - §5.3.2 PRESENCE message — wire shape carried inside the envelope
@@ -171,7 +171,7 @@ envelope.
 ## Requirements traceability
 
 These vectors validate the following acceptance criteria (see
-[`requirements.md`](../../.kiro/specs/faying-auth-protocol/requirements.md)):
+[`docs/zh-CN/specification/2025-10-25/03-组件与接口.md`](../../docs/zh-CN/specification/2025-10-25/03-组件与接口.md)):
 
 | Requirement | Acceptance criterion verified                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------ |

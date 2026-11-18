@@ -132,9 +132,9 @@ cryptographically.
 
 ## Cross-references
 
-- `docs/zh-CN/specification/draft/Faying-Protocol-1.0.md` §5.3.7, §5.4 (1099
-  `E_PROTOCOL` DISCLOSURE-path note `*`), §9.10.4 T3, §EH.1
-- `.kiro/specs/faying-auth-protocol/requirements.md` Requirement 13.3
-- `.kiro/specs/faying-auth-protocol/design.md` §5.3.7, §9.10.4, §12 P18.3
+- [`docs/zh-CN/specification/2025-10-25/05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.3.7, §5.4 (1099
+  `E_PROTOCOL` DISCLOSURE-path note `*`)
+- [`docs/zh-CN/specification/2025-10-25/09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) §9.10.4 T3
+- [`docs/zh-CN/specification/2025-10-25/10-错误处理.md`](../../docs/zh-CN/specification/2025-10-25/10-错误处理.md) §EH.1
 - `schemas/fap-1.0.cddl` — authoritative wire schema
 - `schemas/types.ts` `DisclosureClaims` — non-normative TS reflection

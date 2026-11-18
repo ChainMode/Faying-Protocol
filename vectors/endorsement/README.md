@@ -1,6 +1,6 @@
 # Endorsed Mandate Test Vectors
 
-Task **3.8** — Faying Protocol/1.0, spec [`.kiro/specs/faying-auth-protocol/`](../../.kiro/specs/faying-auth-protocol/).
+Faying Protocol/1.0 (`2025-10-25` Final), spec [`docs/zh-CN/specification/2025-10-25/`](../../docs/zh-CN/specification/2025-10-25/README.md).
 
 Covers requirements **11.1 / 11.2 / 11.3 / 11.4** and properties **P16.1 / P16.3**.
 Authoritative wire-format schema: [`schemas/fap-1.0.cddl`](../../schemas/fap-1.0.cddl).
@@ -159,12 +159,12 @@ python3 vectors/endorsement/_verify.py     # asserts every vector matches its ex
 
 ## Cross-references
 
-- [design.md §4.1 / §4.2](../../.kiro/specs/faying-auth-protocol/design.md) — `endorsement` field, CDDL
-- [design.md §5.4](../../.kiro/specs/faying-auth-protocol/design.md) — error codes 1007 / 1013
-- [design.md §6.3](../../.kiro/specs/faying-auth-protocol/design.md) — signature input + Endorsed_Mandate inclusion anchor
-- [design.md §7.5](../../.kiro/specs/faying-auth-protocol/design.md) — Endorsement Grades sub-grade hard constraints
-- [design.md §9.7](../../.kiro/specs/faying-auth-protocol/design.md) — DELEGATE endorsement convergence
-- [design.md §11 / §12](../../.kiro/specs/faying-auth-protocol/design.md) — P16.1 / P16.3 narratives
-- [requirements.md Requirement 11](../../.kiro/specs/faying-auth-protocol/requirements.md) — 11.1 / 11.2 / 11.3 / 11.4 EARS clauses
+- [`04-数据模型.md` §4.1 / §4.2](../../docs/zh-CN/specification/2025-10-25/04-数据模型.md) — `endorsement` field, CDDL
+- [`05-协议报文.md` §5.4](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) — error codes 1007 / 1013
+- [`06-密码学.md` §6.3](../../docs/zh-CN/specification/2025-10-25/06-密码学.md) — signature input + Endorsed_Mandate inclusion anchor
+- [`07-授权等级.md` §7.5](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md) — Endorsement Grades sub-grade hard constraints
+- [`09-安全考量.md` §9.7](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) — DELEGATE endorsement convergence
+- [`09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) — P16.1 / P16.3 security properties
+- [`docs/zh-CN/specification/2025-10-25/README.md`](../../docs/zh-CN/specification/2025-10-25/README.md) — Endorsed Mandate normative clauses (11.1–11.4)
 - [schemas/fap-1.0.cddl](../../schemas/fap-1.0.cddl) — authoritative wire-format schema
 - [schemas/types.ts](../../schemas/types.ts) — non-normative TypeScript view (snake_case ↔ kebab-case mapping in file header)

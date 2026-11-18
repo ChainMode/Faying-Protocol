@@ -4,10 +4,10 @@ This directory holds the official `GRADE_SWITCH` test vectors for
 Faying Protocol/1.0. They exercise the message and authorization-grade
 sections of the specification:
 
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §5.3.3 — GRADE_SWITCH wire shape (`mandate_id`, `target_grade`, `reason`, optional `human_witness`)
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §7.2 — 触发条件矩阵 (per-event outcome by current grade)
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §7.4 — 等级切换报文要求差异 (`human_witness` MUST on upgrade and on G0 Override; MAY on downgrade)
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §EH.1 — error-code table (`1010 E_HUMAN_WITNESS_REQUIRED` for the negative cases)
+- [`05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.3.3 — GRADE_SWITCH wire shape (`mandate_id`, `target_grade`, `reason`, optional `human_witness`)
+- [`07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md) §7.2 — 触发条件矩阵 (per-event outcome by current grade)
+- [`07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md) §7.4 — 等级切换报文要求差异 (`human_witness` MUST on upgrade and on G0 Override; MAY on downgrade)
+- [`10-错误处理.md`](../../docs/zh-CN/specification/2025-10-25/10-错误处理.md) §EH.1 — error-code table (`1010 E_HUMAN_WITNESS_REQUIRED` for the negative cases)
 
 The schema-of-record is [`schemas/fap-1.0.cddl`](../../schemas/fap-1.0.cddl);
 the inner `Mandate` carried in `GRADE_SWITCH_RESP.claims` validates
@@ -193,7 +193,7 @@ Exit code is `0` on success, `1` on any failure.
 ## Requirements traceability
 
 These vectors validate the following acceptance criteria
-(see [`requirements.md`](../../.kiro/specs/faying-auth-protocol/requirements.md)):
+(see [`docs/zh-CN/specification/2025-10-25/07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md)):
 
 | Requirement | Acceptance criterion verified                                                                                                |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |

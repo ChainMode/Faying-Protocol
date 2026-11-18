@@ -2,7 +2,7 @@
 
 > **Spec anchor**: Faying Protocol/1.0 §4.3（Mandate 状态机, Disconnected 状态）/ §8.4（Reconciliation 事务）/ §9.8（Disconnection Handling 处理矩阵）/ §9.9（真实失联 vs 感知失联）/ §12 P17.1–P17.5 / Requirement 12（Disconnection Strategy）。
 >
-> **Task ref**: `.kiro/specs/faying-auth-protocol/tasks.md` 任务 3.11。
+> **Spec directory**: [`docs/zh-CN/specification/2025-10-25/`](../../docs/zh-CN/specification/2025-10-25/README.md)（[`04-数据模型.md`](../../docs/zh-CN/specification/2025-10-25/04-数据模型.md)、[`08-生命周期.md`](../../docs/zh-CN/specification/2025-10-25/08-生命周期.md)、[`09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md)）。
 
 ## 1. 用途
 

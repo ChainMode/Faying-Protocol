@@ -5,7 +5,7 @@
 > **not** the protocol itself, **not** a production library, and carries no
 > normative weight. The authoritative wire-format definition is
 > [`schemas/fap-1.0.cddl`](../../schemas/fap-1.0.cddl); the protocol正本 is
-> [`docs/zh-CN/specification/draft/Faying-Protocol-1.0.md`](../../docs/zh-CN/specification/draft/Faying-Protocol-1.0.md).
+> [`docs/zh-CN/specification/2025-10-25/README.md`](../../docs/zh-CN/specification/2025-10-25/README.md).
 
 # Faying Protocol/1.0 — Rust Reference Implementation
 

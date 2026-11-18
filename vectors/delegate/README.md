@@ -4,11 +4,11 @@ This directory holds the official `DELEGATE` test vectors for
 Faying Protocol/1.0. They exercise the cross-device / sub-agent
 derivation path and the multi-sign attestation chain that anchors it:
 
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §3.3 — Attestation Chain (root HP → MS-Cert → parent → child) and invariants `I-AC-1..3`.
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §5.3.4 — DELEGATE wire shape (`parent_mandate`, `child_subject`, `child_scope`, `child_grade`, optional `device_id`).
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §6.3 — multi-sign chain (the child Mandate's `signature_bundle.chain` carries the parent Mandate's outer signature).
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §9.7 — derivation convergence (`child.scope ⊆ parent.scope`, `child.grade.autonomy ≤ parent.grade.autonomy`).
-- [`design.md`](../../.kiro/specs/faying-auth-protocol/design.md) §EH.1 / §5.4 — error code `1099 E_PROTOCOL` for scope-expansion / grade-autonomy-increase rejections.
+- [`03-组件与接口.md`](../../docs/zh-CN/specification/2025-10-25/03-组件与接口.md) §3.3 — Attestation Chain (root HP → MS-Cert → parent → child) and invariants `I-AC-1..3`.
+- [`05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.3.4 — DELEGATE wire shape (`parent_mandate`, `child_subject`, `child_scope`, `child_grade`, optional `device_id`).
+- [`06-密码学.md`](../../docs/zh-CN/specification/2025-10-25/06-密码学.md) §6.3 — multi-sign chain (the child Mandate's `signature_bundle.chain` carries the parent Mandate's outer signature).
+- [`09-安全考量.md`](../../docs/zh-CN/specification/2025-10-25/09-安全考量.md) §9.7 — derivation convergence (`child.scope ⊆ parent.scope`, `child.grade.autonomy ≤ parent.grade.autonomy`).
+- [`10-错误处理.md`](../../docs/zh-CN/specification/2025-10-25/10-错误处理.md) §EH.1 / [`05-协议报文.md`](../../docs/zh-CN/specification/2025-10-25/05-协议报文.md) §5.4 — error code `1099 E_PROTOCOL` for scope-expansion / grade-autonomy-increase rejections.
 
 The schema-of-record is [`schemas/fap-1.0.cddl`](../../schemas/fap-1.0.cddl);
 the inner Mandate carried in `DELEGATE_RESP.claims` validates against
@@ -106,7 +106,7 @@ The protocol's grade integer runs **parallel** to autonomy:
 | `G4`  | Autonomous        | highest  |
 
 So `child.grade.autonomy ≤ parent.grade.autonomy` from
-[`requirements.md`](../../.kiro/specs/faying-auth-protocol/requirements.md) §7.1.2 is equivalent to
+[`07-授权等级.md`](../../docs/zh-CN/specification/2025-10-25/07-授权等级.md) §7.1.2 is equivalent to
 `child.grade_number ≤ parent.grade_number` on the wire. Every
 positive vector in this batch picks a child grade with
 `grade_number ≤` its parent's; equality is exercised by
@@ -185,7 +185,7 @@ Exit code is `0` on success, `1` on any failure.
 ## Requirements traceability
 
 These vectors validate the following acceptance criteria
-(see [`requirements.md`](../../.kiro/specs/faying-auth-protocol/requirements.md)):
+(see [`docs/zh-CN/specification/2025-10-25/README.md`](../../docs/zh-CN/specification/2025-10-25/README.md)):
 
 | Requirement | Acceptance criterion verified                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |

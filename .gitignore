@@ -26,6 +26,10 @@
 !/vectors/
 !/reference-impls/
 !/conformance/
+!/package.json
+!/src/
+!/bin/
+!/tests/
 
 # === 已放行目录内仍要剔除的噪声 ===
 .DS_Store

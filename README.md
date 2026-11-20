@@ -19,6 +19,49 @@
 [Français](./docs/fr/blueprint/) ·
 [Русский](./docs/ru/blueprint/)
 
+## 快速体验与开发者接入（`Rogue Fay` 守卫中间件 & `faying-guardian`）
+
+零外部运行时依赖（纯 Node.js 原生模块），直接运行完整状态机测试与一键实况演示（`ROGUE 阻断 -> 显式 Faying 上岗 -> 活跃执行 + Human View 监护流 -> G0 红色急刹 <5ms 熔断 -> 退回 ROGUE 阻断`）：
+
+```bash
+# 运行 Rogue Fay 守卫中间件、守护进程与 1.1-cofay 级联熔断测试
+npm test
+
+# 一条命令运行完整生命周期实况演示
+npm run demo
+```
+
+### 5 行代码接入 `withFayingGuard`（LangChain / MCP Server / HTTP 后端通用）
+
+将任何外部工具调用、HTTP 路由或 MCP 工具包在 `withFayingGuard` 内：一旦未上岗、超出原子权限范围、心跳超时或 **Human Prime** 按下 **G0 红色急刹**，所有在途（in-flight）与后续外部动作在 **`<5ms`** 内失败闭锁并抛出 `ROGUE_FAY_ACTION_FORBIDDEN`：
+
+```js
+import { createGuardianClient, withFayingGuard } from "./src/index.mjs";
+
+const guardian = createGuardianClient({ url: "http://127.0.0.1:4780" });
+export const submitPayment = withFayingGuard(
+  async ({ recipient, amountUsd }) => ({ settled: true, recipient, amountUsd }),
+  guardian,
+  { fayId: "ifay_assistant_01", domain: "payments.example", action: "payment:transfer:submit" },
+);
+```
+
+### 终端命令行守护进程（`faying-guardian` CLI）
+
+```bash
+# 1. 启动本地 Faying Guardian 守护进程（含 /events 实时 SSE 熔断推送流与 Human View 监护接口）
+node ./bin/faying-guardian.mjs serve --port 4780
+
+# 2. 查询状态（默认拒绝态 ROGUE_FAY）-> 显式发起 Faying 上岗动作 -> 刷新在场心跳
+node ./bin/faying-guardian.mjs status --fay ifay_assistant_01
+node ./bin/faying-guardian.mjs engage --hp hid_prime_01 --fay ifay_assistant_01 --domains payments.example --actions payment:transfer:submit
+node ./bin/faying-guardian.mjs heartbeat --fay ifay_assistant_01
+node ./bin/faying-guardian.mjs human-view --fay ifay_assistant_01
+
+# 3. 触发 G0 红色急刹（立即中止在途外部操作并级联停机下游 coFay）
+node ./bin/faying-guardian.mjs brake --target ifay_assistant_01 --reason "Emergency stop"
+```
+
 ## 它要解决什么
 
 AI Agent 已经成为软件世界的常见词。它指可以自主执行特定职能的智能执行实例——给它一个目标，它自行规划、调用工具、产出结果。
@@ -40,13 +83,15 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 
 ## 仓库布局
 
-本仓库专责 Faying Protocol 一项内容，包含叙述性文档与协议工程资产两层：
+本仓库专责 Faying Protocol 一项内容，包含叙述性文档、协议工程资产与可直接集成的运行时守卫套件：
 
 | 路径 | 内容 | 状态 |
 | --- | --- | --- |
 | `docs/{lang}/blueprint/` | **蓝图** —— 动机、定位、愿景、使命路径、价值观、前瞻议题 | zh-CN 为源语言、已定稿；其余 8 语言派生翻译 |
 | `docs/{lang}/specification/2025-10-25/` | **协议规范（1.0）** —— 概述、架构、组件与接口、数据模型、协议报文、密码学、授权等级、生命周期、安全考量、错误处理、开放议题 + 附录 | **Final · Faying Protocol/1.0 · 2025-10-25 发布** |
 | `docs/{lang}/specification/1.1-cofay/` | **扩展规范（1.1）** —— `coFay` 委派托管（三层责任穿透、单跳不放大、上游 `G0` 级联停机）与双签原子移交（向后兼容 1.0） | **Final · Faying Protocol/1.1 · 2026-11-16 发布** |
+| `src/` & `bin/` | **`Rogue Fay` 守卫中间件与监护守护进程** —— `withFayingGuard`、HTTP/MCP 中间件、实时 `Human View` 披露流与 `faying-guardian` CLI | 随 MVP 发布 |
+| `tests/` | **运行时守卫与守护进程自动化测试套件** —— 覆盖 `<5ms` 在途 `G0` 熔断、心跳超时、授权预算与 `1.1-cofay` 级联停机 | 随 MVP 发布 |
 | `schemas/` | **机器可读 schema** —— `fap-1.0.cddl`（1.0 Normative）、`fap-1.1-cofay.cddl` & `fap-1.1-cofay.json`（1.1 Normative）、`types.ts`、`fap-1.0.proto` | 随规范发布 |
 | `vectors/` | **官方测试向量** —— 1.0 各协议报文向量族 + `cofay-stewardship-v1.1.json`（1.1 委派托管与双签移交向量） | 随规范发布 |
 | `reference-impls/` | **双语言参考实现** —— Rust 与 TypeScript 参考编解码、签名输入、维度验证及 1.1 `coFay` 委派托管校验（非规范性） | 随规范发布 |
@@ -94,9 +139,9 @@ Faying Protocol 是 [iFay](https://ifay.ai) 协议族中专责"受控、监护�
 
 ## License
 
-**MIT (Reference Implementations, Schemas & Test Vectors) / CC BY 4.0 (Specifications & Blueprints)** — Copyright (c) 2025-2026 ChainMode contributors.
+**MIT (SDK, Guardian CLI, Reference Implementations, Schemas & Test Vectors) / CC BY 4.0 (Specifications & Blueprints)** — Copyright (c) 2025-2026 ChainMode contributors.
 
-- 参考实现、一致性套件、Schema 与测试向量（`reference-impls/`、`conformance/`、`schemas/`、`vectors/`）以 [MIT License](./LICENSE) 授权。
+- 运行时守卫中间件、CLI、参考实现、一致性套件、Schema 与测试向量（`src/`、`bin/`、`tests/`、`reference-impls/`、`conformance/`、`schemas/`、`vectors/`）以 [MIT License](./LICENSE) 授权。
 - `docs/` 下的协议规范与架构蓝图文档以 [CC BY 4.0](./LICENSE-DOCS) 授权。
 
 ## 相关
